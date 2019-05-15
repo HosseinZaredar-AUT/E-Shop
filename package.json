@@ -1,0 +1,17 @@
+{
+  "name": "e-shop",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "ejs": "~2.6.1",
+    "body-parser": "^1.18.3",
+    "mongoose": "^5.4.19",
+    "method-override": "^3.0.0",
+    "rimraf": "^2.6.3",
+    "express-session": "^1.15.6",
+    "express": "~4.16.1"
+  }
+}
