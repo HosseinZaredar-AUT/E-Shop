@@ -6,12 +6,31 @@
     "start": "node app.js"
   },
   "dependencies": {
-    "ejs": "~2.6.1",
     "body-parser": "^1.18.3",
-    "mongoose": "^5.4.19",
-    "method-override": "^3.0.0",
-    "rimraf": "^2.6.3",
+    "bootstrap": "^4.3.1",
+    "ejs": "~2.6.1",
+    "express": "~4.16.1",
     "express-session": "^1.15.6",
-    "express": "~4.16.1"
+    "font-awesome": "^4.7.0",
+    "fontawesome": "^5.6.3",
+    "jquery": "^3.4.1",
+    "method-override": "^3.0.0",
+    "mongoose": "^5.4.19",
+    "popper.js": "^1.15.0",
+    "rimraf": "^2.6.3"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.26.5",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^6.0.0",
+    "gulp-changed": "^3.2.0",
+    "gulp-clean-css": "^4.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-imagemin": "^5.0.3",
+    "gulp-line-ending-corrector": "^1.0.3",
+    "gulp-sass": "^4.0.2",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-uglify": "^3.0.2"
   }
+
 }
