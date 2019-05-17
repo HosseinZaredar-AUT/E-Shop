@@ -1,0 +1,23 @@
+.verticalDivider {
+  border-left: 1px solid #c9d7cf;
+  height: 50px;
+}
+
+body {
+  overflow: auto;
+  direction: rtl;
+}
+
+header {
+  background-color: #5d746b;
+  scroll-behavior: smooth;
+  color: #596661;
+  overflow: hidden;
+}
+
+.myBtn {
+  background-color: #c9d7cf;
+  border-color: #636f67;
+}
+
+/*# sourceMappingURL=myStyle.css.map */

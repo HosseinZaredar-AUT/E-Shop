@@ -1,0 +1,26 @@
+$headerBackColor: #5d746b;
+$headerColor: #596661;
+$headerCompColor: #c9d7cf;
+
+.verticalDivider {
+  border-left: 1px solid $headerCompColor;
+  height: 50px;
+}
+
+body {
+  overflow: auto;
+  direction: rtl;
+
+}
+
+header {
+  background-color: $headerBackColor;
+  scroll-behavior: smooth;
+  color: $headerColor;
+  overflow: hidden;
+}
+
+.myBtn {
+  background-color: $headerCompColor;
+  border-color: #636f67
+}
