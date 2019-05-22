@@ -1,23 +1,98 @@
-.verticalDivider {
-  border-left: 1px solid #c9d7cf;
-  height: 50px;
+@font-face {
+    font-family: 'IranYekanBold';
+    src: url("../fonts/iranSans/iranyekanbold.woff") format("woff");
+    font-style: normal;
+    font-weight: normal; }
+
+@font-face {
+    font-family: 'IranYekanRegular';
+    src: url("../fonts/iranSans/iranyekanregular.woff") format("woff");
+    font-style: normal;
+    font-weight: normal; }
+
+@font-face {
+    font-family: 'IranYekanLight';
+    src: url("../fonts/iranSans/iranyekanlight.woff") format("woff");
+    font-style: normal;
+    font-weight: normal; }
+
+.font-bold {
+    font-family: 'IranYekanBold', serif; }
+
+.font-medium {
+    font-family: 'IranYekanRegular', serif; }
+
+.font-light {
+    font-family: 'IranYekanLight', serif; }
+
+.font-bg {
+    font-size: 50px; }
+
+.font-md {
+    font-size: 30px; }
+
+.font-sm {
+    font-size: 18px; }
+
+.news-image {
+    height: 500px;
+    object-fit: cover; }
+
+.category-items {
+    border-radius: 100%;
+    border: 5px solid white;
+    padding: 20px;
+    margin: 20px;
+    font-size: 60px;
+    transition: all 0.2s ease-in; }
+
+.category-items:hover {
+    border-radius: 100%;
+    border-color: teal;
+    padding: 20px;
+    margin: 20px;
+    font-size: 60px;
+    transition: all 0.2s ease-in; }
+
+.product-card {
+    border: 1px solid #ffffff;
+    transition: 0.8s; }
+
+.product-card:hover {
+    border: 1px solid #e2e3e5; }
+
+.add-to-cart-plus {
+    opacity: 0;
+    position: absolute;
+    font-size: 150px;
+    width: 100%;
+    top: 15%;
+    color: green;
+    transition: all 0.2s ease-in; }
+
+.product-card:hover .add-to-cart-plus {
+    opacity: 1;
 }
 
-body {
-  overflow: auto;
-  direction: rtl;
-}
+.info-text {
+    left: 0;
+    right: 0; }
 
-header {
-  background-color: #5d746b;
-  scroll-behavior: smooth;
-  color: #596661;
-  overflow: hidden;
-}
+.info-content {
+    color: white;
+    transition: all 0.2s ease-in; }
 
-.myBtn {
-  background-color: #c9d7cf;
-  border-color: #636f67;
-}
+.info-content:hover {
+    color: teal;
+    transition: all 0.2s ease-in; }
 
-/*# sourceMappingURL=myStyle.css.map */
+.container-custom {
+    padding-left: 80px;
+    padding-right: 80px; }
+
+.discount-parallax {
+    background-color: #e7e7e7;
+    height: 100vh;
+    position: absolute;
+    right: 10%;
+    margin-top: 150px; }
