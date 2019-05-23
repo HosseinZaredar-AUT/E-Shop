@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Register Page</title>
+    <title>Login Page</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/myStyle.css">
-    <link rel="stylesheet" href="css/registerStyle.css">
+    <link rel="stylesheet" href="css/loginStyle.css">
 </head>
 
 <body>
@@ -56,28 +56,6 @@
     </header>
 
     <form action="" class="main-form needs-validation" novalidate>
-        <div class="row">
-            <div class="col">
-                <div class="form-group">
-                    <label for="firstname">First Name</label>
-                    <input type="text" name="firstname" id="firstname" class="form-control" required>
-                    <div class="invalid-feedback">Please enter a valid First name.</div>
-                    <!-- <small class="form-text text-muted">
-                        This should be your First name.
-                    </small> -->
-                </div>
-            </div>
-            <div class="col">
-                <div class="form-group">
-                    <label for="lastname">Last Name</label>
-                    <input type="text" name="lastname" id="lastname" class="form-control" required>
-                    <div class="invalid-feedback">Please enter a valid Last name.</div>
-                    <!-- <small class="form-text text-muted">
-                        This should be your last name.
-                    </small> -->
-                </div>
-            </div>
-        </div>
         <div class="form-group">
             <label for="username">Username</label>
             <input type="text" name="username" id="username" class="form-control" required>
@@ -88,31 +66,11 @@
             <input type="password" name="password" id="password" class="form-control" required>
             <div class="invalid-feedback">Please enter a valid password.</div>
         </div>
-        <div class="form-group">
-            <label for="address">Address</label>
-            <input type="text" name="address" id="address" class="form-control">
-            <div class="invalid-feedback">Please enter a valid address.</div>
-        </div>
-        <div class="form-group select">
-            <label for="gender">Gender</label>
-            <select name="gender" id="gender" class="form-control">
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-            </select>
-        </div>
-        <div class="form-group select">
-            <label for="city">City</label>
-            <select name="city" id="city" class="form-control">
-                <option value="male">Tehran</option>
-                <option value="female">Outside of Tehran</option>
-            </select>
-        </div>
         <div class="form-check">
-            <input type="checkbox" id="accept-terms" class="form-check-input"required>
-            <label for="accept-terms" class="form-check-label">Accept Terms &amp; Conditions</label>
-            <div class="invalid-feedback">Accept terms and conditions in order to register.</div>
+            <input type="checkbox" id="remember-me" class="form-input">
+            <label for="remember-me" class="form-check-label">Remember Me</label>
         </div>
-        <button type="submit" class="reg-btn btn-primary">Submit</button>
+        <button type="submit" class="login-btn btn-primary">Submit</button>
     </form>
 
     <script src="js/jquery-3.2.1.slim.min.js"></script>
