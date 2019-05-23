@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping</title>
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/myStyle.css">
+</head>
+<body style="">
+<header class="py-1 px-md-5 px-sm-1">
+    <div class="container-fluid " style="">
+        <nav class="navbar navbar-expand-md">
+
+            <button class="btn  mt-1 mr-md-3 mr-sm-0" style="font-size: 30px">
+                <span class="fa fa-bars" style="color: white"></span>
+            </button>
+
+            <a class="navbar-brand align-items-center" href="#" style="">
+                <img src="Images/img_227082.png" style="height: 60px ;width: 180px;">
+            </a>
+
+            <ul class="navbar-nav">
+                <li class="nav-item d-md-block d-none">
+                    <a href="#" class="nav-link ml-2" style="color: white; font-size: 20px">
+                        Contact Us
+                    </a>
+                </li>
+                <li class="nav-item d-md-block d-none">
+                    <a href="#" class="nav-link ml-2" style="color: white; font-size: 20px">
+                        Support
+                    </a>
+                </li>
+            </ul>
+            <div class="position-absolute" style="right: 0">
+                <button class="btn  mt-1 d-md-inline d-none" style="font-size: 30px">
+                    <span class="fa fa-user mt-3" style="color: white"></span>
+                </button>
+                <button class="btn  mt-1 d-md-inline d-none" style="font-size: 30px">
+                    <span class="fa fa-search" style="color: white"></span>
+                </button>
+                <button class="btn  mt-1" style="font-size: 30px">
+                    <span class="badge" style="position: absolute; top: 25px;right: 13px;">5</span>
+                    <span class="fa fa-shopping-bag " style="color: white"></span>
+                </button>
+
+            </div>
+
+        </nav>
+    </div>
+</header>
+
+<aside class="leftSide w-25 h-100 float-left"
+       style="height: 10rem; padding-left: 35px; padding-right: 35px; position: fixed">
+    <div class="sperator">
+        <h5>
+            <b>
+                Price
+            </b>
+        </h5>
+        <input type="range" min="0" max="100" value="50" class="w-100  mt-4 slider">
+    </div>
+    <div class="sperator">
+        <h5>
+            <b>
+                Size
+            </b>
+        </h5>
+
+        <div class="mt-4">
+            <label class="radioContainer">S
+                <input type="checkbox" checked="checked" name="radio">
+                <span class="checkMark"></span>
+            </label>
+            <label class="radioContainer">M
+                <input type="checkbox" name="radio">
+                <span class="checkMark"></span>
+            </label>
+            <label class="radioContainer">L
+                <input type="checkbox" name="radio">
+                <span class="checkMark"></span>
+            </label>
+            <label class="radioContainer">XL
+                <input type="checkbox" name="radio">
+                <span class="checkMark"></span>
+            </label>
+
+        </div>
+    </div>
+</aside>
+
+</body>
+</html>
