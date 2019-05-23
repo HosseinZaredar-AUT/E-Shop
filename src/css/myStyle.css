@@ -100,12 +100,14 @@
   opacity: 1; }
 
 .shoppingBody {
-  overflow: auto; }
+  overflow: auto;
+}
 
 .shoppingHeader {
-  background-color: #000000;
-  color: #effff7; }
-
+  background-color: #f7f7f7;
+  border-bottom: 5px teal solid;
+  color: #effff7;
+}
 .myBtn {
   background-color: #000000;
   border-color: #636f67; }

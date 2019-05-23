@@ -4,20 +4,6 @@
     margin-top: 50px;
 }
 
-.login-btn{
-    margin-top: 15px;
-    /* background-color: black; */
-    border-color:black;
-    /* color:white; */
-    -webkit-transition-duration: 0.2s;
-    transition-duration: 0.2s;
-    margin-left: 40%;
-}
-
-.login-btn:hover{
-    background-color: black;
-    border-color:black;
-}
 
 .form-check{
     margin-left: -18px;

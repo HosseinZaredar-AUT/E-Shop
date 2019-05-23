@@ -4,19 +4,6 @@
     margin-top: 50px;
 }
 
-.reg-btn{
-    margin-top: 15px;
-    /* background-color: black; */
-    border-color:black;
-    /* color:white; */
-    -webkit-transition-duration: 0.2s;
-    transition-duration: 0.2s;
-}
-
-.reg-btn:hover{
-    background-color: black;
-    border-color:black;
-}
 
 .form-group select transition{
     -webkit-transition-duration: 0.2s;
