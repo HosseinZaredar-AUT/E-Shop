@@ -125,7 +125,7 @@ b208bfb76c1e85e5f1813b0311b74286923512c
 //<<<<<<< HEAD
 .shoppingBody {
   //position: fixed;
-  overflow: visible;
+  overflow: auto;
   //min-height: 1920px;
 }
 
@@ -142,7 +142,11 @@ b208bfb76c1e85e5f1813b0311b74286923512c
 .leftSide {
   background-color: #f5f5f5;
   display: block;
-
+  padding-left: 35px;
+  padding-right: 35px;
+  padding-bottom: 75px;
+  position: fixed;
+  overflow: scroll;
   .sperator {
     padding-top: 85px;
   }
@@ -251,6 +255,9 @@ b208bfb76c1e85e5f1813b0311b74286923512c
   background: white;
 }
 
+.myImg{
+  height: auto;
+}
 
 //=======
 .product-card-discount:hover .add-to-cart-plus {

@@ -124,7 +124,7 @@ b208bfb76c1e85e5f1813b0311b74286923512c
 }
 
 .shoppingBody {
-  overflow: visible;
+  overflow: auto;
 }
 
 .shoppingHeader {
@@ -140,6 +140,11 @@ b208bfb76c1e85e5f1813b0311b74286923512c
 .leftSide {
   background-color: #f5f5f5;
   display: block;
+  padding-left: 35px;
+  padding-right: 35px;
+  padding-bottom: 75px;
+  position: fixed;
+  overflow: scroll;
 }
 
 .leftSide .sperator {
@@ -248,6 +253,10 @@ b208bfb76c1e85e5f1813b0311b74286923512c
   height: 8px;
   border-radius: 50%;
   background: white;
+}
+
+.myImg {
+  height: auto;
 }
 
 .product-card-discount:hover .add-to-cart-plus {

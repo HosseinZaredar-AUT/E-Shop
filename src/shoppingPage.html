@@ -7,9 +7,14 @@
     <link rel="stylesheet" href="css/font-awesome.min.css">
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/myStyle.css">
+    <style>
+        img {
+            height: auto;
+        }
+    </style>
 </head>
-<body style="">
-<header class="py-1 px-md-5 px-sm-1">
+<body class="shoppingBody">
+<header class="shoppingHeader py-1 px-md-5 px-sm-1 sticky-top">
     <div class="container-fluid " style="">
         <nav class="navbar navbar-expand-md">
 
@@ -51,8 +56,8 @@
     </div>
 </header>
 
-<aside class="leftSide w-25 h-100 float-left"
-       style="height: 10rem; padding-left: 35px; padding-right: 35px; position: fixed">
+<aside class="leftSide w-25 h-100 float-left d-lg-block d-none"
+       style="">
     <div class="sperator">
         <h5>
             <b>
@@ -61,6 +66,7 @@
         </h5>
         <input type="range" min="0" max="100" value="50" class="w-100  mt-4 slider">
     </div>
+
     <div class="sperator">
         <h5>
             <b>
@@ -85,10 +91,123 @@
                 <input type="checkbox" name="radio">
                 <span class="checkMark"></span>
             </label>
-
         </div>
     </div>
+
+    <div class="sperator">
+        <h5>
+            <b>
+                Brand
+            </b>
+        </h5>
+
+        <div class="mt-4">
+            <label class="radioContainer">Nike
+                <input type="checkbox" checked="checked" name="radio">
+                <span class="checkMark"></span>
+            </label>
+            <label class="radioContainer">Adidas
+                <input type="checkbox" name="radio">
+                <span class="checkMark"></span>
+            </label>
+            <label class="radioContainer">Rebook
+                <input type="checkbox" name="radio">
+                <span class="checkMark"></span>
+            </label>
+            <label class="radioContainer">Puma
+                <input type="checkbox" name="radio">
+                <span class="checkMark"></span>
+            </label>
+        </div>
+    </div>
+
+
+    <div class="sperator">
+        <h5>
+            <b>
+                Age
+            </b>
+        </h5>
+
+        <div class="mt-4">
+            <label class="radioContainer">Infants
+                <input type="checkbox" checked="checked" name="radio">
+                <span class="checkMark"></span>
+            </label>
+            <label class="radioContainer">Kids
+                <input type="checkbox" name="radio">
+                <span class="checkMark"></span>
+            </label>
+            <label class="radioContainer">Teenagers
+                <input type="checkbox" name="radio">
+                <span class="checkMark"></span>
+            </label>
+            <label class="radioContainer">Adults
+                <input type="checkbox" name="radio">
+                <span class="checkMark"></span>
+            </label>
+        </div>
+    </div>
+
+    <div class="sperator">
+        <h5>
+            <b>
+                Gender
+            </b>
+        </h5>
+
+        <div class="mt-4">
+            <label class="radioContainer">Male
+                <input type="checkbox" checked="checked" name="radio">
+                <span class="checkMark"></span>
+            </label>
+            <label class="radioContainer">Female
+                <input type="checkbox" name="radio">
+                <span class="checkMark"></span>
+            </label>
+            <label class="radioContainer">biosexuals
+                <input type="checkbox" name="radio">
+                <span class="checkMark"></span>
+            </label>
+        </div>
+    </div>
+
 </aside>
+
+<main class="d-inline-block w-75" style="margin-left: 25%; min-height: 920px">
+    <div class="container-fluid">
+        <div class="row py-5">
+            <div class="col-3" style="">
+                <div class="card border-0" style="">
+                    <img class=""
+                         src="https://cdn11.bigcommerce.com/s-35hqfrub/images/stencil/500x659/products/40774/78760/888867403__38594.1528323296.jpg?c=2"
+                         style="height: 240px;width: 100%" alt="">
+                </div>
+            </div>
+            <div class="col-3" style="">
+                <div class="card border-0" style="">
+                    <img class=""
+                         src="https://cdn11.bigcommerce.com/s-35hqfrub/images/stencil/500x659/products/40774/78760/888867403__38594.1528323296.jpg?c=2"
+                         style="height: 240px" alt="">
+                </div>
+            </div>
+            <div class="col-3" style="">
+                <div class="card border-0" style="">
+                    <img class=""
+                         src="https://cdn11.bigcommerce.com/s-35hqfrub/images/stencil/500x659/products/40774/78760/888867403__38594.1528323296.jpg?c=2"
+                         style="height: 240px" alt="">
+                </div>
+            </div>
+            <div class="col-3" style="">
+                <div class="card border-0" style="">
+                    <img class=""
+                         src="https://cdn11.bigcommerce.com/s-35hqfrub/images/stencil/500x659/products/40774/78760/888867403__38594.1528323296.jpg?c=2"
+                         style="height: 240px" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
 
 </body>
 </html>
