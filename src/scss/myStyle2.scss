@@ -1,3 +1,6 @@
+$headerBackColor: #000000;
+$headerColor: #effff7;
+
 @font-face {
   font-family: 'IranYekanBold';
   src: url("../fonts/iranSans/iranyekanbold.woff") format("woff");
@@ -17,6 +20,17 @@
   src: url("../fonts/iranSans/iranyekanlight.woff") format("woff");
   font-style: normal;
   font-weight: normal;
+}
+
+.shoppingBody {
+  //position: fixed;
+  overflow: auto;
+  //min-height: 1920px;
+}
+
+.shoppingHeader {
+  background-color: $headerBackColor;
+  color: $headerColor;
 }
 
 .font-bold {

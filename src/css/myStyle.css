@@ -144,7 +144,7 @@
   overflow: scroll;
 }
 
-.leftSide .sperator {
+.leftSide .separator {
   padding-top: 85px;
 }
 
@@ -252,8 +252,17 @@
   background: white;
 }
 
-.myImg {
-  height: auto;
+.main {
+  min-height: 920px;
+  width: 100%;
+}
+
+@media (min-width: 992px) {
+  .main {
+    margin-left: 25%;
+    min-height: 920px;
+    width: 75%;
+  }
 }
 
 .product-card-discount:hover .add-to-cart-plus {

@@ -114,10 +114,10 @@ $headerCompColor: #000000;
   opacity: 1;
 }
 
-> > > > > > >
-
-8
-b208bfb76c1e85e5f1813b0311b74286923512c
+//> > > > > > >
+//
+//8
+//b208bfb76c1e85e5f1813b0311b74286923512c
 .product-card-best-seller:hover .add-to-cart-plus {
   opacity: 1;
 }
@@ -147,7 +147,8 @@ b208bfb76c1e85e5f1813b0311b74286923512c
   padding-bottom: 75px;
   position: fixed;
   overflow: scroll;
-  .sperator {
+
+  .separator {
     padding-top: 85px;
   }
 }
@@ -255,8 +256,16 @@ b208bfb76c1e85e5f1813b0311b74286923512c
   background: white;
 }
 
-.myImg{
-  height: auto;
+.main {
+  @media (min-width: 992px) {
+    margin-left: 25%;
+    min-height: 920px;
+    width: 75%;
+  }
+
+  min-height: 920px;
+  width: 100%;
+
 }
 
 //=======
