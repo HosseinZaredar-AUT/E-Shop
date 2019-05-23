@@ -1,0 +1,236 @@
+@font-face {
+  font-family: 'IranYekanBold';
+  src: url("../fonts/iranSans/iranyekanbold.woff") format("woff");
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'IranYekanRegular';
+  src: url("../fonts/iranSans/iranyekanregular.woff") format("woff");
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'IranYekanLight';
+  src: url("../fonts/iranSans/iranyekanlight.woff") format("woff");
+  font-style: normal;
+  font-weight: normal;
+}
+
+.font-bold {
+  font-family: 'IranYekanBold', serif;
+}
+
+.font-medium {
+  font-family: 'IranYekanRegular', serif;
+}
+
+.font-light {
+  font-family: 'IranYekanLight', serif;
+}
+
+.font-bg {
+  font-size: 50px;
+}
+
+.font-md {
+  font-size: 30px;
+}
+
+.font-sm {
+  font-size: 18px;
+}
+
+.news-image {
+  height: 500px;
+  object-fit: cover;
+}
+
+.category-items {
+  border-radius: 100%;
+  border: 5px solid white;
+  margin: 20px;
+  font-size: 60px;
+  padding-top: 30px;
+  width: 130px;
+  height: 130px;
+  transition: all 0.2s ease-in;
+}
+
+.category-items:hover {
+  border-radius: 100%;
+  border-color: #a7ed57;
+  padding: 20px;
+  margin: 20px;
+  font-size: 60px;
+  transition: all 0.2s ease-in;
+}
+
+.product-card {
+  border: 1px solid #ffffff;
+  transition: 0.1s;
+}
+
+.product-card:hover {
+  border: 1px solid #e2e3e5;
+}
+
+.product-card-discount {
+  border: 1px solid #fff8e8;
+  transition: 0.1s;
+}
+
+.product-card-discount:hover {
+  border: 1px solid #ffd063;
+}
+
+.product-card-best-seller {
+  border: 1px solid #ff9e9e;
+  transition: 0.1s;
+}
+
+.product-card-best-seller:hover {
+  border: 1px solid #a02c2d;
+}
+
+.add-to-cart-plus {
+  opacity: 0;
+  position: absolute;
+  font-size: 150px;
+  width: 100%;
+  top: 15%;
+  color: #a7ed57;
+  transition: all 0.2s ease-in;
+}
+
+.add-to-cart-plus:hover {
+  color: #8bdb30;
+}
+
+.add-to-cart-plus-discount {
+  opacity: 0;
+  position: absolute;
+  font-size: 150px;
+  width: 100%;
+  top: 15%;
+  color: #ffd063;
+  transition: all 0.2s ease-in;
+}
+
+.add-to-cart-plus-discount:hover {
+  color: #e8ac22;
+}
+
+.add-to-cart-plus-best-seller {
+  opacity: 0;
+  position: absolute;
+  font-size: 150px;
+  width: 100%;
+  top: 15%;
+  color: #a02c2d;
+  transition: all 0.2s ease-in;
+}
+
+.add-to-cart-plus-best-seller:hover {
+  color: #7c0e10;
+}
+
+.product-card:hover .add-to-cart-plus {
+  opacity: 1;
+}
+
+.product-card-best-seller:hover .add-to-cart-plus-best-seller {
+  opacity: 1;
+}
+
+.product-card-discount:hover .add-to-cart-plus-discount {
+  opacity: 1;
+}
+
+.add-to-cart-plus:hover {
+  color: #8bdb30;
+}
+
+.info-text {
+  left: 0;
+  right: 0;
+}
+
+.info-content {
+  color: white;
+  transition: all 0.2s ease-in;
+}
+
+.info-content:hover {
+  color: #a7ed57;
+  transition: all 0.2s ease-in;
+}
+
+.container-custom {
+  padding-left: 80px;
+  padding-right: 80px;
+}
+
+.discount-parallax {
+  background-color: #ffd063;
+  height: 100vh;
+  position: absolute;
+  right: 10%;
+  margin-top: 150px;
+}
+
+.best-seller-paralax {
+  background-color: #a02c2d;
+  height: 100vh;
+  position: absolute;
+  right: 30%;
+  margin-top: 150px;
+}
+
+.discount-text {
+  position: absolute;
+  border: dashed #ffd063;
+  border-radius: 100%;
+  color: #ffd063;
+  width: 70px;
+  height: 70px;
+  padding-top: 20px;
+  margin-left: 2px;
+  margin-top: 2px;
+}
+
+.best-seller-text {
+  position: absolute;
+  border: dashed #a02c2d;
+  border-radius: 100%;
+  color: #a02c2d;
+  width: 70px;
+  height: 70px;
+  padding-top: 20px;
+  margin-left: 2px;
+  margin-top: 2px;
+}
+
+#discount {
+  background-color: #fff8e8;
+  margin-top: 30px ;
+  margin-bottom: 30px;
+}
+
+#popular {
+  margin-top: 30px ;
+  margin-bottom: 30px;
+}
+
+#best-seller {
+  background-color: #ff9e9e;
+  margin-top: 30px ;
+  padding-bottom: 50px;
+  padding-top: 50px;
+}
+
+#info {
+  background-color: teal;
+}
