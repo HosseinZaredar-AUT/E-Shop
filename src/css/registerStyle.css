@@ -1,0 +1,38 @@
+.main-form {
+    width: 450px;
+    margin: auto;
+    margin-top: 50px;
+}
+
+.login-btn{
+    margin-top: 15px;
+    /* background-color: black; */
+    border-color:black;
+    /* color:white; */
+    -webkit-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+}
+
+.login-btn:hover{
+    background-color: black;
+    border-color:black;
+}
+
+.form-group select transition{
+    -webkit-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+    -webkit-user-select: none;
+}
+
+.form-group select:hover{
+    border-color:skyblue;
+}
+
+.form-group select input:focus{
+    clear: both;
+    display: none;
+}
+
+.form-group select:active{
+    color: black;
+}
