@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var productSchema = mongoose.Schema({
     name: String,
     description: String,
-    isAvailable: Boolean,
+    remainingNumber: Number,
     price: Number,
     comments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Comment'}],
     category: {type: mongoose.Schema.Types.ObjectId, ref: 'Category'},
