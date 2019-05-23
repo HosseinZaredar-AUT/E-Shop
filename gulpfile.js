@@ -16,7 +16,7 @@ const css = () => {
         'node_modules/bootstrap/scss/bootstrap.scss',
         'src/scss/*.scss'
     ])
-        .pipe(sourcemaps.init({loadMaps: true}))
+        .pipe(sourcemaps.inguit({loadMaps: true}))
         .pipe(sass({
             outputStyle: 'expanded'
         }).on('error', sass.logError))
