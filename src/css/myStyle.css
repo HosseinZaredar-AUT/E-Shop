@@ -43,6 +43,10 @@
   font-size: 18px;
 }
 
+.font-xs {
+  font-size: 12px;
+}
+
 .news-image {
   height: 500px;
   -o-object-fit: cover;
@@ -432,3 +436,32 @@
 /*# sourceMappingURL=myStyle.css.map */
 
 /*# sourceMappingURL=myStyle.css.map */
+
+.dashed-link {
+  border-bottom: 1px dashed teal;
+  color: teal;
+}
+
+.login-card {
+  width: 400px;
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+
+.double {
+  zoom: 1.5;
+  transform: scale(1.5);
+  -ms-transform: scale(1.5);
+  -webkit-transform: scale(1.5);
+  -o-transform: scale(1.5);
+  -moz-transform: scale(1.5);
+  transform-origin: 0 0;
+  -ms-transform-origin: 0 0;
+  -webkit-transform-origin: 0 0;
+  -o-transform-origin: 0 0;
+  -moz-transform-origin: 0 0;
+}
+
+#laws-check {
+  margin-left: -10px;
+}
