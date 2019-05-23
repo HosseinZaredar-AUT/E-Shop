@@ -1,10 +1,71 @@
+@font-face {
+    font-family: 'IranYekanBold';
+    src: url("../fonts/iranSans/iranyekanbold.woff") format("woff");
+    font-style: normal;
+    font-weight: normal; }
+  
+  @font-face {
+    font-family: 'IranYekanRegular';
+    src: url("../fonts/iranSans/iranyekanregular.woff") format("woff");
+    font-style: normal;
+    font-weight: normal; }
+  
+  @font-face {
+    font-family: 'IranYekanLight';
+    src: url("../fonts/iranSans/iranyekanlight.woff") format("woff");
+    font-style: normal;
+    font-weight: normal; }
+  
+.font-bold {
+    font-family: 'IranYekanBold', serif; }
+
+.font-medium {
+    font-family: 'IranYekanRegular', serif; }
+
+.font-light {
+    font-family: 'IranYekanLight', serif; }
+
+.font-bg {
+    font-size: 50px; }
+
+.font-md {
+    font-size: 30px; }
+
+.font-sm {
+    font-size: 18px; }
+      
+
 .main-form {
     width: 450px;
     margin: auto;
     margin-top: 50px;
 }
 
+.login-btn{
+    margin-top: 15px;
+    -webkit-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+    align-content: center;
+    content: 'login';
+}
+
+.login-btn:hover{
+    background-color: black;
+    color: white;
+}
 
 .form-check{
     margin-left: -18px;
+}
+
+.card{
+    margin-top: 5%;
+    padding: 2%;
+    display: table;
+    align-content: center;
+}
+
+.card-header{
+    text-align: right;
+    font-family: "IranYekanBold";
 }
