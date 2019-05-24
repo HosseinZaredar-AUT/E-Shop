@@ -1,11 +1,11 @@
-var mongoose = require('mongoose');
+var mongoose = require('mongoose'),
+    mdt = require('mongoose-data-tree');
 
 var categorySchema = mongoose.Schema({
     name: String,
-    subCategories: [{type: mongoose.Schema.Types.ObjectId, ref: 'Category'}],
-    products: [{type: mongoose.Schema.Types.ObjectId, ref: 'Product'}],
-    properties: [{type: mongoose.Schema.Types.ObjectId, ref: 'Property'}],
-    thumbnail: [String]
+    products: [{type: mongoose.Schema.Types.ObjectId, ref: 'Product'}]
 });
+
+categorySchema.plugin(mdt);
 
 module.exports = mongoose.model("Category", categorySchema);
