@@ -1,9 +1,18 @@
 var mongoose = require('mongoose');
 
 var propertySchema = mongoose.Schema({
-    key: String,
-    unit: String,
-    value: String
+    key: {
+        type: String,
+        required: true
+    },
+    unit: {
+        type: String,
+        required: true
+    },
+    value: {
+        type: String,
+        required: true
+    },
 });
 
 module.exports = mongoose.model("Property", propertySchema);
