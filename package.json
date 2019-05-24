@@ -17,6 +17,7 @@
     "jquery": "^3.4.1",
     "method-override": "^3.0.0",
     "mongoose": "^5.4.19",
+    "mongoose-data-tree": "^2.0.3",
     "popper.js": "^1.15.0",
     "rimraf": "^2.6.3"
   },
