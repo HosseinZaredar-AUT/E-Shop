@@ -1,0 +1,50 @@
+.leftSide {
+  overflow-x: hidden;
+  background-color: #f5f5f5;
+  display: block;
+  padding-left: 35px;
+  padding-right: 35px;
+  padding-bottom: 75px;
+  position: fixed;
+  width: 25%;
+  z-index: 2000;
+  overflow-y: auto;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+@media (max-width: 992px) {
+  .leftSide {
+    top: 0;
+    background-color: #f5f5f5;
+    display: block;
+    width: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    position: fixed;
+    z-index: 2000;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+  }
+}
+
+.leftSideOpen {
+  z-index: 2000;
+  background-color: #f5f5f5;
+  display: block;
+  width: 75%;
+  padding-left: 35px;
+  padding-right: 35px;
+  padding-bottom: 75px;
+  position: fixed;
+  top: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+/*# sourceMappingURL=Dashboard.css.map */
