@@ -5,7 +5,11 @@ let express = require('express'),
     Product = require('../../moduls/post/product');
 
 router.get('/', function (req, res) {
-
+    Category.findOne({ name: 'root' }, function (err, root) {
+        root.getChildrenTree({fields: 'name'}, function(err, cats) {
+            res.render('index', {cats: cats});
+        });
+    });
 });
 
 module.exports = router;
