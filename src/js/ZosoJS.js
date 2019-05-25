@@ -96,3 +96,5 @@ $('#thumbnail3').click(function () {
     $('#myimage').attr('src','Images/3.jpg');
     magnify("myimage", 3);
 });
+
+

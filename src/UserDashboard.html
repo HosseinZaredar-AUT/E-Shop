@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping</title>
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+          integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/myStyle2.css">
+    <link rel="stylesheet" href="css/myStyle3.css">
+    <link rel="stylesheet" href="css/Dashboard.css">
+    <style>
+        .myClickableThingy {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body id="body" class="font-medium h-100">
+
+<header class="shoppingHeader py-1 px-md-5 px-sm-1 sticky-top">
+    <div class="container-fluid " style="">
+        <nav class="navbar navbar-expand-md navbar-light bg-light">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0 text-right">
+                    <li class="nav-item px-3 mx-auto">
+                        <div class="input-group-prepend">
+                            <button class="btn btn-outline-info">
+                                <span id="number-of-products-added" class="pr-2"> ۳ </span>
+                                <span class="border-left pl-3">سبد خرید</span>
+                                <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </div>
+                    </li>
+                    <li class="nav-item px-md-3">
+                        <a class="nav-link" href="#">ثبت نام / ورود</a>
+                    </li>
+                    <li class="nav-item px-md-3">
+                        <a class="nav-link" href="#">پیگیری سفارش؟</a>
+                    </li>
+                    <li class="nav-item px-md-3">
+                        <a class="nav-link" href="#" data-toggle="collapse" data-target="#categoryJumbotrun"
+                           aria-expanded="true" aria-controls="categoryJumbotrun">
+                            <span>دسته بندی ها</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </a>
+
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <div class="input-group mb-2 mr-sm-2 w-100 mt-1">
+                        <div class="input-group-prepend">
+                            <button class="btn btn-info">جستجو</button>
+                        </div>
+                        <input type="text" class="form-control" id="inlineFormInputGroupUsername2" placeholder="جستجو">
+                    </div>
+                </form>
+            </div>
+            <a class="navbar-brand pl-3 text-secondary mx-auto" href="#">بادمجون
+                <i class="fas fa-hotdog"></i>
+            </a>
+        </nav>
+        <div id="categoryJumbotrun" class="collapse hide">
+            <div class="container pt-5 pb-3">
+                <div class="jumbotron">
+                    <div class="row">
+                        <div class="col-md-12 mb-5 text-center">
+                            <span class="font-md text-info">دسته بندی ها</span>
+                        </div>
+                        <div class="col-md-4 col-sm-12 pb-4">
+                            <div class="row mx-1">
+                                <div class="col-md-12 p-1"><button class="btn btn-info w-100"
+                                                                   data-toggle="collapse" data-target="#category1" role="button"
+                                                                   aria-expanded="true" aria-controls="category1">خوراکی</button></div>
+                                <div class="col-md-12 p-1"><button class="btn btn-info w-100"
+                                                                   data-toggle="collapse" data-target="#category2" role="button"
+                                                                   aria-expanded="false" aria-controls="category2">لباس</button></div>
+                                <div class="col-md-12 p-1"><button class="btn btn-info w-100"
+                                                                   data-toggle="collapse" data-target="#category3" role="button"
+                                                                   aria-expanded="false" aria-controls="category3">ساز</button></div>
+                                <div class="col-md-12 p-1"><button class="btn btn-info w-100"
+                                                                   data-toggle="collapse" data-target="#category4" role="button"
+                                                                   aria-expanded="false" aria-controls="category4">لوازم بهداشتی</button></div>
+                                <div class="col-md-12 p-1"><button class="btn btn-info w-100"
+                                                                   data-toggle="collapse" data-target="#category5" role="button"
+                                                                   aria-expanded="false" aria-controls="category5">خودرو</button></div>
+                            </div>
+                        </div>
+                        <div class="col-md-8 col-sm-12">
+                            <div id="accordion">
+                                <div id="category1" class="collapse show" data-parent="#accordion">
+                                    <div class="card card-body text-right">
+                                        <div class="row justify-content-end">
+                                            <div class="col-sm-6 col-lg-3">
+                                                <p class="text-warning">
+                                                    <i class="fas fa-chevron-left"></i>
+                                                    <span>لبنیات</span>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>ماست</span>
+                                                    <i class="fas fa-caret-left"></i>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>دوغ</span>
+                                                    <i class="fas fa-caret-left"></i>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>پنیر</span>
+                                                    <i class="fas fa-caret-left"></i>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>کره</span>
+                                                    <i class="fas fa-caret-left"></i>
+                                                </p>
+                                            </div>
+                                            <div class="col-sm-6 col-lg-3">
+                                                <p class="text-warning">
+                                                    <i class="fas fa-chevron-left"></i>
+                                                    <span>لبنیات</span>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>ماست</span>
+                                                    <i class="fas fa-caret-left"></i>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>دوغ</span>
+                                                    <i class="fas fa-caret-left"></i>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>پنیر</span>
+                                                    <i class="fas fa-caret-left"></i>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>کره</span>
+                                                    <i class="fas fa-caret-left"></i>
+                                                </p>
+                                            </div>
+                                            <div class="col-sm-6 col-lg-3">
+                                                <p class="text-warning">
+                                                    <i class="fas fa-chevron-left"></i>
+                                                    <span>لبنیات</span>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>ماست</span>
+                                                    <i class="fas fa-caret-left"></i>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>دوغ</span>
+                                                    <i class="fas fa-caret-left"></i>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>پنیر</span>
+                                                    <i class="fas fa-caret-left"></i>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>کره</span>
+                                                    <i class="fas fa-caret-left"></i>
+                                                </p>
+                                            </div>
+                                            <div class="col-sm-6 col-lg-3">
+                                                <p class="text-warning">
+                                                    <i class="fas fa-chevron-left"></i>
+                                                    <span>لبنیات</span>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>ماست</span>
+                                                    <i class="fas fa-caret-left"></i>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>دوغ</span>
+                                                    <i class="fas fa-caret-left"></i>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>پنیر</span>
+                                                    <i class="fas fa-caret-left"></i>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>کره</span>
+                                                    <i class="fas fa-caret-left"></i>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="category2" class="collapse" data-parent="#accordion">
+                                    <div class="card card-body text-right">
+                                        <div class="row justify-content-end">
+                                            <div class="col-sm-6 col-lg-3">
+                                                <p class="text-warning">
+                                                    <i class="fas fa-chevron-left"></i>
+                                                    <span>تی شرت</span>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>استین حلقه ای</span>
+                                                    <i class="fas fa-caret-left"></i>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>ساده</span>
+                                                    <i class="fas fa-caret-left"></i>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>طرح دار</span>
+                                                    <i class="fas fa-caret-left"></i>
+                                                </p>
+                                            </div>
+                                            <div class="col-sm-6 col-lg-3">
+                                                <p class="text-warning">
+                                                    <i class="fas fa-chevron-left"></i>
+                                                    <span>تی شرت</span>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>استین حلقه ای</span>
+                                                    <i class="fas fa-caret-left"></i>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>ساده</span>
+                                                    <i class="fas fa-caret-left"></i>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>طرح دار</span>
+                                                    <i class="fas fa-caret-left"></i>
+                                                </p>
+                                            </div>
+                                            <div class="col-sm-6 col-lg-3">
+                                                <p class="text-warning">
+                                                    <i class="fas fa-chevron-left"></i>
+                                                    <span>تی شرت</span>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>استین حلقه ای</span>
+                                                    <i class="fas fa-caret-left"></i>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>ساده</span>
+                                                    <i class="fas fa-caret-left"></i>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>طرح دار</span>
+                                                    <i class="fas fa-caret-left"></i>
+                                                </p>
+                                            </div>
+                                            <div class="col-sm-6 col-lg-3">
+                                                <p class="text-warning">
+                                                    <i class="fas fa-chevron-left"></i>
+                                                    <span>تی شرت</span>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>استین حلقه ای</span>
+                                                    <i class="fas fa-caret-left"></i>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>ساده</span>
+                                                    <i class="fas fa-caret-left"></i>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>طرح دار</span>
+                                                    <i class="fas fa-caret-left"></i>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="category3" class="collapse" data-parent="#accordion">
+                                    <div class="card card-body text-right">
+                                        <div class="row justify-content-end">
+                                            <div class="col-sm-6 col-lg-3">
+                                                <p class="text-warning">
+                                                    <i class="fas fa-chevron-left"></i>
+                                                    <span>گیتار</span>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>اکوستیک</span>
+                                                    <i class="fas fa-caret-left"></i>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>الکتریک</span>
+                                                    <i class="fas fa-caret-left"></i>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>باس</span>
+                                                    <i class="fas fa-caret-left"></i>
+                                                </p>
+                                            </div>
+                                            <div class="col-sm-6 col-lg-3">
+                                                <p class="text-warning">
+                                                    <i class="fas fa-chevron-left"></i>
+                                                    <span>پیانو</span>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>دیواری</span>
+                                                    <i class="fas fa-caret-left"></i>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>رویال</span>
+                                                    <i class="fas fa-caret-left"></i>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>الکتریک</span>
+                                                    <i class="fas fa-caret-left"></i>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>کیبورد</span>
+                                                    <i class="fas fa-caret-left"></i>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="category4" class="collapse" data-parent="#accordion">
+                                    <div class="card card-body text-right">
+                                        <div class="row justify-content-end">
+                                            <div class="col-sm-6 col-lg-3">
+                                                <p class="text-warning">
+                                                    <i class="fas fa-chevron-left"></i>
+                                                    <span>صابون</span>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>طبیعی</span>
+                                                    <i class="fas fa-caret-left"></i>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>مصنوعی</span>
+                                                    <i class="fas fa-caret-left"></i>
+                                                </p>
+                                            </div>
+                                            <div class="col-sm-6 col-lg-3">
+                                                <p class="text-warning">
+                                                    <i class="fas fa-chevron-left"></i>
+                                                    <span>شامپو</span>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>ضد شوره</span>
+                                                    <i class="fas fa-caret-left"></i>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>طبیعی</span>
+                                                    <i class="fas fa-caret-left"></i>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>گیاهی</span>
+                                                    <i class="fas fa-caret-left"></i>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="category5" class="collapse" data-parent="#accordion">
+                                    <div class="card card-body text-right">
+                                        <div class="row justify-content-end">
+                                            <div class="col-sm-6 col-lg-3">
+                                                <p class="text-warning">
+                                                    <i class="fas fa-chevron-left"></i>
+                                                    <span>پژو</span>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>۴۰۵</span>
+                                                    <i class="fas fa-caret-left"></i>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>۲۰۶</span>
+                                                    <i class="fas fa-caret-left"></i>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>۲۰۷</span>
+                                                    <i class="fas fa-caret-left"></i>
+                                                </p>
+                                            </div>
+                                            <div class="col-sm-6 col-lg-3">
+                                                <p class="text-warning">
+                                                    <i class="fas fa-chevron-left"></i>
+                                                    <span>نیسان</span>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>جوک</span>
+                                                    <i class="fas fa-caret-left"></i>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>قشقایی</span>
+                                                    <i class="fas fa-caret-left"></i>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div id="overlay" onclick="openBar()"></div>
+<aside id="sideBar" class="leftSide h-100 " style="background-color: white">
+
+    <span class="" id="close" style="display: none;color: black;font-size: 1.75rem;cursor: pointer;"
+          onclick="openBar()">
+            <i class="fa fa-close" style="position: absolute; top: 20px; right: 35px;"></i>
+        </span>
+
+    <div id="User" class="pt-5" style="">
+        <div class="card shadow">
+            <div class="card-header bg-info text-white text-justify text-center " style="height: 45px">
+                <div class="m-auto position-relative"
+                     style="width: 65px;height: 65px;border-radius: 100%;background-color: #dddddd">
+                    <i class="fa fa-user pt-1 position-absolute"
+                       style="font-size: 2.5rem;z-index: 5;color: white;right: 22%;top: 7px;"></i>
+                </div>
+            </div>
+            <div class="card-body position-relative" style="padding: 40px 0 0 0;">
+                <div class="text-center position-relative">
+                    <h6 class="" style="font-family: 'IranYekanBold', serif;color: #515151">مرتیکه کلگری</h6>
+                </div>
+                <div class="pt-3 container-fluid">
+                    <div class="row text-center">
+                        <div class="col-6 py-2" style="border: solid 1px #dddddd">
+                            <span class="" style="color: #7aaf45; cursor: pointer;">
+                                <h6 class="d-inline font-xs">تغییر رمز عبور</h6>
+                                <i class="fa fa-edit font-xs"></i>
+                            </span>
+                        </div>
+                        <div class="col-6 py-2" style="border: solid 1px #dddddd">
+                            <span class="text-danger" style="cursor: pointer">
+                                <h6 class="d-inline font-xs">خروج</h6>
+                                <i class="fa fa-power-off font-xs"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="Datas" class="pt-5" style="">
+        <div class="card shadow">
+            <div class="card-header bg-info text-center text-white" style="height: 45px">
+                <h6 class="d-inline">مدیریت</h6>
+                <i class="fa fa-tasks"></i>
+            </div>
+            <div class="card-body " style="">
+                <div class="text-right" style="direction: rtl;color: #515151">
+                    <i class="fa fa-plus d-inline"></i>
+                    <a onclick="openAllOrders()" class="d-inline myClickableThingy" style="font-size: 0.9rem">همه سفارش ها</a>
+                </div>
+                <br>
+                <div class="text-right" style="direction: rtl;color: #515151">
+                    <i class="fa fa-plus d-inline"></i>
+                    <a onclick="openFavorites()" class="d-inline myClickableThingy" style="font-size: 0.9rem">لیست علاقه مندی ها</a>
+                </div>
+                <br>
+                <div class="text-right" style="direction: rtl;color: #515151">
+                    <i class="fa fa-plus d-inline"></i>
+                    <a onclick="openEditAddresses()" class="d-inline myClickableThingy" id="new-orders" style="font-size: 0.9rem">ویرایش آدرس ها</a>
+                </div>
+                <br>
+                <div class="text-right" style="direction: rtl;color: #515151">
+                    <i class="fa fa-plus d-inline"></i>
+                    <a onclick="openEditInfo()" class="d-inline myClickableThingy" id="old-orders" style="font-size: 0.9rem">ویرایش اطلاعات شخصی</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</aside>
+<div class="bg-danger settings d-lg-none" style="right: 0;">
+    <span id="setting" style="cursor: pointer" onclick="openBar()">
+        <h6 style="writing-mode: vertical-lr;position: absolute; left: -35px; top: 10px">تنظیمات</h6>
+    </span>
+</div>
+<main class="mt-5 main">
+    <div class="container-fluid pt-4">
+        <div class="card shadow mt-4" id="all-orders-dec">
+            <div class="card-header bg-info text-center text-white">
+                <h6 class="d-inline float-right pt-2">همه سفارش ها</h6>
+                <button class="btn btn-sm btn-outline-warning float-left"> ذخیره </button>
+            </div>
+            <div class="card-body text-white">
+                <div class="container">
+                    <div class="accordion md-accordion accordion-blocks" id="order-1" role="tablist"
+                         aria-multiselectable="true">
+                        <div class="card shadow-lg my-4">
+                            <div class="card-header bg-warning border-bottom" role="tab" id="order-header-1">
+                                <a data-toggle="collapse" data-parent="#order-1" class="text-white"
+                                   href="#order-body-1" aria-expanded="true"
+                                   aria-controls="collapseUnfiled">
+                                    <h5 class="mt-1 mb-0 float-right">
+                                        <i class="fas fa-angle-down rotate-icon mx-2"></i>
+                                        <span>سفارش</span>
+                                        <span>- ۹۴۱۲۵۲۹۸</span>
+                                    </h5>
+                                </a>
+                                <button class="btn btn-sm btn-danger float-left"> حذف </button>
+                                <button class="btn btn-sm btn-outline-info mx-3">
+                                    <span> سفارش در حال بررسی است </span>
+                                </button>
+                            </div>
+                            <div id="order-body-1" class="collapse" role="tabpanel" aria-labelledby="order-header-1"
+                                 data-parent="#order-1">
+                                <div class="card-body border-bottom">
+                                    <div class="card w-100 mb-3">
+                                        <div class="card-body">
+                                            <div class="container">
+                                                <div class="row text-dark">
+                                                    <div class="col-md-3 col-sm-6 ml-auto float-right">
+                                                        <span class="float-right"> : آدرس  </span>
+                                                        <br>
+                                                        <span class="float-right"> قم - میدان امام - کوچه حسنی - بن بست زهرا - پلاک ۲ </span>
+                                                    </div>
+                                                    <div class="col-md-3 col-sm-6 ml-auto float-right">
+                                                        <span class="float-right">کد ملی : <strong>۱۷۴۲۸۳۴۲۳۱</strong></span>
+                                                        <br>
+                                                        <span class="float-right">استان : <strong>قم</strong></span>
+                                                        <br>
+                                                        <span class="float-right">شهر : <strong>قم</strong></span>
+                                                        <br>
+                                                        <span class="float-right">کد پستی : <strong>۸۸۷۳۹۲۱۳۴</strong></span>
+                                                    </div>
+                                                    <div class="col-md-3 col-sm-6 ml-auto float-right">
+                                                        <span class="float-right">نام : <strong>عباس</strong></span>
+                                                        <br>
+                                                        <span class="float-right">نام خانوادگی : <strong>قادری</strong></span>
+                                                        <br>
+                                                        <span class="float-right">تلفن همراه : <strong>۰۹۳۸۹۲۳۵۱۴۲</strong></span>
+                                                        <br>
+                                                        <span class="float-right">تلفن ثابت : <strong>۰۲۱۸۸۴۴۲۲۳۱</strong></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="table table-hover mb-0 mx-5">
+                                            <thead>
+                                            <tr class="font-sm">
+                                                <th class="th-lg"><a>شماره<i class="fas fa-sort ml-1"></i></a></th>
+                                                <th class="th-lg"><a>نام کالا<i class="fas fa-sort ml-1"></i></a></th>
+                                                <th class="th-lg"><a>تعداد<i class="fas fa-sort ml-1"></i></a></th>
+                                                <th class="th-lg"><a>شیوه ارسال<i class="fas fa-sort ml-1"></i></a></th>
+                                                <th></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td class="pl-3">۱</td>
+                                                <td>لباس خفن</td>
+                                                <td><strong>۳</strong></td>
+                                                <td>پست معمولی</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="pl-3">۲</td>
+                                                <td>لباس معمولی</td>
+                                                <td><strong>۳</strong></td>
+                                                <td>پست پیشتاز</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="pl-3">۳</td>
+                                                <td>پژو ۴۰۵</td>
+                                                <td><strong>۱۲</strong></td>
+                                                <td>پست معمولی</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="pl-3">۴</td>
+                                                <td>شامپو</td>
+                                                <td><strong>۱</strong></td>
+                                                <td>پست معمولی</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card shadow-lg my-4">
+                            <div class="card-header bg-success border-bottom" role="tab" id="order-header-2">
+                                <a data-toggle="collapse" data-parent="#order-1" class="text-white"
+                                   href="#order-body-2" aria-expanded="true"
+                                   aria-controls="collapseUnfiled">
+                                    <h5 class="mt-1 mb-0 float-right">
+                                        <i class="fas fa-angle-down rotate-icon mx-2"></i>
+                                        <span>سفارش</span>
+                                        <span>- ۹۴۱۲۵۲۹۸</span>
+                                    </h5>
+                                </a>
+                                <button class="btn btn-sm btn-danger float-left"> حذف </button>
+                                <button class="btn btn-sm btn-outline-info mx-3">
+                                    <span>تحویل پست داده شده است</span>
+                                </button>
+                            </div>
+                            <div id="order-body-2" class="collapse" role="tabpanel" aria-labelledby="order-header-2"
+                                 data-parent="#order-1">
+                                <div class="card-body border-bottom">
+                                    <div class="card w-100 mb-3">
+                                        <div class="card-body">
+                                            <div class="container">
+                                                <div class="row text-dark">
+                                                    <div class="col-md-3 col-sm-6 ml-auto float-right">
+                                                        <span class="float-right"> : آدرس  </span>
+                                                        <br>
+                                                        <span class="float-right"> قم - میدان امام - کوچه حسنی - بن بست زهرا - پلاک ۲ </span>
+                                                    </div>
+                                                    <div class="col-md-3 col-sm-6 ml-auto float-right">
+                                                        <span class="float-right">کد ملی : <strong>۱۷۴۲۸۳۴۲۳۱</strong></span>
+                                                        <br>
+                                                        <span class="float-right">استان : <strong>قم</strong></span>
+                                                        <br>
+                                                        <span class="float-right">شهر : <strong>قم</strong></span>
+                                                        <br>
+                                                        <span class="float-right">کد پستی : <strong>۸۸۷۳۹۲۱۳۴</strong></span>
+                                                    </div>
+                                                    <div class="col-md-3 col-sm-6 ml-auto float-right">
+                                                        <span class="float-right">نام : <strong>عباس</strong></span>
+                                                        <br>
+                                                        <span class="float-right">نام خانوادگی : <strong>قادری</strong></span>
+                                                        <br>
+                                                        <span class="float-right">تلفن همراه : <strong>۰۹۳۸۹۲۳۵۱۴۲</strong></span>
+                                                        <br>
+                                                        <span class="float-right">تلفن ثابت : <strong>۰۲۱۸۸۴۴۲۲۳۱</strong></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="table table-hover mb-0 mx-5">
+                                            <thead>
+                                            <tr class="font-sm">
+                                                <th class="th-lg"><a>شماره<i class="fas fa-sort ml-1"></i></a></th>
+                                                <th class="th-lg"><a>نام کالا<i class="fas fa-sort ml-1"></i></a></th>
+                                                <th class="th-lg"><a>تعداد<i class="fas fa-sort ml-1"></i></a></th>
+                                                <th class="th-lg"><a>شیوه ارسال<i class="fas fa-sort ml-1"></i></a></th>
+                                                <th></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td class="pl-3">۱</td>
+                                                <td>لباس خفن</td>
+                                                <td><strong>۳</strong></td>
+                                                <td>پست معمولی</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="pl-3">۲</td>
+                                                <td>لباس معمولی</td>
+                                                <td><strong>۳</strong></td>
+                                                <td>پست پیشتاز</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="pl-3">۳</td>
+                                                <td>پژو ۴۰۵</td>
+                                                <td><strong>۱۲</strong></td>
+                                                <td>پست معمولی</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="pl-3">۴</td>
+                                                <td>شامپو</td>
+                                                <td><strong>۱</strong></td>
+                                                <td>پست معمولی</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card shadow mt-4 d-none" id="favorites-dec">
+            <div class="card-header bg-info text-center text-white">
+                <h6 class="d-inline float-right pt-2">لیست علاقه مندی ها</h6>
+                <button class="btn btn-sm btn-outline-warning float-left"> ذخیره </button>
+            </div>
+            <div class="card-body text-white">
+                <div class="container-fluid">
+                    <div class="row h-100 text-center">
+                        <div class="col-md-4 col-sm-6">
+                            <div class="p-3">
+                                <div class="card product-card">
+                                    <img class="card-img-top" src="images/6.jpg" alt="Card image cap">
+                                    <div style="position: absolute" class="ml-1 mt-1">
+                                        <button class="button button-like liked" id="fav-1-like"
+                                                style="width: 45px;height: 45px">
+                                            <i class="fa fa-heart"></i>
+                                        </button>
+                                    </div>
+                                    <i class="fas fa-plus add-to-cart-plus"></i>
+                                    <div class="card-body text-dark">
+                                        <h5 class="card-title">تی شرت خفن</h5>
+                                        <p class="card-text font-light" style="font-size: 3vh">۳۰۰.۰۰۰ تومان</p>
+                                        <a href="#" class="btn btn-success text-white">اضافه به سبد خرید
+                                            <i class="fas fa-plus"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="p-3">
+                                <div class="card product-card">
+                                    <img class="card-img-top" src="images/6.jpg" alt="Card image cap">
+                                    <div style="position: absolute" class="ml-1 mt-1">
+                                        <button class="button button-like liked" id="fav-2-like"
+                                                style="width: 45px;height: 45px">
+                                            <i class="fa fa-heart"></i>
+                                        </button>
+                                    </div>
+                                    <i class="fas fa-plus add-to-cart-plus"></i>
+                                    <div class="card-body text-dark">
+                                        <h5 class="card-title">تی شرت خفن</h5>
+                                        <p class="card-text font-light" style="font-size: 3vh">۳۰۰.۰۰۰ تومان</p>
+                                        <a href="#" class="btn btn-success text-white">اضافه به سبد خرید
+                                            <i class="fas fa-plus"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="p-3">
+                                <div class="card product-card">
+                                    <img class="card-img-top" src="images/6.jpg" alt="Card image cap">
+                                    <div style="position: absolute" class="ml-1 mt-1">
+                                        <button class="button button-like liked" id="fav-3-like"
+                                                style="width: 45px;height: 45px">
+                                            <i class="fa fa-heart"></i>
+                                        </button>
+                                    </div>
+                                    <i class="fas fa-plus add-to-cart-plus"></i>
+                                    <div class="card-body text-dark">
+                                        <h5 class="card-title">تی شرت خفن</h5>
+                                        <p class="card-text font-light" style="font-size: 3vh">۳۰۰.۰۰۰ تومان</p>
+                                        <a href="#" class="btn btn-success text-white">اضافه به سبد خرید
+                                            <i class="fas fa-plus"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="p-3">
+                                <div class="card product-card">
+                                    <img class="card-img-top" src="images/6.jpg" alt="Card image cap">
+                                    <div style="position: absolute" class="ml-1 mt-1">
+                                        <button class="button button-like liked" id="fav-4-like"
+                                                style="width: 45px;height: 45px">
+                                            <i class="fa fa-heart"></i>
+                                        </button>
+                                    </div>
+                                    <i class="fas fa-plus add-to-cart-plus"></i>
+                                    <div class="card-body text-dark">
+                                        <h5 class="card-title">تی شرت خفن</h5>
+                                        <p class="card-text font-light" style="font-size: 3vh">۳۰۰.۰۰۰ تومان</p>
+                                        <a href="#" class="btn btn-success text-white">اضافه به سبد خرید
+                                            <i class="fas fa-plus"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card shadow mt-4 d-none" id="edit-addresses-dec">
+            <div class="card-header bg-info text-center text-white">
+                <h6 class="d-inline float-right pt-2">ویرایش آدرس ها</h6>
+            </div>
+            <div class="card-body text-white">
+                <div class="accordion md-accordion accordion-blocks" id="addresses" role="tablist"
+                     aria-multiselectable="true">
+                    <div class="card shadow-lg my-4">
+                        <div class="card-header bg-light border-bottom" role="tab" id="address-1-header">
+                            <a data-toggle="collapse" data-parent="#addresses" class="text-dark"
+                               href="#address-1-body" aria-expanded="true"
+                               aria-controls="collapseUnfiled">
+                                <h5 class="mt-1 mb-0 float-right">
+                                    <i class="fas fa-angle-down rotate-icon mx-2"></i>
+                                    <span>آدرس ۱</span>
+                                </h5>
+                            </a>
+                            <button class="btn btn-sm btn-danger float-left"> حذف </button>
+                        </div>
+                        <div id="address-1-body" class="collapse" role="tabpanel" aria-labelledby="address-1-header"
+                             data-parent="#addresses">
+                            <div class="card-body border-bottom">
+                                <div class="container">
+                                    <form class="needs-validation text-dark" novalidate>
+                                        <div class="form-row">
+                                            <div class="col-md-3 mb-3">
+                                                <label for="address-1-province" class="float-right">استان</label>
+                                                <input type="text" class="form-control" id="address-1-province" placeholder="استان" required>
+                                                <div class="invalid-feedback">
+                                                    <span>لطفا این بخش را پر کنید</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 mb-3">
+                                                <label for="address-2-city" class="float-right">شهر</label>
+                                                <input type="text" class="form-control" id="address-2-city" placeholder="شهر" required>
+                                                <div class="invalid-feedback">
+                                                    <span>لطفا این بخش را پر کنید</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 mb-3">
+                                                <label for="address-2-phone" class="float-right">تلفن ثابت</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" id="address-2-phone" placeholder="تلفن ثابت" aria-describedby="inputGroupPrepend" required>
+                                                    <div class="invalid-feedback">
+                                                        <span>لطفا این بخش را پر کنید</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 mb-3">
+                                                <label for="address-1-postal-code" class="float-right">کد پستی</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" id="address-1-postal-code" placeholder="کد پستی" aria-describedby="inputGroupPrepend" required>
+                                                    <div class="invalid-feedback">
+                                                        <span>لطفا این بخش را پر کنید</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 mb-3">
+                                                <label for="address-2-address" class="float-right">آدرس</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" id="address-2-address" required>
+                                                    <div class="invalid-feedback">
+                                                        <span>لطفا این بخش را پر کنید</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button class="btn btn-warning font-xs" type="submit">ذخیره</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card shadow-lg my-4">
+                        <div class="card-header bg-light border-bottom" role="tab" id="address-2-header">
+                            <a data-toggle="collapse" data-parent="#addresses" class="text-dark"
+                               href="#address-2-body" aria-expanded="true"
+                               aria-controls="collapseUnfiled">
+                                <h5 class="mt-1 mb-0 float-right">
+                                    <i class="fas fa-angle-down rotate-icon mx-2"></i>
+                                    <span>آدرس ۲</span>
+                                </h5>
+                            </a>
+                            <button class="btn btn-sm btn-danger float-left"> حذف </button>
+                        </div>
+                        <div id="address-2-body" class="collapse" role="tabpanel" aria-labelledby="address-2-header"
+                             data-parent="#addresses">
+                            <div class="card-body border-bottom">
+                                <div class="container">
+                                    <form class="needs-validation text-dark" novalidate>
+                                        <div class="form-row">
+                                            <div class="col-md-3 mb-3">
+                                                <label for="address-2-province" class="float-right">استان</label>
+                                                <input type="text" class="form-control" id="address-2-province" placeholder="استان" required>
+                                                <div class="invalid-feedback">
+                                                    <span>لطفا این بخش را پر کنید</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 mb-3">
+                                                <label for="address-1-city" class="float-right">شهر</label>
+                                                <input type="text" class="form-control" id="address-1-city" placeholder="شهر" required>
+                                                <div class="invalid-feedback">
+                                                    <span>لطفا این بخش را پر کنید</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 mb-3">
+                                                <label for="address-1-phone" class="float-right">تلفن ثابت</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" id="address-1-phone" placeholder="تلفن ثابت" aria-describedby="inputGroupPrepend" required>
+                                                    <div class="invalid-feedback">
+                                                        <span>لطفا این بخش را پر کنید</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 mb-3">
+                                                <label for="address-2-postal-code" class="float-right">کد پستی</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" id="address-2-postal-code" placeholder="کد پستی" aria-describedby="inputGroupPrepend" required>
+                                                    <div class="invalid-feedback">
+                                                        <span>لطفا این بخش را پر کنید</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 mb-3">
+                                                <label for="address-1-address" class="float-right">آدرس</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" id="address-1-address" required>
+                                                    <div class="invalid-feedback">
+                                                        <span>لطفا این بخش را پر کنید</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button class="btn btn-warning font-xs" type="submit">ذخیره</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="card shadow mt-4 d-none" id="edit-info-dec">
+            <div class="card-header bg-info text-center text-white">
+                <h6 class="d-inline float-right pt-2">ویرایش آدرس ها</h6>
+            </div>
+            <div class="card-body text-white">
+                <div class="container">
+                    <form class="needs-validation text-dark" novalidate>
+                        <div class="form-row">
+                            <div class="col-md-4 mb-3">
+                                <label for="user-info-first-name" class="float-right">نام</label>
+                                <input type="text" class="form-control" id="user-info-first-name" placeholder="نام" required>
+                                <div class="valid-feedback">
+                                    <span>لطفا این بخش را پر کنید</span>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="user-info-last-name" class="float-right">نام خانوادگی</label>
+                                <input type="text" class="form-control" id="user-info-last-name" placeholder="نام خانوادگی" required>
+                                <div class="valid-feedback">
+                                    <span>لطفا این بخش را پر کنید</span>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="user-info-username" class="float-right">نام کاربری</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="user-info-username" placeholder="نام کاربری" aria-describedby="inputGroupPrepend" required>
+                                    <div class="invalid-feedback">
+                                        <span>لطفا این بخش را پر کنید</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-4 mb-3">
+                                <label for="user-info-email" class="float-right">ایمیل</label>
+                                <input type="email" class="form-control" id="user-info-email" placeholder="ایمیل" required>
+                                <div class="invalid-feedback">
+                                    <span>لطفا این بخش را پر کنید</span>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="user-info-phone" class="float-right">تلفن همراه</label>
+                                <input type="text" class="form-control" id="user-info-phone" placeholder="تلفن همراه" required>
+                                <div class="invalid-feedback">
+                                    <span>لطفا این بخش را پر کنید</span>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="user-info-id-number" class="float-right">کد ملی</label>
+                                <input type="text" class="form-control" id="user-info-id-number" placeholder="کد ملی" required>
+                                <div class="invalid-feedback">
+                                    <span>لطفا این بخش را پر کنید</span>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-warning my-3" type="submit">ذخیره</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<script src="js/jquery2_2.min.js" type="text/javascript"></script>
+<script src="js/bootstrap.min.js" type="text/javascript"></script>
+<script>
+    function openBar() {
+        if (document.getElementById("sideBar").classList.contains("leftSideOpen")) {
+            // document.getElementById("sideBar").style.width = "75%";
+            // document.getElementById("sideBar").style.paddingLeft = "35px";
+            // document.getElementById("sideBar").style.paddingRight = "35px";
+            // document.getElementById("sideBar").style.paddingBottom = "85px";
+            document.getElementById("sideBar").classList.remove("leftSideOpen");
+            document.getElementById("body").classList.remove("hidedBody");
+            document.getElementById("body").classList.add("shoppingBody");
+            document.getElementById("body").classList.add("shoppingBody");
+            document.getElementById("overlay").style.display = "none";
+            document.getElementById("setting").style.display = "";
+            setTimeout(function () {
+                document.getElementById("close").style.display = "none";
+            }, 500);
+        } else {
+            console.log(document.getElementById("overlay").style.display);
+            document.getElementById("sideBar").classList.add("leftSideOpen");
+            document.getElementById("body").classList.add("hidedBody");
+            document.getElementById("body").classList.remove("shoppingBody");
+            document.getElementById("overlay").style.display = "block";
+            document.getElementById("setting").style.display = "block";
+            document.getElementById("close").style.display = "block";
+        }
+    }
+
+    function openAllOrders() {
+        $('#all-orders-dec').removeClass('d-none');
+        $('#favorites-dec').addClass('d-none');
+        $('#edit-addresses-dec').addClass('d-none');
+        $('#edit-info-dec').addClass('d-none');
+    }
+
+    function openFavorites() {
+        $('#all-orders-dec').addClass('d-none');
+        $('#favorites-dec').removeClass('d-none');
+        $('#edit-addresses-dec').addClass('d-none');
+        $('#edit-info-dec').addClass('d-none');
+    }
+
+    function openEditAddresses() {
+        $('#all-orders-dec').addClass('d-none');
+        $('#favorites-dec').addClass('d-none');
+        $('#edit-addresses-dec').removeClass('d-none');
+        $('#edit-info-dec').addClass('d-none');
+    }
+
+    function openEditInfo() {
+        $('#all-orders-dec').addClass('d-none');
+        $('#favorites-dec').addClass('d-none');
+        $('#edit-addresses-dec').addClass('d-none');
+        $('#edit-info-dec').removeClass('d-none');
+    }
+
+    $(function() {
+        $('#fav-1-like')
+            .bind('click', function(event) {
+                $("#fav-1-like").toggleClass("liked");
+            });
+
+        $('#fav-2-like')
+            .bind('click', function(event) {
+                $("#fav-2-like").toggleClass("liked");
+            });
+
+        $('#fav-3-like')
+            .bind('click', function(event) {
+                $("#fav-3-like").toggleClass("liked");
+            });
+
+        $('#fav-4-like')
+            .bind('click', function(event) {
+                $("#fav-4-like").toggleClass("liked");
+            });
+    });
+
+    (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            const forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            const validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+
+
+</script>
+</body>
+</html>
