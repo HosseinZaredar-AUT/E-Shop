@@ -1,0 +1,401 @@
+@font-face {
+  font-family: 'IranYekanBold';
+  src: url("../fonts/iranSans/iranyekanbold.woff") format("woff");
+  font-style: normal;
+  font-weight: normal; }
+
+@font-face {
+  font-family: 'IranYekanRegular';
+  src: url("../fonts/iranSans/iranyekanregular.woff") format("woff");
+  font-style: normal;
+  font-weight: normal; }
+
+@font-face {
+  font-family: 'IranYekanLight';
+  src: url("../fonts/iranSans/iranyekanlight.woff") format("woff");
+  font-style: normal;
+  font-weight: normal; }
+
+.font-bold {
+  font-family: 'IranYekanBold', serif; }
+
+.font-medium {
+  font-family: 'IranYekanRegular', serif; }
+
+.font-light {
+  font-family: 'IranYekanLight', serif; }
+
+.font-bg {
+  font-size: 50px; }
+
+.font-md {
+  font-size: 30px; }
+
+.font-sm {
+  font-size: 18px; }
+
+.font-xs {
+  font-size: 12px; }
+
+.news-image {
+  height: 500px;
+  -o-object-fit: cover;
+  object-fit: cover; }
+
+.category-items {
+  border-radius: 100%;
+  border: 5px solid white;
+  margin: 20px;
+  font-size: 60px;
+  padding-top: 30px;
+  width: 130px;
+  height: 130px;
+  -webkit-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in; }
+
+.category-items:hover {
+  border-radius: 100%;
+  border-color: #a7ed57;
+  padding: 20px;
+  margin: 20px;
+  font-size: 60px;
+  -webkit-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in; }
+
+.product-card {
+  border: 1px solid #ffffff;
+  -webkit-transition: 0.1s;
+  transition: 0.1s; }
+
+.product-card:hover {
+  border: 1px solid #e2e3e5; }
+
+.product-card-discount {
+  border: 1px solid #fff8e8;
+  -webkit-transition: 0.1s;
+  transition: 0.1s; }
+
+.product-card-discount:hover {
+  border: 1px solid #ffd063; }
+
+.product-card-best-seller {
+  border: 1px solid #ff9e9e;
+  -webkit-transition: 0.1s;
+  transition: 0.1s; }
+
+.product-card-best-seller:hover {
+  border: 1px solid #a02c2d; }
+
+.add-to-cart-plus {
+  opacity: 0;
+  position: absolute;
+  font-size: 150px;
+  width: 100%;
+  top: 15%;
+  color: #a7ed57;
+  -webkit-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in; }
+
+.product-card:hover .add-to-cart-plus {
+  opacity: 1; }
+
+.product-card-best-seller:hover .add-to-cart-plus {
+  opacity: 1; }
+
+.shoppingBody {
+  overflow: auto; }
+
+.shoppingHeader {
+  background-color: #f7f7f7;
+  border-bottom: 3px solid teal; }
+
+.myBtn {
+  background-color: #000000;
+  border-color: #636f67; }
+
+.leftSide {
+  overflow-x: hidden;
+  background-color: #f5f5f5;
+  display: block;
+  padding-left: 35px;
+  padding-right: 35px;
+  padding-bottom: 75px;
+  position: fixed;
+  width: 25%;
+  z-index: 2000;
+  overflow-y: auto;
+  -webkit-transition: 0.5s;
+  transition: 0.5s; }
+
+@media (max-width: 992px) {
+  .leftSide {
+    top: 0;
+    background-color: #f5f5f5;
+    display: block;
+    width: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    position: fixed;
+    z-index: 2000;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-transition: 0.5s;
+    transition: 0.5s; } }
+
+.leftSideOpen {
+  z-index: 2000;
+  background-color: #f5f5f5;
+  display: block;
+  width: 75%;
+  padding-left: 35px;
+  padding-right: 35px;
+  padding-bottom: 75px;
+  position: fixed;
+  top: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-transition: 0.5s;
+  transition: 0.5s; }
+
+.hidedBody {
+  overflow-y: hidden; }
+
+.leftSide .separator {
+  padding-top: 85px; }
+
+.settings {
+  position: fixed;
+  width: 1.5rem;
+  height: 5rem;
+  left: 0;
+  top: 45%;
+  z-index: 2000;
+  color: white; }
+
+#overlay {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1600;
+  cursor: pointer; }
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 5px;
+  border-radius: 5px;
+  background: black;
+  outline: none;
+  opacity: 0.5;
+  -webkit-transition: .2s;
+  -webkit-transition: opacity .2s;
+  transition: opacity .2s; }
+
+.slider:hover {
+  opacity: 1; }
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #f5f5f5;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #6c6c6c;
+  cursor: pointer; }
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #f5f5f5;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #6c6c6c;
+  cursor: pointer; }
+
+/* The container */
+.radioContainer {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  font-size: 20px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+
+/* Hide the browser's default radio button */
+.radioContainer input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer; }
+
+/* Create a custom radio button */
+.checkMark {
+  position: absolute;
+  top: 5px;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #eee;
+  border-radius: 50%; }
+
+/* On mouse-over, add a grey background color */
+.radioContainer:hover input ~ .checkMark {
+  background-color: #ccc; }
+
+/* When the radio button is checked, add a blue background */
+.radioContainer input:checked ~ .checkMark {
+  background-color: #000000; }
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkMark:after {
+  content: "";
+  position: absolute;
+  display: none; }
+
+/* Show the indicator (dot/circle) when checked */
+.radioContainer input:checked ~ .checkMark:after {
+  display: block; }
+
+/* Style the indicator (dot/circle) */
+.radioContainer .checkMark:after {
+  top: 6px;
+  left: 6px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: white; }
+
+.main {
+  min-height: 920px;
+  width: 100%; }
+
+@media (min-width: 992px) {
+  .main {
+    margin-left: 25%;
+    min-height: 920px;
+    width: 75%; } }
+
+.product-card-discount:hover .add-to-cart-plus {
+  opacity: 1; }
+
+.add-to-cart-plus:hover {
+  color: #8bdb30; }
+
+.info-text {
+  left: 0;
+  right: 0; }
+
+.info-content {
+  color: white;
+  -webkit-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in; }
+
+.info-content:hover {
+  color: #a7ed57;
+  -webkit-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in; }
+
+.container-custom {
+  padding-left: 80px;
+  padding-right: 80px; }
+
+.discount-parallax {
+  background-color: #ffd063;
+  height: 100vh;
+  position: absolute;
+  right: 10%;
+  margin-top: 150px; }
+
+.best-seller-paralax {
+  background-color: #a02c2d;
+  height: 100vh;
+  position: absolute;
+  right: 30%;
+  margin-top: 150px; }
+
+.discount-text {
+  position: absolute;
+  border: dashed #ffd063;
+  border-radius: 100%;
+  color: #ffd063;
+  width: 70px;
+  height: 70px;
+  padding-top: 20px;
+  margin-left: 2px;
+  margin-top: 2px; }
+
+.best-seller-text {
+  position: absolute;
+  border: dashed #a02c2d;
+  border-radius: 100%;
+  color: #a02c2d;
+  width: 70px;
+  height: 70px;
+  padding-top: 20px;
+  margin-left: 2px;
+  margin-top: 2px; }
+
+.add-to-cart-plus {
+  opacity: 0;
+  position: absolute;
+  font-size: 150px;
+  width: 100%;
+  top: 15%;
+  color: #a7ed57;
+  -webkit-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in; }
+
+.add-to-cart-plus:hover {
+  color: #8bdb30; }
+
+.product-card:hover .add-to-cart-plus {
+  opacity: 1; }
+
+.vl {
+  border-left: 2px solid gray;
+  height: 15px;
+  margin-top: 7px;
+  margin-left: 0px;
+  margin-right: 5px;
+  top: 0; }
+
+/*# sourceMappingURL=myStyle.css.map */
+/*# sourceMappingURL=myStyle.css.map */
+/*# sourceMappingURL=myStyle.css.map */
+.dashed-link {
+  border-bottom: 1px dashed teal;
+  color: teal; }
+
+.login-card {
+  width: 400px;
+  margin-top: 100px;
+  margin-bottom: 100px; }
+
+.double {
+  zoom: 1.5;
+  transform: scale(1.5);
+  -ms-transform: scale(1.5);
+  -webkit-transform: scale(1.5);
+  -o-transform: scale(1.5);
+  -moz-transform: scale(1.5);
+  transform-origin: 0 0;
+  -ms-transform-origin: 0 0;
+  -webkit-transform-origin: 0 0;
+  -o-transform-origin: 0 0;
+  -moz-transform-origin: 0 0; }
+
+#laws-check {
+  margin-left: -10px; }
