@@ -68,7 +68,7 @@
             <div class="card-body " style="">
                 <div class="text-right" style="direction: rtl;color: #515151">
                     <i class="fa fa-plus d-inline"></i>
-                    <a class="d-inline myClickableThingy" style="font-size: 0.9rem">افزودن کالا</a>
+                    <a class="d-inline myClickableThingy" onclick="add()" style="font-size: 0.9rem">افزودن کالا</a>
                 </div>
                 <br>
                 <div class="text-right" style="direction: rtl;color: #515151">
@@ -78,12 +78,14 @@
                 <br>
                 <div class="text-right" style="direction: rtl;color: #515151">
                     <i class="fa fa-plus d-inline"></i>
-                    <a class="d-inline myClickableThingy" id="new-orders" onclick="openNewOrders()" style="font-size: 0.9rem">مشاهده سفارشات جدید</a>
+                    <a class="d-inline myClickableThingy" id="new-orders" onclick="openNewOrders()"
+                       style="font-size: 0.9rem">مشاهده سفارشات جدید</a>
                 </div>
                 <br>
                 <div class="text-right" style="direction: rtl;color: #515151">
                     <i class="fa fa-plus d-inline"></i>
-                    <a class="d-inline myClickableThingy" id="old-orders" onclick="openOldOrders()" style="font-size: 0.9rem">مشاهده سفارشات قدیمی</a>
+                    <a class="d-inline myClickableThingy" id="old-orders" onclick="openOldOrders()"
+                       style="font-size: 0.9rem">مشاهده سفارشات قدیمی</a>
                 </div>
             </div>
         </div>
@@ -176,8 +178,8 @@
                                         <span>- ۹۴۱۲۵۲۹۸</span>
                                     </h5>
                                 </a>
-                                <button class="btn btn-sm btn-danger float-left"> حذف </button>
-                                <button class="btn btn-sm btn-info float-left mx-2"> ! به پست تحویل داده شد </button>
+                                <button class="btn btn-sm btn-danger float-left"> حذف</button>
+                                <button class="btn btn-sm btn-info float-left mx-2"> ! به پست تحویل داده شد</button>
                             </div>
                             <div id="order-body-1" class="collapse" role="tabpanel" aria-labelledby="order-header-1"
                                  data-parent="#order-1">
@@ -266,8 +268,8 @@
                                         <span>- ۹۴۱۲۵۲۹۸</span>
                                     </h5>
                                 </a>
-                                <button class="btn btn-sm btn-danger float-left"> حذف </button>
-                                <button class="btn btn-sm btn-info float-left mx-2"> ! به پست تحویل داده شد </button>
+                                <button class="btn btn-sm btn-danger float-left"> حذف</button>
+                                <button class="btn btn-sm btn-info float-left mx-2"> ! به پست تحویل داده شد</button>
                             </div>
                             <div id="order-body-2" class="collapse" role="tabpanel" aria-labelledby="order-header-2"
                                  data-parent="#order-1">
@@ -369,8 +371,8 @@
                                         <span>- ۹۴۱۲۵۲۹۸</span>
                                     </h5>
                                 </a>
-                                <button class="btn btn-sm btn-danger float-left"> حذف </button>
-                                <button class="btn btn-sm btn-info float-left mx-2"> ! به پست تحویل داده شد </button>
+                                <button class="btn btn-sm btn-danger float-left"> حذف</button>
+                                <button class="btn btn-sm btn-info float-left mx-2"> ! به پست تحویل داده شد</button>
                             </div>
                             <div id="order-body-3" class="collapse" role="tabpanel" aria-labelledby="order-header-3"
                                  data-parent="#order-2">
@@ -459,8 +461,8 @@
                                         <span>- ۹۴۱۲۵۲۹۸</span>
                                     </h5>
                                 </a>
-                                <button class="btn btn-sm btn-danger float-left"> حذف </button>
-                                <button class="btn btn-sm btn-info float-left mx-2"> ! به پست تحویل داده شد </button>
+                                <button class="btn btn-sm btn-danger float-left"> حذف</button>
+                                <button class="btn btn-sm btn-info float-left mx-2"> ! به پست تحویل داده شد</button>
                             </div>
                             <div id="order-body-4" class="collapse" role="tabpanel" aria-labelledby="order-header-4"
                                  data-parent="#order-2">
@@ -549,8 +551,8 @@
                                         <span>- ۹۴۱۲۵۲۹۸</span>
                                     </h5>
                                 </a>
-                                <button class="btn btn-sm btn-danger float-left"> حذف </button>
-                                <button class="btn btn-sm btn-info float-left mx-2"> ! به پست تحویل داده شد </button>
+                                <button class="btn btn-sm btn-danger float-left"> حذف</button>
+                                <button class="btn btn-sm btn-info float-left mx-2"> ! به پست تحویل داده شد</button>
                             </div>
                             <div id="order-body-5" class="collapse" role="tabpanel" aria-labelledby="order-header-5"
                                  data-parent="#order-2">
@@ -632,6 +634,123 @@
                 </div>
             </div>
         </div>
+        <div class="card shadow mt-4 d-none" id="addProduct" style="">
+            <div class="card-header bg-info text-center text-white" style="height: 45px">
+                <h6 class="d-inline">افزودن کالا</h6>
+                <i class="fa fa-plus-circle" style="font-size: 1.5rem"></i>
+            </div>
+            <div class="card-body">
+                <div id="product-body" class="">
+                    <div class="container">
+                        <div class="row  text-center">
+                            <div class="col-md-7 col-sm-12 mt-5">
+                                <div class="img-magnifier-container mb-5">
+                                    <img id="myimage" src="Images/1.jpg" width="400">
+                                </div>
+                                <div class="row justify-content-center mr-5">
+                                    <div class="col-md-2 mx-4">
+                                        <button>
+                                            <img id="thumbnail1" src="Images/1.jpg" width="120">
+                                        </button>
+                                    </div>
+                                    <div class="col-md-2 mx-4">
+                                        <button>
+                                            <img id="thumbnail2" src="Images/2.jpg" width="120">
+                                        </button>
+                                    </div>
+                                    <div class="col-md-2 mx-4">
+                                        <button>
+                                            <img id="thumbnail3" src="Images/3.jpg" width="120">
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-5 col-sm-12 mt-5">
+                                <div class="card shadow w-100">
+                                    <div class="card-header font-sm mb-1 py-3 d-inline px-0" style="direction: rtl">
+                                        <!--<h5 class="font-sm mb-1 p-4 d-inline">کد کالا :</h5>-->
+                                        <h5>مشخصات اصلی</h5>
+                                    </div>
+                                    <div class="card-body px-0">
+                                        <div class="" style="direction: rtl">
+                                            <input type="text" placeholder="نام کالا :"
+                                                   class="form-control d-inline w-75">
+                                        </div>
+                                        <hr>
+                                        <div style="direction: rtl">
+                                            <select type=""
+                                                    class="form-control d-inline w-75">
+                                                <option class="" style="">موجود</option>
+                                                <option class="" style="">ناموجود</option>
+                                                <option class="" style="">به زودی</option>
+                                            </select>
+                                        </div>
+                                        <hr>
+                                        <div style="direction: rtl">
+                                            <input type="number" min="0" step="500" placeholder="قیمت کالا :"
+                                                   class="form-control d-inline w-75">
+                                        </div>
+                                        <hr>
+                                        <div style="direction: rtl">
+                                            <input type="number" min="0" placeholder="تعداد کالا :"
+                                                   class="form-control d-inline w-75">
+                                        </div>
+
+                                    </div>
+                                    <div class="card-header font-sm mb-1 py-3 d-inline px-0" style="direction: rtl">
+                                        <h5>رنگ</h5>
+                                    </div>
+                                    <div class="card-body px-0">
+                                        <div style="direction: rtl">
+                                            <input type="color"
+                                                   class="form-control d-inline w-75">
+                                        </div>
+                                        <hr>
+                                        <a href="#" class="btn btn-info text-white" style="width: 120px">
+                                            افزودن رنگ
+                                        </a>
+                                    </div>
+                                    <div class="card-header font-sm mb-1 py-3 d-inline px-0" style="direction: rtl">
+                                        <h5>عکس</h5>
+                                    </div>
+                                    <div class="card-body px-0">
+                                        <div class="" style="direction: rtl">
+                                            <div class="input-group w-75 mr-5">
+
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input" id="inputGroupFile01"
+                                                           aria-describedby="inputGroupFileAddon01">
+                                                    <label class="custom-file-label"
+                                                           for="inputGroupFile01">انتخاب</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <a href="#" class="btn btn-info text-white" style="width: 120px">
+                                            افزودن عکس
+                                        </a>
+                                    </div>
+                                    <div class="card-header font-sm mb-1 py-3 d-inline px-0" style="direction: rtl">
+                                        <h5>سایر</h5>
+                                    </div>
+                                    <div class="card-body px-0">
+                                        <div style="direction: rtl">
+                                            <input type="text" class="form-control d-inline w-25" placeholder="مشخصه :">
+                                            <input type="text" class="form-control d-inline w-50" placeholder="توضیح :">
+                                        </div>
+                                        <hr>
+                                        <a href="#" class="btn btn-info text-white" style="width: 120px">
+                                            افزودن
+                                        </a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </main>
 <script src="js/jquery2_2.min.js" type="text/javascript"></script>
@@ -666,10 +785,18 @@
     function openNewOrders() {
         $('#new-orders-dec').removeClass('d-none');
         $('#old-orders-dec').addClass('d-none');
+        $('#addProduct').addClass('d-none');
     }
 
     function openOldOrders() {
         $('#old-orders-dec').removeClass('d-none');
+        $('#new-orders-dec').addClass('d-none');
+        $('#addProduct').addClass('d-none');
+    }
+
+    function add() {
+        $('#addProduct').removeClass('d-none');
+        $('#old-orders-dec').addClass('d-none');
         $('#new-orders-dec').addClass('d-none');
     }
 
