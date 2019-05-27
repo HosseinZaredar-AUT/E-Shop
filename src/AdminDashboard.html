@@ -467,7 +467,7 @@
                 <br>
                 <div class="text-right" style="direction: rtl;color: #515151">
                     <i class="fa fa-plus d-inline"></i>
-                    <a class="d-inline myClickableThingy" style="font-size: 0.9rem">افزودن دسته بندی</a>
+                    <a onclick="cat()" class="d-inline myClickableThingy" style="font-size: 0.9rem">افزودن دسته بندی</a>
                 </div>
                 <br>
                 <div class="text-right" style="direction: rtl;color: #515151">
@@ -1068,6 +1068,11 @@
                                         </div>
                                         <div class="card-body px-0">
                                             <div class="" style="direction: rtl">
+                                                <input type="text" placeholder="کد کالا :"
+                                                       class="form-control d-inline w-75">
+                                            </div>
+                                            <hr>
+                                            <div class="" style="direction: rtl">
                                                 <input type="text" placeholder="نام کالا :"
                                                        class="form-control d-inline w-75">
                                             </div>
@@ -1193,7 +1198,7 @@
             </div>
 
         </div>
-        <div class="card shadow mt-4 " id="" style="">
+        <div class="card shadow mt-4 d-none" id="category" style="">
             <div class="card-header bg-info text-center text-white" style="height: 45px">
                 <h6 class="d-inline">افزودن دسته بندی</h6>
                 <i class="fa fa-users" style="font-size: 1.5rem"></i>
@@ -1211,7 +1216,8 @@
                         </div>
                         <div>
                             <a class="btn btn-danger text-white ml-4" style="width: 65px">حذف</a>
-                            <a onclick="newCat('hygienicShits')" class="btn text-white ml-0 btn-primary" style="width: 65px">اضافه</a>
+                            <a onclick="newCat('hygienicShits')" class="btn text-white ml-0 btn-primary"
+                               style="width: 65px">اضافه</a>
                         </div>
                     </div>
                     <div class="collapse" id="hygienic">
@@ -1260,7 +1266,7 @@
                     </div>
                     <div class="collapse" id="instrument">
                         <div class="card-body">
-                            <div class="container" id="instrum" >
+                            <div class="container" id="instrum">
                                 <div class="card-header mt-4" style="background-color: #91d052">
                                     <div class="text-white float-right p-1 mr-5">
                                         <a class="text-white"
@@ -1314,18 +1320,27 @@
         $('#new-orders-dec').removeClass('d-none');
         $('#old-orders-dec').addClass('d-none');
         $('#addProduct').addClass('d-none');
+        $('#category').addClass('d-none');
     }
 
     function openOldOrders() {
         $('#old-orders-dec').removeClass('d-none');
         $('#new-orders-dec').addClass('d-none');
         $('#addProduct').addClass('d-none');
+        $('#category').addClass('d-none');
     }
 
     function add() {
         $('#addProduct').removeClass('d-none');
         $('#old-orders-dec').addClass('d-none');
         $('#new-orders-dec').addClass('d-none');
+        $('#category').addClass('d-none');
+    }
+    function cat() {
+        $('#category').removeClass('d-none');
+        $('#old-orders-dec').addClass('d-none');
+        $('#new-orders-dec').addClass('d-none');
+        $('#addProduct').addClass('d-none');
     }
 
     function addColor() {
@@ -1388,6 +1403,7 @@
             "                                        <hr>");
 
     }
+
     function newCat(id) {
 
         $("#" + id).append("                                <div class=\"card-header mt-4\" style=\"background-color: #91d052\">\n" +
