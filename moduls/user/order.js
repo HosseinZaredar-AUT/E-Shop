@@ -6,7 +6,8 @@ var orderSchema = mongoose.Schema({
     products: [{type: mongoose.Schema.Types.ObjectId, ref: 'Product'}],
     address: {type: mongoose.Schema.Types.ObjectId, ref: "Address"},
     submittedDate: persianDate,
-    totalPriceAtDate: Number
+    totalPriceAtDate: Number,
+    status: String
 });
 
 module.exports = mongoose.model("Order", orderSchema);
