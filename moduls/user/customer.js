@@ -1,13 +1,11 @@
-var mongoose = require('mongoose');
+let mongoose = require('mongoose');
 
-var customerSchema = mongoose.Schema({
+let customerSchema = mongoose.Schema({
     firstname: {
-        type: String,
-        required: true
+        type: String
     },
     lastname: {
-        type: String,
-        required: true
+        type: String
     },
     username: {
         type: String,
@@ -17,24 +15,19 @@ var customerSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    email:    {
+    email: {
         type: String,
         required: true
     },
-    phone:    {
+    phone: {
         type: String,
         required: true
     },
     idNumber: {
-        type: String,
-        required: true
+        type: String
     },
-    addresses:  [{type: mongoose.Schema.Types.ObjectId, ref: 'Address'}],
+    addresses: [{type: mongoose.Schema.Types.ObjectId, ref: 'Address'}],
     favorites: [{type: mongoose.Schema.Types.ObjectId, ref: 'Product'}],
-    comments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Comment'}],
-    image: {
-        type: String,
-        required: false
-    },
+    comments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Comment'}]
 });
 module.exports = mongoose.model("Customer", customerSchema);

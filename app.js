@@ -6,7 +6,12 @@ let express = require('express'),
     fileUpload = require('express-fileupload'),
     methodOverride = require('method-override'),
     seedDB = require('./seed'),
-    mongoose = require('mongoose');
+    mongoose = require('mongoose'),
+    indexRouter = require('./routes/index/index'),
+    dashboardRouter = require('./routes/admin/dashboard/dashboard'),
+    adminRouter = require('./routes/admin/admin'),
+    categoryRouter = require('./routes/admin/category'),
+    productRouter = require('./routes/admin/product');
 
 // express setup
 app.use(express.json());
@@ -21,22 +26,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 
-// connecting to database
-var databaseURL = 'mongodb://127.0.0.1/db'; // change it to your database
-mongoose.connect(databaseURL, {useNewUrlParser: true}, function(err) {
-    if (err)
-        console.log('Unable to Connect to Database');
-    else
-        console.log('Connected to Database');
-});
-
-let indexRouter = require('./routes/index/index'),
-    dashboardRouter = require('./routes/admin/dashboard/dashboard'),
-    adminRouter = require('./routes/admin/admin');
 
 app.use('/dashboard', dashboardRouter);
 app.use('/admin', adminRouter);
+app.use('/category', categoryRouter);
+app.use('/product', productRouter);
 app.use('/', indexRouter);
+
+seedDB();
 
 app.listen(3000, function(err) {
     if(!err) console.log("Server Has Started");

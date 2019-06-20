@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>داشبورد ادمین</title>
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/myStyle2.css">
+    <link rel="stylesheet" href="css/Dashboard.css">
+    <link rel="stylesheet" href="css/myStyle3.css">
+
+    <style>
+        .myClickableThingy {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body id="body" class="font-medium h-100">
+
+<div class="container">
+    <div class="row  text-center">
+        <div class="col-md-12 mt-5">
+            <form action="/product" method="post">
+                <div class="card shadow w-100">
+                    <div class="card-header font-sm mb-1 py-3 d-inline px-0" style="direction: rtl">
+                        <h5>مشخصات اصلی</h5>
+                    </div>
+                    <div class="card-body px-0">
+                        <div class="" style="direction: rtl">
+                            <input type="text" placeholder="نام کالا :"
+                                   class="form-control d-inline w-75" name="name" required>
+                        </div>
+                        <hr>
+                        <div class="" style="direction: rtl">
+                            <textarea type="text" placeholder="توضیحات کالا :"
+                                      class="form-control d-inline w-75" name="description" required></textarea>
+                        </div>
+                        <hr>
+                        <div style="direction: rtl">
+                            <input type="number" min="0" step="500" name="price" placeholder="قیمت کالا :"
+                                   class="form-control d-inline w-75" required>
+                        </div>
+                        <hr>
+                        <div style="direction: rtl">
+                            <input type="number" min="0" name="remainingNumber" placeholder="تعداد کالا :"
+                                   class="form-control d-inline w-75" required>
+                        </div>
+                        <hr>
+                        <div class="mr-5" style="direction: rtl">
+                            <label for="discCheckBox" class="d-inline-block">تخفیف دارد ؟</label>
+                            <input type="checkbox" placeholder="تخفیف :"
+                                   class="form-control" name="hasDiscount" id="discCheckBox">
+                        </div>
+
+                    </div>
+                    <div class="card-header font-sm mb-1 py-3 d-inline px-0" style="direction: rtl">
+                        <h5>رنگ</h5>
+                    </div>
+                    <div id="color" class="card-body px-0">
+                        <div style="direction: rtl">
+                            <input type="color" name="color"
+                                   class="form-control d-inline w-75">
+                        </div>
+                        <hr>
+                        <a onclick="addColor()" class="btn btn-info text-white"
+                           style="width: 120px; cursor: pointer;">
+                            افزودن رنگ
+                        </a>
+                    </div>
+
+                    <div class="card-header font-sm mb-1 py-3 d-inline px-0" style="direction: rtl">
+                        <h5>عکس</h5>
+                    </div>
+                    <div id="photo" class="card-body px-0">
+                        <div class="" style="direction: rtl">
+                            <div class="input-group w-75 mr-5">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input"
+                                           id="inputGroupFile01"
+                                           aria-describedby="inputGroupFileAddon01">
+                                    <label class="custom-file-label"
+                                           for="inputGroupFile01">انتخاب</label>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <a onclick="addPhoto()" class="btn btn-info text-white"
+                           style="width: 120px;cursor: pointer;">
+                            افزودن عکس
+                        </a>
+                    </div>
+
+                    <div class="card-header font-sm mb-1 py-3 d-inline px-0" style="direction: rtl">
+                        <h5>دسته بندی</h5>
+                    </div>
+                    <div id="cat" class="card-body px-0">
+                        <div style="direction: rtl">
+                            <select type="text" name="category" class="form-control d-inline w-75">
+                                <option selected>
+                                    kiss
+                                </option>
+
+                            </select>
+                        </div>
+                        <hr>
+                    </div>
+
+                    <div class="card-header font-sm mb-1 py-3 d-inline px-0" style="direction: rtl">
+                        <h5>سایر</h5>
+                    </div>
+                    <div id="other" class="card-body px-0">
+                        <div style="direction: rtl">
+                            <input name='property' type="text" class="form-control d-inline w-25"
+                                   placeholder="مشخصه :" required>
+                            <input name='property' type="text" class="form-control d-inline w-50"
+                                   placeholder="توضیح :" required>
+                        </div>
+                        <hr>
+                        <a onclick="addOther()" class="btn btn-info text-white"
+                           style="width: 120px; cursor: pointer;">
+                            افزودن
+                        </a>
+                    </div>
+                    <div class="card-footer font-sm mb-1 p-2 text-center">
+                        <button type="submit" class="btn btn-info text-white">
+                            <i class="fa fa-plus font-md pt-1"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
+<script src="js/jquery2_2.min.js" type="text/javascript"></script>
+<script src="js/bootstrap.min.js" type="text/javascript"></script>
+<script>
+    function openBar() {
+        if (document.getElementById("sideBar").classList.contains("leftSideOpen")) {
+            // document.getElementById("sideBar").style.width = "75%";
+            // document.getElementById("sideBar").style.paddingLeft = "35px";
+            // document.getElementById("sideBar").style.paddingRight = "35px";
+            // document.getElementById("sideBar").style.paddingBottom = "85px";
+            document.getElementById("sideBar").classList.remove("leftSideOpen");
+            document.getElementById("body").classList.remove("hidedBody");
+            document.getElementById("body").classList.add("shoppingBody");
+            document.getElementById("body").classList.add("shoppingBody");
+            document.getElementById("overlay").style.display = "none";
+            document.getElementById("setting").style.display = "";
+            setTimeout(function () {
+                document.getElementById("close").style.display = "none";
+            }, 500);
+        } else {
+            console.log(document.getElementById("overlay").style.display);
+            document.getElementById("sideBar").classList.add("leftSideOpen");
+            document.getElementById("body").classList.add("hidedBody");
+            document.getElementById("body").classList.remove("shoppingBody");
+            document.getElementById("overlay").style.display = "block";
+            document.getElementById("setting").style.display = "block";
+            document.getElementById("close").style.display = "block";
+        }
+    }
+
+    function openNewOrders() {
+        $('#new-orders-dec').removeClass('d-none');
+        $('#old-orders-dec').addClass('d-none');
+        $('#addProduct').addClass('d-none');
+        $('#category').addClass('d-none');
+    }
+
+    function openOldOrders() {
+        $('#old-orders-dec').removeClass('d-none');
+        $('#new-orders-dec').addClass('d-none');
+        $('#addProduct').addClass('d-none');
+        $('#category').addClass('d-none');
+    }
+
+    function add() {
+        $('#addProduct').removeClass('d-none');
+        $('#old-orders-dec').addClass('d-none');
+        $('#new-orders-dec').addClass('d-none');
+        $('#category').addClass('d-none');
+    }
+    function cat() {
+        $('#category').removeClass('d-none');
+        $('#old-orders-dec').addClass('d-none');
+        $('#new-orders-dec').addClass('d-none');
+        $('#addProduct').addClass('d-none');
+    }
+
+    function addColor() {
+        $("#color").prepend("    <div style=\"direction: rtl\">\n" +
+            "            <input type=\"color\"\n" +
+            "    class=\"form-control d-inline w-75\">\n" +
+            "            </div>\n" +
+            "            <hr>");
+
+    }
+
+    function addPhoto() {
+        $("#photo").prepend("                                        <div class=\"\" style=\"direction: rtl\">\n" +
+            "                                            <div class=\"input-group w-75 mr-5\">\n" +
+            "\n" +
+            "                                                <div class=\"custom-file\">\n" +
+            "                                                    <input type=\"file\" class=\"custom-file-input\" id=\"inputGroupFile01\"\n" +
+            "                                                           aria-describedby=\"inputGroupFileAddon01\">\n" +
+            "                                                    <label class=\"custom-file-label\"\n" +
+            "                                                           for=\"inputGroupFile01\">انتخاب</label>\n" +
+            "                                                </div>\n" +
+            "                                            </div>\n" +
+            "                                        </div>\n" +
+            "                                        <hr>");
+
+    }
+
+    function addCat() {
+        $("#cat").prepend("                                        <div style=\"direction: rtl\">\n" +
+            "                                            <select type=\"text\" class=\"form-control d-inline w-75\">\n" +
+            "                                                <option selected>\n" +
+            "                                                    دسته بندی\n" +
+            "                                                </option>\n" +
+            "                                                <option>\n" +
+            "                                                    خوراکی\n" +
+            "                                                </option>\n" +
+            "                                                <option>\n" +
+            "                                                    لباس\n" +
+            "                                                </option>\n" +
+            "                                                <option>\n" +
+            "                                                    ساز\n" +
+            "                                                </option>\n" +
+            "                                                <option>\n" +
+            "                                                    لوازم بهداشتی\n" +
+            "                                                </option>\n" +
+            "                                                <option>\n" +
+            "                                                    خودرو\n" +
+            "                                                </option>\n" +
+            "                                            </select>\n" +
+            "                                        </div>\n" +
+            "                                        <hr>");
+
+    }
+
+    function addOther() {
+        $("#other").prepend("                                        <div style=\"direction: rtl\">\n" +
+            "                                            <input type=\"text\" name=\"property\" class=\"form-control d-inline w-25\" placeholder=\"مشخصه :\" required>\n" +
+            "                                            <input type=\"text\" name=\"property\" class=\"form-control d-inline w-50\" placeholder=\"توضیح :\" required>\n" +
+            "                                        </div>\n" +
+            "                                        <hr>");
+
+    }
+
+    function newCat(id) {
+
+        $("#" + id).append("                                <div class=\"card-header mt-4\" style=\"background-color: #91d052\">\n" +
+            "                                    <div class=\"text-white d-inline float-right p-1 mr-5\">\n" +
+            "                                        <input class=\"form-control d-inline\" placeholder=\"نام محصول:\" style=\"direction: rtl;\" type=\"text\">\n" +
+            "                                    </div>\n" +
+            "                                    <div>\n" +
+            "                                        <a class=\"btn text-white ml-4\" style=\"background-color: #19a814;width: 65px\">ثبت</a>\n" +
+            "                                    </div>\n" +
+            "                                </div>\n");
+
+    }
+
+
+</script>
+<script src="js/slick.min.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+    $(document).on('ready', function () {
+        $(".regular").slick({
+            speed: 300,
+            slidesToShow: 3,
+            slidesToScroll: 2,
+            responsive: [
+                {
+                    breakpoint: 960,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 2,
+                        infinite: true,
+                    }
+                },
+                {
+                    breakpoint: 650,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1
+                    }
+                },
+                {
+                    breakpoint: 480,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1
+                    }
+                }
+                // You can unslick at a given breakpoint now by adding:
+                // settings: "unslick"
+                // instead of a settings object
+            ]
+        });
+    });
+</script>
+<script src="js/ZosoJS.js" type="text/javascript"></script>
+</body>
+</html>

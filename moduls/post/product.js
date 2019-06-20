@@ -1,6 +1,6 @@
-var mongoose = require('mongoose');
+let mongoose = require('mongoose');
 
-var productSchema = mongoose.Schema({
+let productSchema = mongoose.Schema({
     name: {
         type: String,
         required: true
@@ -13,17 +13,22 @@ var productSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    boughtNumber: {
+        type: String,
+    },
     price: {
         type: String,
         required: true
+    },
+    hasDiscount: {
+        type: String
     },
     comments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Comment'}],
     category: {type: mongoose.Schema.Types.ObjectId, ref: 'Category'},
     properties: [{type: mongoose.Schema.Types.ObjectId, ref: 'Property'}],
     images: [{
-        type: String,
-        required: true
-    },]
+        type: String
+    }]
 });
 
 module.exports = mongoose.model("Product", productSchema);

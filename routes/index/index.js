@@ -1,15 +1,15 @@
 let express = require('express'),
     router = express.Router(),
+    app = express(),
     path = require('path'),
     Category = require('../../moduls/post/category'),
-    Product = require('../../moduls/post/product');
+    Product = require('../../moduls/post/product'),
+    Property = require('../../moduls/post/property');
 
 router.get('/', function (req, res) {
-    Category.findOne({ name: 'root' }, function (err, root) {
-        root.getChildrenTree({fields: 'name'}, function(err, cats) {
-            res.render('index', {cats: cats});
-        });
-    });
+    res.render('admin')
 });
+
+
 
 module.exports = router;

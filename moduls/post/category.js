@@ -1,7 +1,7 @@
-var mongoose = require('mongoose'),
+let mongoose = require('mongoose'),
     mdt = require('mongoose-data-tree');
 
-var categorySchema = mongoose.Schema({
+let categorySchema = mongoose.Schema({
     name: String,
     products: [{type: mongoose.Schema.Types.ObjectId, ref: 'Product'}]
 });

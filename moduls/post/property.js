@@ -1,11 +1,7 @@
-var mongoose = require('mongoose');
+let mongoose = require('mongoose');
 
-var propertySchema = mongoose.Schema({
+let propertySchema = mongoose.Schema({
     key: {
-        type: String,
-        required: true
-    },
-    unit: {
         type: String,
         required: true
     },

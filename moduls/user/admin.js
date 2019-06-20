@@ -1,6 +1,6 @@
-var mongoose = require('mongoose');
+let mongoose = require('mongoose');
 
-var adminSchema = mongoose.Schema({
+let adminSchema = mongoose.Schema({
     username: {
         type: String,
         required: true
@@ -9,7 +9,7 @@ var adminSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    email:    {
+    email: {
         type: String,
         required: true
     },

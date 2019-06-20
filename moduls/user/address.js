@@ -1,6 +1,6 @@
-var mongoose = require('mongoose');
+let mongoose = require('mongoose');
 
-var addressSchema = mongoose.Schema({
+let addressSchema = mongoose.Schema({
     province: {
         type: String,
         required: true
@@ -9,11 +9,11 @@ var addressSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    postalCode:  {
+    postalCode: {
         type: String,
         required: true
     },
-    homePhone:    {
+    homePhone: {
         type: String,
         required: true
     },
@@ -22,4 +22,6 @@ var addressSchema = mongoose.Schema({
         required: true
     },
 });
+
+
 module.exports = mongoose.model("Address", addressSchema);
