@@ -1029,16 +1029,17 @@
         server: {
             process: '/product/upload',
             revert: (uniqueFileId, load, error) => {
-                fetch('/revert', {
-                    method: 'Delete',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        path: uniqueFileId
-                    })
-                });
-                load();
+                    // console.log(err);
+                    fetch('/product/revert', {
+                        method: 'post',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            path: uniqueFileId
+                        })
+                    });
+                    load();
             }
         }
     });

@@ -1,11 +1,13 @@
 let express = require('express'),
-    router = express.Router()
+    router = express.Router(),
     path = require('path'),
+    fs = require('fs'),
     filepond = require('filepond'),
     uuid = require('uuid/v1'),
     Category = require('../../moduls/post/category'),
     Product = require('../../moduls/post/product'),
     Property = require('../../moduls/post/property');
+
 
 router.get('/', function (req,res) {
     res.render('product/product');
@@ -85,6 +87,7 @@ router.delete('/:id', function (req, res) {
     })
 });
 
+// to upload a file as it is dragged into filepond
 router.post('/upload', function(req, res) {
     var name = uuid();
     var fullType = req.files.filepond.mimetype;
@@ -94,6 +97,15 @@ router.post('/upload', function(req, res) {
             throw err;
         var path = 'images/' + name + '.' + type;
         res.send(path);
+    });
+});
+
+// to revert file upload
+// should use a delete method but it didn't work, I don't know why
+router.post('/revert', function(req, res) {
+    fs.unlink('./public/' + req.body.path, function(err) {
+        if (err)
+            console.log(err);
     });
 });
 
