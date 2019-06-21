@@ -1031,7 +1031,7 @@
             revert: (uniqueFileId, load, error) => {
                     // console.log(err);
                     fetch('/product/revert', {
-                        method: 'post',
+                        method: 'delete',
                         headers: {
                             'Content-Type': 'application/json'
                         },
