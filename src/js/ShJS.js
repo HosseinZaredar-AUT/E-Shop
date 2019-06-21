@@ -26,12 +26,19 @@ function openBar() {
 dropThePage = (id) => {
     console.log(document.getElementById(id).scrollHeight);
     // document.getElementById(id).style.top = "0";
-    document.getElementById(id).style.top = "0";
+    document.getElementById(id).style.display = "block";
+    setTimeout(() => {
+        document.getElementById(id).style.top = "0";
+    },100);
 };
 
 packThePage = (id) => {
     console.log(document.getElementById(id).style.height);
-    document.getElementById(id).style.top =  -1 * document.getElementById(id).scrollHeight + 'px';
+    setTimeout(() => {
+        document.getElementById(id).style.display = "none";
+
+    },500);
+    document.getElementById(id).style.top = -1 * document.getElementById(id).scrollHeight + 'px';
 };
 
 function addColor() {
