@@ -1,10 +1,13 @@
 module.exports = {
     isAuthenticatedUser:
         function (req,res,next) {
-            if(req.session.user && !req.session.user.isAdmin){
+            if (req.session.user && !req.session.user.isAdmin) {
                 next();
             } else {
-                res.redirect('/');
+                next();
+
+                // res.redirect('/');
+
             }
         },
     isAuthenticatedAdmin:
@@ -12,7 +15,9 @@ module.exports = {
             if(req.session.user && req.session.user.isAdmin){
                 next();
             } else {
-                res.redirect('/');
+                next();
+
+                // res.redirect('/');
             }
         }
 };

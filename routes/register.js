@@ -3,7 +3,7 @@ let express = require('express'),
     Customer = require('../moduls/user/customer');
 
 router.get('/', (req, res) => {
-    res.render('register');
+    res.render('index/register');
 });
 
 router.post('/', (req, res) => {

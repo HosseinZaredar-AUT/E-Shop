@@ -6,7 +6,7 @@ let express = require('express'),
     Property = require('../../moduls/post/property');
 
 router.get('/', function (req,res) {
-    res.render('admin');
+    res.render('product/product');
 });
 
 router.post('/', function (req, res) {

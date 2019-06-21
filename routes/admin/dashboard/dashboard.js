@@ -6,7 +6,7 @@ let express = require('express'),
     Customer = require('../../../moduls/user/customer');
 
 router.get('/', function (req, res) {
-    res.render('adminDashboard');
+    res.render('user/adminDashboard');
 });
 
 module.exports = router;

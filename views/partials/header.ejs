@@ -1,44 +1,14 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>فروشگاه اینترنتی بادمجون</title>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="css/slick.css">
-    <link rel="stylesheet" type="text/css" href="css/slick-theme.css">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/myStyle.css">
-    <link rel="stylesheet" href="css/myStyle2.css">
-    <link rel="stylesheet" href="css/myStyle3.css">
-    <link rel="stylesheet" href="css/loginStyle.css">
-    <style type="text/css">
-        html, body {
-            background-color: white;
-            color: black;
-        }
 
-        * {
-            box-sizing: border-box;
-        }
-
-        .slider {
-            margin: auto;
-            width: 75%;
-        }
-
-        .slick-slide img {
-            width: 100%;
-        }
-    </style>
-</head>
 
 <body class="font-medium">
 
 <header class="shoppingHeader py-1 px-md-5 px-sm-1 sticky-top">
     <div class="container-fluid">
         <nav class="navbar navbar-expand-md navbar-light bg-light">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+                    aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
@@ -53,10 +23,10 @@
                         </div>
                     </li>
                     <li class="nav-item px-md-3">
-                        <a class="nav-link" href="register.ejs">ثبت نام / ورود</a>
+                        <a class="nav-link" href="register">ثبت نام / ورود</a>
                     </li>
                     <li class="nav-item px-md-3">
-                        <a class="nav-link" href="../user/userDashboard.ejs">پیگیری سفارش؟</a>
+                        <a class="nav-link" href="userDashboard">پیگیری سفارش؟</a>
                     </li>
                     <li class="nav-item px-md-3">
                         <a class="nav-link" href="#" data-toggle="collapse" data-target="#categoryJumbotrun"
@@ -89,21 +59,36 @@
                         </div>
                         <div class="col-md-4 col-sm-12 pb-4">
                             <div class="row mx-1">
-                                <div class="col-md-12 p-1"><button class="btn btn-info w-100"
-                                                                   data-toggle="collapse" data-target="#category1" role="button"
-                                                                   aria-expanded="true" aria-controls="category1">خوراکی</button></div>
-                                <div class="col-md-12 p-1"><button class="btn btn-info w-100"
-                                                                   data-toggle="collapse" data-target="#category2" role="button"
-                                                                   aria-expanded="false" aria-controls="category2">لباس</button></div>
-                                <div class="col-md-12 p-1"><button class="btn btn-info w-100"
-                                                                   data-toggle="collapse" data-target="#category3" role="button"
-                                                                   aria-expanded="false" aria-controls="category3">ساز</button></div>
-                                <div class="col-md-12 p-1"><button class="btn btn-info w-100"
-                                                                   data-toggle="collapse" data-target="#category4" role="button"
-                                                                   aria-expanded="false" aria-controls="category4">لوازم بهداشتی</button></div>
-                                <div class="col-md-12 p-1"><button class="btn btn-info w-100"
-                                                                   data-toggle="collapse" data-target="#category5" role="button"
-                                                                   aria-expanded="false" aria-controls="category5">خودرو</button></div>
+                                <div class="col-md-12 p-1">
+                                    <button class="btn btn-info w-100"
+                                            data-toggle="collapse" data-target="#category1" role="button"
+                                            aria-expanded="true" aria-controls="category1">خوراکی
+                                    </button>
+                                </div>
+                                <div class="col-md-12 p-1">
+                                    <button class="btn btn-info w-100"
+                                            data-toggle="collapse" data-target="#category2" role="button"
+                                            aria-expanded="false" aria-controls="category2">لباس
+                                    </button>
+                                </div>
+                                <div class="col-md-12 p-1">
+                                    <button class="btn btn-info w-100"
+                                            data-toggle="collapse" data-target="#category3" role="button"
+                                            aria-expanded="false" aria-controls="category3">ساز
+                                    </button>
+                                </div>
+                                <div class="col-md-12 p-1">
+                                    <button class="btn btn-info w-100"
+                                            data-toggle="collapse" data-target="#category4" role="button"
+                                            aria-expanded="false" aria-controls="category4">لوازم بهداشتی
+                                    </button>
+                                </div>
+                                <div class="col-md-12 p-1">
+                                    <button class="btn btn-info w-100"
+                                            data-toggle="collapse" data-target="#category5" role="button"
+                                            aria-expanded="false" aria-controls="category5">خودرو
+                                    </button>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-8 col-sm-12">
@@ -114,7 +99,8 @@
                                             <div class="col-sm-6 col-lg-3">
                                                 <p class="text-warning">
                                                     <i class="fa fa-chevron-left"></i>
-                                                    <a href="../product/category.ejs" style="text-decoration: none; color: #e8ac22">لبنیات</a>
+                                                    <a href="../product/category.ejs"
+                                                       style="text-decoration: none; color: #e8ac22">لبنیات</a>
                                                 </p>
                                                 <p class="text-info pr-4">
                                                     <span>ماست</span>

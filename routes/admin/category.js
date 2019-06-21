@@ -8,7 +8,7 @@ router.get('/', function (req, res) {
             if(!err) {
                 let categories = [];
                 dfs(childs, categories);
-                res.render('index', {categories: categories})
+                res.render('product/category', {categories: categories})
             }
         })
     })

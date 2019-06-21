@@ -4,7 +4,7 @@ let express = require('express'),
     Admin    = require('../moduls/user/admin');
 
 router.get('/', (req, res) => {
-    res.render('login');
+    res.render('index/login');
 });
 
 router.post('/', (req, res) => {

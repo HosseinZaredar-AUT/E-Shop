@@ -5,7 +5,7 @@ let express = require('express'),
     Order   = require('../../../moduls/user/order');
 
 router.get('/', (req, res) => {
-    res.render('userDashboard');
+    res.render('user/userDashboard');
 });
 
 router.delete('/order/:id', function (req, res) {
