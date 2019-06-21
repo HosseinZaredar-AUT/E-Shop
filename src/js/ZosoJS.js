@@ -83,17 +83,17 @@ magnify("myimage", 3);
 
 
 $('#thumbnail1').click(function () {
-   $('#myimage').attr('src','Images/1.jpg');
+   $('#myimage').attr('src','images/1.jpg');
     magnify("myimage", 3);
 });
 
 $('#thumbnail2').click(function () {
-    $('#myimage').attr('src','Images/2.jpg');
+    $('#myimage').attr('src','images/2.jpg');
     magnify("myimage", 3);
 });
 
 $('#thumbnail3').click(function () {
-    $('#myimage').attr('src','Images/3.jpg');
+    $('#myimage').attr('src','images/3.jpg');
     magnify("myimage", 3);
 });
 

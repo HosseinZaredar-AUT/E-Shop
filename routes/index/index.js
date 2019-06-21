@@ -7,9 +7,13 @@ let express = require('express'),
     Property = require('../../moduls/post/property');
 
 router.get('/', function (req, res) {
-    res.render('admin')
+    res.render('index')
 });
 
+router.post('/logout', function (req, res) {
+    req.session.destroy();
+    res.redirect('/');
+});
 
 
 module.exports = router;

@@ -5,16 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>ثبت نام</title>
+    <title>ورود</title>
     <link rel="stylesheet" href="css/font-awesome.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/myStyle.css">
+    <link rel="stylesheet" href="css/loginStyle.css">
 </head>
 
 <body class="font-medium">
 
-<header class="shoppingHeader py-1 px-md-5 px-sm-1 sticky-top">
+    <header class="shoppingHeader py-1 px-md-5 px-sm-1 sticky-top">
     <div class="container-fluid">
         <nav class="navbar navbar-expand-md navbar-light bg-light">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,10 +33,10 @@
                         </div>
                     </li>
                     <li class="nav-item px-md-3">
-                        <a class="nav-link" href="RegisterPage.html">ثبت نام / ورود</a>
+                        <a class="nav-link" href="register.ejs">ثبت نام / ورود</a>
                     </li>
                     <li class="nav-item px-md-3">
-                        <a class="nav-link" href="UserDashboard.html">پیگیری سفارش؟</a>
+                        <a class="nav-link" href="userDashboard.ejs">پیگیری سفارش؟</a>
                     </li>
                     <li class="nav-item px-md-3">
                         <a class="nav-link" href="#" data-toggle="collapse" data-target="#categoryJumbotrun"
@@ -55,7 +56,7 @@
                     </div>
                 </form>
             </div>
-            <a class="navbar-brand pl-3 text-secondary mx-auto" href="Index.html">بادمجون
+            <a class="navbar-brand pl-3 text-secondary mx-auto" href="Index.ejs">بادمجون
                 <i class="fa fa-hotdog"></i>
             </a>
         </nav>
@@ -390,159 +391,119 @@
     </div>
 </header>
 
-<div class="login-card mx-auto ">
-    <div class="card">
-        <div class="card-header text-center">
-            <span class="font-md text-info">!ثبت نام در بادمجون</span>
-        </div>
-        <div class="card-body">
-            <form action="" method="POST" class="needs-validation" novalidate>
-                <div class="form-group">
-                    <label for="username" class="float-right">نام کاربری</label>
-                    <div class="input-group">
-                        <input type="text" name="username" id="username" class="form-control" required>
-                        <div class="input-group-prepend">
-                            <div class="input-group-text">
-                                <i class="fa fa-user"></i>
+    <div class="login-card mx-auto container">
+        <div class="card">
+            <div class="card-header">
+                <span class="font-md text-info text-center">!ورود به بادمجون</span>
+            </div>
+            <div class="card-body">
+                <form action="/login" method="POST" class="needs-validation" novalidate>
+                    <div class="form-group">
+                        <label for="email" class="float-right">ایمیل</label>
+                        <div class="input-group">
+                            <input type="email" name="email" id="email" class="form-control" required>
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <i class="fa fa-user"></i>
+                                </div>
                             </div>
+                            <div class="invalid-feedback">.لطفا این بخش را به درستی پر کنید</div>
                         </div>
-                        <div class="invalid-feedback">.لطفا این بخش را به درستی پر کنید</div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="password" class="float-right">رمز عبور</label>
-                    <div class="input-group">
-                        <input type="password" name="password" id="password" class="form-control" required>
-                        <div class="input-group-prepend">
-                            <div class="input-group-text">
-                                <i class="fa fa-lock"></i>
+                    <div class="form-group">
+                        <label for="password" class="float-right">رمز عبور</label>
+                        <label for="password" class="float-left dashed-link"><a href="./forgot-password"> رمز عبور خود را فراموش کردم </a></label>
+                        <div class="input-group">
+                            <input type="password" name="password" id="password" class="form-control" required>
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <i class="fa fa-lock"></i>
+                                </div>
                             </div>
-                        </div>
-                        <div class="invalid-feedback">.لطفا این بخش را به درستی پر کنید</div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="email" class="float-right">ایمیل</label>
-                    <div class="input-group">
-                        <input type="email" name="email" id="email" class="form-control" required>
-                        <div class="input-group-prepend">
-                            <div class="input-group-text">
-                                <i class="fa fa-envelope"></i>
-                            </div>
-                        </div>
-                        <div class="invalid-feedback">.لطفا این بخش را به درستی پر کنید</div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="phone" class="float-right">شماره تلفن همراه</label>
-                    <div class="input-group">
-                        <!-- Iran's mobile number format -->
-                        <input type="tel" name="phone" id="phone" pattern="09[0-9]{9}" class="form-control" required>
-                        <div class="input-group-prepend">
-                            <div class="input-group-text">
-                                <i class="fa fa-phone"></i>
-                            </div>
-                        </div>
-                        <div class="invalid-feedback">.لطفا این بخش را به درستی پر کنید</div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="form-check">
-                        <label id="laws-check" class="form-check-label font-xs float-left" for="invalidCheck3">
-                            <span class="dashed-link">حریم خصوصی</span>
-                            <span>و</span>
-                            <span class="dashed-link">شرایط و قوانین</span>
-                            <span>استفاده از سرویس های سایت بادمجون را مطالعه نموده و با کلیه موارد آن موافقم</span>
-                        </label>
-                        <input class="form-check-input laws-checkbox double" type="checkbox"  id="invalidCheck3" required>
-                        <div class="invalid-feedback pr-3">
-                            <span>.باید با قوانین موافقت نمایید</span>
+                            <div class="invalid-feedback">.لطفا این بخش را به درستی پر کنید</div>
                         </div>
                     </div>
-                </div>
-                <a href="UserDashboard.html" style="text-decoration: none; color: white" class="btn btn-info w-100 mt-3 float-right">
-                    ثبت نام
-                </a>
-            </form>
-        </div>
-        <div class="card-footer text-muted">
-            <span class="text-info font-xs pt-1 float-right">قبلا حساب کاربری درست کرده اید؟</span>
-            <span class="text-info float-left mb-1 ml-2 dashed-link"> <a href="LoginPage.html"> ورود </a></span>
+                    <input type="submit" value="ورود" style="text-decoration: none;
+                     color: white" class="btn btn-info w-100 mt-3 float-right">
+                </form>
+            </div>
+            <div class="card-footer text-muted">
+                <span class="text-info font-sm"><a href="/register"> ثبت نام در بادمجون؟ </a></span>
+            </div>
         </div>
     </div>
-</div>
 
-<footer class="bg-secondary text-white text-right">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3">
-                <h5 class="border-bottom my-4 py-4 font-bold">تماس با بادمجون</h5>
-                <div class="font-light">
-                    <form>
-                        <div class="form-group row">
-                            <label for="phone-input" class="col-sm-2 col-form-label">
-                                <i class="fa fa-phone"></i>
-                            </label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="phone-input"
-                                       placeholder="+98 9361231234">
+    <footer class="bg-secondary text-white text-right">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <h5 class="border-bottom my-4 py-4 font-bold">تماس با بادمجون</h5>
+                    <div class="font-light">
+                        <form>
+                            <div class="form-group row">
+                                <label for="phone-input" class="col-sm-2 col-form-label">
+                                    <i class="fa fa-phone"></i>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="phone-input"
+                                           placeholder="+98 9361231234">
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">
-                                <i class="fa fa-envelope"></i>
-                            </label>
-                            <div class="col-sm-10">
-                                <button class="btn btn-light w-100 text-secondary">!ایمیل بزنید</button>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">
+                                    <i class="fa fa-envelope"></i>
+                                </label>
+                                <div class="col-sm-10">
+                                    <button class="btn btn-light w-100 text-secondary">!ایمیل بزنید</button>
+                                </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <h5 class="border-bottom my-4 py-4 font-bold">با بادمجون</h5>
+                    <div class="font-light">
+                        <p>همکاری با سازمان‌ها</p>
+                        <p>فرصت های شغلی</p>
+                        <p>درباره بادمجون</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <h5 class="border-bottom my-4 py-4 font-bold">خدمات مشتریان</h5>
+                    <div class="font-light">
+                        <p> پاسخ به پرسش‌های متداول</p>
+                        <p> رویه‌های بازگرداندن کالا</p>
+                        <p>شرایط استفاده</p>
+                        <p>حریم خصوصی</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <h5 class="border-bottom my-4 py-4 font-bold">راهنمای خرید</h5>
+                    <div class="font-light">
+                        <p>نحوه ی ثبت سفارش</p>
+                        <p>رویه ی ارسال سفارش</p>
+                        <p>شیوه های پرداخت</p>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-3">
-                <h5 class="border-bottom my-4 py-4 font-bold">با بادمجون</h5>
-                <div class="font-light">
-                    <p>همکاری با سازمان‌ها</p>
-                    <p>فرصت های شغلی</p>
-                    <p>درباره بادمجون</p>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <h5 class="border-bottom my-4 py-4 font-bold">خدمات مشتریان</h5>
-                <div class="font-light">
-                    <p> پاسخ به پرسش‌های متداول</p>
-                    <p> رویه‌های بازگرداندن کالا</p>
-                    <p>شرایط استفاده</p>
-                    <p>حریم خصوصی</p>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <h5 class="border-bottom my-4 py-4 font-bold">راهنمای خرید</h5>
-                <div class="font-light">
-                    <p>نحوه ی ثبت سفارش</p>
-                    <p>رویه ی ارسال سفارش</p>
-                    <p>شیوه های پرداخت</p>
-                </div>
+            <div class="text-center p-5">
+                <span>Copyright @ 2019</span>
             </div>
         </div>
-        <div class="text-center p-5">
-            <span>Copyright @ 2019</span>
-        </div>
-    </div>
-</footer>
+    </footer>
 
-<script src="js/jquery-3.2.1.slim.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script>
-    var form = document.querySelector('.needs-validation');
-    form.addEventListener('submit', function(event) {
-        if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-        }
-        form.classList.add('was-validated');
-    })
-</script>
+    <script src="js/jquery-3.2.1.slim.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+        var form = document.querySelector('.needs-validation');
+        form.addEventListener('submit', function(event) {
+            if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+        })
+    </script>
 </body>
 
 </html>

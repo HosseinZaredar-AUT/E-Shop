@@ -11,7 +11,11 @@ let express = require('express'),
     dashboardRouter = require('./routes/admin/dashboard/dashboard'),
     adminRouter = require('./routes/admin/admin'),
     categoryRouter = require('./routes/admin/category'),
-    productRouter = require('./routes/admin/product');
+    productRouter = require('./routes/admin/product'),
+    registerRouter = require('./routes/register'),
+    loginRouter = require('./routes/login'),
+    userDashboardRouter = require('./routes/customer/dashboard/dashboard'),
+    middlewares = require('./middlewares/index');
 
 // express setup
 app.use(express.json());
@@ -25,12 +29,16 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
+app.use(session({secret: "Mesh All The Way"}));
 
 
 app.use('/dashboard', dashboardRouter);
 app.use('/admin', adminRouter);
 app.use('/category', categoryRouter);
 app.use('/product', productRouter);
+app.use('/register', registerRouter);
+app.use('/login', loginRouter);
+app.use('/userDashboard', middlewares.isAuthenticated ,userDashboardRouter);
 app.use('/', indexRouter);
 
 seedDB();

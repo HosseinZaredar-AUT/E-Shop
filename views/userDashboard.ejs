@@ -38,10 +38,10 @@
                         </div>
                     </li>
                     <li class="nav-item px-md-3">
-                        <a class="nav-link" href="RegisterPage.html">ثبت نام / ورود</a>
+                        <a class="nav-link" href="register.ejs">ثبت نام / ورود</a>
                     </li>
                     <li class="nav-item px-md-3">
-                        <a class="nav-link" href="UserDashboard.html">پیگیری سفارش؟</a>
+                        <a class="nav-link" href="userDashboard.ejs">پیگیری سفارش؟</a>
                     </li>
                     <li class="nav-item px-md-3">
                         <a class="nav-link" href="#" data-toggle="collapse" data-target="#categoryJumbotrun"
@@ -61,7 +61,7 @@
                     </div>
                 </form>
             </div>
-            <a class="navbar-brand pl-3 text-secondary mx-auto" href="Index.html">بادمجون
+            <a class="navbar-brand pl-3 text-secondary mx-auto" href="Index.ejs">بادمجون
                 <i class="fa fa-hotdog"></i>
             </a>
         </nav>
@@ -426,8 +426,12 @@
                             </span>
                         </div>
                         <div class="col-6 py-2" style="border: solid 1px #dddddd">
-                            <span class="text-danger" style="cursor: pointer">
-                                <h6 class="d-inline font-xs">خروج</h6>
+                            <span class="text-danger">
+                                <h6 class="d-inline font-xs">
+                                    <form action="/logout" method="post">
+                                        <input type="submit" value="خروج">
+                                    </form>
+                                </h6>
                                 <i class="fa fa-power-off font-xs"></i>
                             </span>
                         </div>
@@ -775,6 +779,80 @@
             <div class="card-body text-white">
                 <div class="accordion md-accordion accordion-blocks" id="addresses" role="tablist"
                      aria-multiselectable="true">
+
+                    <div class="card shadow-lg my-4">
+                        <div class="card-header bg-success border-bottom" role="tab" id="new-address-header">
+                            <a data-toggle="collapse" data-parent="#addresses" class="text-dark"
+                               href="#new-address-body" aria-expanded="true"
+                               aria-controls="collapseUnfiled">
+                                <h5 class="mt-1 mb-0 float-right">
+                                    <i class="fa fa-angle-down rotate-icon mx-2"></i>
+                                    <span>افزودن آدرس</span>
+                                </h5>
+                            </a>
+                        </div>
+                        <div id="new-address-body" class="collapse" role="tabpanel" aria-labelledby="new-address-header"
+                             data-parent="#addresses">
+                            <div class="card-body border-bottom">
+                                <div class="container">
+                                    <form action="userDashboard/address" method="post" class="needs-validation text-dark" novalidate>
+                                        <div class="form-row">
+                                            <div class="col-md-3 mb-3">
+                                                <label for="new-address-province" class="float-right">استان</label>
+                                                <input type="text" name="province" class="form-control" id="new-address-province"
+                                                       placeholder="استان" required>
+                                                <div class="invalid-feedback">
+                                                    <span>لطفا این بخش را پر کنید</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 mb-3">
+                                                <label for="new-address-city" class="float-right">شهر</label>
+                                                <input type="text" class="form-control" name="city"
+                                                       id="new-address-city" placeholder="شهر" required>
+                                                <div class="invalid-feedback">
+                                                    <span>لطفا این بخش را پر کنید</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 mb-3">
+                                                <label for="new-address-phone" class="float-right">تلفن ثابت</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" name="homePhone"
+                                                           id="new-address-phone" placeholder="تلفن ثابت"
+                                                           aria-describedby="inputGroupPrepend" required>
+                                                    <div class="invalid-feedback">
+                                                        <span>لطفا این بخش را پر کنید</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 mb-3">
+                                                <label for="new-address-postal-code" class="float-right">کد پستی</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" name="postalCode"
+                                                           id="new-address-postal-code" placeholder="کد پستی"
+                                                           aria-describedby="inputGroupPrepend" required>
+                                                    <div class="invalid-feedback">
+                                                        <span>لطفا این بخش را پر کنید</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 mb-3">
+                                                <label for="new-address-address" class="float-right">آدرس</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" name="address"
+                                                           id="new-address-address" required>
+                                                    <div class="invalid-feedback">
+                                                        <span>لطفا این بخش را پر کنید</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button class="btn btn-success text-dark font-xs" type="submit">افزودن</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="card shadow-lg my-4">
                         <div class="card-header bg-light border-bottom" role="tab" id="address-1-header">
                             <a data-toggle="collapse" data-parent="#addresses" class="text-dark"
@@ -785,17 +863,21 @@
                                     <span>آدرس ۱</span>
                                 </h5>
                             </a>
-                            <button class="btn btn-sm btn-danger float-left"> حذف </button>
+                            <form action="userDashboard/address/id?_method=DELETE" method="post">
+                                <button class="btn btn-sm btn-danger float-left"> حذف </button>
+                            </form>
                         </div>
                         <div id="address-1-body" class="collapse" role="tabpanel" aria-labelledby="address-1-header"
                              data-parent="#addresses">
                             <div class="card-body border-bottom">
                                 <div class="container">
-                                    <form class="needs-validation text-dark" novalidate>
+                                    <form method="post" action="userDashboard/address/id?_method=PUT"
+                                          class="needs-validation text-dark" novalidate>
                                         <div class="form-row">
                                             <div class="col-md-3 mb-3">
                                                 <label for="address-1-province" class="float-right">استان</label>
-                                                <input type="text" class="form-control" id="address-1-province" placeholder="استان" required>
+                                                <input type="text" class="form-control" id="address-1-province"
+                                                       placeholder="استان" required>
                                                 <div class="invalid-feedback">
                                                     <span>لطفا این بخش را پر کنید</span>
                                                 </div>
@@ -841,73 +923,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card shadow-lg my-4">
-                        <div class="card-header bg-light border-bottom" role="tab" id="address-2-header">
-                            <a data-toggle="collapse" data-parent="#addresses" class="text-dark"
-                               href="#address-2-body" aria-expanded="true"
-                               aria-controls="collapseUnfiled">
-                                <h5 class="mt-1 mb-0 float-right">
-                                    <i class="fa fa-angle-down rotate-icon mx-2"></i>
-                                    <span>آدرس ۲</span>
-                                </h5>
-                            </a>
-                            <button class="btn btn-sm btn-danger float-left"> حذف </button>
-                        </div>
-                        <div id="address-2-body" class="collapse" role="tabpanel" aria-labelledby="address-2-header"
-                             data-parent="#addresses">
-                            <div class="card-body border-bottom">
-                                <div class="container">
-                                    <form class="needs-validation text-dark" novalidate>
-                                        <div class="form-row">
-                                            <div class="col-md-3 mb-3">
-                                                <label for="address-2-province" class="float-right">استان</label>
-                                                <input type="text" class="form-control" id="address-2-province" placeholder="استان" required>
-                                                <div class="invalid-feedback">
-                                                    <span>لطفا این بخش را پر کنید</span>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3 mb-3">
-                                                <label for="address-1-city" class="float-right">شهر</label>
-                                                <input type="text" class="form-control" id="address-1-city" placeholder="شهر" required>
-                                                <div class="invalid-feedback">
-                                                    <span>لطفا این بخش را پر کنید</span>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3 mb-3">
-                                                <label for="address-1-phone" class="float-right">تلفن ثابت</label>
-                                                <div class="input-group">
-                                                    <input type="text" class="form-control" id="address-1-phone" placeholder="تلفن ثابت" aria-describedby="inputGroupPrepend" required>
-                                                    <div class="invalid-feedback">
-                                                        <span>لطفا این بخش را پر کنید</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3 mb-3">
-                                                <label for="address-2-postal-code" class="float-right">کد پستی</label>
-                                                <div class="input-group">
-                                                    <input type="text" class="form-control" id="address-2-postal-code" placeholder="کد پستی" aria-describedby="inputGroupPrepend" required>
-                                                    <div class="invalid-feedback">
-                                                        <span>لطفا این بخش را پر کنید</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12 mb-3">
-                                                <label for="address-1-address" class="float-right">آدرس</label>
-                                                <div class="input-group">
-                                                    <input type="text" class="form-control" id="address-1-address" required>
-                                                    <div class="invalid-feedback">
-                                                        <span>لطفا این بخش را پر کنید</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <button class="btn btn-warning font-xs" type="submit">ذخیره</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
+
                 </div>
             </div>
         </div>
@@ -917,26 +933,41 @@
             </div>
             <div class="card-body text-white">
                 <div class="container">
-                    <form class="needs-validation text-dark" novalidate>
+                    <form method="post" action="/userDashboard/info?_method=PUT"
+                          class="needs-validation text-dark" novalidate>
                         <div class="form-row">
-                            <div class="col-md-4 mb-3">
+                            <div class="col-md-3 mb-3">
                                 <label for="user-info-first-name" class="float-right">نام</label>
-                                <input type="text" class="form-control" id="user-info-first-name" placeholder="نام" required>
+                                <input type="text" name="firstname" class="form-control"
+                                       id="user-info-first-name" placeholder="نام" required>
                                 <div class="valid-feedback">
                                     <span>لطفا این بخش را پر کنید</span>
                                 </div>
                             </div>
-                            <div class="col-md-4 mb-3">
+                            <div class="col-md-3 mb-3">
                                 <label for="user-info-last-name" class="float-right">نام خانوادگی</label>
-                                <input type="text" class="form-control" id="user-info-last-name" placeholder="نام خانوادگی" required>
+                                <input type="text" name="lastname" class="form-control"
+                                       id="user-info-last-name" placeholder="نام خانوادگی" required>
                                 <div class="valid-feedback">
                                     <span>لطفا این بخش را پر کنید</span>
                                 </div>
                             </div>
-                            <div class="col-md-4 mb-3">
+                            <div class="col-md-3 mb-3">
                                 <label for="user-info-username" class="float-right">نام کاربری</label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" id="user-info-username" placeholder="نام کاربری" aria-describedby="inputGroupPrepend" required>
+                                    <input type="text" name="username" class="form-control"
+                                           id="user-info-username" placeholder="نام کاربری"
+                                           aria-describedby="inputGroupPrepend" required>
+                                    <div class="invalid-feedback">
+                                        <span>لطفا این بخش را پر کنید</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="user-info-password" class="float-right">رمز عبور</label>
+                                <div class="input-group">
+                                    <input type="password" name="password" class="form-control" id="user-info-password"
+                                           placeholder="رمز عبور" aria-describedby="inputGroupPrepend" required>
                                     <div class="invalid-feedback">
                                         <span>لطفا این بخش را پر کنید</span>
                                     </div>
@@ -946,21 +977,24 @@
                         <div class="form-row">
                             <div class="col-md-4 mb-3">
                                 <label for="user-info-email" class="float-right">ایمیل</label>
-                                <input type="email" class="form-control" id="user-info-email" placeholder="ایمیل" required>
+                                <input type="email" name="email" class="form-control"
+                                       id="user-info-email" placeholder="ایمیل" required>
                                 <div class="invalid-feedback">
                                     <span>لطفا این بخش را پر کنید</span>
                                 </div>
                             </div>
                             <div class="col-md-4 mb-3">
                                 <label for="user-info-phone" class="float-right">تلفن همراه</label>
-                                <input type="text" class="form-control" id="user-info-phone" placeholder="تلفن همراه" required>
+                                <input type="text" class="form-control"  name="phone"
+                                       id="user-info-phone" placeholder="تلفن همراه" required>
                                 <div class="invalid-feedback">
                                     <span>لطفا این بخش را پر کنید</span>
                                 </div>
                             </div>
                             <div class="col-md-4 mb-3">
                                 <label for="user-info-id-number" class="float-right">کد ملی</label>
-                                <input type="text" class="form-control" id="user-info-id-number" placeholder="کد ملی" required>
+                                <input type="text" class="form-control" name="idNumber"
+                                       id="user-info-id-number" placeholder="کد ملی" required>
                                 <div class="invalid-feedback">
                                     <span>لطفا این بخش را پر کنید</span>
                                 </div>
