@@ -1,30 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>لباس</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ورود</title>
     <link rel="stylesheet" href="css/font-awesome.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/myStyle.css">
-    <link rel="stylesheet" href="css/myStyle2.css">
-    <style>
-        img {
-            height: auto;
-            max-width: 100%;
-        }
-    </style>
+    <link rel="stylesheet" href="css/loginStyle.css">
 </head>
-<body id="body" class="shoppingBody font-medium">
 
-<div id="overlay" onclick="openBar()"></div>
+<body class="font-medium">
 
-<header class="shoppingHeader py-1 px-md-5 px-sm-1 sticky-top">
+    <header class="shoppingHeader py-1 px-md-5 px-sm-1 sticky-top">
     <div class="container-fluid">
         <nav class="navbar navbar-expand-md navbar-light bg-light">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
-                    aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
@@ -39,14 +33,14 @@
                         </div>
                     </li>
                     <li class="nav-item px-md-3">
-                        <a class="nav-link" href="../views/register.ejs">ثبت نام / ورود</a>
+                        <a class="nav-link" href="register.ejs">ثبت نام / ورود</a>
                     </li>
                     <li class="nav-item px-md-3">
-                        <a class="nav-link" href="../views/userDashboard.ejs">پیگیری سفارش؟</a>
+                        <a class="nav-link" href="../user/userDashboard.ejs">پیگیری سفارش؟</a>
                     </li>
                     <li class="nav-item px-md-3">
-                        <a class="nav-link" href="#" data-toggle="collapse" data-target="#categoryJumbotron"
-                           aria-expanded="true" aria-controls="categoryJumbotron">
+                        <a class="nav-link" href="#" data-toggle="collapse" data-target="#categoryJumbotrun"
+                           aria-expanded="true" aria-controls="categoryJumbotrun">
                             <span>دسته بندی ها</span>
                             <i class="fa fa-chevron-down"></i>
                         </a>
@@ -58,16 +52,15 @@
                         <div class="input-group-prepend">
                             <button class="btn btn-info">جستجو</button>
                         </div>
-                        <input type="text" class="form-control" id="inlineFormInputGroupUsername2"
-                               placeholder="جستجو">
+                        <input type="text" class="form-control" id="inlineFormInputGroupUsername2" placeholder="جستجو">
                     </div>
                 </form>
             </div>
-            <a class="navbar-brand pl-3 text-secondary mx-auto" href="../views/Index.ejs">بادمجون
+            <a class="navbar-brand pl-3 text-secondary mx-auto" href="Index.ejs">بادمجون
                 <i class="fa fa-hotdog"></i>
             </a>
         </nav>
-        <div id="categoryJumbotron" class="collapse">
+        <div id="categoryJumbotrun" class="collapse hide">
             <div class="container pt-5 pb-3">
                 <div class="jumbotron">
                     <div class="row">
@@ -76,36 +69,21 @@
                         </div>
                         <div class="col-md-4 col-sm-12 pb-4">
                             <div class="row mx-1">
-                                <div class="col-md-12 p-1">
-                                    <button class="btn btn-info w-100"
-                                            data-toggle="collapse" data-target="#category1" role="button"
-                                            aria-expanded="true" aria-controls="category1">خوراکی
-                                    </button>
-                                </div>
-                                <div class="col-md-12 p-1">
-                                    <button class="btn btn-info w-100"
-                                            data-toggle="collapse" data-target="#category2" role="button"
-                                            aria-expanded="false" aria-controls="category2">لباس
-                                    </button>
-                                </div>
-                                <div class="col-md-12 p-1">
-                                    <button class="btn btn-info w-100"
-                                            data-toggle="collapse" data-target="#category3" role="button"
-                                            aria-expanded="false" aria-controls="category3">ساز
-                                    </button>
-                                </div>
-                                <div class="col-md-12 p-1">
-                                    <button class="btn btn-info w-100"
-                                            data-toggle="collapse" data-target="#category4" role="button"
-                                            aria-expanded="false" aria-controls="category4">لوازم بهداشتی
-                                    </button>
-                                </div>
-                                <div class="col-md-12 p-1">
-                                    <button class="btn btn-info w-100"
-                                            data-toggle="collapse" data-target="#category5" role="button"
-                                            aria-expanded="false" aria-controls="category5">خودرو
-                                    </button>
-                                </div>
+                                <div class="col-md-12 p-1"><button class="btn btn-info w-100"
+                                                                   data-toggle="collapse" data-target="#category1" role="button"
+                                                                   aria-expanded="true" aria-controls="category1">خوراکی</button></div>
+                                <div class="col-md-12 p-1"><button class="btn btn-info w-100"
+                                                                   data-toggle="collapse" data-target="#category2" role="button"
+                                                                   aria-expanded="false" aria-controls="category2">لباس</button></div>
+                                <div class="col-md-12 p-1"><button class="btn btn-info w-100"
+                                                                   data-toggle="collapse" data-target="#category3" role="button"
+                                                                   aria-expanded="false" aria-controls="category3">ساز</button></div>
+                                <div class="col-md-12 p-1"><button class="btn btn-info w-100"
+                                                                   data-toggle="collapse" data-target="#category4" role="button"
+                                                                   aria-expanded="false" aria-controls="category4">لوازم بهداشتی</button></div>
+                                <div class="col-md-12 p-1"><button class="btn btn-info w-100"
+                                                                   data-toggle="collapse" data-target="#category5" role="button"
+                                                                   aria-expanded="false" aria-controls="category5">خودرو</button></div>
                             </div>
                         </div>
                         <div class="col-md-8 col-sm-12">
@@ -412,229 +390,45 @@
         </div>
     </div>
 </header>
-<aside id="sideBar" class="leftSide h-100 float-left" style="">
-        <span class="" id="close" style="display: none;color: black;font-size: 1.75rem;cursor: pointer;"
-              onclick="openBar()">
-            <i class="fa fa-close" style="position: absolute; top: 20px; right: 35px;"></i>
-        </span>
-    <div class="separator">
-        <h5>
-            <b>
-                Price
-            </b>
-        </h5>
-        <input type="range" min="0" max="100" value="50" class="w-100  mt-4 slider">
-    </div>
 
-    <div class="separator">
-        <h5>
-            <b>
-                Size
-            </b>
-        </h5>
-
-        <div class="mt-4">
-            <label class="radioContainer">S
-                <input type="checkbox" checked="checked" name="radio">
-                <span class="checkMark"></span>
-            </label>
-            <label class="radioContainer">M
-                <input type="checkbox" name="radio">
-                <span class="checkMark"></span>
-            </label>
-            <label class="radioContainer">L
-                <input type="checkbox" name="radio">
-                <span class="checkMark"></span>
-            </label>
-            <label class="radioContainer">XL
-                <input type="checkbox" name="radio">
-                <span class="checkMark"></span>
-            </label>
-        </div>
-    </div>
-
-    <div class="separator">
-        <h5>
-            <b>
-                Brand
-            </b>
-        </h5>
-
-        <div class="mt-4">
-            <label class="radioContainer">Nike
-                <input type="checkbox" checked="checked" name="radio">
-                <span class="checkMark"></span>
-            </label>
-            <label class="radioContainer">Adidas
-                <input type="checkbox" name="radio">
-                <span class="checkMark"></span>
-            </label>
-            <label class="radioContainer">Rebook
-                <input type="checkbox" name="radio">
-                <span class="checkMark"></span>
-            </label>
-            <label class="radioContainer">Puma
-                <input type="checkbox" name="radio">
-                <span class="checkMark"></span>
-            </label>
-        </div>
-    </div>
-
-
-    <div class="separator">
-        <h5>
-            <b>
-                Age
-            </b>
-        </h5>
-
-        <div class="mt-4">
-            <label class="radioContainer">Infants
-                <input type="checkbox" checked="checked" name="radio">
-                <span class="checkMark"></span>
-            </label>
-            <label class="radioContainer">Kids
-                <input type="checkbox" name="radio">
-                <span class="checkMark"></span>
-            </label>
-            <label class="radioContainer">Teenagers
-                <input type="checkbox" name="radio">
-                <span class="checkMark"></span>
-            </label>
-            <label class="radioContainer">Adults
-                <input type="checkbox" name="radio">
-                <span class="checkMark"></span>
-            </label>
-        </div>
-    </div>
-
-    <div class="separator">
-        <h5>
-            <b>
-                Gender
-            </b>
-        </h5>
-
-        <div class="mt-4">
-            <label class="radioContainer">Male
-                <input type="checkbox" checked="checked" name="radio">
-                <span class="checkMark"></span>
-            </label>
-            <label class="radioContainer">Female
-                <input type="checkbox" name="radio">
-                <span class="checkMark"></span>
-            </label>
-        </div>
-    </div>
-
-</aside>
-<div class="bg-danger settings d-lg-none" style="">
-    <span id="setting" style="cursor: pointer" onclick="openBar()">
-        <h6 style="writing-mode: vertical-lr;position: absolute; left: -35px; top: 10px">تنظیمات</h6>
-    </span>
-</div>
-
-<main class="d-inline-block main" style="">
-    <div class="w-100 pt-2" style="">
-        <div class="position-relative pb-0 ml-3 mt-3">
-            <a href="#" class="d-inline mr-1" style="color: gray">
-                <i class="fa fa-home d-inline" style=""></i>
-            </a>
-            <div class="d-inline vl" style=""></div>
-
-
-            <a href="#" class="ml" style="color: gray">Animals</a>
-            <div class="d-inline vl" style=""></div>
-
-            <a href="#" class="ml" style="color: gray">Ducks</a>
-            <div class="d-inline vl" style=""></div>
-        </div>
-    </div>
-
-    <div class="container-fluid mt-4 pb-3 align-items-center position-relative text-md-center text-left pl-5 pl-md-0">
-        <h6 class="d-inline-block float-right mt-2 position-absolute" style="right: 40px;top: -10px">:مرتب سازی</h6>
-        <form class="mr-3 position-absolute" style="right: 120px; top: -10px;">
-            <label>
-                <select class="custom-select" style="width: 8rem; direction: rtl;">
-                    <option>جدیدترین</option>
-                    <option>محبوب ترین</option>
-                    <option>ارزان ترین</option>
-                    <option>گران ترین</option>
-                    مرتب سازی</select>
-            </label>
-        </form>
-        <h6 class="d-block">نمایش 4 از 4</h6>
-    </div>
-    <div class="container-fluid">
-        <div class="row h-100 text-center">
-            <div class="col-md-4 col-sm-6">
-                <div class="p-3">
-                    <div class="card product-card">
-                        <img class="card-img-top" src="images/6.jpg" alt="Card image cap">
-                        <i class="fa fa-plus add-to-cart-plus"></i>
-                        <div class="card-body">
-                            <h5 class="card-title">تی شرت خفن</h5>
-                            <p class="card-text font-light" style="font-size: 3vh">۳۰۰.۰۰۰ تومان</p>
-                            <a href="#" class="btn btn-success text-white">اضافه به سبد خرید
-                                <i class="fa fa-plus"></i>
-                            </a>
+    <div class="login-card mx-auto container">
+        <div class="card">
+            <div class="card-header">
+                <span class="font-md text-info text-center">!ورود به بادمجون</span>
+            </div>
+            <div class="card-body">
+                <form action="/login" method="POST" class="needs-validation" novalidate>
+                    <div class="form-group">
+                        <label for="email" class="float-right">ایمیل</label>
+                        <div class="input-group">
+                            <input type="email" name="email" id="email" class="form-control" required>
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <i class="fa fa-user"></i>
+                                </div>
+                            </div>
+                            <div class="invalid-feedback">.لطفا این بخش را به درستی پر کنید</div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <div class="p-3">
-                    <div class="card product-card">
-                        <img class="card-img-top" src="images/6.jpg" alt="Card image cap">
-                        <i class="fa fa-plus add-to-cart-plus"></i>
-                        <div class="card-body">
-                            <h5 class="card-title">تی شرت خفن</h5>
-                            <p class="card-text font-light" style="font-size: 3vh">۳۰۰.۰۰۰ تومان</p>
-                            <a href="#" class="btn btn-success text-white">اضافه به سبد خرید
-                                <i class="fa fa-plus"></i>
-                            </a>
+                    <div class="form-group">
+                        <label for="password" class="float-right">رمز عبور</label>
+                        <label for="password" class="float-left dashed-link"><a href="./forgot-password"> رمز عبور خود را فراموش کردم </a></label>
+                        <div class="input-group">
+                            <input type="password" name="password" id="password" class="form-control" required>
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <i class="fa fa-lock"></i>
+                                </div>
+                            </div>
+                            <div class="invalid-feedback">.لطفا این بخش را به درستی پر کنید</div>
                         </div>
                     </div>
-                </div>
+                    <input type="submit" value="ورود" style="text-decoration: none;
+                     color: white" class="btn btn-info w-100 mt-3 float-right">
+                </form>
             </div>
-            <div class="col-md-4 col-sm-6">
-                <div class="p-3">
-                    <div class="card product-card">
-                        <img class="card-img-top" src="images/6.jpg" alt="Card image cap">
-                        <i class="fa fa-plus add-to-cart-plus"></i>
-                        <div class="card-body">
-                            <h5 class="card-title">تی شرت خفن</h5>
-                            <p class="card-text font-light" style="font-size: 3vh">۳۰۰.۰۰۰ تومان</p>
-                            <a href="#" class="btn btn-success text-white">اضافه به سبد خرید
-                                <i class="fa fa-plus"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+            <div class="card-footer text-muted">
+                <span class="text-info font-sm"><a href="/register"> ثبت نام در بادمجون؟ </a></span>
             </div>
-            <div class="col-md-4 col-sm-6">
-                <div class="p-3">
-                    <div class="card product-card">
-                        <img class="card-img-top" src="images/6.jpg" alt="Card image cap">
-                        <i class="fa fa-plus add-to-cart-plus"></i>
-                        <div class="card-body">
-                            <h5 class="card-title">تی شرت خفن</h5>
-                            <p class="card-text font-light" style="font-size: 3vh">۳۰۰.۰۰۰ تومان</p>
-                            <a href="#" class="btn btn-success text-white">اضافه به سبد خرید
-                                <i class="fa fa-plus"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </div>
-
-</main>
-
-<script src="js/jquery2_2.min.js" type="text/javascript"></script>
-<script src="js/bootstrap.min.js" type="text/javascript"></script>
-<script src="js/ShJS.js"></script>
-</body>
-</html>

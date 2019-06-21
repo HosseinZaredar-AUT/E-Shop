@@ -26,6 +26,10 @@ let customerSchema = mongoose.Schema({
     idNumber: {
         type: String
     },
+    isAdmin: {
+        type: Boolean,
+        default: false
+    },
     addresses: [{type: mongoose.Schema.Types.ObjectId, ref: 'Address'}],
     favorites: [{type: mongoose.Schema.Types.ObjectId, ref: 'Product'}],
     comments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Comment'}]

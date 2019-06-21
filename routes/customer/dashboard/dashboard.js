@@ -1,11 +1,22 @@
 let express = require('express'),
     router = express.Router(),
     Customer = require('../../../moduls/user/customer'),
-    Address = require('../../../moduls/user/address');
+    Address = require('../../../moduls/user/address'),
+    Order   = require('../../../moduls/user/order');
 
 router.get('/', (req, res) => {
-    
     res.render('userDashboard');
+});
+
+router.delete('/order/:id', function (req, res) {
+    Order.findOneAndDelete({_id: req.params.id}, function (err) {
+        if(!err) {
+            res.redirect('back');
+        } else {
+            // failed to delete
+            res.redirect('back');
+        }
+    })
 });
 
 router.put('/info', (req, res) => {

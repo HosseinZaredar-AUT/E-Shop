@@ -1,5 +1,6 @@
 let mongoose = require('mongoose'),
-    Category = require('./moduls/post/category');
+    Category = require('./moduls/post/category'),
+    Admin    = require('./moduls/user/admin');
 
     let seedDB = function () {
     // connecting to database
@@ -21,7 +22,15 @@ let mongoose = require('mongoose'),
             createdCategory.save(function (err) {
                 if(err) console.log(err);
                 else {
-                    console.log("db seeded.");
+                    new Admin({
+                        username: 'erfan',
+                        password: 'erfan',
+                        email   : 'erfan@gmail.com'
+                    }).save(function (err) {
+                        if(!err) {
+                            console.log("db seeded.");
+                        }
+                    })
                 }
             });
         });

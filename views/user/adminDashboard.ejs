@@ -39,10 +39,10 @@
                         </div>
                     </li>
                     <li class="nav-item px-md-3">
-                        <a class="nav-link" href="../views/register.ejs">ثبت نام / ورود</a>
+                        <a class="nav-link" href="../index/register.ejs">ثبت نام / ورود</a>
                     </li>
                     <li class="nav-item px-md-3">
-                        <a class="nav-link" href="../views/userDashboard.ejs">پیگیری سفارش؟</a>
+                        <a class="nav-link" href="userDashboard.ejs">پیگیری سفارش؟</a>
                     </li>
                     <li class="nav-item px-md-3">
                         <a class="nav-link" href="#" data-toggle="collapse" data-target="#categoryJumbotrun"
@@ -62,7 +62,7 @@
                     </div>
                 </form>
             </div>
-            <a class="navbar-brand pl-3 text-secondary mx-auto" href="../views/Index.ejs">بادمجون
+            <a class="navbar-brand pl-3 text-secondary mx-auto" href="../index/Index.ejs">بادمجون
                 <i class="fa fa-hotdog"></i>
             </a>
         </nav>
@@ -442,7 +442,9 @@
                         </div>
                         <div class="col-6 py-2" style="border: solid 1px #dddddd">
                             <span class="text-danger" style="cursor: pointer">
-                                <h6 class="d-inline">خروج</h6>
+                                <form action="/logout" method="post">
+                                    <input type="submit" value="خروج">
+                                </form>
                                 <i class="fa fa-power-off"></i>
                             </span>
                         </div>

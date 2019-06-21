@@ -10,7 +10,7 @@ router.get('/', function (req, res) {
 });
 
 router.get('/add-product', function (req, res) {
-    res.sendFile(path.join(__dirname, '../../src/add-product.html'));
+    res.sendFile(path.join(__dirname, '../../src/add-product.ejs'));
 });
 
 router.post('/add-product', function (req, res) {

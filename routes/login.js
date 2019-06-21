@@ -1,6 +1,7 @@
 let express = require('express'),
     router = express.Router(),
-    Customer = require('../moduls/user/customer');
+    Customer = require('../moduls/user/customer'),
+    Admin    = require('../moduls/user/admin');
 
 router.get('/', (req, res) => {
     res.render('login');
@@ -19,8 +20,20 @@ router.post('/', (req, res) => {
                     res.redirect('back')
                 }
             } else {
-                // no such email
-                res.redirect('back')
+                Admin.findOne({email: details.email}, function (err, foundAdmin) {
+                    if(!err && foundAdmin !== null) {
+                        if(foundAdmin.password === details.password) {
+                            req.session.user = foundAdmin;
+                            res.redirect('adminDashboard');
+                        } else {
+                            // wrong pass
+                            res.redirect('back')
+                        }
+                    } else {
+                        // email matches to nothing
+                        res.redirect('back')
+                    }
+                })
             }
         })
     } else {
