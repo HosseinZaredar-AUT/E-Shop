@@ -48,7 +48,7 @@
 <body class="font-medium h-100" style="min-width: 1200px">
 <% include ../partials/header.ejs %>
 
-<aside id="sideBar" class="customLeftSide h-100 " style="background-color: white;">
+<aside id="sideBar" class="customLeftSide h-100 " style="background-color: white; z-index: 0">
     <div class="mt-5">
         <div class="card shadow">
             <div class="card-header bg-info text-white text-justify text-center">
@@ -85,8 +85,71 @@
     </div>
 </aside>
 
+<div class="modal fade" id="ChangeAddress" tabindex="-1" role="dialog" aria-labelledby="ChangeAddress" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header d-inline">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title float-right" id="">اضافه کردن آدرس</h5>
+
+            </div>
+            <div dir="rtl" class="modal-body">
+                <input class="form-control" type="tel" placeholder="شماره تماس">
+                <input class="form-control mt-3" type="number" placeholder="کدپستی">
+                <input class="form-control mt-3" type="text" placeholder="آدرس">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">بستن</button>
+                <button type="button" class="btn btn-success text-white">ذخیره</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="mt-4 pr-5">
     <main class="main">
+
+        <div class="card shadow mb-5">
+            <div class="card-body" dir="rtl" style="border-right: #17a2b8 solid 5px;z-index: 5">
+                <div class="position-absolute" style="left: 25px;">
+                    <button type="button" class="btn btn btn-outline-info" data-toggle="modal" data-target="#ChangeAddress">اضافه کردن آدرس</button>
+                </div>
+                <div class="position-absolute"
+                     style="font-size: 40px;color:#b7e8d5; right: -17px;top: 35%;background-color: transparent">
+                    <i class="fa fa-check-circle"></i>
+                </div>
+                <div class="position-absolute"
+                     style="font-size: 40px;color:white; right: -17px;top: 35%;background-color: transparent;z-index: -1">
+                    <i class="fa fa-circle"></i>
+                </div>
+                <div class="d-flex mr-5">
+                    <strong>گیرنده:</strong>
+                    <p class="mr-2">دیوید گیلمور</p>
+                </div>
+                <div class="d-flex mr-5 mt-3">
+                    <strong>شماره تماس:</strong>
+                    <p class="mr-2">09143651267</p>
+                    <div class="mr-3" style="border-right:gray solid 2px; height: 25px"></div>
+                    <strong class="mr-3">کدپستی:</strong>
+                    <p class="mr-2">175431258</p>
+                </div>
+                <div class="d-flex mr-5 mt-2 mb-2">
+                    <div style="direction: rtl">
+                        <select type="" class="form-control">
+                            <option class="" style="">
+                                تهران - تهران - یوسف آباد - دست چپ - پلاک 16 - واحد 20
+                            </option>
+                            <option class="" style="">
+                                تهران - تهران - میدان ولیعصر - اونور خیابان - پلاک 2 - واحد 15
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="card shadow">
             <div class="card-header bg-info text-white text-justify text-center">
                 <h2 class="my-auto">کالاها</h2>
@@ -219,6 +282,11 @@
         </div>
     </main>
 </div>
+
+<script src="js/jquery2_2.min.js" type="text/javascript"></script>
+<script src="js/bootstrap.min.js" type="text/javascript"></script>
+</body>
+</html>
 <% include ../partials/footer.ejs %>
 
 <script src="js/jquery2_2.min.js" type="text/javascript"></script>
