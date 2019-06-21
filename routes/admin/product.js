@@ -1,6 +1,8 @@
 let express = require('express'),
-    router = express.Router(),
+    router = express.Router()
     path = require('path'),
+    filepond = require('filepond'),
+    uuid = require('uuid/v1'),
     Category = require('../../moduls/post/category'),
     Product = require('../../moduls/post/product'),
     Property = require('../../moduls/post/property');
@@ -82,5 +84,18 @@ router.delete('/:id', function (req, res) {
         }
     })
 });
+
+router.post('/upload', function(req, res) {
+    var name = uuid();
+    var fullType = req.files.filepond.mimetype;
+    var type = fullType.substring(fullType.indexOf('/') + 1);
+    req.files.filepond.mv('./public/images/' + name + '.' + type).then(function(err) {
+        if (err)
+            throw err;
+        var path = 'images/' + name + '.' + type;
+        res.send(path);
+    });
+});
+
 
 module.exports = router;

@@ -30,6 +30,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 app.use(session({secret: "Mesh All The Way"}));
 
+// fileUpload setup
+app.use(fileUpload());
 
 app.use('/category', categoryRouter);
 app.use('/product', productRouter);
