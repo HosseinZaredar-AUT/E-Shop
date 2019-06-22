@@ -780,82 +780,110 @@
                 <h6 class="d-inline">افزودن دسته بندی</h6>
                 <i class="fa fa-users" style="font-size: 1.5rem"></i>
             </div>
-            <div class="card-body container">
-                <div class="card mt-4 ">
-                    <div class="card-header" style="background-color: #00B7FF">
-                        <div class="text-white float-right p-1 mr-5">
-                            <a class="text-white" data-toggle="collapse" href="#hygienic" role="button"
-                               aria-expanded="false" aria-controls="hygienic"
-                               style="text-decoration: none; font-size: 20px">
-                                <i class="fa fa-angle-down rotate-icon mr-2"></i>
-                                لوازم بهداشتی
-                            </a>
-                        </div>
-                        <div>
-                            <a class="btn btn-danger text-white ml-4" style="width: 65px">حذف</a>
-                            <a onclick="newCat('hygienicShits')" class="btn text-white ml-0 btn-primary"
-                               style="width: 65px">اضافه</a>
-                        </div>
-                    </div>
-                    <div class="collapse" id="hygienic">
-                        <div class="card-body">
-                            <div class="container" id="hygienicShits">
-                                <div class="card-header mt-4" style="background-color: #91d052">
-                                    <div class="text-white float-right p-1 mr-5">
-                                        <h6 class="text-white"
-                                            style="font-size: 20px;">
-                                            خمیردندان
-                                        </h6>
+            <div>
+                <div class="container">
+                    <div class="row  text-center">
+                        <div class="col-md-12 mt-5">
+                            <form action="/category" method="post">
+                                <div class="card shadow w-100">
+                                    <div class="card-header font-sm mb-1 py-3 d-inline px-0" style="direction: rtl">
+                                        <!--<h5 class="font-sm mb-1 p-4 d-inline">کد کالا :</h5>-->
+                                        <h5>افزودن</h5>
                                     </div>
-                                    <div>
-                                        <a class="btn btn-danger text-white ml-4" style="width: 65px">حذف</a>
-                                    </div>
-                                </div>
-                                <div class="card-header mt-4" style="background-color: #91d052">
-                                    <div class="text-white float-right p-1 mr-5">
-                                        <h6 class="text-white"
-                                            style="font-size: 20px;">
-                                            شامپو
-                                        </h6>
-                                    </div>
-                                    <div>
-                                        <a class="btn btn-danger text-white ml-4" style="width: 65px">حذف</a>
+                                    <div class="card-body px-0">
+                                        <div class="" style="direction: rtl">
+                                            <label class="mx-2" for="add-category-name">
+                                                <span>نام دسته بندی</span>
+                                            </label>
+                                            <input id="add-category-name" type="text" placeholder="نام دسته بندی"
+                                                   class="form-control d-inline w-75" name="name">
+                                        </div>
+                                        <hr>
+                                        <div style="direction: rtl">
+                                            <label class="mx-2" for="add-category-sub-category">
+                                                <span>دسته بندی پدر</span>
+                                            </label>
+                                            <select id="add-category-sub-category"
+                                                    class="form-control d-inline w-75" name="parent">
+                                                <option class="" style="">اصلی</option>
+                                                <% categories.forEach(function (category) { %>
+                                                <option class="" style=""><%=category.name%></option>
+                                                <% }) %>
+                                            </select>
+                                        </div>
+                                        <hr>
+                                        <input type="submit" class="btn btn-success text-white" value="ثبت">
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card mt-4 ">
-                    <div class="card-header" style="background-color: #00B7FF">
-                        <div class="text-white float-right p-1 mr-5">
-                            <a class="text-white" data-toggle="collapse" href="#instrument" role="button"
-                               aria-expanded="false" aria-controls="instrument"
-                               style="text-decoration: none; font-size: 20px">
-                                <i class="fa fa-angle-down rotate-icon mr-2"></i>
-                                ساز
-                            </a>
-                        </div>
-                        <div>
-                            <a class="btn btn-danger text-white ml-4">حذف</a>
-                            <a onclick="newCat('instrum')" class="btn text-white ml-0 btn-primary" style="">اضافه</a>
-                        </div>
-                    </div>
-                    <div class="collapse" id="instrument">
-                        <div class="card-body">
-                            <div class="container" id="instrum">
-                                <div class="card-header mt-4" style="background-color: #91d052">
-                                    <div class="text-white float-right p-1 mr-5">
-                                        <a class="text-white"
-                                           style="text-decoration: none; font-size: 20px; cursor: pointer;">
-                                            گیتار
-                                        </a>
+                            </form>
+                            <form method="post" action="/category?_method=PUT">
+                                <div class="card shadow w-100 my-4">
+                                    <div class="card-header font-sm mb-1 py-3 d-inline px-0" style="direction: rtl">
+                                        <!--<h5 class="font-sm mb-1 p-4 d-inline">کد کالا :</h5>-->
+                                        <h5>تغییر</h5>
                                     </div>
-                                    <div>
-                                        <a class="btn btn-danger text-white ml-4">حذف</a>
+                                    <div class="card-body px-0">
+                                        <div style="direction: rtl">
+                                            <label style="width: 400px" class="mx-2" for="edit-category-category">
+                                                <span>دسته بندی</span>
+                                            </label>
+                                            <select id="edit-category-category" name="name"
+                                                    class="form-control d-inline w-75">
+                                                <% categories.forEach(function (category) { %>
+                                                <option class="" style=""><%=category.name%></option>
+                                                <% }) %>
+                                            </select>
+                                        </div>
+                                        <hr>
+                                        <div class="" style="direction: rtl">
+                                            <label style="width: 400px" class="mx-2" for="edit-category-name" >
+                                                <span>نام جدید</span>
+                                            </label>
+                                            <input id="edit-category-name" type="text" placeholder="نام جدید"
+                                                   class="form-control d-inline w-75" name="newName">
+                                        </div>
+                                        <hr>
+                                        <div style="direction: rtl">
+                                            <label style="width: 400px" class="mx-2" for="edit-category-sub-category">
+                                                <span>دسته بندی پدر</span>
+                                            </label>
+                                            <select id="edit-category-sub-category" name="parent"
+                                                    class="form-control d-inline w-75">
+                                                <option class="" style="">اصلی</option>
+                                                <% categories.forEach(function (category) { %>
+                                                <option class="" style=""><%=category.name%></option>
+                                                <% }) %>
+                                            </select>
+                                        </div>
+                                        <hr>
+                                        <input type="submit" class="btn btn-warning text-white mr-2" value="ذخیره">
                                     </div>
                                 </div>
-                            </div>
+                            </form>
+                            <form method="post" action="/category?_method=DELETE">
+                                <div class="card shadow w-100 my-4">
+                                    <div class="card-header font-sm mb-1 py-3 d-inline px-0" style="direction: rtl">
+                                        <!--<h5 class="font-sm mb-1 p-4 d-inline">کد کالا :</h5>-->
+                                        <h5>حذف</h5>
+                                    </div>
+                                    <div class="card-body px-0">
+                                        <div style="direction: rtl">
+                                            <label style="width: 400px" class="mx-2" for="edit-category-category">
+                                                <span>دسته بندی</span>
+                                            </label>
+                                            <select id="edit-category-category" name="name"
+                                                    class="form-control d-inline w-75">
+                                                <% categories.forEach(function (category) { %>
+                                                <option class="" style=""><%=category.name%></option>
+                                                <% }) %>
+                                            </select>
+                                        </div>
+                                        <hr>
+                                        <input type="submit" class="btn btn-danger text-white mr-2" value="حذف">
+                                    </div>
+                                </div>
+                            </form>
+
                         </div>
                     </div>
                 </div>

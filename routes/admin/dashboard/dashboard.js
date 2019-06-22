@@ -6,7 +6,11 @@ let express = require('express'),
     Customer = require('../../../moduls/user/customer');
 
 router.get('/', function (req, res) {
-    res.render('user/adminDashboard');
+    Category.findOne({name: 'root'}).populate('allInOne').exec(function (err, root) {
+        if(!err) {
+            res.render('user/adminDashboard', {categories: root.allInOne});
+        }
+    })
 });
 
 module.exports = router;
