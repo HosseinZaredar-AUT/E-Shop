@@ -267,7 +267,7 @@
 }
 
 /* The container */
-.radioContainer {
+.cartCustomRadioContainer {
   display: block;
   position: relative;
   padding-left: 35px;
@@ -281,14 +281,14 @@
 }
 
 /* Hide the browser's default radio button */
-.radioContainer input {
+.cartCustomRadioContainer input {
   position: absolute;
   opacity: 0;
   cursor: pointer;
 }
 
 /* Create a custom radio button */
-.checkMark {
+.cartCustomCheckMark {
   position: absolute;
   top: 5px;
   left: 0;
@@ -299,29 +299,29 @@
 }
 
 /* On mouse-over, add a grey background color */
-.radioContainer:hover input ~ .checkMark {
+.cartCustomRadioContainer:hover input ~ .cartCustomCheckMark {
   background-color: #ccc;
 }
 
 /* When the radio button is checked, add a blue background */
-.radioContainer input:checked ~ .checkMark {
+.cartCustomRadioContainer input:checked ~ .cartCustomCheckMark {
   background-color: #000000;
 }
 
 /* Create the indicator (the dot/circle - hidden when not checked) */
-.checkMark:after {
+.cartCustomCheckMark:after {
   content: "";
   position: absolute;
   display: none;
 }
 
 /* Show the indicator (dot/circle) when checked */
-.radioContainer input:checked ~ .checkMark:after {
+.cartCustomRadioContainer input:checked ~ .cartCustomCheckMark:after {
   display: block;
 }
 
 /* Style the indicator (dot/circle) */
-.radioContainer .checkMark:after {
+.cartCustomRadioContainer .cartCustomCheckMark:after {
   top: 6px;
   left: 6px;
   width: 8px;
