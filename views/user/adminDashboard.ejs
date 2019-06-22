@@ -660,31 +660,31 @@
                                         </div>
                                         <div class="card-body px-0">
                                             <div class="" style="direction: rtl">
-                                                <input type="text" placeholder="کد کالا :"
+                                                <input name="productID" type="text" placeholder="کد کالا :"
                                                        class="form-control d-inline w-75">
                                             </div>
                                             <hr>
                                             <div class="" style="direction: rtl">
-                                                <input type="text" placeholder="نام کالا :"
+                                                <input type="text" name="name" placeholder="نام کالا :"
                                                        class="form-control d-inline w-75">
                                             </div>
                                             <hr>
                                             <div style="direction: rtl">
-                                                <select type=""
+                                                <select type="" name="status"
                                                         class="form-control d-inline w-75">
-                                                    <option class="" style="">موجود</option>
-                                                    <option class="" style="">ناموجود</option>
-                                                    <option class="" style="">به زودی</option>
+                                                    <option class="" value="available" style="">موجود</option>
+                                                    <option class="" value="unavailable" style="">ناموجود</option>
+                                                    <option class="" value="soon" style="">به زودی</option>
                                                 </select>
                                             </div>
                                             <hr>
                                             <div style="direction: rtl">
-                                                <input type="number" min="0" step="500" placeholder="قیمت کالا :"
+                                                <input type="number" name="price" min="0" step="500" placeholder="قیمت کالا :"
                                                        class="form-control d-inline w-75">
                                             </div>
                                             <hr>
                                             <div style="direction: rtl">
-                                                <input type="number" min="0" placeholder="تعداد کالا :"
+                                                <input type="number" name="remainingNumber" min="0" placeholder="تعداد کالا :"
                                                        class="form-control d-inline w-75">
                                             </div>
 
@@ -694,7 +694,7 @@
                                         </div>
                                         <div id="color" class="card-body px-0">
                                             <div style="direction: rtl">
-                                                <input type="color"
+                                                <input type="color" name="colors"
                                                        class="form-control d-inline w-75">
                                             </div>
                                             <hr>
@@ -716,7 +716,7 @@
                                         </div>
                                         <div id="cat" class="card-body px-0">
                                             <div style="direction: rtl">
-                                                <select type="text" class="form-control d-inline w-75">
+                                                <select type="text" name="category" class="form-control d-inline w-75">
                                                     <option selected>
                                                         دسته بندی
                                                     </option>
@@ -737,21 +737,26 @@
                                                     </option>
                                                 </select>
                                             </div>
-                                            <hr>
-                                            <a onclick="addCat()" class="btn btn-info text-white"
-                                               style="width: 120px; cursor: pointer">
-                                                افزودن
-                                            </a>
                                         </div>
+                                        <hr>
+                                        <div class="card-header font-sm mb-1 py-3 d-inline px-0" style="direction: rtl">
+                                            <h5>توضیحات</h5>
+                                        </div>
+                                        <hr>
+                                        <div class="" style="direction: rtl">
+                                            <input type="text" name="description" placeholder="توضیحات :"
+                                                   class="form-control d-inline w-75">
+                                        </div>
+                                        <hr>
 
                                         <div class="card-header font-sm mb-1 py-3 d-inline px-0" style="direction: rtl">
                                             <h5>سایر</h5>
                                         </div>
                                         <div id="other" class="card-body px-0">
                                             <div style="direction: rtl">
-                                                <input type="text" class="form-control d-inline w-25"
+                                                <input type="text" name="property" class="form-control d-inline w-25"
                                                        placeholder="مشخصه :">
-                                                <input type="text" class="form-control d-inline w-50"
+                                                <input type="text" name="property" class="form-control d-inline w-50"
                                                        placeholder="توضیح :">
                                             </div>
                                             <hr>
@@ -950,44 +955,17 @@
 
     function addColor() {
         $("#color").prepend("    <div style=\"direction: rtl\">\n" +
-            "            <input type=\"color\"\n" +
+            "            <input name=\"colors\" type=\"color\"\n"  +
             "    class=\"form-control d-inline w-75\">\n" +
             "            </div>\n" +
             "            <hr>");
 
     }
 
-    function addCat() {
-        $("#cat").prepend("                                        <div style=\"direction: rtl\">\n" +
-            "                                            <select type=\"text\" class=\"form-control d-inline w-75\">\n" +
-            "                                                <option selected>\n" +
-            "                                                    دسته بندی\n" +
-            "                                                </option>\n" +
-            "                                                <option>\n" +
-            "                                                    خوراکی\n" +
-            "                                                </option>\n" +
-            "                                                <option>\n" +
-            "                                                    لباس\n" +
-            "                                                </option>\n" +
-            "                                                <option>\n" +
-            "                                                    ساز\n" +
-            "                                                </option>\n" +
-            "                                                <option>\n" +
-            "                                                    لوازم بهداشتی\n" +
-            "                                                </option>\n" +
-            "                                                <option>\n" +
-            "                                                    خودرو\n" +
-            "                                                </option>\n" +
-            "                                            </select>\n" +
-            "                                        </div>\n" +
-            "                                        <hr>");
-
-    }
-
     function addOther() {
         $("#other").prepend("                                        <div style=\"direction: rtl\">\n" +
-            "                                            <input type=\"text\" class=\"form-control d-inline w-25\" placeholder=\"مشخصه :\">\n" +
-            "                                            <input type=\"text\" class=\"form-control d-inline w-50\" placeholder=\"توضیح :\">\n" +
+            "                                            <input type=\"text\" name=\"property\" class=\"form-control d-inline w-25\" placeholder=\"مشخصه :\">\n" +
+            "                                            <input type=\"text\" name=\"property\" class=\"form-control d-inline w-50\" placeholder=\"توضیح :\">\n" +
             "                                        </div>\n" +
             "                                        <hr>");
 

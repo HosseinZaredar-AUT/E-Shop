@@ -54,7 +54,7 @@
         <div class="card-body">
             <div id="" class="">
                 <div class="container">
-                    <div class="col-sm-12 mt-5">
+                    <div class="col-sm-12 mt-5 text-center">
                         <form method="post" action="/product/123?_method=PUT">
                             <div class="card shadow w-100">
                                 <div class="card-header font-sm mb-1 py-3 d-inline px-0" style="direction: rtl">
@@ -63,31 +63,36 @@
                                 </div>
                                 <div class="card-body px-0">
                                     <div class="" style="direction: rtl">
-                                        <input type="text" placeholder="کد کالا :"
+                                        <input type="text" name="productID" placeholder="کد کالا :"
                                                class="form-control d-inline w-75">
                                     </div>
                                     <hr>
                                     <div class="" style="direction: rtl">
-                                        <input type="text" placeholder="نام کالا :"
+                                        <input type="text" name="name" placeholder="نام کالا :"
                                                class="form-control d-inline w-75">
                                     </div>
                                     <hr>
                                     <div style="direction: rtl">
-                                        <select type=""
+                                        <select name="status" type=""
                                                 class="form-control d-inline w-75">
-                                            <option class="" style="">موجود</option>
-                                            <option class="" style="">ناموجود</option>
-                                            <option class="" style="">به زودی</option>
+                                            <option value="available" class="" style="">موجود</option>
+                                            <option value="unavailable" class="" style="">ناموجود</option>
+                                            <option value="soon" class="" style="">به زودی</option>
                                         </select>
                                     </div>
                                     <hr>
                                     <div style="direction: rtl">
-                                        <input type="number" min="0" step="500" placeholder="قیمت کالا :"
+                                        <input type="number" name="price" min="0" step="500" placeholder="قیمت کالا :"
                                                class="form-control d-inline w-75">
                                     </div>
                                     <hr>
                                     <div style="direction: rtl">
-                                        <input type="number" min="0" placeholder="تعداد کالا :"
+                                        <input type="number" name="discount" min="0" max="100" placeholder="تخفیف :"
+                                               class="form-control d-inline w-75">
+                                    </div>
+                                    <hr>
+                                    <div style="direction: rtl">
+                                        <input type="number" name="remainingNumber" min="0" placeholder="تعداد کالا :"
                                                class="form-control d-inline w-75">
                                     </div>
                                 </div>
@@ -96,7 +101,7 @@
                                 </div>
                                 <div id="color" class="card-body px-0">
                                     <div style="direction: rtl">
-                                        <input type="color"
+                                        <input type="color" name="color"
                                                class="form-control d-inline w-75">
                                     </div>
                                     <hr>
@@ -104,6 +109,9 @@
                                        style="width: 120px; cursor: pointer;">
                                         افزودن رنگ
                                     </a>
+                                </div>
+                                <div class="card-header font-sm mb-1 py-3 d-inline px-0" style="direction: rtl">
+                                    <h5>عکس</h5>
                                 </div>
                                 <div id="photo" class="card-body px-0">
                                     <input type="file" accept="image/*" multiple>
@@ -113,7 +121,7 @@
                                 </div>
                                 <div id="cat" class="card-body px-0">
                                     <div style="direction: rtl">
-                                        <select type="text" class="form-control d-inline w-75">
+                                        <select type="text" name="category" class="form-control d-inline w-75">
                                             <option selected>
                                                 دسته بندی
                                             </option>
@@ -134,18 +142,23 @@
                                             </option>
                                         </select>
                                     </div>
-                                    <hr>
-                                    <a onclick="addCat()" class="btn btn-info text-white"
-                                       style="width: 120px; cursor: pointer">
-                                        افزودن
-                                    </a>
                                 </div>
+                                <hr>
+                                    <div class="card-header font-sm mb-1 py-3 d-inline px-0" style="direction: rtl">
+                                        <h5>توضیحات</h5>
+                                    </div>
+                                    <hr>
+                                    <div class="" style="direction: rtl">
+                                        <input type="text" name="description" placeholder="توضیحات :"
+                                               class="form-control d-inline w-75">
+                                    </div>
+                                <hr>
                                 <div class="card-header font-sm mb-1 py-3 d-inline px-0" style="direction: rtl">
                                     <h5>سایر</h5>
                                 </div>
                                 <div id="other" class="card-body px-0">
                                     <div style="direction: rtl">
-                                        <input type="text" class="form-control d-inline w-25"
+                                        <input type="text" name="property" class="form-control d-inline w-25"
                                                placeholder="مشخصه :">
                                         <input type="text" class="form-control d-inline w-50"
                                                placeholder="توضیح :">

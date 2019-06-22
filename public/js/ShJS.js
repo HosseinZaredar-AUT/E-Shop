@@ -43,7 +43,7 @@ packThePage = (id) => {
 
 function addColor() {
     $("#color").prepend("    <div style=\"direction: rtl\">\n" +
-        "            <input type=\"color\"\n" +
+        "            <input name=\"color\" type=\"color\"\n" +
         "    class=\"form-control d-inline w-75\">\n" +
         "            </div>\n" +
         "            <hr>");
@@ -95,8 +95,8 @@ function addCat() {
 
 function addOther() {
     $("#other").prepend("                                        <div style=\"direction: rtl\">\n" +
-        "                                            <input type=\"text\" class=\"form-control d-inline w-25\" placeholder=\"مشخصه :\">\n" +
-        "                                            <input type=\"text\" class=\"form-control d-inline w-50\" placeholder=\"توضیح :\">\n" +
+        "                                            <input name=\"property\" type=\"text\" class=\"form-control d-inline w-25\" placeholder=\"مشخصه :\">\n" +
+        "                                            <input name=\"property\" type=\"text\" class=\"form-control d-inline w-50\" placeholder=\"توضیح :\">\n" +
         "                                        </div>\n" +
         "                                        <hr>");
 
