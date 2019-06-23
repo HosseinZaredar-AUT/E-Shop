@@ -1,4 +1,5 @@
 let express = require('express'),
+    cors = require('cors'),
     app = express(),
     bodyParser = require('body-parser'),
     session = require('express-session'),
@@ -34,6 +35,8 @@ app.use(session({secret: "Mesh All The Way"}));
 
 // fileUpload setup
 app.use(fileUpload());
+
+app.use(cors());
 
 app.use('/category', categoryRouter);
 app.use('/product', productRouter);

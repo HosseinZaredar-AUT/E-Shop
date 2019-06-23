@@ -21,6 +21,7 @@ router.delete('/order/:id', function (req, res) {
 
 router.put('/info', (req, res) => {
     let details = req.body;
+    console.log(details.firstname);
     if(details.firstname && details.lastname && details.username
         && details.password && details.email && details.phone && details.idNumber) {
         Customer.findOneAndUpdate({_id: req.session.user._id}, {
@@ -33,7 +34,9 @@ router.put('/info', (req, res) => {
             idNumber : details.idNumber
         }, function (err) {
             if(!err) {
-                res.redirect('back')
+                res.status(201).json({
+                    message: 'Post created successfully!',
+                });
             } else {
                 // error in update
             }
