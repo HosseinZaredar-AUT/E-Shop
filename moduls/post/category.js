@@ -3,8 +3,7 @@ let mongoose = require('mongoose'),
 
 let categorySchema = mongoose.Schema({
     name: String,
-    products: [{type: mongoose.Schema.Types.ObjectId, ref: 'Product'}],
-    allInOne: [{type: mongoose.Schema.Types.ObjectId, ref: 'Category'}]
+    products: [{type: mongoose.Schema.Types.ObjectId, ref: 'Product'}]
 });
 
 categorySchema.plugin(mdt);

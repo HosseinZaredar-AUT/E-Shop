@@ -6,11 +6,40 @@ let express = require('express'),
     Customer = require('../../../moduls/user/customer');
 
 router.get('/', function (req, res) {
-    Category.findOne({name: 'root'}).populate('allInOne').exec(function (err, root) {
+    Category.findOne(function (err, root) {
         if(!err) {
-            res.render('user/adminDashboard', {categories: root.allInOne});
+            root.getChildrenTree(function (err, childs) {
+                if(!err) {
+                    let cats = getDataArray(childs);
+                    res.render('user/adminDashboard', {cats: cats});
+                }
+            })
         }
     })
 });
 
+function getDataArray(childs) {
+    let dataArray = [];
+    let stack = [];
+    childs.forEach((child) => {
+        child['level'] = 0;
+        stack.push(child);
+    });
+    while (stack.length!==0) {
+        let element = stack.pop();
+        dataArray.push({
+            name: element.name,
+            level: element.level
+        });
+        if(element.children.length !== 0){
+            element.children.forEach((child) => {
+                 child['level'] = element.level + 1;
+                 stack.push(child);
+            })
+        }
+    }
+    return dataArray;
+}
+
 module.exports = router;
+

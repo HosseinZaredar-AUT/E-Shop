@@ -7,7 +7,11 @@ let express = require('express'),
     Property = require('../../moduls/post/property');
 
 router.get('/', function (req, res) {
-    res.render('index')
+    Category.findOne({name: 'root'}).populate('allInOne').exec(function (err, root) {
+        if(!err) {
+            res.render('index', {categories: root.allInOne});
+        }
+    })
 });
 
 router.post('/logout', function (req, res) {

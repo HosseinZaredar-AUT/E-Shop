@@ -5,15 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>داشبورد ادمین</title>
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/myStyle2.css">
-    <link rel="stylesheet" href="css/Dashboard.css">
-    <link rel="stylesheet" href="css/myStyle3.css">
+    <link rel="stylesheet" href="../../src/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/../../src/css/all.css"
+          integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../src/css/bootstrap.css">
+    <link rel="stylesheet" href="../../src/css/myStyle2.css">
+    <link rel="stylesheet" href="../../src/css/Dashboard.css">
+    <link rel="stylesheet" href="../../src/css/myStyle3.css">
     <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
     <script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js"></script>
-    <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet">
+    <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css"
+          rel="stylesheet">
     <style>
         .myClickableThingy {
             cursor: pointer;
@@ -22,7 +24,407 @@
 </head>
 
 <body id="body" class="font-medium h-100">
-<% include ../partials/header2.ejs %>
+<!DOCTYPE html>
+<html>
+
+
+<body class="font-medium">
+
+<header class="shoppingHeader py-1 px-md-5 px-sm-1 sticky-top">
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-md navbar-light bg-light">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+                    aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0 text-right">
+                    <li class="nav-item px-3 mx-auto">
+                        <div class="input-group-prepend">
+                            <button class="btn btn-outline-info">
+                                <span id="number-of-products-added" class="pr-2"> ۳ </span>
+                                <span class="border-left pl-3">سبد خرید</span>
+                                <i class="fa fa-cart-plus"></i>
+                            </button>
+                        </div>
+                    </li>
+                    <li class="nav-item px-md-3">
+                        <a class="nav-link" href="register">ثبت نام / ورود</a>
+                    </li>
+                    <li class="nav-item px-md-3">
+                        <a class="nav-link" href="userDashboard">داشبورد کاربر</a>
+                    </li>
+                    <li class="nav-item px-md-3">
+                        <a class="nav-link" href="adminDashboard">داشبورد ادمین</a>
+                    </li>
+                    <li class="nav-item px-md-3">
+                        <a class="nav-link" href="#" data-toggle="collapse" data-target="#categoryJumbotrun"
+                           aria-expanded="true" aria-controls="categoryJumbotrun">
+                            <span>دسته بندی ها</span>
+                            <i class="fa fa-chevron-down"></i>
+                        </a>
+
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <div class="input-group mb-2 mr-sm-2 w-100 mt-1">
+                        <div class="input-group-prepend">
+                            <button class="btn btn-info">جستجو</button>
+                        </div>
+                        <input type="text" class="form-control" id="inlineFormInputGroupUsername2" placeholder="جستجو">
+                    </div>
+                </form>
+            </div>
+            <a class="navbar-brand pl-3 text-secondary mx-auto" href="/">بادمجون
+                <i class="fa fa-hotdog"></i>
+            </a>
+        </nav>
+        <div id="categoryJumbotrun" class="collapse hide">
+            <div class="container pt-5 pb-3">
+                <div class="jumbotron">
+                    <div class="row">
+                        <div class="col-md-12 mb-5 text-center">
+                            <span class="font-md text-info">دسته بندی ها</span>
+                        </div>
+                        <div class="col-md-4 col-sm-12 pb-4">
+                            <div class="row mx-1">
+                                <div class="col-md-12 p-1">
+                                    <button class="btn btn-info w-100"
+                                            data-toggle="collapse" data-target="#category1" role="button"
+                                            aria-expanded="true" aria-controls="category1">خوراکی
+                                    </button>
+                                </div>
+                                <div class="col-md-12 p-1">
+                                    <button class="btn btn-info w-100"
+                                            data-toggle="collapse" data-target="#category2" role="button"
+                                            aria-expanded="false" aria-controls="category2">لباس
+                                    </button>
+                                </div>
+                                <div class="col-md-12 p-1">
+                                    <button class="btn btn-info w-100"
+                                            data-toggle="collapse" data-target="#category3" role="button"
+                                            aria-expanded="false" aria-controls="category3">ساز
+                                    </button>
+                                </div>
+                                <div class="col-md-12 p-1">
+                                    <button class="btn btn-info w-100"
+                                            data-toggle="collapse" data-target="#category4" role="button"
+                                            aria-expanded="false" aria-controls="category4">لوازم بهداشتی
+                                    </button>
+                                </div>
+                                <div class="col-md-12 p-1">
+                                    <button class="btn btn-info w-100"
+                                            data-toggle="collapse" data-target="#category5" role="button"
+                                            aria-expanded="false" aria-controls="category5">خودرو
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8 col-sm-12">
+                            <div id="accordion">
+                                <div id="category1" class="collapse show" data-parent="#accordion">
+                                    <div class="card card-body text-right">
+                                        <div class="row justify-content-end">
+                                            <div class="col-sm-6 col-lg-3">
+                                                <p class="text-warning">
+                                                    <i class="fa fa-chevron-left"></i>
+                                                    <a href="../product/category.ejs"
+                                                       style="text-decoration: none; color: #e8ac22">لبنیات</a>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>ماست</span>
+                                                    <i class="fa fa-caret-left"></i>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>دوغ</span>
+                                                    <i class="fa fa-caret-left"></i>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>پنیر</span>
+                                                    <i class="fa fa-caret-left"></i>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>کره</span>
+                                                    <i class="fa fa-caret-left"></i>
+                                                </p>
+                                            </div>
+                                            <div class="col-sm-6 col-lg-3">
+                                                <p class="text-warning">
+                                                    <i class="fa fa-chevron-left"></i>
+                                                    <span>لبنیات</span>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>ماست</span>
+                                                    <i class="fa fa-caret-left"></i>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>دوغ</span>
+                                                    <i class="fa fa-caret-left"></i>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>پنیر</span>
+                                                    <i class="fa fa-caret-left"></i>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>کره</span>
+                                                    <i class="fa fa-caret-left"></i>
+                                                </p>
+                                            </div>
+                                            <div class="col-sm-6 col-lg-3">
+                                                <p class="text-warning">
+                                                    <i class="fa fa-chevron-left"></i>
+                                                    <span>لبنیات</span>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>ماست</span>
+                                                    <i class="fa fa-caret-left"></i>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>دوغ</span>
+                                                    <i class="fa fa-caret-left"></i>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>پنیر</span>
+                                                    <i class="fa fa-caret-left"></i>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>کره</span>
+                                                    <i class="fa fa-caret-left"></i>
+                                                </p>
+                                            </div>
+                                            <div class="col-sm-6 col-lg-3">
+                                                <p class="text-warning">
+                                                    <i class="fa fa-chevron-left"></i>
+                                                    <span>لبنیات</span>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>ماست</span>
+                                                    <i class="fa fa-caret-left"></i>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>دوغ</span>
+                                                    <i class="fa fa-caret-left"></i>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>پنیر</span>
+                                                    <i class="fa fa-caret-left"></i>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>کره</span>
+                                                    <i class="fa fa-caret-left"></i>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="category2" class="collapse" data-parent="#accordion">
+                                    <div class="card card-body text-right">
+                                        <div class="row justify-content-end">
+                                            <div class="col-sm-6 col-lg-3">
+                                                <p class="text-warning">
+                                                    <i class="fa fa-chevron-left"></i>
+                                                    <span>تی شرت</span>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>استین حلقه ای</span>
+                                                    <i class="fa fa-caret-left"></i>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>ساده</span>
+                                                    <i class="fa fa-caret-left"></i>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>طرح دار</span>
+                                                    <i class="fa fa-caret-left"></i>
+                                                </p>
+                                            </div>
+                                            <div class="col-sm-6 col-lg-3">
+                                                <p class="text-warning">
+                                                    <i class="fa fa-chevron-left"></i>
+                                                    <span>تی شرت</span>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>استین حلقه ای</span>
+                                                    <i class="fa fa-caret-left"></i>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>ساده</span>
+                                                    <i class="fa fa-caret-left"></i>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>طرح دار</span>
+                                                    <i class="fa fa-caret-left"></i>
+                                                </p>
+                                            </div>
+                                            <div class="col-sm-6 col-lg-3">
+                                                <p class="text-warning">
+                                                    <i class="fa fa-chevron-left"></i>
+                                                    <span>تی شرت</span>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>استین حلقه ای</span>
+                                                    <i class="fa fa-caret-left"></i>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>ساده</span>
+                                                    <i class="fa fa-caret-left"></i>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>طرح دار</span>
+                                                    <i class="fa fa-caret-left"></i>
+                                                </p>
+                                            </div>
+                                            <div class="col-sm-6 col-lg-3">
+                                                <p class="text-warning">
+                                                    <i class="fa fa-chevron-left"></i>
+                                                    <span>تی شرت</span>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>استین حلقه ای</span>
+                                                    <i class="fa fa-caret-left"></i>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>ساده</span>
+                                                    <i class="fa fa-caret-left"></i>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>طرح دار</span>
+                                                    <i class="fa fa-caret-left"></i>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="category3" class="collapse" data-parent="#accordion">
+                                    <div class="card card-body text-right">
+                                        <div class="row justify-content-end">
+                                            <div class="col-sm-6 col-lg-3">
+                                                <p class="text-warning">
+                                                    <i class="fa fa-chevron-left"></i>
+                                                    <span>گیتار</span>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>اکوستیک</span>
+                                                    <i class="fa fa-caret-left"></i>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>الکتریک</span>
+                                                    <i class="fa fa-caret-left"></i>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>باس</span>
+                                                    <i class="fa fa-caret-left"></i>
+                                                </p>
+                                            </div>
+                                            <div class="col-sm-6 col-lg-3">
+                                                <p class="text-warning">
+                                                    <i class="fa fa-chevron-left"></i>
+                                                    <span>پیانو</span>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>دیواری</span>
+                                                    <i class="fa fa-caret-left"></i>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>رویال</span>
+                                                    <i class="fa fa-caret-left"></i>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>الکتریک</span>
+                                                    <i class="fa fa-caret-left"></i>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>کیبورد</span>
+                                                    <i class="fa fa-caret-left"></i>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="category4" class="collapse" data-parent="#accordion">
+                                    <div class="card card-body text-right">
+                                        <div class="row justify-content-end">
+                                            <div class="col-sm-6 col-lg-3">
+                                                <p class="text-warning">
+                                                    <i class="fa fa-chevron-left"></i>
+                                                    <span>صابون</span>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>طبیعی</span>
+                                                    <i class="fa fa-caret-left"></i>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>مصنوعی</span>
+                                                    <i class="fa fa-caret-left"></i>
+                                                </p>
+                                            </div>
+                                            <div class="col-sm-6 col-lg-3">
+                                                <p class="text-warning">
+                                                    <i class="fa fa-chevron-left"></i>
+                                                    <span>شامپو</span>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>ضد شوره</span>
+                                                    <i class="fa fa-caret-left"></i>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>طبیعی</span>
+                                                    <i class="fa fa-caret-left"></i>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>گیاهی</span>
+                                                    <i class="fa fa-caret-left"></i>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="category5" class="collapse" data-parent="#accordion">
+                                    <div class="card card-body text-right">
+                                        <div class="row justify-content-end">
+                                            <div class="col-sm-6 col-lg-3">
+                                                <p class="text-warning">
+                                                    <i class="fa fa-chevron-left"></i>
+                                                    <span>پژو</span>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>۴۰۵</span>
+                                                    <i class="fa fa-caret-left"></i>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>۲۰۶</span>
+                                                    <i class="fa fa-caret-left"></i>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>۲۰۷</span>
+                                                    <i class="fa fa-caret-left"></i>
+                                                </p>
+                                            </div>
+                                            <div class="col-sm-6 col-lg-3">
+                                                <p class="text-warning">
+                                                    <i class="fa fa-chevron-left"></i>
+                                                    <span>نیسان</span>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>جوک</span>
+                                                    <i class="fa fa-caret-left"></i>
+                                                </p>
+                                                <p class="text-info pr-4">
+                                                    <span>قشقایی</span>
+                                                    <i class="fa fa-caret-left"></i>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
 
 <div id="overlay" onclick="openBar()"></div>
 <aside id="sideBar" class="leftSide h-100 " style="background-color: white;">
@@ -650,9 +1052,9 @@
                 <div id="product-body" class="">
                     <div class="container">
                         <div class="row  text-center">
-                        
+
                             <div class="col-md-12 mt-5">
-                                <form method="post" action="/product">
+                                <form>
                                     <div class="card shadow w-100">
                                         <div class="card-header font-sm mb-1 py-3 d-inline px-0" style="direction: rtl">
                                             <!--<h5 class="font-sm mb-1 p-4 d-inline">کد کالا :</h5>-->
@@ -660,31 +1062,31 @@
                                         </div>
                                         <div class="card-body px-0">
                                             <div class="" style="direction: rtl">
-                                                <input name="productID" type="text" placeholder="کد کالا :"
+                                                <input type="text" placeholder="کد کالا :"
                                                        class="form-control d-inline w-75">
                                             </div>
                                             <hr>
                                             <div class="" style="direction: rtl">
-                                                <input type="text" name="name" placeholder="نام کالا :"
+                                                <input type="text" placeholder="نام کالا :"
                                                        class="form-control d-inline w-75">
                                             </div>
                                             <hr>
                                             <div style="direction: rtl">
-                                                <select type="" name="status"
+                                                <select type=""
                                                         class="form-control d-inline w-75">
-                                                    <option class="" value="available" style="">موجود</option>
-                                                    <option class="" value="unavailable" style="">ناموجود</option>
-                                                    <option class="" value="soon" style="">به زودی</option>
+                                                    <option class="" style="">موجود</option>
+                                                    <option class="" style="">ناموجود</option>
+                                                    <option class="" style="">به زودی</option>
                                                 </select>
                                             </div>
                                             <hr>
                                             <div style="direction: rtl">
-                                                <input type="number" name="price" min="0" step="500" placeholder="قیمت کالا :"
+                                                <input type="number" min="0" step="500" placeholder="قیمت کالا :"
                                                        class="form-control d-inline w-75">
                                             </div>
                                             <hr>
                                             <div style="direction: rtl">
-                                                <input type="number" name="remainingNumber" min="0" placeholder="تعداد کالا :"
+                                                <input type="number" min="0" placeholder="تعداد کالا :"
                                                        class="form-control d-inline w-75">
                                             </div>
 
@@ -694,7 +1096,7 @@
                                         </div>
                                         <div id="color" class="card-body px-0">
                                             <div style="direction: rtl">
-                                                <input type="color" name="colors"
+                                                <input type="color"
                                                        class="form-control d-inline w-75">
                                             </div>
                                             <hr>
@@ -716,36 +1118,42 @@
                                         </div>
                                         <div id="cat" class="card-body px-0">
                                             <div style="direction: rtl">
-                                                <select type="text" name="category" class="form-control d-inline w-75">
-                                                    <% for(var x=0;x<cats.length; x++) { %>
-                                                        <% if(cats[x+1]) { %>
-                                                            <% if(cats[x].level >= cats[x+1].level) { %>
-                                                                <option><%= cats[x].name%></option>
-                                                            <% } %>
-                                                        <% } %>
-                                                    <% } %>
+                                                <select type="text" class="form-control d-inline w-75">
+                                                    <option selected>
+                                                        دسته بندی
+                                                    </option>
+                                                    <option>
+                                                        خوراکی
+                                                    </option>
+                                                    <option>
+                                                        لباس
+                                                    </option>
+                                                    <option>
+                                                        ساز
+                                                    </option>
+                                                    <option>
+                                                        لوازم بهداشتی
+                                                    </option>
+                                                    <option>
+                                                        خودرو
+                                                    </option>
                                                 </select>
                                             </div>
+                                            <hr>
+                                            <a onclick="addCat()" class="btn btn-info text-white"
+                                               style="width: 120px; cursor: pointer">
+                                                افزودن
+                                            </a>
                                         </div>
-                                        <hr>
-                                        <div class="card-header font-sm mb-1 py-3 d-inline px-0" style="direction: rtl">
-                                            <h5>توضیحات</h5>
-                                        </div>
-                                        <hr>
-                                        <div class="" style="direction: rtl">
-                                            <input type="text" name="description" placeholder="توضیحات :"
-                                                   class="form-control d-inline w-75">
-                                        </div>
-                                        <hr>
 
                                         <div class="card-header font-sm mb-1 py-3 d-inline px-0" style="direction: rtl">
                                             <h5>سایر</h5>
                                         </div>
                                         <div id="other" class="card-body px-0">
                                             <div style="direction: rtl">
-                                                <input type="text" name="property" class="form-control d-inline w-25"
+                                                <input type="text" class="form-control d-inline w-25"
                                                        placeholder="مشخصه :">
-                                                <input type="text" name="property" class="form-control d-inline w-50"
+                                                <input type="text" class="form-control d-inline w-50"
                                                        placeholder="توضیح :">
                                             </div>
                                             <hr>
@@ -765,6 +1173,7 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
 
@@ -777,8 +1186,9 @@
             <div>
                 <div class="container">
                     <div class="row  text-center">
+
                         <div class="col-md-12 mt-5">
-                            <form action="/category" method="post">
+                            <form>
                                 <div class="card shadow w-100">
                                     <div class="card-header font-sm mb-1 py-3 d-inline px-0" style="direction: rtl">
                                         <!--<h5 class="font-sm mb-1 p-4 d-inline">کد کالا :</h5>-->
@@ -790,7 +1200,7 @@
                                                 <span>نام دسته بندی</span>
                                             </label>
                                             <input id="add-category-name" type="text" placeholder="نام دسته بندی"
-                                                   class="form-control d-inline w-75" name="name">
+                                                   class="form-control d-inline w-75">
                                         </div>
                                         <hr>
                                         <div style="direction: rtl">
@@ -798,11 +1208,8 @@
                                                 <span>دسته بندی پدر</span>
                                             </label>
                                             <select id="add-category-sub-category"
-                                                    class="form-control d-inline w-75" name="parent">
+                                                    class="form-control d-inline w-75">
                                                 <option class="" style="">اصلی</option>
-                                                <% categories.forEach(function (category) { %>
-                                                <option class="" style=""><%=category.name%></option>
-                                                <% }) %>
                                             </select>
                                         </div>
                                         <hr>
@@ -810,7 +1217,7 @@
                                     </div>
                                 </div>
                             </form>
-                            <form method="post" action="/category?_method=PUT">
+                            <form>
                                 <div class="card shadow w-100 my-4">
                                     <div class="card-header font-sm mb-1 py-3 d-inline px-0" style="direction: rtl">
                                         <!--<h5 class="font-sm mb-1 p-4 d-inline">کد کالا :</h5>-->
@@ -821,59 +1228,34 @@
                                             <label style="width: 400px" class="mx-2" for="edit-category-category">
                                                 <span>دسته بندی</span>
                                             </label>
-                                            <select id="edit-category-category" name="name"
+                                            <select id="edit-category-category"
                                                     class="form-control d-inline w-75">
-                                                <% cats.forEach(function (cat) { %>
-                                                <option class="" style=""><%=cat.name%></option>
-                                                <% }) %>
+                                                <option class="" style="">لباس</option>
                                             </select>
                                         </div>
                                         <hr>
                                         <div class="" style="direction: rtl">
-                                            <label style="width: 400px" class="mx-2" for="edit-category-name" >
+                                            <label style="width: 400px" class="mx-2" for="edit-category-name">
                                                 <span>نام جدید</span>
                                             </label>
                                             <input id="edit-category-name" type="text" placeholder="نام جدید"
-                                                   class="form-control d-inline w-75" name="newName">
+                                                   class="form-control d-inline w-75">
                                         </div>
                                         <hr>
                                         <div style="direction: rtl">
                                             <label style="width: 400px" class="mx-2" for="edit-category-sub-category">
                                                 <span>دسته بندی پدر</span>
                                             </label>
-                                            <select id="edit-category-sub-category" name="parent"
+                                            <select id="edit-category-sub-category"
                                                     class="form-control d-inline w-75">
                                                 <option class="" style="">اصلی</option>
-                                                <% cats.forEach(function (cat) { %>
-                                                <option class="" style=""><%=cat.name%></option>
-                                                <% }) %>
                                             </select>
                                         </div>
                                         <hr>
                                         <input type="submit" class="btn btn-warning text-white mr-2" value="ذخیره">
-                                    </div>
-                                </div>
-                            </form>
-                            <form method="post" action="/category?_method=DELETE">
-                                <div class="card shadow w-100 my-4">
-                                    <div class="card-header font-sm mb-1 py-3 d-inline px-0" style="direction: rtl">
-                                        <!--<h5 class="font-sm mb-1 p-4 d-inline">کد کالا :</h5>-->
-                                        <h5>حذف</h5>
-                                    </div>
-                                    <div class="card-body px-0">
-                                        <div style="direction: rtl">
-                                            <label style="width: 400px" class="mx-2" for="edit-category-category">
-                                                <span>دسته بندی</span>
-                                            </label>
-                                            <select id="edit-category-category" name="name"
-                                                    class="form-control d-inline w-75">
-                                                <% cats.forEach(function (cat) { %>
-                                                <option class="" style=""><%=cat.name%></option>
-                                                <% }) %>
-                                            </select>
-                                        </div>
-                                        <hr>
-                                        <input type="submit" class="btn btn-danger text-white mr-2" value="حذف">
+                                        <form action="">
+                                            <input type="submit" class="btn btn-danger text-white ml-2" value="حذف">
+                                        </form>
                                     </div>
                                 </div>
                             </form>
@@ -886,8 +1268,8 @@
         </div>
     </div>
 </main>
-<script src="js/jquery2_2.min.js" type="text/javascript"></script>
-<script src="js/bootstrap.min.js" type="text/javascript"></script>
+<script src="../../src/js/jquery2_2.min.js" type="text/javascript"></script>
+<script src="../../src/js/bootstrap.min.js" type="text/javascript"></script>
 <script>
     function openBar() {
         if (document.getElementById("sideBar").classList.contains("leftSideOpen")) {
@@ -944,17 +1326,44 @@
 
     function addColor() {
         $("#color").prepend("    <div style=\"direction: rtl\">\n" +
-            "            <input name=\"colors\" type=\"color\"\n"  +
+            "            <input type=\"color\"\n" +
             "    class=\"form-control d-inline w-75\">\n" +
             "            </div>\n" +
             "            <hr>");
 
     }
 
+    function addCat() {
+        $("#cat").prepend("                                        <div style=\"direction: rtl\">\n" +
+            "                                            <select type=\"text\" class=\"form-control d-inline w-75\">\n" +
+            "                                                <option selected>\n" +
+            "                                                    دسته بندی\n" +
+            "                                                </option>\n" +
+            "                                                <option>\n" +
+            "                                                    خوراکی\n" +
+            "                                                </option>\n" +
+            "                                                <option>\n" +
+            "                                                    لباس\n" +
+            "                                                </option>\n" +
+            "                                                <option>\n" +
+            "                                                    ساز\n" +
+            "                                                </option>\n" +
+            "                                                <option>\n" +
+            "                                                    لوازم بهداشتی\n" +
+            "                                                </option>\n" +
+            "                                                <option>\n" +
+            "                                                    خودرو\n" +
+            "                                                </option>\n" +
+            "                                            </select>\n" +
+            "                                        </div>\n" +
+            "                                        <hr>");
+
+    }
+
     function addOther() {
         $("#other").prepend("                                        <div style=\"direction: rtl\">\n" +
-            "                                            <input type=\"text\" name=\"property\" class=\"form-control d-inline w-25\" placeholder=\"مشخصه :\">\n" +
-            "                                            <input type=\"text\" name=\"property\" class=\"form-control d-inline w-50\" placeholder=\"توضیح :\">\n" +
+            "                                            <input type=\"text\" class=\"form-control d-inline w-25\" placeholder=\"مشخصه :\">\n" +
+            "                                            <input type=\"text\" class=\"form-control d-inline w-50\" placeholder=\"توضیح :\">\n" +
             "                                        </div>\n" +
             "                                        <hr>");
 
@@ -1024,22 +1433,22 @@
         server: {
             process: '/product/upload',
             revert: (uniqueFileId, load, error) => {
-                    // console.log(err);
-                    fetch('/product/revert', {
-                        method: 'delete',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            path: uniqueFileId
-                        })
-                    });
-                    load();
+                // console.log(err);
+                fetch('/product/revert', {
+                    method: 'delete',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        path: uniqueFileId
+                    })
+                });
+                load();
             }
         }
     });
     const inputElement = document.querySelector('input[type="file"]');
     const pond = FilePond.create(inputElement);
-</script>   
+</script>
 </body>
 </html>
