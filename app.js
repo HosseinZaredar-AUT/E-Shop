@@ -14,6 +14,7 @@ let express = require('express'),
     loginRouter = require('./routes/login'),
     userDashboardRouter = require('./routes/customer/dashboard/dashboard'),
     adminDashboardRouter = require('./routes/admin/dashboard/dashboard'),
+    cartRouter = require('./routes/customer/cart');
     middlewares = require('./middlewares/index');
 
 // express setup
@@ -39,6 +40,7 @@ app.use('/register', registerRouter);
 app.use('/login', loginRouter);
 app.use('/userDashboard', middlewares.isAuthenticatedUser ,userDashboardRouter);
 app.use('/adminDashboard', middlewares.isAuthenticatedAdmin ,adminDashboardRouter);
+app.use('/cart', cartRouter);
 app.use('/', indexRouter);
 
 seedDB();
