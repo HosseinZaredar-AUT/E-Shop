@@ -32,6 +32,10 @@ let customerSchema = mongoose.Schema({
     },
     addresses: [{type: mongoose.Schema.Types.ObjectId, ref: 'Address'}],
     favorites: [{type: mongoose.Schema.Types.ObjectId, ref: 'Product'}],
+    cart: [{
+        productsId: {type: mongoose.Schema.Types.ObjectId, ref: 'Product', required: true},
+        quantity: {type: Number, required: true}
+    }],
     comments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Comment'}]
 });
 module.exports = mongoose.model("Customer", customerSchema);

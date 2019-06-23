@@ -2,45 +2,56 @@
   font-family: 'IranYekanBold';
   src: url("../fonts/iranSans/iranyekanbold.woff") format("woff");
   font-style: normal;
-  font-weight: normal; }
+  font-weight: normal;
+}
 
 @font-face {
   font-family: 'IranYekanRegular';
   src: url("../fonts/iranSans/iranyekanregular.woff") format("woff");
   font-style: normal;
-  font-weight: normal; }
+  font-weight: normal;
+}
 
 @font-face {
   font-family: 'IranYekanLight';
   src: url("../fonts/iranSans/iranyekanlight.woff") format("woff");
   font-style: normal;
-  font-weight: normal; }
+  font-weight: normal;
+}
 
 .font-bold {
-  font-family: 'IranYekanBold', serif; }
+  font-family: 'IranYekanBold', serif;
+}
 
 .font-medium {
-  font-family: 'IranYekanRegular', serif; }
+  font-family: 'IranYekanRegular', serif;
+}
 
 .font-light {
-  font-family: 'IranYekanLight', serif; }
+  font-family: 'IranYekanLight', serif;
+}
 
 .font-bg {
-  font-size: 50px; }
+  font-size: 50px;
+}
 
 .font-md {
-  font-size: 30px; }
+  font-size: 30px;
+}
 
 .font-sm {
-  font-size: 18px; }
+  font-size: 18px;
+}
 
 .font-xs {
-  font-size: 12px; }
+  font-size: 12px;
+}
 
 .news-image {
   height: 500px;
   -o-object-fit: cover;
-  object-fit: cover; }
+  object-fit: cover;
+}
 
 .category-items {
   border-radius: 100%;
@@ -51,7 +62,8 @@
   width: 130px;
   height: 130px;
   -webkit-transition: all 0.2s ease-in;
-  transition: all 0.2s ease-in; }
+  transition: all 0.2s ease-in;
+}
 
 .category-items:hover {
   border-radius: 100%;
@@ -60,31 +72,38 @@
   margin: 20px;
   font-size: 60px;
   -webkit-transition: all 0.2s ease-in;
-  transition: all 0.2s ease-in; }
+  transition: all 0.2s ease-in;
+}
 
 .product-card {
   border: 1px solid #ffffff;
   -webkit-transition: 0.1s;
-  transition: 0.1s; }
+  transition: 0.1s;
+}
 
 .product-card:hover {
-  border: 1px solid #e2e3e5; }
+  border: 1px solid #e2e3e5;
+}
 
 .product-card-discount {
   border: 1px solid #fff8e8;
   -webkit-transition: 0.1s;
-  transition: 0.1s; }
+  transition: 0.1s;
+}
 
 .product-card-discount:hover {
-  border: 1px solid #ffd063; }
+  border: 1px solid #ffd063;
+}
 
 .product-card-best-seller {
   border: 1px solid #ff9e9e;
   -webkit-transition: 0.1s;
-  transition: 0.1s; }
+  transition: 0.1s;
+}
 
 .product-card-best-seller:hover {
-  border: 1px solid #a02c2d; }
+  border: 1px solid #a02c2d;
+}
 
 .add-to-cart-plus {
   opacity: 0;
@@ -94,24 +113,47 @@
   top: 15%;
   color: #a7ed57;
   -webkit-transition: all 0.2s ease-in;
-  transition: all 0.2s ease-in; }
+  transition: all 0.2s ease-in;
+}
 
 .product-card:hover .add-to-cart-plus {
-  opacity: 1; }
+  opacity: 1;
+}
 
 .product-card-best-seller:hover .add-to-cart-plus {
-  opacity: 1; }
+  opacity: 1;
+}
 
 .shoppingBody {
-  overflow: auto; }
+  overflow: auto;
+}
 
 .shoppingHeader {
   background-color: #f7f7f7;
-  border-bottom: 3px solid teal; }
+  border-bottom: 3px solid teal;
+}
 
 .myBtn {
   background-color: #000000;
-  border-color: #636f67; }
+  border-color: #636f67;
+}
+
+.customLeftSide {
+  float: left;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  height: 100%;
+  background-color: #f5f5f5;
+  display: inline-block;
+  padding-left: 35px;
+  padding-right: 35px;
+  padding-bottom: 75px;
+  position: relative;
+  width: 25%;
+  z-index: 2000;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
 
 .leftSide {
   float: left;
@@ -127,7 +169,8 @@
   width: 25%;
   z-index: 2000;
   -webkit-transition: 0.5s;
-  transition: 0.5s; }
+  transition: 0.5s;
+}
 
 @media (max-width: 992px) {
   .leftSide {
@@ -145,7 +188,9 @@
     overflow-x: hidden;
     overflow-y: hidden;
     -webkit-transition: 0.5s;
-    transition: 0.5s; } }
+    transition: 0.5s;
+  }
+}
 
 .leftSideOpen {
   float: right;
@@ -163,13 +208,16 @@
   overflow-x: hidden;
   overflow-y: auto;
   -webkit-transition: 0.5s;
-  transition: 0.5s; }
+  transition: 0.5s;
+}
 
 .hidedBody {
-  overflow-y: hidden; }
+  overflow-y: hidden;
+}
 
 .leftSide .separator {
-  padding-top: 85px; }
+  padding-top: 85px;
+}
 
 .settings {
   position: fixed;
@@ -178,7 +226,8 @@
   left: 0;
   top: 45%;
   z-index: 2000;
-  color: white; }
+  color: white;
+}
 
 #overlay {
   position: fixed;
@@ -191,7 +240,8 @@
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 1600;
-  cursor: pointer; }
+  cursor: pointer;
+}
 
 .slider {
   -webkit-appearance: none;
@@ -203,10 +253,12 @@
   opacity: 0.5;
   -webkit-transition: .2s;
   -webkit-transition: opacity .2s;
-  transition: opacity .2s; }
+  transition: opacity .2s;
+}
 
 .slider:hover {
-  opacity: 1; }
+  opacity: 1;
+}
 
 .slider::-webkit-slider-thumb {
   -webkit-appearance: none;
@@ -217,7 +269,8 @@
   border-style: solid;
   border-width: 2px;
   border-color: #6c6c6c;
-  cursor: pointer; }
+  cursor: pointer;
+}
 
 .slider::-moz-range-thumb {
   width: 25px;
@@ -227,7 +280,8 @@
   border-style: solid;
   border-width: 2px;
   border-color: #6c6c6c;
-  cursor: pointer; }
+  cursor: pointer;
+}
 
 /* The container */
 .cartCustomRadioContainer {
@@ -240,13 +294,15 @@
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-  user-select: none; }
+  user-select: none;
+}
 
 /* Hide the browser's default radio button */
 .cartCustomRadioContainer input {
   position: absolute;
   opacity: 0;
-  cursor: pointer; }
+  cursor: pointer;
+}
 
 /* Create a custom radio button */
 .cartCustomCheckMark {
@@ -256,25 +312,30 @@
   height: 20px;
   width: 20px;
   background-color: #eee;
-  border-radius: 50%; }
+  border-radius: 50%;
+}
 
 /* On mouse-over, add a grey background color */
 .cartCustomRadioContainer:hover input ~ .cartCustomCheckMark {
-  background-color: #ccc; }
+  background-color: #ccc;
+}
 
 /* When the radio button is checked, add a blue background */
 .cartCustomRadioContainer input:checked ~ .cartCustomCheckMark {
-  background-color: #000000; }
+  background-color: #b7e8d5;
+}
 
 /* Create the indicator (the dot/circle - hidden when not checked) */
 .cartCustomCheckMark:after {
   content: "";
   position: absolute;
-  display: none; }
+  display: none;
+}
 
 /* Show the indicator (dot/circle) when checked */
 .cartCustomRadioContainer input:checked ~ .cartCustomCheckMark:after {
-  display: block; }
+  display: block;
+}
 
 /* Style the indicator (dot/circle) */
 .cartCustomRadioContainer .cartCustomCheckMark:after {
@@ -283,57 +344,69 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: white; }
+  background: white;
+}
 
 .main {
   min-height: 920px;
   width: 100%;
-  display: inline; }
+  display: inline;
+}
 
 @media (min-width: 992px) {
   .main {
     display: inline;
     margin-left: 25%;
     min-height: 920px;
-    width: 75%; } }
+    width: 75%;
+  }
+}
 
 .product-card-discount:hover .add-to-cart-plus {
-  opacity: 1; }
+  opacity: 1;
+}
 
 .add-to-cart-plus:hover {
-  color: #8bdb30; }
+  color: #8bdb30;
+}
 
 .info-text {
   left: 0;
-  right: 0; }
+  right: 0;
+}
 
 .info-content {
   color: white;
   -webkit-transition: all 0.2s ease-in;
-  transition: all 0.2s ease-in; }
+  transition: all 0.2s ease-in;
+}
 
 .info-content:hover {
   color: #a7ed57;
   -webkit-transition: all 0.2s ease-in;
-  transition: all 0.2s ease-in; }
+  transition: all 0.2s ease-in;
+}
 
 .container-custom {
   padding-left: 80px;
-  padding-right: 80px; }
+  padding-right: 80px;
+}
 
 .discount-parallax {
   background-color: #ffd063;
   height: 100vh;
   position: absolute;
   right: 10%;
-  margin-top: 150px; }
+  margin-top: 150px;
+}
 
 .best-seller-paralax {
   background-color: #a02c2d;
   height: 100vh;
   position: absolute;
   right: 30%;
-  margin-top: 150px; }
+  margin-top: 150px;
+}
 
 .discount-text {
   position: absolute;
@@ -344,7 +417,8 @@
   height: 70px;
   padding-top: 20px;
   margin-left: 2px;
-  margin-top: 2px; }
+  margin-top: 2px;
+}
 
 .best-seller-text {
   position: absolute;
@@ -355,7 +429,8 @@
   height: 70px;
   padding-top: 20px;
   margin-left: 2px;
-  margin-top: 2px; }
+  margin-top: 2px;
+}
 
 .add-to-cart-plus {
   opacity: 0;
@@ -365,13 +440,16 @@
   top: 15%;
   color: #a7ed57;
   -webkit-transition: all 0.2s ease-in;
-  transition: all 0.2s ease-in; }
+  transition: all 0.2s ease-in;
+}
 
 .add-to-cart-plus:hover {
-  color: #8bdb30; }
+  color: #8bdb30;
+}
 
 .product-card:hover .add-to-cart-plus {
-  opacity: 1; }
+  opacity: 1;
+}
 
 .vl {
   border-left: 2px solid gray;
@@ -379,19 +457,22 @@
   margin-top: 7px;
   margin-left: 0px;
   margin-right: 5px;
-  top: 0; }
+  top: 0;
+}
 
 /*# sourceMappingURL=myStyle.css.map */
 /*# sourceMappingURL=myStyle.css.map */
 /*# sourceMappingURL=myStyle.css.map */
 .dashed-link {
   border-bottom: 1px dashed teal;
-  color: teal; }
+  color: teal;
+}
 
 .login-card {
   width: 400px;
   margin-top: 100px;
-  margin-bottom: 100px; }
+  margin-bottom: 100px;
+}
 
 .double {
   zoom: 1.5;
@@ -404,7 +485,11 @@
   -ms-transform-origin: 0 0;
   -webkit-transform-origin: 0 0;
   -o-transform-origin: 0 0;
-  -moz-transform-origin: 0 0; }
+  -moz-transform-origin: 0 0;
+}
 
 #laws-check {
-  margin-left: -10px; }
+  margin-left: -10px;
+}
+
+/*# sourceMappingURL=Dashboard.css.map */
