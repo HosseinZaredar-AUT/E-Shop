@@ -14,12 +14,7 @@ router.post('/', function (req, res) {
                         if(!err) {
                             Category.findOne({name: "root"}, function (err, root) {
                                 if(!err) {
-                                    root.allInOne.push(newCategory['_id']);
-                                    root.save(function (err) {
-                                        if(!err) {
-                                            res.redirect('/')
-                                        }
-                                    })
+                                    res.redirect('/')
                                 }
                             });
                         }
