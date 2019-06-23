@@ -1,6 +1,6 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
-var commentSchema = mongoose.Schema({
+const commentSchema = mongoose.Schema({
     customer: {type: mongoose.Schema.Types.ObjectId, ref: 'Customer'},
     product: {type: mongoose.Schema.Types.ObjectId, ref: 'Product'},
     body: {
