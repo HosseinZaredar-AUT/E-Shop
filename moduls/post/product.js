@@ -10,6 +10,7 @@ let productSchema = mongoose.Schema({
     },
     status: {
         type: String,
+        enum: ['available', 'unavailable', 'soon'],
         required: true
     },
     price: {
