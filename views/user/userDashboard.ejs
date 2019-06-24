@@ -131,6 +131,11 @@
             </div>
             <div class="card-body text-white">
                 <div class="container">
+                    <form id="delete-order-success-block" class="success-message">
+                            <ul>
+                                <li>سفارش با موفقیت حذف شد</li>
+                            </ul>
+                        </form>
                     <div class="accordion md-accordion accordion-blocks" id="order-1" role="tablist"
                          aria-multiselectable="true">
                         <div class="card shadow-lg my-4">
@@ -236,7 +241,7 @@
                                         <span>- ۹۴۱۲۵۲۹۸</span>
                                     </h5>
                                 </a>
-                                <button class="btn btn-sm btn-danger float-left"> حذف</button>
+                                <button id= "removeOrderButton" class="btn btn-sm btn-danger float-left"> حذف</button>
                                 <button class="btn btn-sm btn-outline-info mx-3">
                                     <span>تحویل پست داده شده است</span>
                                 </button>
@@ -379,10 +384,10 @@
                             <div class="card-body border-bottom">
                                 <div class="container">
                                     <form id="new-address-success-block" class="success-message">
-                                            <ul>
-                                                <li>آدرس جدید با موفقیت اضافه شد</li>
-                                            </ul>
-                                        </form>
+                                        <ul>
+                                            <li>آدرس جدید با موفقیت اضافه شد</li>
+                                        </ul>
+                                    </form>
                                     <!-- <form action="userDashboard/address" method="post"
                                           class="needs-validation text-dark" novalidate> -->
                                         <div class="form-row">
@@ -454,16 +459,26 @@
                                     <span>آدرس ۱</span>
                                 </h5>
                             </a>
-                            <form action="userDashboard/address/id?_method=DELETE" method="post">
-                                <button class="btn btn-sm btn-danger float-left"> حذف</button>
-                            </form>
+                            <!-- <form action="userDashboard/address/id?_method=DELETE" method="post"> -->
+                                <button id="removeAddressButton" class="btn btn-sm btn-danger float-left"> حذف</button>
+                            <!-- </form> -->
                         </div>
                         <div id="address-1-body" class="collapse" role="tabpanel" aria-labelledby="address-1-header"
                              data-parent="#addresses">
                             <div class="card-body border-bottom">
                                 <div class="container">
-                                    <form method="post" action="userDashboard/address/id?_method=PUT"
-                                          class="needs-validation text-dark" novalidate>
+                                    <form id="delete-address-success-block" class="success-message">
+                                        <ul>
+                                            <li>آدرس با موفقیت حذف شد</li>
+                                        </ul>
+                                    </form>
+                                    <form id="change-address-success-block" class="success-message">
+                                            <ul>
+                                                <li>آدرس با موفقیت تغییر یافت</li>
+                                            </ul>
+                                        </form>
+                                    <!-- <form method="post" action="userDashboard/address/id?_method=PUT"
+                                          class="needs-validation text-dark" novalidate> -->
                                         <div class="form-row">
                                             <div class="col-md-3 mb-3">
                                                 <label for="address-1-province" class="float-right">استان</label>
@@ -474,7 +489,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-3 mb-3">
-                                                <label for="address-2-city" class="float-right">شهر</label>
+                                                <label for="address-1-city" class="float-right">شهر</label>
                                                 <input type="text" class="form-control" id="address-2-city"
                                                        placeholder="شهر" required>
                                                 <div class="invalid-feedback">
@@ -482,7 +497,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-3 mb-3">
-                                                <label for="address-2-phone" class="float-right">تلفن ثابت</label>
+                                                <label for="address-1-phone" class="float-right">تلفن ثابت</label>
                                                 <div class="input-group">
                                                     <input type="tel" class="form-control" id="address-2-phone" pattern=0[0-9]{10}
                                                            placeholder="تلفن ثابت (با پیش‌شماره‌ شهر)" aria-describedby="inputGroupPrepend"
@@ -504,7 +519,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-12 mb-3">
-                                                <label for="address-2-address" class="float-right">آدرس</label>
+                                                <label for="address-1-address" class="float-right">آدرس</label>
                                                 <div class="input-group">
                                                     <input type="text" class="form-control" id="address-2-address"
                                                            required>
@@ -514,8 +529,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <button class="btn btn-warning font-xs" type="submit">ذخیره</button>
-                                    </form>
+                                        <button id="changeAddressButton" class="btn btn-warning font-xs" type="submit">ذخیره</button>
+                                    <!-- </form> -->
                                 </div>
                             </div>
                         </div>
@@ -613,7 +628,101 @@
 <script src="js/jquery2_2.min.js" type="text/javascript"></script>
 <script src="js/bootstrap.min.js" type="text/javascript"></script>
 
+<!-- manages deletion of an order. -->
+<script> 
+    const removeOrderButton = document.getElementById("removeOrderButton");
+    removeOrderButton.addEventListener('click', () =>{
+        const id = removeOrderButton._id;
+        fetch('http://localhost:3000/order/' + toString(id),
+            {
+                method: 'DELETE',
+                body: JSON.stringify({
+                    id: id
+                }),
+                headers: {'Content-Type': 'application/json'}
+            }).then((res) => { 
+                if (res.status === 201){
+                    const successBlock = document.getElementById("delete-order-success-block");
+                    successBlock.style.display = "block";
+                    successBlock.style.color = "red";
+                    successBlock.border = "1px solid red";
+                    setTimeout(() => {
+                        successBlock.style.display = "none";
+                    }, 3000);
+                    
+                }
+            });
+    });
+
+</script>
+
 <!-- manages changes in address info. -->
+<script>
+    const changeAddressButton = document.getElementById("changeAddressButton");
+    changeAddressButton.addEventListener('click', () =>{
+        const   province   = document.getElementById("address-1-province"),
+                city       = document.getElementById("address-1-city"),
+                postalcode = document.getElementById("address-1-postal-code"),
+                homePhone  = document.getElementById("address-1-phone"),
+                address    = document.getElementById("address-1-address"),
+                id         = changeAddressButton._id;
+        fetch('http://localhost:3000/address/' + toString(id),
+            {
+                method: 'PUT',
+                body: JSON.stringify({
+                    province: province,
+                    city: city,
+                    postalcode: postalcode,
+                    homePhone: homePhone,
+                    address: address,
+                    id: id
+                }),
+                headers: {'Content-Type': 'application/json'}
+            }).then((res) => { 
+                if (res.status === 201){
+                    const successBlock = document.getElementById("change-address-success-block");
+                    successBlock.style.display = "block";
+                    setTimeout(() => {
+                        successBlock.style.display = "none";
+                    }, 3000);
+                    
+                }
+            });
+    });
+    
+</script>
+    
+
+<!-- manages deletion of an adress  -->
+<script>
+    const removeAddressButton = document.getElementById("removeAddressButton");
+    removeAddressButton.addEventListener('click', () =>{
+        const id = removeAddressButton._id;
+        fetch('http://localhost:3000/address/' + toString(id),
+            {
+                method: 'DELETE',
+                body: JSON.stringify({
+                    id: id
+                }),
+                headers: {'Content-Type': 'application/json'}
+            }).then((res) => { 
+                if (res.status === 201){
+                    const successBlock = document.getElementById("delete-address-success-block");
+                    successBlock.style.display = "block";
+                    successBlock.style.color = "red";
+                    successBlock.border = "1px solid red";
+                    setTimeout(() => {
+                        successBlock.style.display = "none";
+                    }, 3000);
+                    
+                }
+            });
+    });
+
+</script>
+
+
+<!-- manages the adding of a new address  -->
 <script>
     const addAddressButton = document.getElementById("addAddressButton");
     addAddressButton.addEventListener('click', () =>{

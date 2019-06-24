@@ -86,7 +86,10 @@ router.put('/address/:id', (req, res) => {
             address    : details.address
         }, function (err) {
             if(!err) {
-                res.redirect('back')
+                res.status(201).json({
+                    message: "Address changed successfully!"
+                });
+                // res.redirect('back')
             } else {
                 // error in update
                 res.redirect('back')
@@ -101,7 +104,9 @@ router.put('/address/:id', (req, res) => {
 router.delete('/address/:id', (req, res) => {
     Address.findOneAndDelete({_id: req.params.id}, function (err) {
         if(!err) {
-            res.redirect('back')
+            res.status(201).json({
+                message: "Address deleted successfully!"
+            });
         } else {
             // couldn't delete
             res.redirect('back')
