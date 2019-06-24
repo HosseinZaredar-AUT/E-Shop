@@ -4,16 +4,16 @@ let express = require('express'),
 
 router.post('/', function (req, res) {
     let newCategory = new Category({name: req.body.name});
-    if(req.body.parent === "اصلی") req.body.parent = "root";
-    Category.findOne({name: req.body.parent},function (err, foundParent) {
-        if(!err) {
+    if (req.body.parent === "اصلی") req.body.parent = "root";
+    Category.findOne({name: req.body.parent}, function (err, foundParent) {
+        if (!err) {
             newCategory.parent = foundParent;
             foundParent.save(function (err) {
-                if(!err) {
+                if (!err) {
                     newCategory.save(function (err) {
-                        if(!err) {
+                        if (!err) {
                             Category.findOne({name: "root"}, function (err, root) {
-                                if(!err) {
+                                if (!err) {
                                     res.redirect('/')
                                 }
                             });
@@ -27,15 +27,15 @@ router.post('/', function (req, res) {
 
 router.put('/', function (req, res) {
     Category.findOne({name: req.body.name}, function (err, category) {
-        if(req.body.parent === "اصلی") req.body.parent = "root";
-        Category.findOne({name: req.body.parent},function (err, foundParent) {
-            if(!err) {
+        if (req.body.parent === "اصلی") req.body.parent = "root";
+        Category.findOne({name: req.body.parent}, function (err, foundParent) {
+            if (!err) {
                 category.parent = foundParent;
                 foundParent.save(function (err) {
-                    if(!err) {
+                    if (!err) {
                         category.name = req.body.newName;
                         category.save(function (err) {
-                            if(!err) {
+                            if (!err) {
                                 res.redirect('/');
                             }
                         })
@@ -49,7 +49,7 @@ router.put('/', function (req, res) {
 router.delete('/', function (req, res) {
     Category.findOneAndDelete({name: req.body.name},
         function (err) {
-            if(!err) {
+            if (!err) {
                 res.redirect('/');
             }
         })

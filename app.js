@@ -1,4 +1,5 @@
 let express = require('express'),
+    CatsRouter = require('./routes/cats');
     cors = require('cors'),
     app = express(),
     bodyParser = require('body-parser'),
@@ -39,6 +40,7 @@ app.use(fileUpload());
 app.use(cors());
 
 app.use('/category', categoryRouter);
+app.use('/cats', CatsRouter);
 app.use('/product', productRouter);
 app.use('/register', registerRouter);
 app.use('/login', loginRouter);
