@@ -36,6 +36,7 @@ let customerSchema = mongoose.Schema({
         productsId: {type: mongoose.Schema.Types.ObjectId, ref: 'Product', required: true},
         quantity: {type: Number, required: true}
     }],
+    orders: [{type: mongoose.Schema.Types.ObjectId, ref: 'Order'}],
     comments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Comment'}]
 });
 module.exports = mongoose.model("Customer", customerSchema);

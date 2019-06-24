@@ -5,7 +5,11 @@ let express = require('express'),
     Order   = require('../../../moduls/user/order');
 
 router.get('/', (req, res) => {
-    res.render('user/userDashboard');
+    
+    Order.find({}, function(err, orders) { //TODO should get user's orders not all orders
+        res.render('user/userDashboard', {orders: orders});
+    });
+
 });
 
 router.delete('/order/:id', function (req, res) {

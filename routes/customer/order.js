@@ -9,6 +9,7 @@ let express = require('express'),
 
     router.post('/', function(req, res) {
         order = new Order({
+            address: req.body.address,
             firstname: req.body.firstname,
             lastname: req.body.lastname,
             nationalId: req.body.nationalId,
@@ -22,6 +23,9 @@ let express = require('express'),
             paymentMethod: req.body.paymentMethod,
             status: 'awaitsPayment'
         });
+
+        //TODO empty user's cart
+        //TODO add order to user's orders
         
         order.save(function (err, savedOrder) {
             if(!err) {

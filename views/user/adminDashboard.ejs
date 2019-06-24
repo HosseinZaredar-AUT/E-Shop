@@ -86,14 +86,9 @@
                 <div class="text-right" style="direction: rtl;color: #515151">
                     <i class="fa fa-plus d-inline"></i>
                     <a class="d-inline myClickableThingy" id="new-orders" onclick="openNewOrders()"
-                       style="font-size: 0.9rem">مشاهده سفارشات جدید</a>
+                       style="font-size: 0.9rem">مشاهده سفارشات</a>
                 </div>
                 <br>
-                <div class="text-right" style="direction: rtl;color: #515151">
-                    <i class="fa fa-plus d-inline"></i>
-                    <a class="d-inline myClickableThingy" id="old-orders" onclick="openOldOrders()"
-                       style="font-size: 0.9rem">مشاهده سفارشات قدیمی</a>
-                </div>
             </div>
         </div>
     </div>
@@ -167,478 +162,116 @@
         </div>
         <div class="card shadow mt-4 " id="new-orders-dec" style="">
             <div class="card-header bg-info text-center text-white" style="height: 45px">
-                <h6 class="d-inline ">سفارشات جدید</h6>
+                <h6 class="d-inline ">همه ی سفارشات</h6>
                 <i class="fa fa-users" style="font-size: 1.5rem"></i>
             </div>
             <div class="card-body text-white">
-                <div class="container">
-                    <div class="accordion md-accordion accordion-blocks" id="order-1" role="tablist"
-                         aria-multiselectable="true">
-                        <div class="card shadow-lg my-4">
-                            <div class="card-header bg-warning border-bottom" role="tab" id="order-header-1">
-                                <a data-toggle="collapse" data-parent="#order-1" class="text-white"
-                                   href="#order-body-1" aria-expanded="true"
-                                   aria-controls="collapseUnfiled">
-                                    <h5 class="mt-1 mb-0 float-right">
-                                        <i class="fa fa-angle-down rotate-icon mx-2"></i>
-                                        <span>عباس قادری</span>
-                                        <span>- ۹۴۱۲۵۲۹۸</span>
-                                    </h5>
-                                </a>
-                                <button class="btn btn-sm btn-danger float-left"> حذف</button>
-                                <button class="btn btn-sm btn-info float-left mx-2"> ! به پست تحویل داده شد</button>
-                            </div>
-                            <div id="order-body-1" class="collapse" role="tabpanel" aria-labelledby="order-header-1"
-                                 data-parent="#order-1">
-                                <div class="card-body border-bottom">
-                                    <div class="card w-100 mb-3">
-                                        <div class="card-body">
-                                            <div class="container">
-                                                <div class="row text-dark">
-                                                    <div class="col-md-3 col-sm-6 ml-auto float-right">
-                                                        <span class="float-right"> : آدرس  </span>
-                                                        <br>
-                                                        <span class="float-right"> قم - میدان امام - کوچه حسنی - بن بست زهرا - پلاک ۲ </span>
-                                                    </div>
-                                                    <div class="col-md-3 col-sm-6 ml-auto float-right">
-                                                        <span class="float-right">کد ملی : <strong>۱۷۴۲۸۳۴۲۳۱</strong></span>
-                                                        <br>
-                                                        <span class="float-right">استان : <strong>قم</strong></span>
-                                                        <br>
-                                                        <span class="float-right">شهر : <strong>قم</strong></span>
-                                                        <br>
-                                                        <span class="float-right">کد پستی : <strong>۸۸۷۳۹۲۱۳۴</strong></span>
-                                                    </div>
-                                                    <div class="col-md-3 col-sm-6 ml-auto float-right">
-                                                        <span class="float-right">نام : <strong>عباس</strong></span>
-                                                        <br>
-                                                        <span class="float-right">نام خانوادگی : <strong>قادری</strong></span>
-                                                        <br>
-                                                        <span class="float-right">تلفن همراه : <strong>۰۹۳۸۹۲۳۵۱۴۲</strong></span>
-                                                        <br>
-                                                        <span class="float-right">تلفن ثابت : <strong>۰۲۱۸۸۴۴۲۲۳۱</strong></span>
+                    <div class="container">
+                        <div class="accordion md-accordion accordion-blocks" id="order-1" role="tablist"
+                             aria-multiselectable="true">
+                            <% for (var i = 0; i < orders.length; i++) { %>
+                                <div class="card shadow-lg my-4">
+                                    <div class="card-header bg-warning border-bottom" role="tab" id="order-header-<%= (i+1) %>">
+                                        <% if (i == 0) { %>
+                                        <a data-toggle="collapse" data-parent="#order-1" class="text-white"
+                                           href="#order-body-<%= (i+1) %>" aria-expanded="true"
+                                           aria-controls="collapseUnfiled">
+                                        <% } else { %>
+                                            <a data-toggle="collapse" data-parent="#order-1" class="text-white"
+                                           href="#order-body-<%= (i+1) %>" aria-expanded="true"
+                                           aria-controls="order-body-<%= (i+1) %>">
+                                        <% } %>
+                                            <h5 class="mt-1 mb-0 float-right">
+                                                <i class="fa fa-angle-down rotate-icon mx-2"></i>
+                                                <span>سفارش</span>
+                                                <span>- ۹۴۱۲۵۲۹۸</span>
+                                            </h5>
+                                        </a>
+                                        <button class="btn btn-sm btn-danger float-left"> حذف</button>
+                                        <button class="btn btn-sm btn-outline-info mx-3">
+                                            <span><%= orders[i].status %></span>
+                                        </button>
+                                    </div>
+                                    <div id="order-body-<%= (i+1) %>" class="collapse" role="tabpanel" aria-labelledby="order-header-<%= (i+1) %>"
+                                         data-parent="#order-1">
+                                        <div class="card-body border-bottom">
+                                            <div class="card w-100 mb-3">
+                                                <div class="card-body">
+                                                    <div class="container">
+                                                        <div class="row text-dark">
+                                                            <div class="col-md-3 col-sm-6 ml-auto float-right">
+                                                                <span class="float-right"> : آدرس  </span>
+                                                                <br>
+                                                                <span class="float-right"><%= orders[i].address %></span>
+                                                            </div>
+                                                            <div class="col-md-3 col-sm-6 ml-auto float-right">
+                                                                <span class="float-right">کد ملی : <strong><%= orders[i].nationalId %></strong></span>
+                                                                <br>
+                                                                <span class="float-right">استان : <strong>-</strong></span>
+                                                                <br>
+                                                                <span class="float-right">شهر : <strong>-</strong></span>
+                                                                <br>
+                                                                <span class="float-right">کد پستی : <strong>-</strong></span>
+                                                                <br>
+                                                                <span class="float-right">کد رهگیری : <strong><%= orders[i].trackingCode %></strong></span>
+                                                            </div>
+                                                            <div class="col-md-3 col-sm-6 ml-auto float-right">
+                                                                <span class="float-right">نام : <strong><%= orders[i].firstname %></strong></span>
+                                                                <br>
+                                                                <span class="float-right">نام خانوادگی : <strong><%= orders[i].lastname %></strong></span>
+                                                                <br>
+                                                                <span class="float-right">تلفن همراه : <strong><%= orders[i].phoneNumber %></strong></span>
+                                                                <br>
+                                                                <span class="float-right">تلفن ثابت : <strong><%= orders[i].homeNumber%></strong></span>
+                                                                <br>
+                                                                <span class="float-right">روش پرداخت : <strong><%= orders[i].paymentMethod%></strong></span>
+                                                                <br>
+                                                                <span class="float-right">روش ارسال : <strong><%= orders[i].shippingMethod%></strong></span>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="table-responsive">
-                                        <table class="table table-hover mb-0 mx-5">
-                                            <thead>
-                                            <tr class="font-sm">
-                                                <th class="th-lg"><a>شماره<i class="fa fa-sort ml-1"></i></a></th>
-                                                <th class="th-lg"><a>نام کالا<i class="fa fa-sort ml-1"></i></a></th>
-                                                <th class="th-lg"><a>تعداد<i class="fa fa-sort ml-1"></i></a></th>
-                                                <th class="th-lg"><a>شیوه ارسال<i class="fa fa-sort ml-1"></i></a></th>
-                                                <th></th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr>
-                                                <td class="pl-3">۱</td>
-                                                <td>لباس خفن</td>
-                                                <td><strong>۳</strong></td>
-                                                <td>پست معمولی</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="pl-3">۲</td>
-                                                <td>لباس معمولی</td>
-                                                <td><strong>۳</strong></td>
-                                                <td>پست پیشتاز</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="pl-3">۳</td>
-                                                <td>پژو ۴۰۵</td>
-                                                <td><strong>۱۲</strong></td>
-                                                <td>پست معمولی</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="pl-3">۴</td>
-                                                <td>شامپو</td>
-                                                <td><strong>۱</strong></td>
-                                                <td>پست معمولی</td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card shadow-lg my-4">
-                            <div class="card-header bg-warning border-bottom" role="tab" id="order-header-2">
-                                <a data-toggle="collapse" data-parent="#order-1" class="text-white"
-                                   href="#order-body-2" aria-expanded="true"
-                                   aria-controls="order-body-2">
-                                    <h5 class="mt-1 mb-0 float-right">
-                                        <i class="fa fa-angle-down rotate-icon mx-2"></i>
-                                        <span>عباس قادری</span>
-                                        <span>- ۹۴۱۲۵۲۹۸</span>
-                                    </h5>
-                                </a>
-                                <button class="btn btn-sm btn-danger float-left"> حذف</button>
-                                <button class="btn btn-sm btn-info float-left mx-2"> ! به پست تحویل داده شد</button>
-                            </div>
-                            <div id="order-body-2" class="collapse" role="tabpanel" aria-labelledby="order-header-2"
-                                 data-parent="#order-1">
-                                <div class="card-body border-bottom">
-                                    <div class="card w-100 mb-3">
-                                        <div class="card-body">
-                                            <div class="container">
-                                                <div class="row text-dark">
-                                                    <div class="col-md-3 col-sm-6 ml-auto float-right">
-                                                        <span class="float-right"> : آدرس  </span>
-                                                        <br>
-                                                        <span class="float-right"> قم - میدان امام - کوچه حسنی - بن بست زهرا - پلاک ۲ </span>
-                                                    </div>
-                                                    <div class="col-md-3 col-sm-6 ml-auto float-right">
-                                                        <span class="float-right">کد ملی : <strong>۱۷۴۲۸۳۴۲۳۱</strong></span>
-                                                        <br>
-                                                        <span class="float-right">استان : <strong>قم</strong></span>
-                                                        <br>
-                                                        <span class="float-right">شهر : <strong>قم</strong></span>
-                                                        <br>
-                                                        <span class="float-right">کد پستی : <strong>۸۸۷۳۹۲۱۳۴</strong></span>
-                                                    </div>
-                                                    <div class="col-md-3 col-sm-6 ml-auto float-right">
-                                                        <span class="float-right">نام : <strong>عباس</strong></span>
-                                                        <br>
-                                                        <span class="float-right">نام خانوادگی : <strong>قادری</strong></span>
-                                                        <br>
-                                                        <span class="float-right">تلفن همراه : <strong>۰۹۳۸۹۲۳۵۱۴۲</strong></span>
-                                                        <br>
-                                                        <span class="float-right">تلفن ثابت : <strong>۰۲۱۸۸۴۴۲۲۳۱</strong></span>
-                                                    </div>
-                                                </div>
+                                            <div class="table-responsive">
+                                                <table class="table table-hover mb-0 mx-5">
+                                                    <thead>
+                                                    <tr class="font-sm">
+                                                        <th class="th-lg"><a>شماره<i class="fa fa-sort ml-1"></i></a></th>
+                                                        <th class="th-lg"><a>نام کالا<i class="fa fa-sort ml-1"></i></a></th>
+                                                        <th class="th-lg"><a>تعداد<i class="fa fa-sort ml-1"></i></a></th>
+                                                        <th></th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr>
+                                                        <td class="pl-3">۱</td>
+                                                        <td>لباس خفن</td>
+                                                        <td><strong>۳</strong></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="pl-3">۲</td>
+                                                        <td>لباس معمولی</td>
+                                                        <td><strong>۳</strong></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="pl-3">۳</td>
+                                                        <td>پژو ۴۰۵</td>
+                                                        <td><strong>۱۲</strong></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="pl-3">۴</td>
+                                                        <td>شامپو</td>
+                                                        <td><strong>۱</strong></td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="table-responsive">
-                                        <table class="table table-hover mb-0 mx-5">
-                                            <thead>
-                                            <tr class="font-sm">
-                                                <th class="th-lg"><a>شماره<i class="fa fa-sort ml-1"></i></a></th>
-                                                <th class="th-lg"><a>نام کالا<i class="fa fa-sort ml-1"></i></a></th>
-                                                <th class="th-lg"><a>تعداد<i class="fa fa-sort ml-1"></i></a></th>
-                                                <th class="th-lg"><a>شیوه ارسال<i class="fa fa-sort ml-1"></i></a></th>
-                                                <th></th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr>
-                                                <td class="pl-3">۱</td>
-                                                <td>لباس خفن</td>
-                                                <td><strong>۳</strong></td>
-                                                <td>پست معمولی</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="pl-3">۲</td>
-                                                <td>لباس معمولی</td>
-                                                <td><strong>۳</strong></td>
-                                                <td>پست پیشتاز</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="pl-3">۳</td>
-                                                <td>پژو ۴۰۵</td>
-                                                <td><strong>۱۲</strong></td>
-                                                <td>پست معمولی</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="pl-3">۴</td>
-                                                <td>شامپو</td>
-                                                <td><strong>۱</strong></td>
-                                                <td>پست معمولی</td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
                                 </div>
-                            </div>
+                            <% } %>  
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="card shadow mt-4 d-none" id="old-orders-dec" style="">
-            <div class="card-header bg-info text-center text-white" style="height: 45px">
-                <h6 class="d-inline">سفارشات قدیمی</h6>
-                <i class="fa fa-users" style="font-size: 1.5rem"></i>
-            </div>
-            <div class="card-body text-white">
-                <div class="container">
-                    <div class="accordion md-accordion accordion-blocks" id="order-2" role="tablist"
-                         aria-multiselectable="true">
-                        <div class="card shadow-lg my-4">
-                            <div class="card-header bg-success border-bottom" role="tab" id="order-header-3">
-                                <a data-toggle="collapse" data-parent="#order-2" class="text-white"
-                                   href="#order-body-3" aria-expanded="true"
-                                   aria-controls="order-body-3">
-                                    <h5 class="mt-1 mb-0 float-right">
-                                        <i class="fa fa-angle-down rotate-icon mx-2"></i>
-                                        <span>عباس قادری</span>
-                                        <span>- ۹۴۱۲۵۲۹۸</span>
-                                    </h5>
-                                </a>
-                                <button class="btn btn-sm btn-danger float-left"> حذف</button>
-                                <button class="btn btn-sm btn-info float-left mx-2"> ! به پست تحویل داده شد</button>
-                            </div>
-                            <div id="order-body-3" class="collapse" role="tabpanel" aria-labelledby="order-header-3"
-                                 data-parent="#order-2">
-                                <div class="card-body border-bottom">
-                                    <div class="card w-100 mb-3">
-                                        <div class="card-body">
-                                            <div class="container">
-                                                <div class="row text-dark">
-                                                    <div class="col-md-3 col-sm-6 ml-auto float-right">
-                                                        <span class="float-right"> : آدرس  </span>
-                                                        <br>
-                                                        <span class="float-right"> قم - میدان امام - کوچه حسنی - بن بست زهرا - پلاک ۲ </span>
-                                                    </div>
-                                                    <div class="col-md-3 col-sm-6 ml-auto float-right">
-                                                        <span class="float-right">کد ملی : <strong>۱۷۴۲۸۳۴۲۳۱</strong></span>
-                                                        <br>
-                                                        <span class="float-right">استان : <strong>قم</strong></span>
-                                                        <br>
-                                                        <span class="float-right">شهر : <strong>قم</strong></span>
-                                                        <br>
-                                                        <span class="float-right">کد پستی : <strong>۸۸۷۳۹۲۱۳۴</strong></span>
-                                                    </div>
-                                                    <div class="col-md-3 col-sm-6 ml-auto float-right">
-                                                        <span class="float-right">نام : <strong>عباس</strong></span>
-                                                        <br>
-                                                        <span class="float-right">نام خانوادگی : <strong>قادری</strong></span>
-                                                        <br>
-                                                        <span class="float-right">تلفن همراه : <strong>۰۹۳۸۹۲۳۵۱۴۲</strong></span>
-                                                        <br>
-                                                        <span class="float-right">تلفن ثابت : <strong>۰۲۱۸۸۴۴۲۲۳۱</strong></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="table-responsive">
-                                        <table class="table table-hover mb-0 mx-5">
-                                            <thead>
-                                            <tr class="font-sm">
-                                                <th class="th-lg"><a>شماره<i class="fa fa-sort ml-1"></i></a></th>
-                                                <th class="th-lg"><a>نام کالا<i class="fa fa-sort ml-1"></i></a></th>
-                                                <th class="th-lg"><a>تعداد<i class="fa fa-sort ml-1"></i></a></th>
-                                                <th class="th-lg"><a>شیوه ارسال<i class="fa fa-sort ml-1"></i></a></th>
-                                                <th></th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr>
-                                                <td class="pl-3">۱</td>
-                                                <td>لباس خفن</td>
-                                                <td><strong>۳</strong></td>
-                                                <td>پست معمولی</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="pl-3">۲</td>
-                                                <td>لباس معمولی</td>
-                                                <td><strong>۳</strong></td>
-                                                <td>پست پیشتاز</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="pl-3">۳</td>
-                                                <td>پژو ۴۰۵</td>
-                                                <td><strong>۱۲</strong></td>
-                                                <td>پست معمولی</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="pl-3">۴</td>
-                                                <td>شامپو</td>
-                                                <td><strong>۱</strong></td>
-                                                <td>پست معمولی</td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card shadow-lg my-4">
-                            <div class="card-header bg-success border-bottom" role="tab" id="order-header-4">
-                                <a data-toggle="collapse" data-parent="#order-2" class="text-white"
-                                   href="#order-body-4" aria-expanded="true"
-                                   aria-controls="order-body-4">
-                                    <h5 class="mt-1 mb-0 float-right">
-                                        <i class="fa fa-angle-down rotate-icon mx-2"></i>
-                                        <span>عباس قادری</span>
-                                        <span>- ۹۴۱۲۵۲۹۸</span>
-                                    </h5>
-                                </a>
-                                <button class="btn btn-sm btn-danger float-left"> حذف</button>
-                                <button class="btn btn-sm btn-info float-left mx-2"> ! به پست تحویل داده شد</button>
-                            </div>
-                            <div id="order-body-4" class="collapse" role="tabpanel" aria-labelledby="order-header-4"
-                                 data-parent="#order-2">
-                                <div class="card-body border-bottom">
-                                    <div class="card w-100 mb-3">
-                                        <div class="card-body">
-                                            <div class="container">
-                                                <div class="row text-dark">
-                                                    <div class="col-md-3 col-sm-6 ml-auto float-right">
-                                                        <span class="float-right"> : آدرس  </span>
-                                                        <br>
-                                                        <span class="float-right"> قم - میدان امام - کوچه حسنی - بن بست زهرا - پلاک ۲ </span>
-                                                    </div>
-                                                    <div class="col-md-3 col-sm-6 ml-auto float-right">
-                                                        <span class="float-right">کد ملی : <strong>۱۷۴۲۸۳۴۲۳۱</strong></span>
-                                                        <br>
-                                                        <span class="float-right">استان : <strong>قم</strong></span>
-                                                        <br>
-                                                        <span class="float-right">شهر : <strong>قم</strong></span>
-                                                        <br>
-                                                        <span class="float-right">کد پستی : <strong>۸۸۷۳۹۲۱۳۴</strong></span>
-                                                    </div>
-                                                    <div class="col-md-3 col-sm-6 ml-auto float-right">
-                                                        <span class="float-right">نام : <strong>عباس</strong></span>
-                                                        <br>
-                                                        <span class="float-right">نام خانوادگی : <strong>قادری</strong></span>
-                                                        <br>
-                                                        <span class="float-right">تلفن همراه : <strong>۰۹۳۸۹۲۳۵۱۴۲</strong></span>
-                                                        <br>
-                                                        <span class="float-right">تلفن ثابت : <strong>۰۲۱۸۸۴۴۲۲۳۱</strong></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="table-responsive">
-                                        <table class="table table-hover mb-0 mx-5">
-                                            <thead>
-                                            <tr class="font-sm">
-                                                <th class="th-lg"><a>شماره<i class="fa fa-sort ml-1"></i></a></th>
-                                                <th class="th-lg"><a>نام کالا<i class="fa fa-sort ml-1"></i></a></th>
-                                                <th class="th-lg"><a>تعداد<i class="fa fa-sort ml-1"></i></a></th>
-                                                <th class="th-lg"><a>شیوه ارسال<i class="fa fa-sort ml-1"></i></a></th>
-                                                <th></th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr>
-                                                <td class="pl-3">۱</td>
-                                                <td>لباس خفن</td>
-                                                <td><strong>۳</strong></td>
-                                                <td>پست معمولی</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="pl-3">۲</td>
-                                                <td>لباس معمولی</td>
-                                                <td><strong>۳</strong></td>
-                                                <td>پست پیشتاز</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="pl-3">۳</td>
-                                                <td>پژو ۴۰۵</td>
-                                                <td><strong>۱۲</strong></td>
-                                                <td>پست معمولی</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="pl-3">۴</td>
-                                                <td>شامپو</td>
-                                                <td><strong>۱</strong></td>
-                                                <td>پست معمولی</td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card shadow-lg my-4">
-                            <div class="card-header bg-success border-bottom" role="tab" id="order-header-5">
-                                <a data-toggle="collapse" data-parent="#order-2" class="text-white"
-                                   href="#order-body-5" aria-expanded="true"
-                                   aria-controls="order-body-5">
-                                    <h5 class="mt-1 mb-0 float-right">
-                                        <i class="fa fa-angle-down rotate-icon mx-2"></i>
-                                        <span>عباس قادری</span>
-                                        <span>- ۹۴۱۲۵۲۹۸</span>
-                                    </h5>
-                                </a>
-                                <button class="btn btn-sm btn-danger float-left"> حذف</button>
-                                <button class="btn btn-sm btn-info float-left mx-2"> ! به پست تحویل داده شد</button>
-                            </div>
-                            <div id="order-body-5" class="collapse" role="tabpanel" aria-labelledby="order-header-5"
-                                 data-parent="#order-2">
-                                <div class="card-body border-bottom">
-                                    <div class="card w-100 mb-3">
-                                        <div class="card-body">
-                                            <div class="container">
-                                                <div class="row text-dark">
-                                                    <div class="col-md-3 col-sm-6 ml-auto float-right">
-                                                        <span class="float-right"> : آدرس  </span>
-                                                        <br>
-                                                        <span class="float-right"> قم - میدان امام - کوچه حسنی - بن بست زهرا - پلاک ۲ </span>
-                                                    </div>
-                                                    <div class="col-md-3 col-sm-6 ml-auto float-right">
-                                                        <span class="float-right">کد ملی : <strong>۱۷۴۲۸۳۴۲۳۱</strong></span>
-                                                        <br>
-                                                        <span class="float-right">استان : <strong>قم</strong></span>
-                                                        <br>
-                                                        <span class="float-right">شهر : <strong>قم</strong></span>
-                                                        <br>
-                                                        <span class="float-right">کد پستی : <strong>۸۸۷۳۹۲۱۳۴</strong></span>
-                                                    </div>
-                                                    <div class="col-md-3 col-sm-6 ml-auto float-right">
-                                                        <span class="float-right">نام : <strong>عباس</strong></span>
-                                                        <br>
-                                                        <span class="float-right">نام خانوادگی : <strong>قادری</strong></span>
-                                                        <br>
-                                                        <span class="float-right">تلفن همراه : <strong>۰۹۳۸۹۲۳۵۱۴۲</strong></span>
-                                                        <br>
-                                                        <span class="float-right">تلفن ثابت : <strong>۰۲۱۸۸۴۴۲۲۳۱</strong></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="table-responsive">
-                                        <table class="table table-hover mb-0 mx-5">
-                                            <thead>
-                                            <tr class="font-sm">
-                                                <th class="th-lg"><a>شماره<i class="fa fa-sort ml-1"></i></a></th>
-                                                <th class="th-lg"><a>نام کالا<i class="fa fa-sort ml-1"></i></a></th>
-                                                <th class="th-lg"><a>تعداد<i class="fa fa-sort ml-1"></i></a></th>
-                                                <th class="th-lg"><a>شیوه ارسال<i class="fa fa-sort ml-1"></i></a></th>
-                                                <th></th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr>
-                                                <td class="pl-3">۱</td>
-                                                <td>لباس خفن</td>
-                                                <td><strong>۳</strong></td>
-                                                <td>پست معمولی</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="pl-3">۲</td>
-                                                <td>لباس معمولی</td>
-                                                <td><strong>۳</strong></td>
-                                                <td>پست پیشتاز</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="pl-3">۳</td>
-                                                <td>پژو ۴۰۵</td>
-                                                <td><strong>۱۲</strong></td>
-                                                <td>پست معمولی</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="pl-3">۴</td>
-                                                <td>شامپو</td>
-                                                <td><strong>۱</strong></td>
-                                                <td>پست معمولی</td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
         <div class="card shadow mt-4 d-none" id="addProduct" style="">
