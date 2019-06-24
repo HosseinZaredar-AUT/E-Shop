@@ -21,7 +21,7 @@ router.delete('/order/:id', function (req, res) {
 
 router.put('/info', (req, res) => {
     let details = req.body;
-    console.log(details.firstname);
+    // console.log(details.firstname);
     if(details.firstname && details.lastname && details.username
         && details.password && details.email && details.phone && details.idNumber) {
         Customer.findOneAndUpdate({_id: req.session.user._id}, {
@@ -59,7 +59,10 @@ router.post('/address', (req, res) => {
             address    : details.address
         }).save(function (err, savedAddress) {
             if(!err) {
-                res.redirect('back')
+                res.status(201).json({
+                    message: "Address added successfully!"
+                });
+                // res.redirect('back')
             } else {
                 // error in saving address.
                 res.redirect('back')
