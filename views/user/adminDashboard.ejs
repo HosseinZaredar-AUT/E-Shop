@@ -355,6 +355,8 @@
                                                             <% if(cats[x].level >= cats[x+1].level) { %>
                                                                 <option><%= cats[x].name%></option>
                                                             <% } %>
+                                                        <% } else { %>
+                                                              <option><%= cats[x].name%></option>
                                                         <% } %>
                                                     <% } %>
                                                 </select>

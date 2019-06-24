@@ -46,7 +46,7 @@ app.use('/register', registerRouter);
 app.use('/login', loginRouter);
 app.use('/userDashboard', middlewares.isAuthenticatedUser ,userDashboardRouter);
 app.use('/adminDashboard', middlewares.isAuthenticatedAdmin ,adminDashboardRouter);
-app.use('/cart', cartRouter);
+app.use('/cart', middlewares.isAuthenticatedUser,cartRouter);
 app.use('/order', orderRouter);
 app.use('/', indexRouter);
 

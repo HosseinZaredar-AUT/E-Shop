@@ -5,6 +5,7 @@ let express = require('express'),
     rimraf = require('rimraf'),
     filepond = require('filepond'),
     uuid = require('uuid/v1'),
+    usefulFunctions = require('../../middlewares/usefulFunctions'),
     Category = require('../../moduls/post/category'),
     Product = require('../../mo' +
         'duls/post/product'),
@@ -12,17 +13,26 @@ let express = require('express'),
     Comment = require('../../moduls/post/comment');
 
 
-router.get('/', async (req, res) => {
-    // try {
-    //     const prodId = req.params.productId;
-    //     const product = await Product.findById(prodId);
-    //     res.render('product/product', {
-    //         product: product,
-    //         comments: product.commments
-    //     });
-    // } catch (e) {
-    // }
-    res.render('product/product');
+router.get('/:productId', async (req, res) => {
+    try {
+        const prodId = req.params.productId;
+        const product = await Product.findById(prodId);
+        const recommends = await Product.find({category: product.category});
+        let root = await Category.findOne({name: 'root'});
+        let cats = [];
+        root.getChildrenTree(function (err, childs) {
+            if(!err) {
+                let cats = usefulFunctions.getDataArray(childs);
+                res.render('product/product', {
+                    product: product,
+                    cats: cats,
+                    recommends: recommends
+                });
+            }
+        });
+    } catch (e) {
+
+    }
 });
 
 router.put('/addComment/:productId', async (req, res) => {

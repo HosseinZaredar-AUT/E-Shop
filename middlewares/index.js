@@ -5,9 +5,7 @@ module.exports = {
                 next();
             } else {
                 next();
-
                 // res.redirect('/');
-
             }
         },
     isAuthenticatedAdmin:
@@ -16,7 +14,6 @@ module.exports = {
                 next();
             } else {
                 next();
-
                 // res.redirect('/');
             }
         }

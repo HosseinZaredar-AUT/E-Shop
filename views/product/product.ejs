@@ -3,14 +3,14 @@
 <head>
     <title>تی شرت خفن</title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="css/slick.css">
-    <link rel="stylesheet" type="text/css" href="css/slick-theme.css">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/css/slick.css">
+    <link rel="stylesheet" type="text/css" href="/css/slick-theme.css">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/bootstrap.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <!--<link rel="stylesheet" href="css/myStyle.css">-->
-    <link rel="stylesheet" href="css/myStyle2.css">
-    <link rel="stylesheet" href="css/myStyle3.css">
+    <link rel="stylesheet" href="/css/myStyle2.css">
+    <link rel="stylesheet" href="/css/myStyle3.css">
     <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
     <script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js"></script>
     <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet">
@@ -63,36 +63,47 @@
                                 </div>
                                 <div class="card-body px-0">
                                     <div class="" style="direction: rtl">
-                                        <input type="text" name="productID" placeholder="کد کالا :"
+                                        <input type="text" name="productID" value="<%=product.productID%>"
                                                class="form-control d-inline w-75">
                                     </div>
                                     <hr>
                                     <div class="" style="direction: rtl">
-                                        <input type="text" name="name" placeholder="نام کالا :"
+                                        <input type="text" name="name" value="<%=product.name%>"
                                                class="form-control d-inline w-75">
                                     </div>
                                     <hr>
                                     <div style="direction: rtl">
                                         <select name="status" type=""
                                                 class="form-control d-inline w-75">
-                                            <option value="available" class="" style="">موجود</option>
+                                            <% if(product.status === 'available') { %>
+                                            <option value="available" class="" style="" selected>موجود</option>
                                             <option value="unavailable" class="" style="">ناموجود</option>
                                             <option value="soon" class="" style="">به زودی</option>
+                                            <% } %>
+                                            <% if(product.status === 'unavailable') { %>
+                                            <option value="available" class="" style="">موجود</option>
+                                            <option value="unavailable" class="" style="" selected>ناموجود</option>
+                                            <option value="soon" class="" style="">به زودی</option>                                            <% } %>
+                                            <% if(product.status === 'soon') { %>
+                                            <option value="available" class="" style="">موجود</option>
+                                            <option value="unavailable" class="" style="">ناموجود</option>
+                                            <option value="soon" class="" style="" selected>به زودی</option>
+                                            <% } %>
                                         </select>
                                     </div>
                                     <hr>
                                     <div style="direction: rtl">
-                                        <input type="number" name="price" min="0" step="500" placeholder="قیمت کالا :"
+                                        <input type="number" name="price" min="0" step="500" value="<%=product.price%>"
                                                class="form-control d-inline w-75">
                                     </div>
                                     <hr>
                                     <div style="direction: rtl">
-                                        <input type="number" name="discount" min="0" max="100" placeholder="تخفیف :"
+                                        <input type="number" name="discount" min="0" max="100" value="<%=product.discount%>"
                                                class="form-control d-inline w-75">
                                     </div>
                                     <hr>
                                     <div style="direction: rtl">
-                                        <input type="number" name="remainingNumber" min="0" placeholder="تعداد کالا :"
+                                        <input type="number" name="remainingNumber" min="0" value="<%=product.remainingNumber%>"
                                                class="form-control d-inline w-75">
                                     </div>
                                 </div>
@@ -101,7 +112,7 @@
                                 </div>
                                 <div id="color" class="card-body px-0">
                                     <div style="direction: rtl">
-                                        <input type="color" name="color"
+                                        <input type="color" name="color" value="<%=product.color%>"
                                                class="form-control d-inline w-75">
                                     </div>
                                     <hr>
@@ -122,24 +133,13 @@
                                 <div id="cat" class="card-body px-0">
                                     <div style="direction: rtl">
                                         <select type="text" name="category" class="form-control d-inline w-75">
-                                            <option selected>
-                                                دسته بندی
-                                            </option>
-                                            <option>
-                                                خوراکی
-                                            </option>
-                                            <option>
-                                                لباس
-                                            </option>
-                                            <option>
-                                                ساز
-                                            </option>
-                                            <option>
-                                                لوازم بهداشتی
-                                            </option>
-                                            <option>
-                                                خودرو
-                                            </option>
+                                            <% for(var i=0;i<cats.length; i++) { %>
+                                                <% if(product.category === cats[i]['_id']) { %>
+                                                    <option selected><%=cats[i].name%></option>
+                                                <% } else { %>
+                                                    <option><%=cats[i].name%></option>
+                                                <% } %>
+                                            <% } %>
                                         </select>
                                     </div>
                                 </div>
@@ -149,8 +149,8 @@
                                     </div>
                                     <br>
                                     <div class="" style="direction: rtl">
-                                        <textarea rows="5" name="description" placeholder="توضیحات :"
-                                               class="form-control d-inline w-75"></textarea>
+                                        <textarea rows="5" name="description"
+                                               class="form-control d-inline w-75"><%=product.description%></textarea>
                                     </div>
                                 <br>
                                 <div class="card-header font-sm mb-1 py-3 d-inline px-0" style="direction: rtl">
@@ -158,10 +158,13 @@
                                 </div>
                                 <div id="other" class="card-body px-0">
                                     <div style="direction: rtl">
-                                        <input type="text" name="property" class="form-control d-inline w-25"
-                                               placeholder="مشخصه :">
-                                        <input type="text" class="form-control d-inline w-50"
-                                               placeholder="توضیح :">
+                                        <% for(var j=0;j<product.properties.length; j++) { %>
+                                            <% console.log(product.properties)%>
+                                            <input type="text" name="property" class="form-control d-inline w-25"
+                                                   value="<%=product.properties[j].key%>">
+                                            <input type="text" class="form-control d-inline w-50"
+                                                   value="<%=product.properties[j].value%>">
+                                        <% } %>
                                     </div>
                                     <hr>
                                     <a onclick="addOther()" class="btn btn-info text-white"
@@ -184,48 +187,47 @@
     </div>
 </div>
 
-<% include ../partials/header.ejs %>
+<% include ../partials/header2.ejs %>
 
 <div id="product-body" class="my-5">
     <div class="container">
         <div class="row  text-center">
             <div class="col-md-7 col-sm-12 mt-5">
                 <div class="img-magnifier-container mb-5">
-                    <img id="myimage" src="Images/1.jpg" width="400">
+                    <img id="myimage" src="/<%=product.images[0]%>" width="400">
                 </div>
                 <div class="row justify-content-center mr-5">
-                    <div class="col-md-2 mx-4">
-                        <button>
-                            <img id="thumbnail1" src="Images/1.jpg" width="120">
-                        </button>
-                    </div>
-                    <div class="col-md-2 mx-4">
-                        <button>
-                            <img id="thumbnail2" src="Images/2.jpg" width="120">
-                        </button>
-                    </div>
-                    <div class="col-md-2 mx-4">
-                        <button>
-                            <img id="thumbnail3" src="Images/3.jpg" width="120">
-                        </button>
-                    </div>
+                    <% product.images.forEach(function (image) { %>
+                        <div class="col-md-2 mx-4">
+                            <button>
+                                <img id="thumbnail1" src="/<%=image%>" width="120">
+                            </button>
+                        </div>
+                    <% }) %>
                 </div>
             </div>
             <div class="col-md-5 col-sm-12 mt-5">
                 <div class="card w-100">
                     <h5 class="card-header font-sm mb-1 p-4">
-                        کد کالا : ۱۲۴۳۴۲۲
+                        کد کالا :
+                        <span><%=product.productID%></span>
                         <a onclick="dropThePage('editProduct'); fetchImages()" class="btn btn-dark ml-2">
                             <i class="fa fa-edit text-white"></i>
                         </a>
                     </h5>
                     <div class="card-body">
-                        <h5 class="card-title mt-3 mb-5 font-md font-bold">لباس خفن</h5>
+                        <h5 class="card-title mt-3 mb-5 font-md font-bold"><%=product.name%></h5>
                         <hr>
                         <p class="font-light font-sm">: وضعیت موجودی</p>
+                        <% if(product.status === 'available') { %>
                         <p class="font-md font-light text-success">- موجود -</p>
+                        <% } else if(product.status === 'unavailable') { %>
+                        <p class="font-md font-light text-success">- نا موجود -</p>
+                        <% } else { %>
+                        <p class="font-md font-light text-success">- به زودی -</p>
+                        <% } %>
                         <hr>
-                        <p class="font-md font-light text-info my-4"> ۳۰۰.۰۰۰ تومان </p>
+                        <p class="font-md font-light text-info my-4"> <%=product.price%> </p>
                         <a href="#" class="btn btn-success text-white">اضافه به سبد خرید
                             <i class="fa fa-plus"></i>
                         </a>
@@ -251,84 +253,24 @@
 <section id="recom-dec">
     <h3 class="mx-auto text-center py-4 w-25 border-bottom">محصولات مرتبط</h3>
     <div class="regular slider text-center">
-        <div class="p-3">
-            <div class="card product-card">
-                <img class="card-img-top" src="images/6.jpg" alt="Card image cap">
-                <i class="fa fa-plus add-to-cart-plus"></i>
-                <div class="card-body">
-                    <h5 class="card-title"><a href="product.html" style="text-decoration: none">تی شرت خفن</a></h5>
-                    <p class="card-text font-light" style="font-size: 3vh">۳۰۰.۰۰۰ تومان</p>
-                    <a href="#" class="btn btn-success text-white">اضافه به سبد خرید
-                        <i class="fa fa-plus"></i>
-                    </a>
+        <% recommends.forEach(function (recommendedProduct) { %>
+            <div class="p-3">
+                <div class="card product-card">
+                    <img class="card-img-top" src="/<%=recommendedProduct.images[0]%>" alt="Card image cap">
+                    <i class="fa fa-plus add-to-cart-plus"></i>
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="product.html" style="text-decoration: none"><%=recommendedProduct.name%></a></h5>
+                        <p class="card-text font-light" style="font-size: 3vh">
+                            <span>تومان</span>
+                            <%=recommendedProduct.price%>
+                        </p>
+                        <a href="#" class="btn btn-success text-white">اضافه به سبد خرید
+                            <i class="fa fa-plus"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="p-3">
-            <div class="card product-card">
-                <img class="card-img-top" src="images/6.jpg" alt="Card image cap">
-                <i class="fa fa-plus add-to-cart-plus"></i>
-                <div class="card-body">
-                    <h5 class="card-title"><a href="product.html" style="text-decoration: none">تی شرت خفن</a></h5>
-                    <p class="card-text font-light" style="font-size: 3vh">۳۰۰.۰۰۰ تومان</p>
-                    <a href="#" class="btn btn-success text-white">اضافه به سبد خرید
-                        <i class="fa fa-plus"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="p-3">
-            <div class="card product-card">
-                <img class="card-img-top" src="images/6.jpg" alt="Card image cap">
-                <i class="fa fa-plus add-to-cart-plus"></i>
-                <div class="card-body">
-                    <h5 class="card-title"><a href="product.html" style="text-decoration: none">تی شرت خفن</a></h5>
-                    <p class="card-text font-light" style="font-size: 3vh">۳۰۰.۰۰۰ تومان</p>
-                    <a href="#" class="btn btn-success text-white">اضافه به سبد خرید
-                        <i class="fa fa-plus"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="p-3">
-            <div class="card product-card">
-                <img class="card-img-top" src="images/6.jpg" alt="Card image cap">
-                <i class="fa fa-plus add-to-cart-plus"></i>
-                <div class="card-body">
-                    <h5 class="card-title"><a href="product.html" style="text-decoration: none">تی شرت خفن</a></h5>
-                    <p class="card-text font-light" style="font-size: 3vh">۳۰۰.۰۰۰ تومان</p>
-                    <a href="#" class="btn btn-success text-white">اضافه به سبد خرید
-                        <i class="fa fa-plus"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="p-3">
-            <div class="card product-card">
-                <img class="card-img-top" src="images/6.jpg" alt="Card image cap">
-                <i class="fa fa-plus add-to-cart-plus"></i>
-                <div class="card-body">
-                    <h5 class="card-title"><a href="product.html" style="text-decoration: none">تی شرت خفن</a></h5>
-                    <p class="card-text font-light" style="font-size: 3vh">۳۰۰.۰۰۰ تومان</p>
-                    <a href="#" class="btn btn-success text-white">اضافه به سبد خرید
-                        <i class="fa fa-plus"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="p-3">
-            <div class="card product-card">
-                <img class="card-img-top" src="images/6.jpg" alt="Card image cap">
-                <i class="fa fa-plus add-to-cart-plus"></i>
-                <div class="card-body">
-                    <h5 class="card-title"><a href="product.html" style="text-decoration: none">تی شرت خفن</a></h5>
-                    <p class="card-text font-light" style="font-size: 3vh">۳۰۰.۰۰۰ تومان</p>
-                    <a href="#" class="btn btn-success text-white">اضافه به سبد خرید
-                        <i class="fa fa-plus"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
+        <% }) %>
     </div>
 </section>
 
@@ -339,88 +281,47 @@
 <div id="product-description">
     <div class="container">
         <nav>
-            <div class="nav nav-tabs float-right font-sm" id="nav-tab" role="tablist">
-                <a class="nav-item nav-link" id="nav-comments-tab" data-toggle="tab" href="#nav-comments"
-                   role="tab" aria-controls="nav-profile" aria-selected="false">نظرات</a>
-                <a class="nav-item nav-link active" id="nav-details-tab" data-toggle="tab" href="#nav-details"
-                   role="tab" aria-controls="nav-details" aria-selected="false">مشخصات</a>
+            <div class="nav nav-tabs float-right" id="nav-tab" role="tablist">
+                <a class="nav-item nav-link" id="nav-comment-tab" data-toggle="tab"
+                   href="#nav-comment" role="tab" aria-controls="nav-comment" aria-selected="true">نظرات</a>
+                <a class="nav-item nav-link active" id="nav-details-tab" data-toggle="tab"
+                   href="#nav-details" role="tab" aria-controls="nav-details" aria-selected="false">مشخصات</a>
             </div>
         </nav>
         <div class="tab-content" id="nav-tabContent">
-            <div class="tab-panefa fade show active" id="nav-details" role="tabpanel" aria-labelledby="nav-details">
+            <div class="tab-pane fade" id="nav-comment" role="tabpanel" aria-labelledby="nav-comment-tab">
+                <% product.comments.forEach(function(comment) { %>
+                <div class="comment" style="padding-top: 15px">
+                    <div class="card w-100">
+                        <h5 class="card-header mb-1">
+                            <span class="float-right"><%comment.customer.name%></span>
+                            <span>۲۰ روز پیش</span>
+                        </h5>
+                        <div class="card-body">
+                            <p class="float-right"><%comment.body%></p>
+                        </div>
+                    </div>
+                </div>
+                <% }) %>
+            </div>
+            <div class="tab-pane fade show active" id="nav-details" role="tabpanel" aria-labelledby="nav-details-tab">
                 <div class="container">
                     <br>
                     <br>
                     <br>
+                    <% product.properties.forEach(function (property) { %>
                     <div class="row justify-content-between my-2">
                         <div class="d-block d-md-none col-md-3 bg-light float-right">
-                            <span class="float-right p-2">: رنگ</span>
+                            <span class="float-right p-2">: <%property.key%></span>
                         </div>
                         <div class="col-md-8 bg-light">
-                            <span class="float-right p-2">قرمز</span>
+                            <span class="float-right p-2"><%property.value%></span>
                         </div>
                         <div class="d-none d-md-block col-md-3 bg-light float-right">
-                            <span class="float-right p-2">: رنگ</span>
+                            <span class="float-right p-2">: <%property.key%></span>
                         </div>
                     </div>
-                    <div class="row justify-content-between my-2">
-                        <div class="d-block d-md-none col-md-3 bg-light float-right">
-                            <span class="float-right p-2">: سایز</span>
-                        </div>
-                        <div class="col-md-8 bg-light">
-                            <span class="float-right p-2">XXL</span>
-                        </div>
-                        <div class="d-none d-md-block col-md-3 bg-light float-right">
-                            <span class="float-right p-2">: سایز</span>
-                        </div>
-                    </div>
-                    <div class="row justify-content-between my-2">
-                        <div class="d-block d-md-none col-md-3 bg-light float-right">
-                            <span class="float-right p-2">: جنس</span>
-                        </div>
-                        <div class="col-md-8 bg-light">
-                            <span class="float-right p-2">نخ</span>
-                        </div>
-                        <div class="d-none d-md-block col-md-3 bg-light float-right">
-                            <span class="float-right p-2">: جنس</span>
-                        </div>
-                    </div>
-                    <div class="row justify-content-between my-2">
-                        <div class="d-block d-md-none col-md-3 bg-light float-right">
-                            <span class="float-right p-2">: قابلیت شست و شو</span>
-                        </div>
-                        <div class="col-md-8 bg-light">
-                            <span class="float-right p-2">دارد</span>
-                        </div>
-                        <div class="d-none d-md-block col-md-3 bg-light float-right">
-                            <span class="float-right p-2">: قابلیت شست و شو</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="tab-panefa fade" id="nav-comments" role="tabpanel" aria-labelledby="nav-comments">
-                <div style="height: 40px"></div>
-                <div class="comment" style="padding-top: 30px">
-                    <div class="card w-100">
-                        <h5 class="card-header mb-1">
-                            <span class="float-right">عباس قادری</span>
-                            <span>۲۰ روز پیش</span>
-                        </h5>
-                        <div class="card-body">
-                            <p class="float-right">!!استفاده کردم و عالی بود و خیلی راضی بودم</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="comment" style="padding-top: 30px">
-                    <div class="card w-100">
-                        <h5 class="card-header mb-1">
-                            <span class="float-right">سینا خسروی</span>
-                            <span>۲ ماه پیش</span>
-                        </h5>
-                        <div class="card-body">
-                            <p class="float-right">واقعا متاسفم برای سایتتون با این محصولات :(</p>
-                        </div>
-                    </div>
+                    <% }) %>
                 </div>
             </div>
         </div>
@@ -431,9 +332,9 @@
 
 <% include ../partials/footer.ejs %>
 
-<script src="js/jquery2_2.min.js" type="text/javascript"></script>
-<script src="js/bootstrap.min.js" type="text/javascript"></script>
-<script src="js/slick.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="/js/jquery2_2.min.js" type="text/javascript"></script>
+<script src="/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="/js/slick.min.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
     $(document).on('ready', function() {
         $(".regular").slick({
@@ -470,8 +371,8 @@
         });
     });
 </script>
-<script src="js/ZosoJS.js" type="text/javascript"></script>
-<script src="js/ShJS.js" type="text/javascript"></script>
+<script src="/js/ZosoJS.js" type="text/javascript"></script>
+<script src="/js/ShJS.js" type="text/javascript"></script>
 <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
 <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
 <script>
