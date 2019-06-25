@@ -3,6 +3,7 @@ let express = require('express'),
     path = require('path'),
     Category = require('../../../moduls/post/category'),
     Product = require('../../../moduls/post/product'),
+    Order = require('../../../moduls/user/order'),
     Customer = require('../../../moduls/user/customer');
 
 router.get('/', function (req, res) {
@@ -11,7 +12,9 @@ router.get('/', function (req, res) {
             root.getChildrenTree(function (err, childs) {
                 if(!err) {
                     let cats = getDataArray(childs);
-                    res.render('user/adminDashboard', {cats: cats});
+                    Order.find({}, function(err, orders) {
+                        res.render('user/adminDashboard', {cats: cats, orders: orders});
+                    });
                 }
             })
         }
