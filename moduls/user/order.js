@@ -23,11 +23,10 @@ let orderSchema = mongoose.Schema({
     },
     customer: {type: mongoose.Schema.Types.ObjectId, ref: 'Customer'},
     products: [{
-        productsId: {type: mongoose.Schema.Types.ObjectId, ref: 'Product', required: true},
+        productId: {type: mongoose.Schema.Types.ObjectId, ref: 'Product', required: true},
         quantity: {type: Number, required: true}
     }],
     address: {type: String}, //TODO should be of type ObjectId of Address
-    totalPriceAtDate: Number,
     trackingCode: String,
     paymentMethod: String,
     shippingMethod: String,

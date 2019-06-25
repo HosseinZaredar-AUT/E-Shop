@@ -1,6 +1,7 @@
 let express = require('express'),
     router = express.Router(),
-    Customer = require('../../moduls/user/customer');
+    Customer = require('../../moduls/user/customer'),
+    Product = require('../../moduls/post/product');
 
     router.get('/', function(req, res) {
         //fetching user's cart from database
@@ -10,7 +11,12 @@ let express = require('express'),
             Customer.findById(req.user._id)
             .populate('cart.productId')
             .exec(function(err, customer) {
-                res.render('user/cart', {cart: customer.cart});
+                // calculating totalPriceAtDate
+                var totalPriceAtDate = 0;
+                for (item of customer.cart) {
+                    totalPriceAtDate += item.productId.price * item.quantity;
+                }
+                res.render('user/cart', {cart: customer.cart, totalPriceAtDate: totalPriceAtDate});
             });
         }
     });
@@ -23,13 +29,16 @@ let express = require('express'),
             Customer.findById(req.user._id, function(err, customer) {
                 if (!customer)
                     redirect('/');
-                console.log(productId);
                 customer.cart.push({productId: productId, quantity: 1}); //TODO handle the case that product is already in cart
-                console.log(customer);
-                customer.save().then(() => {
-                    res.redirect('/cart');
-                }).catch((err) => {
-                    throw err;
+                // adding price to totalPrice of cart
+                Product.findById(productId, function(err, product) {
+                    customer.cartTotalPrice += product.price;
+                    // saving
+                    customer.save().then(() => {
+                        res.redirect('/cart');
+                    }).catch((err) => {
+                        throw err;
+                    });
                 });
             }); 
         }
