@@ -39,6 +39,7 @@
     "gulp-line-ending-corrector": "^1.0.3",
     "gulp-sass": "^4.0.2",
     "gulp-sourcemaps": "^2.6.5",
-    "gulp-uglify": "^3.0.2"
+    "gulp-uglify": "^3.0.2",
+    "nodemon": "^1.19.1"
   }
 }
