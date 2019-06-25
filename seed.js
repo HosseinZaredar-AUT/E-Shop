@@ -15,27 +15,27 @@ let mongoose = require('mongoose'),
     });
 
 
-    mongoose.connection.dropDatabase();
+    // mongoose.connection.dropDatabase();
 
 
-    Category.create({
-            name: 'root'
-        }, function (err,createdCategory) {
-            createdCategory.save(function (err) {
-                if(err) console.log(err);
-                else {
-                    new Admin({
-                        username: 'erfan',
-                        password: 'erfan',
-                        email   : 'erfan@gmail.com'
-                    }).save(function (err) {
-                        if(!err) {
-                            console.log("db seeded.");
-                        }
-                    })
-                }
-            });
-        });
+    // Category.create({
+    //         name: 'root'
+    //     }, function (err,createdCategory) {
+    //         createdCategory.save(function (err) {
+    //             if(err) console.log(err);
+    //             else {
+    //                 new Admin({
+    //                     username: 'erfan',
+    //                     password: 'erfan',
+    //                     email   : 'erfan@gmail.com'
+    //                 }).save(function (err) {
+    //                     if(!err) {
+    //                         console.log("db seeded.");
+    //                     }
+    //                 })
+    //             }
+    //         });
+    //     });
 
 
 };
