@@ -4,6 +4,7 @@ let productSchema = mongoose.Schema({
     productID: {
         type: String
     },
+    creationDate: Date,
     name: {
         type: String,
         required: true

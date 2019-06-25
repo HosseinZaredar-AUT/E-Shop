@@ -72,10 +72,12 @@ router.post('/', function (req, res) {
     // if(!err) {
     let product = new Product({
         productID: req.body.productID,
+        creationDate: Date.now(),
         name: req.body.name,
         status: req.body.status,
         price: req.body.price,
         remainingNumber: req.body.remainingNumber,
+        boughtNumber: 0,
         colors: req.body.colors,
         images: [],
         // category: foundCategory._id,
