@@ -33,7 +33,7 @@ let customerSchema = mongoose.Schema({
     addresses: [{type: mongoose.Schema.Types.ObjectId, ref: 'Address'}],
     favorites: [{type: mongoose.Schema.Types.ObjectId, ref: 'Product'}],
     cart: [{
-        productsId: {type: mongoose.Schema.Types.ObjectId, ref: 'Product', required: true},
+        productId: {type: mongoose.Schema.Types.ObjectId, ref: 'Product', required: true},
         quantity: {type: Number, required: true}
     }],
     orders: [{type: mongoose.Schema.Types.ObjectId, ref: 'Order'}],
