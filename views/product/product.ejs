@@ -55,7 +55,7 @@
             <div id="" class="">
                 <div class="container">
                     <div class="col-sm-12 mt-5 text-center">
-                        <form method="post" action="/product/123?_method=PUT">
+                        <form method="post" action="/product/<%=product._id%>?_method=PUT">
                             <div class="card shadow w-100">
                                 <div class="card-header font-sm mb-1 py-3 d-inline px-0" style="direction: rtl">
                                     <!--<h5 class="font-sm mb-1 p-4 d-inline">کد کالا :</h5>-->
@@ -404,10 +404,16 @@
     });
     const inputElement = document.querySelector('input[type="file"]');
 </script>  
+<% for (image of product.images) { %>
+    <p style="visibility: hidden" class="images"><%=image%></p>
+<% } %>
 <script>
     function fetchImages() {
         const pond = FilePond.create(inputElement);
-        pond.addFile('http://localhost:3000/Images/1.jpg'); // TODO replace with actual product images
+        var elements = document.getElementsByClassName('images');
+        for (element of elements) {
+            pond.addFile('/' + element.innerHTML);
+        }
     }
 </script>
 </body>
