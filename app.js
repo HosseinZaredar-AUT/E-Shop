@@ -18,7 +18,12 @@ let express = require('express'),
     adminDashboardRouter = require('./routes/admin/dashboard/dashboard'),
     cartRouter = require('./routes/customer/cart');
     orderRouter = require('./routes/customer/order');
-    middlewares = require('./middlewares/index');
+    middlewares = require('./middlewares/index'),
+    session = require('express-session');
+
+// passport require
+var passport = require('passport');
+require('./passport')(passport);
 
 // express setup
 app.use(express.json());
@@ -32,7 +37,18 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
-app.use(session({secret: "Mesh All The Way"}));
+
+// session setup
+var session = require('express-session');
+app.use(session({
+    secret: 'some untold secret',
+    resave: false,
+    saveUninitialized: false
+}));
+
+// passport setup
+app.use(passport.initialize());
+app.use(passport.session());
 
 // fileUpload setup
 app.use(fileUpload());
