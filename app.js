@@ -16,8 +16,8 @@ let express = require('express'),
     loginRouter = require('./routes/login'),
     userDashboardRouter = require('./routes/customer/dashboard/dashboard'),
     adminDashboardRouter = require('./routes/admin/dashboard/dashboard'),
-    cartRouter = require('./routes/customer/cart');
-    orderRouter = require('./routes/customer/order');
+    cartRouter = require('./routes/customer/cart'),
+    orderRouter = require('./routes/customer/order'),
     middlewares = require('./middlewares/index'),
     session = require('express-session');
 

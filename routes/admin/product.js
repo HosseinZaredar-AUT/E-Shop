@@ -21,7 +21,7 @@ router.get('/:productId', async (req, res) => {
         let root = await Category.findOne({name: 'root'});
         let cats = [];
         root.getChildrenTree(function (err, childs) {
-            if(!err) {
+            if (!err) {
                 let cats = usefulFunctions.getDataArray(childs);
                 res.render('product/product', {
                     product: product,
@@ -51,7 +51,7 @@ router.put('/addComment/:productId', async (req, res) => {
         comments.push(comment);
         product.save();
         comment.save();
-         res.sendStatus(201);
+        res.sendStatus(201);
     } catch (e) {
         console.log(e);
     }
@@ -68,53 +68,53 @@ router.post('/', function (req, res) {
     }
     if (typeof (req.body.colors) == 'string')
         req.body.colors = [req.body.colors];
-    // Category.findOne({name: req.body.category}, function (err, foundCategory) {
-    // if(!err) {
-    let product = new Product({
-        productID: req.body.productID,
-        creationDate: Date.now(),
-        name: req.body.name,
-        status: req.body.status,
-        price: req.body.price,
-        remainingNumber: req.body.remainingNumber,
-        boughtNumber: 0,
-        colors: req.body.colors,
-        images: [],
-        // category: foundCategory._id,
-        discount: req.body.discount,
-        description: req.body.description,
-        properties: propertiesArray
-    });
-
-    // saving images and removing them from temp_images
-    if (!fs.existsSync('./public/Images/products'))
-        fs.mkdirSync('./public/Images/products');
-    fs.mkdirSync('public/Images/products/' + product._id);
-
-    // if it is a single images
-    if (typeof (req.body.filepond) == 'string') {
-        image = req.body.filepond;
-        fs.renameSync('./temp_images/' + image, './public/Images/products/' + product._id + '/' + image);
-        product.images.push('Images/products/' + product._id + '/' + image);
-        rimraf.sync('./temp_images/');
-    } else { // if it is an array of images
-        for (image of req.body.filepond) {
-            fs.renameSync('./temp_images/' + image, './public/Images/products/' + product._id + '/' + image);
-            product.images.push('Images/products/' + product._id + '/' + image);
-        }
-        rimraf.sync('./temp_images/');
-    }
-
-    product.save(function (err, savedProduct) {
+    Category.findOne({name: req.body.category}, function (err, foundCategory) {
         if (!err) {
-            console.log(savedProduct);
-            res.redirect('/adminDashboard');
-        } else {
-            console.log(err);
+            let product = new Product({
+                productID: req.body.productID,
+                creationDate: Date.now(),
+                name: req.body.name,
+                status: req.body.status,
+                price: req.body.price,
+                remainingNumber: req.body.remainingNumber,
+                boughtNumber: 0,
+                colors: req.body.colors,
+                images: [],
+                category: foundCategory._id,
+                discount: req.body.discount,
+                description: req.body.description,
+                properties: propertiesArray
+            });
+
+            // saving images and removing them from temp_images
+            if (!fs.existsSync('./public/Images/products'))
+                fs.mkdirSync('./public/Images/products');
+            fs.mkdirSync('public/Images/products/' + product._id);
+
+            // if it is a single images
+            if (typeof (req.body.filepond) == 'string') {
+                image = req.body.filepond;
+                fs.renameSync('./temp_images/' + image, './public/Images/products/' + product._id + '/' + image);
+                product.images.push('Images/products/' + product._id + '/' + image);
+                rimraf.sync('./temp_images/');
+            } else { // if it is an array of images
+                for (image of req.body.filepond) {
+                    fs.renameSync('./temp_images/' + image, './public/Images/products/' + product._id + '/' + image);
+                    product.images.push('Images/products/' + product._id + '/' + image);
+                }
+                rimraf.sync('./temp_images/');
+            }
+
+            product.save(function (err, savedProduct) {
+                if (!err) {
+                    console.log(savedProduct);
+                    res.redirect('/adminDashboard');
+                } else {
+                    console.log(err);
+                }
+            })
         }
     })
-    // }
-    // })
 });
 
 router.put('/:id', function (req, res) {
@@ -128,50 +128,50 @@ router.put('/:id', function (req, res) {
     }
     if (typeof (req.body.colors) == 'string')
         req.body.colors = [req.body.colors]
-    // Category.findOne({name: req.body.category}, function (err, foundCategory) {
-    //     if(!err) {
-    let newProduct = {
-        productID: req.body.productID,
-        name: req.body.name,
-        status: req.body.status,
-        price: req.body.price,
-        remainingNumber: req.body.remainingNumber,
-        colors: req.body.colors,
-        images: [],
-        // category: foundCategory._id,
-        discount: req.body.discount,
-        description: req.body.description,
-        properties: propertiesArray
-    };
+    Category.findOne({name: req.body.category}, function (err, foundCategory) {
+        if (!err) {
+            let newProduct = {
+                productID: req.body.productID,
+                name: req.body.name,
+                status: req.body.status,
+                price: req.body.price,
+                remainingNumber: req.body.remainingNumber,
+                colors: req.body.colors,
+                images: [],
+                category: foundCategory._id,
+                discount: req.body.discount,
+                description: req.body.description,
+                properties: propertiesArray
+            };
 
-    // saving images and removing them from temp_images
-    // if it is a single images
-    if (typeof (req.body.filepond) == 'string') {
-        image = req.body.filepond;
-        fs.renameSync('./temp_images/' + image, './public/Images/products/' + product._id + '/' + image);
-        product.images.push('Images/products/' + product._id + '/' + image);
-        rimraf.sync('./temp_images/');
-    } else { // if it is an array of images
-        for (image of req.body.filepond) {
-            fs.renameSync('./temp_images/' + image, './public/Images/products/' + product._id + '/' + image);
-            product.images.push('Images/products/' + product._id + '/' + image);
-        }
-        rimraf.sync('./temp_images/');
-    }
-
-    Product.findOneAndUpdate({_id: req.params.id},
-        newProduct,
-        function (err, product) {
-            if (!err) {
-                // deleting old images
-                for (image of product.images) {
-                    fs.unlinkSync('./public/' + image);
+            // saving images and removing them from temp_images
+            // if it is a single images
+            if (typeof (req.body.filepond) == 'string') {
+                image = req.body.filepond;
+                fs.renameSync('./temp_images/' + image, './public/Images/products/' + product._id + '/' + image);
+                product.images.push('Images/products/' + product._id + '/' + image);
+                rimraf.sync('./temp_images/');
+            } else { // if it is an array of images
+                for (image of req.body.filepond) {
+                    fs.renameSync('./temp_images/' + image, './public/Images/products/' + product._id + '/' + image);
+                    product.images.push('Images/products/' + product._id + '/' + image);
                 }
-                res.redirect('/');
+                rimraf.sync('./temp_images/');
             }
-        })
-    //     }
-    // })
+
+            Product.findOneAndUpdate({_id: req.params.id},
+                newProduct,
+                function (err, product) {
+                    if (!err) {
+                        // deleting old images
+                        for (image of product.images) {
+                            fs.unlinkSync('./public/' + image);
+                        }
+                        res.redirect('/');
+                    }
+                })
+        }
+    })
 });
 
 // to upload a file as it is dragged into filepond
