@@ -68,53 +68,60 @@ router.post('/', function (req, res) {
     }
     if (typeof (req.body.colors) == 'string')
         req.body.colors = [req.body.colors];
-    // Category.findOne({name: req.body.category}, function (err, foundCategory) {
-    // if(!err) {
-    let product = new Product({
-        productID: req.body.productID,
-        creationDate: Date.now(),
-        name: req.body.name,
-        status: req.body.status,
-        price: req.body.price,
-        remainingNumber: req.body.remainingNumber,
-        boughtNumber: 0,
-        colors: req.body.colors,
-        images: [],
-        // category: foundCategory._id,
-        discount: req.body.discount,
-        description: req.body.description,
-        properties: propertiesArray
+
+    Category.findOne({name: req.body.category}, function (err, foundCategory) {
+        if(!err) {
+            let product = new Product({
+                productID: req.body.productID,
+                creationDate: Date.now(),
+                name: req.body.name,
+                status: req.body.status,
+                price: req.body.price,
+                remainingNumber: req.body.remainingNumber,
+                boughtNumber: 0,
+                colors: req.body.colors,
+                images: [],
+                category: foundCategory._id,
+                discount: req.body.discount,
+                description: req.body.description,
+                properties: propertiesArray
+            });
+
+            // saving images and removing them from temp_images
+            if (!fs.existsSync('./public/Images/products'))
+                fs.mkdirSync('./public/Images/products');
+            fs.mkdirSync('public/Images/products/' + product._id);
+
+            // if it is a single images
+            if (typeof (req.body.filepond) == 'string') {
+                image = req.body.filepond;
+                fs.renameSync('./temp_images/' + image, './public/Images/products/' + product._id + '/' + image);
+                product.images.push('Images/products/' + product._id + '/' + image);
+                rimraf.sync('./temp_images/');
+            } else { // if it is an array of images
+                for (image of req.body.filepond) {
+                    fs.renameSync('./temp_images/' + image, './public/Images/products/' + product._id + '/' + image);
+                    product.images.push('Images/products/' + product._id + '/' + image);
+                }
+                rimraf.sync('./temp_images/');
+            }
+
+            // saving the product
+            product.save(function (err, savedProduct) {
+                if (!err) {
+                    // adding the product to category's list
+                    foundCategory.products.push(savedProduct._id);
+                    foundCategory.save().then(() => {
+                        res.redirect('/adminDashboard');
+                    }).catch((err) => {
+                        throw err;
+                    })
+                } else {
+                    console.log(err);
+                }
+            });
+        }
     });
-
-    // saving images and removing them from temp_images
-    if (!fs.existsSync('./public/Images/products'))
-        fs.mkdirSync('./public/Images/products');
-    fs.mkdirSync('public/Images/products/' + product._id);
-
-    // if it is a single images
-    if (typeof (req.body.filepond) == 'string') {
-        image = req.body.filepond;
-        fs.renameSync('./temp_images/' + image, './public/Images/products/' + product._id + '/' + image);
-        product.images.push('Images/products/' + product._id + '/' + image);
-        rimraf.sync('./temp_images/');
-    } else { // if it is an array of images
-        for (image of req.body.filepond) {
-            fs.renameSync('./temp_images/' + image, './public/Images/products/' + product._id + '/' + image);
-            product.images.push('Images/products/' + product._id + '/' + image);
-        }
-        rimraf.sync('./temp_images/');
-    }
-
-    product.save(function (err, savedProduct) {
-        if (!err) {
-            console.log(savedProduct);
-            res.redirect('/adminDashboard');
-        } else {
-            console.log(err);
-        }
-    })
-    // }
-    // })
 });
 
 router.put('/:id', function (req, res) {
