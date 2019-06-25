@@ -12,9 +12,11 @@ router.get('/', function (req, res) {
             root.getChildrenTree(function (err, childs) {
                 if(!err) {
                     let cats = getDataArray(childs);
-                    Order.find({}, function(err, orders) {
+                    Order.find({})
+                    .populate('products.productId')
+                    .exec(function(err, orders) {
                         res.render('user/adminDashboard', {cats: cats, orders: orders});
-                    });
+                    });  
                 }
             })
         }

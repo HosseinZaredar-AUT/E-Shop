@@ -121,6 +121,10 @@
   transition: all 0.2s ease-in;
 }
 
+.add-to-cart-action {
+  cursor: pointer;
+}
+
 .add-to-cart-plus:hover {
   color: #8bdb30;
 }

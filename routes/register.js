@@ -26,7 +26,8 @@ router.post('/', (req, res) => {
                                     username: details.username,
                                     password: hashedPassword,
                                     email: details.email,
-                                    phone: details.phone
+                                    phone: details.phone,
+                                    cartTotalPrice: 0
                                 }).save(function (err, savedCustomer) {
                                     if(!err) {
                                        res.redirect('/login');

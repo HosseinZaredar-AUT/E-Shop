@@ -212,26 +212,13 @@
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                <tr>
-                                                    <td class="pl-3">۱</td>
-                                                    <td>لباس خفن</td>
-                                                    <td><strong>۳</strong></td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="pl-3">۲</td>
-                                                    <td>لباس معمولی</td>
-                                                    <td><strong>۳</strong></td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="pl-3">۳</td>
-                                                    <td>پژو ۴۰۵</td>
-                                                    <td><strong>۱۲</strong></td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="pl-3">۴</td>
-                                                    <td>شامپو</td>
-                                                    <td><strong>۱</strong></td>
-                                                </tr>
+                                                <% for (j = 0; j < orders[i].products.length; j++) { %>
+                                                    <tr>
+                                                        <td class="pl-3"><%= (j+1) %></td>
+                                                        <td><%= orders[i].products[j].productId.name %></td>
+                                                        <td><strong><%= orders[i].products[j].quantity %></strong></td>
+                                                        </tr>
+                                                <% } %>
                                                 </tbody>
                                             </table>
                                         </div>
