@@ -31,7 +31,8 @@
     </style>
 </head>
 <body class="font-medium">
-<% include ../partials/header.ejs %>
+
+<% include ../partials/header2.ejs %>
 
 <section id="banners">
     <div style="height: 500px;">
@@ -65,90 +66,23 @@
 <section id="news">
     <h1 class="text-center py-5 font-bold">!! جدیدترین ها</h1>
     <div class="regular slider text-center">
-        <div class="p-3">
-            <div class="card product-card">
-                <img class="card-img-top" src="Images/6.jpg" alt="Card image cap">
-                <i class="fa fa-plus add-to-cart-action add-to-cart-plus"></i>
-                <div class="card-body">
-                    <h5 class="card-title"><a href="/product" style="text-decoration: none">تی شرت خفن</a>
-                    </h5>
-                    <p class="card-text font-light" style="font-size: 3vh">۳۰۰.۰۰۰ تومان</p>
-                    <a class="btn btn-success add-to-cart-action text-white">اضافه به سبد خرید
-                        <i class="fa fa-plus"></i>
-                    </a>
+        <% newProducts.forEach(function (product) { %>
+            <div class="p-3">
+                <div class="card product-card">
+                    <img class="card-img-top" src="/<%=product.images[0]%>" alt="Card image cap">
+                    <i class="fa fa-plus add-to-cart-action add-to-cart-plus"></i>
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="/product/<%=product['_id']%>" style="text-decoration: none"><%=product.name%></a>
+                        </h5>
+                        <p class="card-text font-light" style="font-size: 3vh"><%=product.price%> تومان</p>
+                        <a class="btn btn-success add-to-cart-action text-white">اضافه به سبد خرید
+                            <i class="fa fa-plus"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="p-3">
-            <div class="card product-card">
-                <img class="card-img-top" src="Images/6.jpg" alt="Card image cap">
-                <i class="fa fa-plus add-to-cart-action add-to-cart-plus"></i>
-                <div class="card-body">
-                    <h5 class="card-title"><a href="/product" style="text-decoration: none">تی شرت خفن</a>
-                    </h5>
-                    <p class="card-text font-light" style="font-size: 3vh">۳۰۰.۰۰۰ تومان</p>
-                    <a class="btn btn-success add-to-cart-action text-white">اضافه به سبد خرید
-                        <i class="fa fa-plus"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="p-3">
-            <div class="card product-card">
-                <img class="card-img-top" src="Images/6.jpg" alt="Card image cap">
-                <i class="fa fa-plus add-to-cart-action add-to-cart-plus"></i>
-                <div class="card-body">
-                    <h5 class="card-title"><a href="/product" style="text-decoration: none">تی شرت خفن</a>
-                    </h5>
-                    <p class="card-text font-light" style="font-size: 3vh">۳۰۰.۰۰۰ تومان</p>
-                    <a class="btn btn-success add-to-cart-action text-white">اضافه به سبد خرید
-                        <i class="fa fa-plus"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="p-3">
-            <div class="card product-card">
-                <img class="card-img-top" src="Images/6.jpg" alt="Card image cap">
-                <i class="fa fa-plus add-to-cart-action add-to-cart-plus"></i>
-                <div class="card-body">
-                    <h5 class="card-title"><a href="/product" style="text-decoration: none">تی شرت خفن</a>
-                    </h5>
-                    <p class="card-text font-light" style="font-size: 3vh">۳۰۰.۰۰۰ تومان</p>
-                    <a class="btn btn-success add-to-cart-action text-white">اضافه به سبد خرید
-                        <i class="fa fa-plus"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="p-3">
-            <div class="card product-card">
-                <img class="card-img-top" src="Images/6.jpg" alt="Card image cap">
-                <i class="fa fa-plus add-to-cart-action add-to-cart-plus"></i>
-                <div class="card-body">
-                    <h5 class="card-title"><a href="/product" style="text-decoration: none">تی شرت خفن</a>
-                    </h5>
-                    <p class="card-text font-light" style="font-size: 3vh">۳۰۰.۰۰۰ تومان</p>
-                    <a class="btn btn-success add-to-cart-action text-white">اضافه به سبد خرید
-                        <i class="fa fa-plus"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="p-3">
-            <div class="card product-card">
-                <img class="card-img-top" src="Images/6.jpg" alt="Card image cap">
-                <i class="fa fa-plus add-to-cart-action add-to-cart-plus"></i>
-                <div class="card-body">
-                    <h5 class="card-title"><a href="/product" style="text-decoration: none">تی شرت خفن</a>
-                    </h5>
-                    <p class="card-text font-light" style="font-size: 3vh">۳۰۰.۰۰۰ تومان</p>
-                    <a class="btn btn-success add-to-cart-action text-white">اضافه به سبد خرید
-                        <i class="fa fa-plus"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
+        <% }) %>
+
     </div>
 
 </section>
@@ -164,53 +98,26 @@
             </div>
             <div class="col-md-6 col-sm-12">
                 <section class="regular-one slider text-center">
-                    <div class="p-3">
-                        <div class="card product-card-discount">
-                            <img class="card-img-top" src="Images/6.jpg" alt="Card image cap">
-                            <i class="fa fa-plus add-to-cart-action add-to-cart-plus-discount"></i>
-                            <p class="discount-text">!تخفیف</p>
-                            <div class="card-body">
-                                <h5 class="card-title"><a href="/product" style="text-decoration: none">تی
-                                        شرت خفن</a></h5>
-                                <p class="card-text font-light" style="font-size: 3vh">۳۰۰.۰۰۰ تومان</p>
-                                <a class="btn btn-warning add-to-cart-action text-white">اضافه به سبد خرید
-                                    <i class="fa fa-plus"></i>
-                                </a>
+                    <% discountProducts.forEach(function (product) { %>
+                        <div class="p-3">
+                            <div class="card product-card-discount">
+                                <img class="card-img-top" src="/<%=product.images[0]%>" alt="Card image cap">
+                                <i class="fa fa-plus add-to-cart-action add-to-cart-plus-discount"></i>
+                                <p class="discount-text">!تخفیف</p>
+                                <div class="card-body">
+                                    <h5 class="card-title"><a href="/product/<%=product._id%>"
+                                                              style="text-decoration: none"><%=product.name%>
+                                        </a>
+                                    </h5>
+                                    <p class="card-text font-light" style="font-size: 3vh"><%=product.price%> تومان</p>
+                                    <a class="btn btn-warning add-to-cart-action text-white">اضافه به سبد خرید
+                                        <i class="fa fa-plus"></i>
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="p-3">
-                        <div class="card product-card-discount">
-                            <img class="card-img-top" src="Images/6.jpg" alt="Card image cap">
-                            <i class="fa fa-plus add-to-cart-action add-to-cart-plus-discount"></i>
-                            <p class="discount-text">!تخفیف</p>
-                            <div class="card-body">
-                                <h5 class="card-title"><a href="/product" style="text-decoration: none">تی
-                                        شرت خفن</a></h5>
-                                <p class="card-text font-light" style="font-size: 3vh">۳۰۰.۰۰۰ تومان</p>
-                                <a class="btn btn-warning add-to-cart-action text-white">اضافه به سبد خرید
-                                    <i class="fa fa-plus"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="p-3">
-                        <div class="card product-card-discount">
-                            <img class="card-img-top" src="Images/6.jpg" alt="Card image cap">
-                            <i class="fa fa-plus add-to-cart-action add-to-cart-plus-discount"></i>
-                            <p class="discount-text">!تخفیف</p>
-                            <div class="card-body">
-                                <h5 class="card-title"><a href="/product" style="text-decoration: none">تی
-                                        شرت خفن</a></h5>
-                                <p class="card-text font-light" style="font-size: 3vh">۳۰۰.۰۰۰ تومان</p>
-                                <a class="btn btn-warning add-to-cart-action text-white">اضافه به سبد خرید
-                                    <i class="fa fa-plus"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                    <% }) %>
                 </section>
-
             </div>
         </div>
     </div>
@@ -219,90 +126,22 @@
 <section id="popular">
     <h1 class="text-center my-5 font-bold">!! پرطرفدارترین ها</h1>
     <div class="regular slider text-center">
+        <% popularProducts.forEach(function (product) { %>
         <div class="p-3">
             <div class="card product-card">
-                <img class="card-img-top" src="Images/6.jpg" alt="Card image cap">
+                <img class="card-img-top" src="/<%=product.images[0]%>" alt="Card image cap">
                 <i class="fa fa-plus add-to-cart-action add-to-cart-plus"></i>
                 <div class="card-body">
-                    <h5 class="card-title"><a href="/product" style="text-decoration: none">تی شرت خفن</a>
+                    <h5 class="card-title"><a href="/product/<%=product['_id']%>" style="text-decoration: none"><%=product.name%></a>
                     </h5>
-                    <p class="card-text font-light" style="font-size: 3vh">۳۰۰.۰۰۰ تومان</p>
+                    <p class="card-text font-light" style="font-size: 3vh"><%=product.price%> تومان</p>
                     <a class="btn btn-success add-to-cart-action text-white">اضافه به سبد خرید
                         <i class="fa fa-plus"></i>
                     </a>
                 </div>
             </div>
         </div>
-        <div class="p-3">
-            <div class="card product-card">
-                <img class="card-img-top" src="Images/6.jpg" alt="Card image cap">
-                <i class="fa fa-plus add-to-cart-action add-to-cart-plus"></i>
-                <div class="card-body">
-                    <h5 class="card-title"><a href="/product" style="text-decoration: none">تی شرت خفن</a>
-                    </h5>
-                    <p class="card-text font-light" style="font-size: 3vh">۳۰۰.۰۰۰ تومان</p>
-                    <a class="btn btn-success add-to-cart-action text-white">اضافه به سبد خرید
-                        <i class="fa fa-plus"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="p-3">
-            <div class="card product-card">
-                <img class="card-img-top" src="Images/6.jpg" alt="Card image cap">
-                <i class="fa fa-plus add-to-cart-action add-to-cart-plus"></i>
-                <div class="card-body">
-                    <h5 class="card-title"><a href="/product" style="text-decoration: none">تی شرت خفن</a>
-                    </h5>
-                    <p class="card-text font-light" style="font-size: 3vh">۳۰۰.۰۰۰ تومان</p>
-                    <a class="btn btn-success add-to-cart-action text-white">اضافه به سبد خرید
-                        <i class="fa fa-plus"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="p-3">
-            <div class="card product-card">
-                <img class="card-img-top" src="Images/6.jpg" alt="Card image cap">
-                <i class="fa fa-plus add-to-cart-action add-to-cart-plus"></i>
-                <div class="card-body">
-                    <h5 class="card-title"><a href="/product" style="text-decoration: none">تی شرت خفن</a>
-                    </h5>
-                    <p class="card-text font-light" style="font-size: 3vh">۳۰۰.۰۰۰ تومان</p>
-                    <a class="btn btn-success add-to-cart-action text-white">اضافه به سبد خرید
-                        <i class="fa fa-plus"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="p-3">
-            <div class="card product-card">
-                <img class="card-img-top" src="Images/6.jpg" alt="Card image cap">
-                <i class="fa fa-plus add-to-cart-action add-to-cart-plus"></i>
-                <div class="card-body">
-                    <h5 class="card-title"><a href="/product" style="text-decoration: none">تی شرت خفن</a>
-                    </h5>
-                    <p class="card-text font-light" style="font-size: 3vh">۳۰۰.۰۰۰ تومان</p>
-                    <a class="btn btn-success add-to-cart-action text-white">اضافه به سبد خرید
-                        <i class="fa fa-plus"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="p-3">
-            <div class="card product-card">
-                <img class="card-img-top" src="Images/6.jpg" alt="Card image cap">
-                <i class="fa fa-plus add-to-cart-action add-to-cart-plus"></i>
-                <div class="card-body">
-                    <h5 class="card-title"><a href="/product" style="text-decoration: none">تی شرت خفن</a>
-                    </h5>
-                    <p class="card-text font-light" style="font-size: 3vh">۳۰۰.۰۰۰ تومان</p>
-                    <a class="btn btn-success add-to-cart-action text-white">اضافه به سبد خرید
-                        <i class="fa fa-plus"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
+        <% }) %>
     </div>
 </section>
 
@@ -317,51 +156,24 @@
             </div>
             <div class="col-md-6 col-sm-12">
                 <section class="regular-one slider text-center">
-                    <div class="p-3">
-                        <div class="card product-card-best-seller">
-                            <img class="card-img-top" src="Images/6.jpg" alt="Card image cap">
-                            <i class="fa fa-plus add-to-cart-action add-to-cart-plus-best-seller"></i>
-                            <p class="best-seller-text">!پرفروش</p>
-                            <div class="card-body">
-                                <h5 class="card-title"><a href="/product" style="text-decoration: none">تی
-                                        شرت خفن</a></h5>
-                                <p class="card-text font-light" style="font-size: 3vh">۳۰۰.۰۰۰ تومان</p>
-                                <a class="btn btn-danger add-to-cart-action text-white">اضافه به سبد خرید
-                                    <i class="fa fa-plus"></i>
-                                </a>
+                    <% bestSellerProducts.forEach(function (product) { %>
+                        <div class="p-3">
+                            <div class="card product-card-best-seller">
+                                <img class="card-img-top" src="/<%=product.images[0]%>" alt="Card image cap">
+                                <i class="fa fa-plus add-to-cart-action add-to-cart-plus-best-seller"></i>
+                                <p class="best-seller-text">!پرفروش</p>
+                                <div class="card-body">
+                                    <h5 class="card-title"><a href="/product/<%=product%>" style="text-decoration: none">
+                                            <%=product.name%>
+                                        </a></h5>
+                                    <p class="card-text font-light" style="font-size: 3vh"><%=product.price%> تومان </p>
+                                    <a class="btn btn-danger add-to-cart-action text-white">اضافه به سبد خرید
+                                        <i class="fa fa-plus"></i>
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="p-3">
-                        <div class="card product-card-best-seller">
-                            <img class="card-img-top" src="Images/6.jpg" alt="Card image cap">
-                            <i class="fa fa-plus add-to-cart-action add-to-cart-plus-best-seller"></i>
-                            <p class="best-seller-text">!پرفروش</p>
-                            <div class="card-body">
-                                <h5 class="card-title"><a href="/product" style="text-decoration: none">تی
-                                        شرت خفن</a></h5>
-                                <p class="card-text font-light" style="font-size: 3vh">۳۰۰.۰۰۰ تومان</p>
-                                <a class="btn btn-danger add-to-cart-action text-white">اضافه به سبد خرید
-                                    <i class="fa fa-plus"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="p-3">
-                        <div class="card product-card-best-seller">
-                            <img class="card-img-top" src="Images/6.jpg" alt="Card image cap">
-                            <i class="fa fa-plus add-to-cart-action add-to-cart-plus-best-seller"></i>
-                            <p class="best-seller-text">!پرفروش</p>
-                            <div class="card-body">
-                                <h5 class="card-title"><a href="/product" style="text-decoration: none">تی
-                                        شرت خفن</a></h5>
-                                <p class="card-text font-light" style="font-size: 3vh">۳۰۰.۰۰۰ تومان</p>
-                                <a class="btn btn-danger add-to-cart-action text-white">اضافه به سبد خرید
-                                    <i class="fa fa-plus"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                    <% }) %>
                 </section>
             </div>
             <div class="col-md-6 d-none d-md-block py-5 text-center text-white">

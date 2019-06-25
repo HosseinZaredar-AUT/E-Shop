@@ -33,7 +33,8 @@ let productSchema = mongoose.Schema({
     }],
     category: {type: mongoose.Schema.Types.ObjectId, ref: 'Category'},
     discount: {
-        type: Number 
+        type: Number,
+        default: 0
     },
     description: {
         type: String,
