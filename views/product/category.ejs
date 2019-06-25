@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title><%- pageTitle %></title>
     <link rel="stylesheet" href="/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
           integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
@@ -160,13 +160,30 @@
 
     <div class="container-fluid mt-4 pb-3 align-items-center position-relative text-md-center text-left pl-5 pl-md-0">
         <h6 class="d-inline-block float-right mt-2 position-absolute" style="right: 40px;top: -10px">:مرتب سازی</h6>
-        <form class="mr-3 position-absolute" style="right: 120px; top: -10px;">
+        <form action="/cats/<%= dir %>" method="get" class="mr-3 position-absolute" style="right: 120px; top: -10px;">
+            <button type="submit" class="btn btn-outline-success">اعمال</button>
             <label>
-                <select class="custom-select" style="width: 8rem; direction: rtl;">
-                    <option>جدیدترین</option>
-                    <option>محبوب ترین</option>
-                    <option>ارزان ترین</option>
-                    <option>گران ترین</option>
+                <select name="sort" class="custom-select" style="width: 8rem; direction: rtl;">
+                    <% if(sort === 'new')  { %>
+                        <option selected="selected" value="new">جدیدترین</option>
+                    <% } else { %>
+                        <option value="new">جدیدترین</option>
+                    <% } %>
+                    <% if(sort === 'popular')  { %>
+                        <option selected="selected" value="popular">محبوب ترین</option>
+                    <% } else { %>
+                        <option value="popular">محبوب ترین</option>
+                    <% } %>
+                    <% if(sort === 'cheap')  { %>
+                        <option selected="selected" value="cheap">ارزان ترین</option>
+                    <% } else { %>
+                        <option value="cheap">ارزان ترین</option>
+                    <% } %>
+                    <% if(sort === 'exp')  { %>
+                        <option selected="selected" value="exp">گران ترین</option>
+                    <% } else { %>
+                        <option value="exp">گران ترین</option>
+                    <% } %>
                     مرتب سازی</select>
             </label>
         </form>
@@ -207,17 +224,17 @@
                 if (cur < 1) {
                     continue;
                 } %>
-            <li class="page-item"><a class="page-link" href="/cats?page=<%= cur %>"><%- cur %></a></li>
+            <li class="page-item"><a class="page-link" href="/cats?page=<%= cur %>&sort=<%= sort %>"><%- cur %></a></li>
             <% } %>
-            <li class="page-item"><a class="page-link bg-info" href="/cats?page=<%= page %>"><%- page %></a></li>
+            <li class="page-item"><a class="page-link bg-info" href="/cats?page=<%= page %>&sort=<%= sort %>"><%- page %></a></li>
             <% for (i = 1;i < 4; i++) {
                 let cur = +page + +i;
                 if (cur > lastPage) {
                     break;
                 } %>
-            <li class="page-item"><a class="page-link" href="/cats?page=<%= cur %>"><%- cur %></a></li>
+            <li class="page-item"><a class="page-link" href="/cats?page=<%= cur %>&sort=<%= sort %>"><%- cur %></a></li>
             <% } %>
-            <li class="page-item"><a class="page-link" href="/cats?page=<%= lastPage %>">last</a></li>
+            <li class="page-item"><a class="page-link" href="/cats?page=<%= lastPage %>&sort=<%= sort %>">last</a></li>
         </ul>
     </nav>
 
