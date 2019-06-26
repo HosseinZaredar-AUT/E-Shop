@@ -44,4 +44,44 @@ let express = require('express'),
         }
     });
 
+    // route for editing product quantity from cart
+    router.put('/', function(req, res) {
+        productId = req.body.productId;
+        newQuantity = req.body.newQuantity;
+        Customer.findById(req.user._id, function(err, customer) {
+            var item = customer.cart.find(product => product.productId == productId);
+            item.quantity = newQuantity;
+            // saving
+            customer.save(function(err, updatedCustomer) {
+                // populating cart
+                updatedCustomer.populate('cart.productId', function(err, populatedCustomer) {
+                    // calculating new totalPriceAtDate
+                    var totalPriceAtDate = 0;
+                    for (item of updatedCustomer.cart) {
+                        totalPriceAtDate += item.productId.price * item.quantity;
+                    }
+                    // sending to front
+                    res.json({
+                        totalPriceAtDate: totalPriceAtDate
+                    });
+                });
+                
+            });
+        });
+    });
+
+    router.delete('/', function(req, res) {
+        productId = req.body.productId;
+        Customer.findById(req.user._id, function(err, customer) {
+            var index = customer.cart.indexOf(product => product.productId == productId);
+            customer.cart.splice(index, 1);
+            customer.save(function(err, updatedCustomer) {
+                // redirecting
+                res.json({
+                    done: 'done'
+                });
+            });
+        });
+    });
+
 module.exports = router;

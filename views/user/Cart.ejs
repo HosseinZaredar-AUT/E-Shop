@@ -48,6 +48,24 @@
 <body class="font-medium h-100" style="min-width: 1200px">
 <% include ../partials/header.ejs %>
 
+<div class="modal fade" id="ChangeAddress" tabindex="-1" role="dialog" aria-labelledby="ChangeAddress" aria-modal="true" style="display: none;">
+    
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header d-inline">
+                    </button>
+                    <h5 class="modal-title float-right" id="">آیا مایل به حذف این کالا هستید؟</h5>
+    
+                </div>
+                
+                <div class="modal-footer">
+                    <button name="" type="button" class="btn btn-danger" data-dismiss="modal">خیر</button>
+                    <button id="acceptButton" name="" onclick="removeItem(this.name)" type="button" class="btn btn-success text-white">بله</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 <aside id="sideBar" class="customLeftSide h-100 " style="background-color: white; z-index: 0 ">
     <div class="mt-5">
         <div class="card shadow">
@@ -58,7 +76,7 @@
                 <div class="mt-2">
                     <div class="d-inline mt-5" style="direction: rtl">
                         <h6 class="float-right">مبلغ کل:</h6>
-                        <h6><%= totalPriceAtDate %></h6>
+                        <h6 id="totalPriceAtDate"><%= totalPriceAtDate %></h6>
                     </div>
                 </div>
                 <div class="mt-4">
@@ -138,8 +156,17 @@
                                 </td>
                                 <td>
                                     <div class="mt-2 float-right" style="">
-                                        <input dir="rtl" value="<%= cart[i].quantity %>" class="form-control" type="number" min="0"
-                                               style="width: 90px">
+                                        <select name="<%=cart[i].productId._id%>" onchange="updateQuantity(this.name, this.value)">
+                                            <% for (var j = 1; j <= 10; j++) { %>
+                                                <% if (j == cart[i].quantity) { %>
+                                                    <option selected><%=j%></option>
+                                                <% } else { %>
+                                                    <option><%=j%></option>
+                                                <% } %>
+                                            <% } %>
+                                        </select>
+                                        <!-- <input dir="rtl" value="<%= cart[i].quantity %>" class="form-control" type="number" min="0"
+                                               style="width: 90px"> -->
                                     </div>
                                 </td>
                                 <td>
@@ -151,7 +178,9 @@
                                     <div class="d-flex">
                                         <img src="<%= cart[i].productId.images[0] %>" class="cartImage" style="">
                                         <div class="mt-3 mr-4">
-                                            <strong class="float-right"><%= cart[i].productId.name %></strong>
+                                            <strong class="float-right">
+                                                <a href="/product/<%=cart[i].productId._id%>" tabindex="0"><%=cart[i].productId.name%></a>
+                                            </strong>
                                         </div>
                                     </div>
                                 </td>
@@ -164,9 +193,11 @@
                                 </th>
                                 <td>
                                     <div class="mt-5">
-                                        <a href="#" class="text-danger" style="font-size: 25px">
+                                        <button onclick="setProductId(this.name)" data-toggle="modal" data-target="#ChangeAddress" name="<%=cart[i].productId._id%>" class="text-danger" style="font-size: 25px; background: none; border: none">
                                             <i class="fa fa-close"></i>
-                                        </a>
+                                        </button>
+                                        <!-- <button type="button" onclick="removeItem(this.name)" class="btn btn btn-outline-info" >اضافه کردن آدرس
+                                            </button> -->
                                     </div>
                                 </td>
                         </tr>
@@ -182,6 +213,48 @@
 
 <% include ../partials/footer.ejs %>
 
+<script>
+var updateQuantity = function(productId, newQuantity) {
+    //sending request
+    fetch('/cart', {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            productId: productId,
+            newQuantity: newQuantity
+        })
+    })
+    .then((res) => {
+        return res.json()
+    }).then((jsonData) => {
+        // updating totolPriceAtDate
+        document.getElementById('totalPriceAtDate').innerHTML = jsonData.totalPriceAtDate;
+    });
+}
+</script>
+<script>
+var removeItem = function(productId) {
+    fetch('/cart', {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            productId: productId,
+        })
+    })
+    .then((res) => {
+        window.location = '/cart';
+    });
+}
+</script>
+<script>
+var setProductId = function(productId) {
+    document.getElementById('acceptButton').name = productId;
+}
+</script>
 <script src="js/jquery2_2.min.js" type="text/javascript"></script>
 <script src="js/bootstrap.min.js" type="text/javascript"></script>
 </body>
