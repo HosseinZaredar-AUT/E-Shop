@@ -251,6 +251,10 @@
   background-color: teal;
 }
 
+textarea::placeholder {
+  text-align: right;
+}
+
 /*# sourceMappingURL=myStyle2.css.map */
 /*# sourceMappingURL=myStyle2.css.map */
 

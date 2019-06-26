@@ -12,11 +12,7 @@ router.post('/', function (req, res) {
                 if (!err) {
                     newCategory.save(function (err) {
                         if (!err) {
-                            Category.findOne({name: "root"}, function (err, root) {
-                                if (!err) {
-                                    res.redirect('/')
-                                }
-                            });
+                            res.redirect('/adminDashboard')
                         }
                     })
                 }
@@ -36,7 +32,7 @@ router.put('/', function (req, res) {
                         category.name = req.body.newName;
                         category.save(function (err) {
                             if (!err) {
-                                res.redirect('/');
+                                res.redirect('/adminDashboard')
                             }
                         })
                     }
@@ -50,7 +46,7 @@ router.delete('/', function (req, res) {
     Category.findOneAndDelete({name: req.body.name},
         function (err) {
             if (!err) {
-                res.redirect('/');
+                res.redirect('/adminDashboard')
             }
         })
 });

@@ -17,7 +17,7 @@ function magnify(imgID, zoom) {
     w = glass.offsetWidth / 2;
     h = glass.offsetHeight / 2;
 
-    glass.classList.remove("img-magnifier-glass")
+    glass.classList.remove("img-magnifier-glass");
 
 
     /* Execute a function when someone moves the magnifier glass over the image: */
@@ -82,19 +82,5 @@ function magnify(imgID, zoom) {
 magnify("myimage", 3);
 
 
-$('#thumbnail1').click(function () {
-   $('#myimage').attr('src','images/1.jpg');
-    magnify("myimage", 3);
-});
-
-$('#thumbnail2').click(function () {
-    $('#myimage').attr('src','images/2.jpg');
-    magnify("myimage", 3);
-});
-
-$('#thumbnail3').click(function () {
-    $('#myimage').attr('src','images/3.jpg');
-    magnify("myimage", 3);
-});
 
 

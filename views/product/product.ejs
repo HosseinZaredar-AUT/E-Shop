@@ -37,6 +37,9 @@
             z-index: 3000;
             transition: 0.5s;
         }
+        textarea::placeholder {
+            text-align: right;
+        }
     </style>
 </head>
 
@@ -196,12 +199,14 @@
                     <img id="myimage" src="/<%=product.images[0]%>" width="400">
                 </div>
                 <div class="row justify-content-center mr-5">
+                    <% var f = 0;%>
                     <% product.images.forEach(function (image) { %>
                         <div class="col-md-2 mx-4">
                             <button>
-                                <img id="thumbnail1" src="/<%=image%>" width="120">
+                                <img id="thumbnail<%=f%>" src="/<%=image%>" width="120">
                             </button>
                         </div>
+                    <% f++;%>
                     <% }) %>
                 </div>
             </div>
@@ -221,9 +226,9 @@
                         <% if(product.status === 'available') { %>
                         <p class="font-md font-light text-success">- موجود -</p>
                         <% } else if(product.status === 'unavailable') { %>
-                        <p class="font-md font-light text-success">- نا موجود -</p>
+                        <p class="font-md font-light text-danger">- نا موجود -</p>
                         <% } else { %>
-                        <p class="font-md font-light text-success">- به زودی -</p>
+                        <p class="font-md font-light text-warning">- به زودی -</p>
                         <% } %>
                         <hr>
                         <p class="font-md font-light text-info my-4"> <%=product.price%> </p>
@@ -294,18 +299,54 @@
         </nav>
         <div class="tab-content" id="nav-tabContent">
             <div class="tab-pane fade" id="nav-comment" role="tabpanel" aria-labelledby="nav-comment-tab">
+                <br>
+                <br>
+                <br>
+                <div class="container mb-3">
+                    <form action="<%=product._id%>/comment/new" method="post">
+                        <textarea name="body" class="form-control w-100" placeholder="...دیدگاه خود را ثبت کنید"
+                                  rows="3"></textarea>
+                        <input type="submit" class="btn btn-lg btn-success text-white mt-3" value="ثبت">
+                    </form>
+                </div>
                 <% product.comments.forEach(function(comment) { %>
                 <div class="comment" style="padding-top: 15px">
                     <div class="card w-100">
                         <h5 class="card-header mb-1">
-                            <span class="float-right"><%comment.customer.name%></span>
-                            <span>۲۰ روز پیش</span>
+                            <span class="float-right"><%=comment.customer.username%></span>
+                            <% if(comment.customer._id === user._id) { %>
+                                <form action="<%=product._id%>/comment/<%=comment._id%>?_method=DELETE" method="post" class="d-inline">
+                                    <input type="submit" class="btn btn-sm btn-danger text-white" value="حذف">
+                                </form>
+                                <button type="button" class="btn btn-sm btn-warning text-white"
+                                        data-toggle="modal" data-target="#editComment">ویرایش</button>
+                            <% } %>
                         </h5>
                         <div class="card-body">
-                            <p class="float-right"><%comment.body%></p>
+                            <p class="float-right"><%=comment.body%></p>
                         </div>
                     </div>
                 </div>
+                    <% if(comment.customer._id === user._id) { %>
+                        <div class="modal fade" id="editComment" tabindex="-1" role="dialog"
+                             aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="card w-100">
+                                        <div class="card-body bg-light">
+                                            <div class="container mb-3">
+                                                <form action="<%=product._id%>/comment/<%=comment._id%>?_method=put" method="post">
+                                                    <textarea name="body" class="form-control w-100" placeholder="...دیدگاه خود را ثبت کنید"
+                                                        rows="3"><%=comment.body%></textarea>
+                                                    <input type="submit" class="btn btn-lg btn-warning text-white mt-3 w-100" value="ویرایش">
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <% } %>
                 <% }) %>
             </div>
             <div class="tab-pane fade show active" id="nav-details" role="tabpanel" aria-labelledby="nav-details-tab">
@@ -319,7 +360,7 @@
                             <span class="float-right p-2"><%=property.value%></span>
                         </div>
                         <div class="d-none d-md-block col-md-3 bg-light float-right">
-                            <span class="float-right p-2">: <%=property.key%></span>
+                            <span class="float-right p-2"><%=property.key%></span>
                         </div>
                     </div>
                     <% }) %>
@@ -399,6 +440,12 @@
         }
     });
     const inputElement = document.querySelector('input[type="file"]');
+    <%for(var y=0; y<product.images.length; y++) {%>
+        $('#thumbnail<%=y%>').click(function () {
+            $('#myimage').attr('src', '/<%= product.images[y] %>');
+            magnify("myimage", 3);
+        });
+    <% } %>
 </script>  
 <% for (image of product.images) { %>
     <p style="visibility: hidden" class="images"><%=image%></p>

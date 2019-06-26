@@ -13,17 +13,18 @@ let express = require('express'),
 router.get('/:productId', async (req, res) => {
     try {
         const prodId = req.params.productId;
-        const product = await Product.findById(prodId);
+        const product = await Product.findById(prodId).populate('comments').exec();
         const recommends = await Product.find({category: product.category});
         let root = await Category.findOne({name: 'root'});
-        let cats = [];
+        console.log(product);
         root.getChildrenTree(function (err, childs) {
             if(!err) {
                 let cats = usefulFunctions.getDataArray(childs);
                 res.render('product/product', {
                     product: product,
                     cats: cats,
-                    recommends: recommends
+                    recommends: recommends,
+                    user: req.user
                 });
             }
         });
@@ -32,26 +33,54 @@ router.get('/:productId', async (req, res) => {
     }
 });
 
-router.put('/addComment/:productId', async (req, res) => {
-    try {
-        const prodId = req.params.productId;
-        console.log(prodId);
-        const product = await Product.findById(prodId);
-        console.log(product);
-        const comments = product.comments;
-        const comment = new Comment({
-            customer: req.session.user,
-            product: product._id,
-            body: req.body.commentBody,
-            rate: req.body.productRate
+router.post('/:productId/comment/new', (req, res) => {
+    if(req.user) {
+        Product.findOne({_id: req.params.productId}, (err, foundProduct) => {
+            if (!err) {
+                new Comment({
+                    body: req.body.body,
+                    customer: {
+                        _id: req.user._id,
+                        username: req.user.username
+                    },
+                    product: foundProduct['_id']
+                }).save((err, savedComment) => {
+                    if (!err) {
+                        console.log(savedComment);
+                        foundProduct.comments.push(savedComment._id);
+                        foundProduct.save((err) => {
+                            if (!err)
+                                res.redirect('back');
+                        });
+                    }
+                });
+            } else {
+                console.log(err);
+            }
         });
-        comments.push(comment);
-        product.save();
-        comment.save();
-         res.sendStatus(201);
-    } catch (e) {
-        console.log(e);
+    } else {
+        res.redirect('/login')
     }
+});
+
+router.put('/:productId/comment/:commentId', (req, res) => {
+    Comment.findOneAndUpdate({_id: req.params.commentId}, {body: req.body.body}, (err) => {
+        if(!err) {
+            res.redirect('back');
+        } else {
+            console.log(err);
+        }
+    });
+});
+
+router.delete('/:productId/comment/:commentId', (req, res) => {
+    Comment.findOneAndDelete({_id: req.params.commentId}, (err) => {
+        if(!err) {
+            res.redirect('back');
+        } else {
+            console.log(err);
+        }
+    });
 });
 
 router.post('/', function (req, res) {
@@ -109,7 +138,7 @@ router.post('/', function (req, res) {
                     // adding the product to category's list
                     foundCategory.products.push(savedProduct._id);
                     foundCategory.save().then(() => {
-                        res.redirect('/adminDashboard');
+                        res.redirect('/product/' + savedProduct._id);
                     }).catch((err) => {
                         throw err;
                     })
@@ -132,9 +161,8 @@ router.put('/:id', function (req, res) {
             });
         }
     }
-    if (typeof (req.body.colors) == 'string')
-        req.body.colors = [req.body.colors]
-        
+    if (typeof (req.body.colors) === 'string')
+        req.body.colors = [req.body.colors];
     Category.findOne({name: req.body.category}, function (err, foundCategory) {
         if(!err) {
             let newProduct = {
@@ -159,7 +187,7 @@ router.put('/:id', function (req, res) {
             
                 // saving images and removing them from temp_images
                 // if it is a single image
-                if (typeof (req.body.filepond) == 'string') {
+                if (typeof (req.body.filepond) === 'string') {
                     image = req.body.filepond;
                     fs.renameSync('./temp_images/' + image, './public/Images/products/' + product._id + '/' + image);
                     newProduct.images.push('Images/products/' + product._id + '/' + image);

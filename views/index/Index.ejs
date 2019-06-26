@@ -70,12 +70,9 @@
             <div class="p-3">
                 <div class="card product-card">
                     <img class="card-img-top" src="/<%=product.images[0]%>" alt="Card image cap">
-                    <div class="card-img-overlay">
-                        <h5 class="card-title" style="display: none"> با موفقیت به سبد خرید اضافه شد.</h5>
-                    </div>
                     <i class="fa fa-plus add-to-cart-action add-to-cart-plus"></i>
                     <div class="card-body">
-                        <h5 class="card-title"><a href="/product/<%=product['_id']%>" style="text-decoration: none"><%=product.name%></a>
+                        <h5 class="card-title"><a href="/product/<%=product['_id']%>"><%=product.name%></a>
                         </h5>
                         <p class="card-text font-light" style="font-size: 3vh"><%=product.price%> تومان</p>
                         <a class="btn btn-success add-to-cart-action text-white">اضافه به سبد خرید
