@@ -40,8 +40,14 @@ module.exports = function(passport) {
     });
 
     passport.deserializeUser(function(id, done) {
-        Customer.findById(id, function(err, user) {
-            done(err, user);
+        Admin.findById(id, function(err, admin) {
+            if (admin) {
+                done(err, admin);
+            } else {
+                Customer.findById(id, function(err, customer) {
+                    done(err, customer);
+                });
+            }
         });
     }); 
 }
