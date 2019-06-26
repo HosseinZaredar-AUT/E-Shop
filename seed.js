@@ -1,6 +1,7 @@
 let mongoose = require('mongoose'),
     Category = require('./moduls/post/category'),
-    Admin    = require('./moduls/user/admin');
+    Admin    = require('./moduls/user/admin'),
+    bcrypt = require('bcrypt');
 
     let seedDB = function () {
     // connecting to database
@@ -16,27 +17,32 @@ let mongoose = require('mongoose'),
     });
 
 
-    // mongoose.connection.dropDatabase();
+    mongoose.connection.dropDatabase();
 
 
-    // Category.create({
-    //         name: 'root'
-    //     }, function (err,createdCategory) {
-    //         createdCategory.save(function (err) {
-    //             if(err) console.log(err);
-    //             else {
-    //                 new Admin({
-    //                     username: 'erfan',
-    //                     password: 'erfan',
-    //                     email   : 'erfan@gmail.com'
-    //                 }).save(function (err) {
-    //                     if(!err) {
-    //                         console.log("db seeded.");
-    //                     }
-    //                 })
-    //             }
-    //         });
-    //     });
+    Category.create({
+            name: 'root'
+        }, function (err,createdCategory) {
+            createdCategory.save(function (err) {
+                if(err) 
+                    console.log(err);
+                else {
+                    bcrypt.genSalt(10, function(err, salt) {
+                        bcrypt.hash('erfan', salt, function(err, hashedPassword) {
+                            new Admin({
+                                username: 'erfan',
+                                password: hashedPassword,
+                                email   : 'erfan@gmail.com'
+                            }).save(function (err) {
+                                if(!err) {
+                                    console.log("db seeded.");
+                                }
+                            })
+                        });
+                    });
+                }
+            });    
+        });
 
 
 };
