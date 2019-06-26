@@ -35,7 +35,7 @@ let express = require('express'),
                     customer.cartTotalPrice += product.price;
                     // saving
                     customer.save().then(() => {
-                        res.redirect('/cart');
+                        res.status(201).redirect('/cart');
                     }).catch((err) => {
                         throw err;
                     });
