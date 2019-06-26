@@ -28,6 +28,9 @@
         .slick-slide img {
             width: 100%;
         }
+        .d-flex[style*="display:none"], .d-flex[style*="display: none"] {
+            display:none !important;
+        }
     </style>
 </head>
 <body class="font-medium">
@@ -70,8 +73,10 @@
             <div class="p-3">
                 <div class="card product-card">
                     <img class="card-img-top" src="/<%=product.images[0]%>" alt="Card image cap">
-                    <div class="card-img-overlay">
-                        <h5 class="card-title" style="display: none"> با موفقیت به سبد خرید اضافه شد.</h5>
+                    <div class="card-img-overlay d-flex" style="display: none">
+                        <div class="my-auto mx-auto text-center">
+                            <h3 class="card-title"> با موفقیت به سبد خرید اضافه شد.</h3>
+                        </div>
                     </div>
                     <i class="fa fa-plus add-to-cart-action add-to-cart-plus"></i>
                     <div class="card-body">
@@ -105,8 +110,10 @@
                         <div class="p-3">
                             <div class="card product-card-discount">
                                 <img class="card-img-top" src="/<%=product.images[0]%>" alt="Card image cap">
-                                <div class="card-img-overlay">
-                                    <h5 class="card-title" style="display: none"> با موفقیت به سبد خرید اضافه شد.</h5>
+                                <div class="card-img-overlay"style="display: none">
+                                    <div class="my-auto mx-auto text-center">
+                                        <h3 class="card-title"> با موفقیت به سبد خرید اضافه شد.</h3>
+                                    </div>
                                 </div>
                                 <i class="fa fa-plus add-to-cart-action add-to-cart-plus-discount"></i>
                                 <p class="discount-text">!تخفیف</p>
@@ -136,8 +143,10 @@
         <div class="p-3">
             <div class="card product-card">
                 <img class="card-img-top" src="/<%=product.images[0]%>" alt="Card image cap">
-                <div class="card-img-overlay">
-                    <h5 class="card-title" style="display: none"> با موفقیت به سبد خرید اضافه شد.</h5>
+                <div class="card-img-overlay" style="display: none">
+                    <div class="my-auto mx-auto text-center">
+                        <h3 class="card-title"> با موفقیت به سبد خرید اضافه شد.</h3>
+                     </div>
                 </div>
                 <i class="fa fa-plus add-to-cart-action add-to-cart-plus"></i>
                 <div class="card-body">
@@ -169,8 +178,10 @@
                         <div class="p-3">
                             <div class="card product-card-best-seller">
                                 <img class="card-img-top" src="/<%=product.images[0]%>" alt="Card image cap">
-                                <div class="card-img-overlay">
-                                    <h5 class="card-title" style="display: none"> با موفقیت به سبد خرید اضافه شد.</h5>
+                                <div class="card-img-overlay" style="display: none">
+                                    <div class="my-auto mx-auto text-center">
+                                        <h3 class="card-title"> با موفقیت به سبد خرید اضافه شد.</h3>
+                                    </div>
                                 </div>
                                 <i class="fa fa-plus add-to-cart-action add-to-cart-plus-best-seller"></i>
                                 <p class="best-seller-text">!پرفروش</p>
@@ -252,26 +263,33 @@
         let productCard = plus.parentElement;
         if (plus.className.includes("btn"))
             productCard = productCard.parentElement;
+        let transitionTime = "0.4s";
         let overlay = productCard.getElementsByClassName("card-img-overlay")[0];
-        let successButton = productCard.getElementsByClassName("btn-success");
+        let successButton = productCard.getElementsByClassName("btn-success")[0];
         let check = successButton.getElementsByClassName("fa")[0];
-        let prevAdd = successButton.innerHTML;
+        let prevAdd = successButton.innerText;
         plus.addEventListener('click', () => {
             image = productCard.getElementsByClassName("card-img-top")[0];
-            image.style.transition = "0.4s";
+            image.style.transition = transitionTime;
             image.style.filter = "blur(4px)";
-            overlay.style.display = "show";
-            check.className = "fa fa-check";
-            successButton.innerHTML = overlay.innerHTML;
+            overlay.style.display = "block";
+            successButton.style.transition = transitionTime;
+            var checkPlus = document.createElement("i");
+            checkPlus.className = "fa fa-check";
+            console.log(check);
+            console.log(successButton);
+            console.log(prevAdd);
+            successButton.innerText = overlay.innerText;
+            successButton.insertBefore(checkPlus, successButton.firstChild)
+            
             setTimeout(() => {
                 image.style.filter = "none";
-                check.className = "fa fa-plus"
                 overlay.style.display = "none";
-                successButton.innerHTML = prevAdd;
+                successButton.innerText= prevAdd;
             }, 1000);
 
         });
-    }
+}
 </script>
 
 <script>
@@ -324,9 +342,9 @@
             slidesToShow: 1,
             slidesToScroll: 1
         });
-        $('.add-to-cart-action').click(function () {
-            console.log("faghat erfan <3 #pride");
-        })
+        // $('.add-to-cart-action').click(function () {
+        //     console.log("faghat erfan <3 #pride");
+        // })
             
     });
 </script>
