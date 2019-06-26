@@ -43,7 +43,7 @@ packThePage = (id) => {
 
 function addColor() {
     $("#color").prepend("    <div style=\"direction: rtl\">\n" +
-        "            <input name=\"color\" type=\"color\"\n" +
+        "            <input name=\"colors\" type=\"color\"\n" +
         "    class=\"form-control d-inline w-75\">\n" +
         "            </div>\n" +
         "            <hr>");

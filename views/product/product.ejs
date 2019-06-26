@@ -115,8 +115,10 @@
                                 </div>
                                 <div id="color" class="card-body px-0">
                                     <div style="direction: rtl">
-                                        <input type="color" name="color" value="<%=product.color%>"
-                                               class="form-control d-inline w-75">
+                                        <% for (color of product.colors) { %>
+                                            <input type="color" name="colors" value="<%=color%>"
+                                            class="form-control d-inline w-75">
+                                        <% } %>
                                     </div>
                                     <hr>
                                     <a onclick="addColor()" class="btn btn-info text-white"

@@ -161,8 +161,10 @@ router.put('/:id', function (req, res) {
             });
         }
     }
-    if (typeof (req.body.colors) === 'string')
+    console.log(req.body.colors);
+    if (typeof (req.body.colors) == 'string')
         req.body.colors = [req.body.colors];
+
     Category.findOne({name: req.body.category}, function (err, foundCategory) {
         if(!err) {
             let newProduct = {
