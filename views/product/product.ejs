@@ -314,7 +314,7 @@
                     <div class="card w-100">
                         <h5 class="card-header mb-1">
                             <span class="float-right"><%=comment.customer.username%></span>
-                            <% if(comment.customer._id === user._id) { %>
+                            <% if(user['_id'].toString()===comment.customer._id.toString()) { %>
                                 <form action="<%=product._id%>/comment/<%=comment._id%>?_method=DELETE" method="post" class="d-inline">
                                     <input type="submit" class="btn btn-sm btn-danger text-white" value="حذف">
                                 </form>
@@ -327,7 +327,7 @@
                         </div>
                     </div>
                 </div>
-                    <% if(comment.customer._id === user._id) { %>
+                    <% if(user['_id'].toString()===comment.customer._id.toString()) { %>
                         <div class="modal fade" id="editComment" tabindex="-1" role="dialog"
                              aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
