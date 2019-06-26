@@ -8,9 +8,7 @@ let express = require('express'),
     usefulFunctions = require('../../middlewares/usefulFunctions'),
     Category = require('../../moduls/post/category'),
     Product = require('../../moduls/post/product'),
-    Property = require('../../moduls/post/property'),
     Comment = require('../../moduls/post/comment');
-
 
 router.get('/:productId', async (req, res) => {
     try {
@@ -60,10 +58,10 @@ router.post('/', function (req, res) {
     let properties = req.body.property;
     let propertiesArray = [];
     for (let i = 0; i < properties.length - 1; i++) {
-        propertiesArray.push(new Property({
+        propertiesArray.push({
             key: properties[i],
             value: properties[++i]
-        }));
+        });
     }
     if (typeof (req.body.colors) == 'string')
         req.body.colors = [req.body.colors];
@@ -128,10 +126,10 @@ router.put('/:id', function (req, res) {
     let propertiesArray = [];
     if (properties) {
         for (let i = 0; i < properties.length - 1; i++) {
-            propertiesArray.push(new Property({
+            propertiesArray.push({
                 key: properties[i],
                 value: properties[++i]
-            }));
+            });
         }
     }
     if (typeof (req.body.colors) == 'string')

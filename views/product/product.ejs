@@ -159,10 +159,9 @@
                                 <div id="other" class="card-body px-0">
                                     <div style="direction: rtl">
                                         <% for(var j=0;j<product.properties.length; j++) { %>
-                                            <% console.log(product.properties)%>
                                             <input type="text" name="property" class="form-control d-inline w-25"
                                                    value="<%=product.properties[j].key%>">
-                                            <input type="text" class="form-control d-inline w-50"
+                                            <input type="text" name="property" class="form-control d-inline w-50"
                                                    value="<%=product.properties[j].value%>">
                                         <% } %>
                                     </div>
@@ -316,14 +315,11 @@
                     <br>
                     <% product.properties.forEach(function (property) { %>
                     <div class="row justify-content-between my-2">
-                        <div class="d-block d-md-none col-md-3 bg-light float-right">
-                            <span class="float-right p-2">: <%property.key%></span>
-                        </div>
                         <div class="col-md-8 bg-light">
-                            <span class="float-right p-2"><%property.value%></span>
+                            <span class="float-right p-2"><%=property.value%></span>
                         </div>
                         <div class="d-none d-md-block col-md-3 bg-light float-right">
-                            <span class="float-right p-2">: <%property.key%></span>
+                            <span class="float-right p-2">: <%=property.key%></span>
                         </div>
                     </div>
                     <% }) %>

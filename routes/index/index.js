@@ -4,7 +4,6 @@ let express = require('express'),
     path = require('path'),
     Category = require('../../moduls/post/category'),
     Product = require('../../moduls/post/product'),
-    Property = require('../../moduls/post/property'),
     usefulFunctions = require('../../middlewares/usefulFunctions');
 
 router.get('/', async function (req, res) {

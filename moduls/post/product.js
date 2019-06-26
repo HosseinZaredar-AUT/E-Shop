@@ -40,7 +40,10 @@ let productSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    properties: [{type: mongoose.Schema.Types.ObjectId, ref: 'Property'}],
+    properties: [{
+        key: {type: String, required: true},
+        value: {type: String, required: true},
+    }],
     comments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Comment'}],
     
 });
