@@ -51,167 +51,171 @@
 </head>
 
 <body class="font-medium">
-<div id="editProduct" class="dropPage" style="display: none">
-    <div class="card shadow " style="">
-        <div class="card-header bg-info text-center text-white" style="height: 45px">
-                <span class="float-right mb-3" style="color: white;font-size: 1.75rem;cursor: pointer;"
-                      onclick="packThePage('editProduct')">
-            <i class="fa fa-minus" style="position: absolute; top: 10px; right: 35px;"></i>
-        </span>
-            <h6 class="d-inline">ویرایش کالا</h6>
-            <i class="fa fa-edit" style="font-size: 1.5rem"></i>
-        </div>
-        <div class="card-body">
-            <div id="" class="">
-                <div class="container">
-                    <div class="col-sm-12 mt-5 text-center">
-                        <form method="post" action="/product/<%= product._id %>?_method=PUT">
-                            <div class="card shadow w-100">
-                                <div class="card-header font-sm mb-1 py-3 d-inline px-0" style="direction: rtl">
-                                    <!--<h5 class="font-sm mb-1 p-4 d-inline">کد کالا :</h5>-->
-                                    <h5>مشخصات اصلی</h5>
-                                </div>
-                                <div class="card-body px-0">
-                                    <div class="" style="direction: rtl">
-                                        <input type="text" name="productID" value="<%= product.productID %>"
-                                               class="form-control d-inline w-75">
-                                    </div>
-                                    <hr>
-                                    <div class="" style="direction: rtl">
-                                        <input type="text" name="name" value="<%= product.name %>"
-                                               class="form-control d-inline w-75">
-                                    </div>
-                                    <hr>
-                                    <div style="direction: rtl">
-                                        <select name="status" type=""
-                                                class="form-control d-inline w-75">
-                                            <% if(product.status === 'available') { %>
-                                                <option value="available" class="" style="" selected>موجود</option>
-                                                <option value="unavailable" class="" style="">ناموجود</option>
-                                                <option value="soon" class="" style="">به زودی</option>
-                                            <% } %>
-                                            <% if(product.status === 'unavailable') { %>
-                                                <option value="available" class="" style="">موجود</option>
-                                                <option value="unavailable" class="" style="" selected>ناموجود</option>
-                                                <option value="soon" class="" style="">به زودی</option>
-                                            <% } %>
-                                            <% if(product.status === 'soon') { %>
-                                                <option value="available" class="" style="">موجود</option>
-                                                <option value="unavailable" class="" style="">ناموجود</option>
-                                                <option value="soon" class="" style="" selected>به زودی</option>
-                                            <% } %>
-                                        </select>
-                                    </div>
-                                    <hr>
-                                    <div style="direction: rtl">
-                                        <input type="number" name="price" min="0" step="500"
-                                               value="<%= product.price %>"
-                                               class="form-control d-inline w-75">
-                                    </div>
-                                    <hr>
-                                    <div style="direction: rtl">
-                                        <input type="number" name="discount" min="0" max="100"
-                                               value="<%= product.discount %>"
-                                               class="form-control d-inline w-75">
-                                    </div>
-                                    <hr>
-                                    <div style="direction: rtl">
-                                        <input type="number" name="remainingNumber" min="0"
-                                               value="<%= product.remainingNumber %>"
-                                               class="form-control d-inline w-75">
-                                    </div>
-                                </div>
-                                <div class="card-header font-sm mb-1 py-3 d-inline px-0" style="direction: rtl">
-                                    <h5>رنگ</h5>
-                                </div>
-                                <div id="color" class="card-body px-0">
-                                    <% for (color of product.colors) { %>
-                                        <div style="direction: rtl" class="position-relative">
-                                            <a onclick="this.parentNode.remove()" class="text-danger"
-                                               style="font-size: 25px">
-                                                <i class="fa fa-close position-absolute"
-                                                   style="right: 55px;top:8px;"></i>
-                                            </a>
-                                            <input type="color" name="colors" value="<%= color %>"
-                                                   class="form-control d-inline w-75">
-                                            <hr>
+    
+<% if (isAdmin) { %>
+    <div id="editProduct" class="dropPage" style="display: none">
+            <div class="card shadow " style="">
+                <div class="card-header bg-info text-center text-white" style="height: 45px">
+                        <span class="float-right mb-3" style="color: white;font-size: 1.75rem;cursor: pointer;"
+                              onclick="packThePage('editProduct')">
+                    <i class="fa fa-minus" style="position: absolute; top: 10px; right: 35px;"></i>
+                </span>
+                    <h6 class="d-inline">ویرایش کالا</h6>
+                    <i class="fa fa-edit" style="font-size: 1.5rem"></i>
+                </div>
+                <div class="card-body">
+                    <div id="" class="">
+                        <div class="container">
+                            <div class="col-sm-12 mt-5 text-center">
+                                <form method="post" action="/product/<%= product._id %>?_method=PUT">
+                                    <div class="card shadow w-100">
+                                        <div class="card-header font-sm mb-1 py-3 d-inline px-0" style="direction: rtl">
+                                            <!--<h5 class="font-sm mb-1 p-4 d-inline">کد کالا :</h5>-->
+                                            <h5>مشخصات اصلی</h5>
                                         </div>
-                                    <% } %>
-
-                                    <a onclick="addColor()" class="btn btn-info text-white"
-                                       style="width: 120px; cursor: pointer;">
-                                        افزودن رنگ
-                                    </a>
-                                </div>
-                                <div class="card-header font-sm mb-1 py-3 d-inline px-0" style="direction: rtl">
-                                    <h5>عکس</h5>
-                                </div>
-                                <div id="photo" class="card-body px-0">
-                                    <input type="file" accept="image/*" multiple>
-                                </div>
-                                <div class="card-header font-sm mb-1 py-3 d-inline px-0" style="direction: rtl">
-                                    <h5>دسته بندی</h5>
-                                </div>
-                                <div id="cat" class="card-body px-0">
-                                    <div style="direction: rtl">
-                                        <select type="text" name="category" class="form-control d-inline w-75">
-                                            <% for(var i = 0;i < cats.length; i++) { %>
-                                                <% if(product.category === cats[i]['_id']) { %>
-                                                    <option selected><%= cats[i].name %></option>
-                                                <% } else { %>
-                                                    <option><%= cats[i].name %></option>
-                                                <% } %>
-                                            <% } %>
-                                        </select>
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="card-header font-sm mb-1 py-3 d-inline px-0" style="direction: rtl">
-                                    <h5>توضیحات</h5>
-                                </div>
-                                <br>
-                                <div class="" style="direction: rtl">
-                                        <textarea rows="5" name="description"
-                                                  class="form-control d-inline w-75"><%= product.description %></textarea>
-                                </div>
-                                <br>
-                                <div class="card-header font-sm mb-1 py-3 d-inline px-0" style="direction: rtl">
-                                    <h5>سایر</h5>
-                                </div>
-                                <div id="other" class="card-body px-0">
-                                    <% for(var j = 0;j < product.properties.length; j++) { %>
-                                        <div style="direction: rtl;position: relative">
-                                            <a onclick="this.parentNode.remove()" class="text-danger"
-                                               style="font-size: 25px">
-                                                <i class="fa fa-close position-absolute"
-                                                   style="right: 55px;top:8px;"></i>
-                                            </a>
-                                            <input type="text" name="property" class="form-control d-inline w-25"
-                                                   value="<%= product.properties[j].key %>">
-                                            <input type="text" name="property" class="form-control d-inline w-50"
-                                                   value="<%= product.properties[j].value %>">
+                                        <div class="card-body px-0">
+                                            <div class="" style="direction: rtl">
+                                                <input type="text" name="productID" value="<%= product.productID %>"
+                                                       class="form-control d-inline w-75">
+                                            </div>
                                             <hr>
+                                            <div class="" style="direction: rtl">
+                                                <input type="text" name="name" value="<%= product.name %>"
+                                                       class="form-control d-inline w-75">
+                                            </div>
+                                            <hr>
+                                            <div style="direction: rtl">
+                                                <select name="status" type=""
+                                                        class="form-control d-inline w-75">
+                                                    <% if(product.status === 'available') { %>
+                                                        <option value="available" class="" style="" selected>موجود</option>
+                                                        <option value="unavailable" class="" style="">ناموجود</option>
+                                                        <option value="soon" class="" style="">به زودی</option>
+                                                    <% } %>
+                                                    <% if(product.status === 'unavailable') { %>
+                                                        <option value="available" class="" style="">موجود</option>
+                                                        <option value="unavailable" class="" style="" selected>ناموجود</option>
+                                                        <option value="soon" class="" style="">به زودی</option>
+                                                    <% } %>
+                                                    <% if(product.status === 'soon') { %>
+                                                        <option value="available" class="" style="">موجود</option>
+                                                        <option value="unavailable" class="" style="">ناموجود</option>
+                                                        <option value="soon" class="" style="" selected>به زودی</option>
+                                                    <% } %>
+                                                </select>
+                                            </div>
+                                            <hr>
+                                            <div style="direction: rtl">
+                                                <input type="number" name="price" min="0" step="500"
+                                                       value="<%= product.price %>"
+                                                       class="form-control d-inline w-75">
+                                            </div>
+                                            <hr>
+                                            <div style="direction: rtl">
+                                                <input type="number" name="discount" min="0" max="100"
+                                                       value="<%= product.discount %>"
+                                                       class="form-control d-inline w-75">
+                                            </div>
+                                            <hr>
+                                            <div style="direction: rtl">
+                                                <input type="number" name="remainingNumber" min="0"
+                                                       value="<%= product.remainingNumber %>"
+                                                       class="form-control d-inline w-75">
+                                            </div>
                                         </div>
-                                    <% } %>
-                                    <a onclick="addOther()" class="btn btn-info text-white"
-                                       style="width: 120px; cursor: pointer;">
-                                        افزودن
-                                    </a>
-                                </div>
-                                <div class="card-footer font-sm mb-1 p-2 text-center">
-                                    <button type="submit" class="btn btn-info text-white">
-                                        <i class="fa fa-plus font-md pt-1"></i>
-                                    </button>
-                                </div>
+                                        <div class="card-header font-sm mb-1 py-3 d-inline px-0" style="direction: rtl">
+                                            <h5>رنگ</h5>
+                                        </div>
+                                        <div id="color" class="card-body px-0">
+                                            <% for (color of product.colors) { %>
+                                                <div style="direction: rtl" class="position-relative">
+                                                    <a onclick="this.parentNode.remove()" class="text-danger"
+                                                       style="font-size: 25px">
+                                                        <i class="fa fa-close position-absolute"
+                                                           style="right: 55px;top:8px;"></i>
+                                                    </a>
+                                                    <input type="color" name="colors" value="<%= color %>"
+                                                           class="form-control d-inline w-75">
+                                                    <hr>
+                                                </div>
+                                            <% } %>
+        
+                                            <a onclick="addColor()" class="btn btn-info text-white"
+                                               style="width: 120px; cursor: pointer;">
+                                                افزودن رنگ
+                                            </a>
+                                        </div>
+                                        <div class="card-header font-sm mb-1 py-3 d-inline px-0" style="direction: rtl">
+                                            <h5>عکس</h5>
+                                        </div>
+                                        <div id="photo" class="card-body px-0">
+                                            <input type="file" accept="image/*" multiple>
+                                        </div>
+                                        <div class="card-header font-sm mb-1 py-3 d-inline px-0" style="direction: rtl">
+                                            <h5>دسته بندی</h5>
+                                        </div>
+                                        <div id="cat" class="card-body px-0">
+                                            <div style="direction: rtl">
+                                                <select type="text" name="category" class="form-control d-inline w-75">
+                                                    <% for(var i = 0;i < cats.length; i++) { %>
+                                                        <% if(product.category === cats[i]['_id']) { %>
+                                                            <option selected><%= cats[i].name %></option>
+                                                        <% } else { %>
+                                                            <option><%= cats[i].name %></option>
+                                                        <% } %>
+                                                    <% } %>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="card-header font-sm mb-1 py-3 d-inline px-0" style="direction: rtl">
+                                            <h5>توضیحات</h5>
+                                        </div>
+                                        <br>
+                                        <div class="" style="direction: rtl">
+                                                <textarea rows="5" name="description"
+                                                          class="form-control d-inline w-75"><%= product.description %></textarea>
+                                        </div>
+                                        <br>
+                                        <div class="card-header font-sm mb-1 py-3 d-inline px-0" style="direction: rtl">
+                                            <h5>سایر</h5>
+                                        </div>
+                                        <div id="other" class="card-body px-0">
+                                            <% for(var j = 0;j < product.properties.length; j++) { %>
+                                                <div style="direction: rtl;position: relative">
+                                                    <a onclick="this.parentNode.remove()" class="text-danger"
+                                                       style="font-size: 25px">
+                                                        <i class="fa fa-close position-absolute"
+                                                           style="right: 55px;top:8px;"></i>
+                                                    </a>
+                                                    <input type="text" name="property" class="form-control d-inline w-25"
+                                                           value="<%= product.properties[j].key %>">
+                                                    <input type="text" name="property" class="form-control d-inline w-50"
+                                                           value="<%= product.properties[j].value %>">
+                                                    <hr>
+                                                </div>
+                                            <% } %>
+                                            <a onclick="addOther()" class="btn btn-info text-white"
+                                               style="width: 120px; cursor: pointer;">
+                                                افزودن
+                                            </a>
+                                        </div>
+                                        <div class="card-footer font-sm mb-1 p-2 text-center">
+                                            <button type="submit" class="btn btn-info text-white">
+                                                <i class="fa fa-plus font-md pt-1"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
+        
             </div>
         </div>
+<% } %>
 
-    </div>
-</div>
 
 <% include ../partials/header2.ejs %>
 
@@ -239,9 +243,11 @@
                     <h5 class="card-header font-sm mb-1 p-4">
                         کد کالا :
                         <span><%= product.productID %></span>
-                        <a onclick="dropThePage('editProduct'); fetchImages()" class="btn btn-dark ml-2">
-                            <i class="fa fa-edit text-white"></i>
-                        </a>
+                        <% if (isAdmin) { %>
+                            <a onclick="dropThePage('editProduct'); fetchImages()" class="btn btn-dark ml-2">
+                                    <i class="fa fa-edit text-white"></i>
+                            </a>
+                        <% } %>
                     </h5>
                     <div class="card-body">
                         <h5 class="card-title mt-3 mb-5 font-md font-bold"><%= product.name %></h5>
@@ -256,13 +262,19 @@
                         <% } %>
                         <hr>
                         <p class="font-md font-light text-info my-4"> <%= product.price %> </p>
-                        <!-- <form method="POST" action="/cart/add"> -->
-                        <!-- <input name="productId" type="hidden" value="<%= product._id %>"> -->
-                        <a data-id="<%= product.productID %>"
-                           class="btn btn-success add-to-cart-action text-white">اضافه به سبد خرید
-                            <i class="fa fa-plus"></i>
-                        </a>
-                        <!-- </form> -->
+
+                        <% if (isInCart) { %>
+                            <a data-id="<%=product.productID%>" href="/cart"
+                                class="btn btn-warning text-white">مشاهده در سبد خرید</a>
+                        <% } else { %>
+                            <form method="POST" action="/cart/add">
+                                <input name="productId" type="hidden" value="<%= product._id %>">
+                                <div class="btn btn-success text-white">   
+                                    <input type="submit" value="اضافه به سبد خرید" style="background: none; border:none; color: white">
+                                    <i class="fa fa-plus"></i>
+                                </div>
+                            </form>
+                        <% } %>
 
                     </div>
                     <h5 class="card-footer font-sm mb-1 p-4 text-center">
@@ -292,8 +304,9 @@
                     <img class="card-img-top" src="/<%= recommendedProduct.images[0] %>" alt="Card image cap">
                     <i class="fa fa-plus add-to-cart-plus"></i>
                     <div class="card-body">
-                        <h5 class="card-title"><a href="product.html"
-                                                  style="text-decoration: none"><%= recommendedProduct.name %></a></h5>
+                        <h5 class="card-title">
+                            <a href="<%=recommendedProduct._id%>" style="text-decoration: none"><%= recommendedProduct.name %></a>
+                            </h5>
                         <p class="card-text font-light" style="font-size: 3vh">
                             <span>تومان</span>
                             <%= recommendedProduct.price %>
@@ -487,14 +500,17 @@
 <% for (image of product.images) { %>
     <p style="visibility: hidden" class="images"><%= image %></p>
 <% } %>
-<script>
-    function fetchImages() {
-        const pond = FilePond.create(inputElement);
-        var elements = document.getElementsByClassName('images');
-        for (element of elements) {
-            pond.addFile('/' + element.innerHTML);
-        }
-    }
-</script>
+
+<% if (isAdmin) { %>
+    <script>
+            function fetchImages() {
+                const pond = FilePond.create(inputElement);
+                var elements = document.getElementsByClassName('images');
+                for (element of elements) {
+                    pond.addFile('/' + element.innerHTML);
+                }
+            }
+        </script>
+<% } %>
 </body>
 </html>

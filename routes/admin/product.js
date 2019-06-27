@@ -8,7 +8,8 @@ let express = require('express'),
     usefulFunctions = require('../../middlewares/usefulFunctions'),
     Category = require('../../moduls/post/category'),
     Product = require('../../moduls/post/product'),
-    Comment = require('../../moduls/post/comment');
+    Comment = require('../../moduls/post/comment'),
+    Customer = require('../../moduls/user/customer');
 
 router.get('/:productId', async (req, res) => {
     try {
@@ -16,11 +17,27 @@ router.get('/:productId', async (req, res) => {
         const product = await Product.findById(prodId).populate('comments').exec();
         const recommends = await Product.find({category: product.category});
         let root = await Category.findOne({name: 'root'});
-        console.log(product);
+        
+        var isInCart = false;
+        var isAdmin = false;
+
+        if (req.user != null) {
+            if (req.user.isAdmin == true) { // checking if it is admin
+                isAdmin = true;
+            } else { // checking if the product in in customer's cart
+                var customer = await Customer.findById(req.user._id);
+                if (customer.cart.find(product => product.productId == prodId)) {
+                    isInCart = true;
+                }
+            }
+        }
+
         root.getChildrenTree(function (err, childs) {
             if(!err) {
                 let cats = usefulFunctions.getDataArray(childs);
                 res.render('product/product', {
+                    isInCart: isInCart,
+                    isAdmin: isAdmin,
                     product: product,
                     cats: cats,
                     recommends: recommends,
