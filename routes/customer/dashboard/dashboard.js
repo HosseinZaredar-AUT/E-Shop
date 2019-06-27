@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
         .exec(function(err, orders) {
             Customer.findOne({_id: req.user._id}).populate('favorites').exec((err, foundCustomer) => {
                 if(!err) {
-                    res.render('user/userDashboard', {orders: orders, favorites: foundCustomer.favorites});
+                    res.render('user/userDashboard', {orders: orders, favorites: foundCustomer.favorites, customerName: foundCustomer.username});
                 }
             })
         });
