@@ -6,14 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>داشبورد ادمین</title>
     <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+          integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/myStyle2.css">
     <link rel="stylesheet" href="css/Dashboard.css">
     <link rel="stylesheet" href="css/myStyle3.css">
     <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
     <script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js"></script>
-    <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet">
+    <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css"
+          rel="stylesheet">
     <style>
         .myClickableThingy {
             cursor: pointer;
@@ -166,21 +168,22 @@
                 <i class="fa fa-users" style="font-size: 1.5rem"></i>
             </div>
             <div class="card-body text-white">
-                    <div class="container">
-                        <div class="accordion md-accordion accordion-blocks" id="order-1" role="tablist"
-                             aria-multiselectable="true">
-                            <% for (var i = 0; i < orders.length; i++) { %>
-                                <div class="card shadow-lg my-4">
-                                    <div class="card-header bg-warning border-bottom" role="tab" id="order-header-<%= (i+1) %>">
-                                        <% if (i == 0) { %>
-                                        <a data-toggle="collapse" data-parent="#order-1" class="text-white"
-                                           href="#order-body-<%= (i+1) %>" aria-expanded="true"
-                                           aria-controls="collapseUnfiled">
+                <div class="container">
+                    <div class="accordion md-accordion accordion-blocks" id="order-1" role="tablist"
+                         aria-multiselectable="true">
+                        <% for (var i = 0; i < orders.length; i++) { %>
+                            <div class="card shadow-lg my-4">
+                                <div class="card-header bg-warning border-bottom" role="tab"
+                                     id="order-header-<%= (i + 1) %>">
+                                    <% if (i == 0) { %>
+                                    <a data-toggle="collapse" data-parent="#order-1" class="text-white"
+                                       href="#order-body-<%= (i + 1) %>" aria-expanded="true"
+                                       aria-controls="collapseUnfiled">
                                         <% } else { %>
-                                            <a data-toggle="collapse" data-parent="#order-1" class="text-white"
-                                           href="#order-body-<%= (i+1) %>" aria-expanded="true"
-                                           aria-controls="order-body-<%= (i+1) %>">
-                                        <% } %>
+                                        <a data-toggle="collapse" data-parent="#order-1" class="text-white"
+                                           href="#order-body-<%= (i + 1) %>" aria-expanded="true"
+                                           aria-controls="order-body-<%= (i + 1) %>">
+                                            <% } %>
                                             <h5 class="mt-1 mb-0 float-right">
                                                 <i class="fa fa-angle-down rotate-icon mx-2"></i>
                                                 <span>سفارش</span>
@@ -191,75 +194,77 @@
                                         <button class="btn btn-sm btn-outline-info mx-3">
                                             <span><%= orders[i].status %></span>
                                         </button>
-                                        </a>
-                                    </div>
-                                    <div id="order-body-<%= (i+1) %>" class="collapse" role="tabpanel" aria-labelledby="order-header-<%= (i+1) %>"
-                                         data-parent="#order-1">
-                                        <div class="card-body border-bottom">
-                                            <div class="card w-100 mb-3">
-                                                <div class="card-body">
-                                                    <div class="container">
-                                                        <div class="row text-dark">
-                                                            <div class="col-md-3 col-sm-6 ml-auto float-right">
-                                                                <span class="float-right"> : آدرس  </span>
-                                                                <br>
-                                                                <span class="float-right"><%= orders[i].address %></span>
-                                                            </div>
-                                                            <div class="col-md-3 col-sm-6 ml-auto float-right">
-                                                                <span class="float-right">کد ملی : <strong><%= orders[i].nationalId %></strong></span>
-                                                                <br>
-                                                                <span class="float-right">استان : <strong>-</strong></span>
-                                                                <br>
-                                                                <span class="float-right">شهر : <strong>-</strong></span>
-                                                                <br>
-                                                                <span class="float-right">کد پستی : <strong>-</strong></span>
-                                                                <br>
-                                                                <span class="float-right">کد رهگیری : <strong><%= orders[i].trackingCode %></strong></span>
-                                                            </div>
-                                                            <div class="col-md-3 col-sm-6 ml-auto float-right">
-                                                                <span class="float-right">نام : <strong><%= orders[i].firstname %></strong></span>
-                                                                <br>
-                                                                <span class="float-right">نام خانوادگی : <strong><%= orders[i].lastname %></strong></span>
-                                                                <br>
-                                                                <span class="float-right">تلفن همراه : <strong><%= orders[i].phoneNumber %></strong></span>
-                                                                <br>
-                                                                <span class="float-right">تلفن ثابت : <strong><%= orders[i].homeNumber%></strong></span>
-                                                                <br>
-                                                                <span class="float-right">روش پرداخت : <strong><%= orders[i].paymentMethod%></strong></span>
-                                                                <br>
-                                                                <span class="float-right">روش ارسال : <strong><%= orders[i].shippingMethod%></strong></span>
-                                                            </div>
+                                    </a>
+                                </div>
+                                <div id="order-body-<%= (i + 1) %>" class="collapse" role="tabpanel"
+                                     aria-labelledby="order-header-<%= (i + 1) %>"
+                                     data-parent="#order-1">
+                                    <div class="card-body border-bottom">
+                                        <div class="card w-100 mb-3">
+                                            <div class="card-body">
+                                                <div class="container">
+                                                    <div class="row text-dark">
+                                                        <div class="col-md-3 col-sm-6 ml-auto float-right">
+                                                            <span class="float-right"> : آدرس  </span>
+                                                            <br>
+                                                            <span class="float-right"><%= orders[i].address %></span>
+                                                        </div>
+                                                        <div class="col-md-3 col-sm-6 ml-auto float-right">
+                                                            <span class="float-right">کد ملی : <strong><%= orders[i].nationalId %></strong></span>
+                                                            <br>
+                                                            <span class="float-right">استان : <strong>-</strong></span>
+                                                            <br>
+                                                            <span class="float-right">شهر : <strong>-</strong></span>
+                                                            <br>
+                                                            <span class="float-right">کد پستی : <strong>-</strong></span>
+                                                            <br>
+                                                            <span class="float-right">کد رهگیری : <strong><%= orders[i].trackingCode %></strong></span>
+                                                        </div>
+                                                        <div class="col-md-3 col-sm-6 ml-auto float-right">
+                                                            <span class="float-right">نام : <strong><%= orders[i].firstname %></strong></span>
+                                                            <br>
+                                                            <span class="float-right">نام خانوادگی : <strong><%= orders[i].lastname %></strong></span>
+                                                            <br>
+                                                            <span class="float-right">تلفن همراه : <strong><%= orders[i].phoneNumber %></strong></span>
+                                                            <br>
+                                                            <span class="float-right">تلفن ثابت : <strong><%= orders[i].homeNumber %></strong></span>
+                                                            <br>
+                                                            <span class="float-right">روش پرداخت : <strong><%= orders[i].paymentMethod %></strong></span>
+                                                            <br>
+                                                            <span class="float-right">روش ارسال : <strong><%= orders[i].shippingMethod %></strong></span>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="table-responsive">
-                                                <table class="table table-hover mb-0 mx-5">
-                                                    <thead>
-                                                    <tr class="font-sm">
-                                                        <th class="th-lg"><a>شماره<i class="fa fa-sort ml-1"></i></a></th>
-                                                        <th class="th-lg"><a>نام کالا<i class="fa fa-sort ml-1"></i></a></th>
-                                                        <th class="th-lg"><a>تعداد<i class="fa fa-sort ml-1"></i></a></th>
-                                                        <th></th>
+                                        </div>
+                                        <div class="table-responsive">
+                                            <table class="table table-hover mb-0 mx-5">
+                                                <thead>
+                                                <tr class="font-sm">
+                                                    <th class="th-lg"><a>شماره<i class="fa fa-sort ml-1"></i></a></th>
+                                                    <th class="th-lg"><a>نام کالا<i class="fa fa-sort ml-1"></i></a>
+                                                    </th>
+                                                    <th class="th-lg"><a>تعداد<i class="fa fa-sort ml-1"></i></a></th>
+                                                    <th></th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <% for (j = 0; j < orders[i].products.length; j++) { %>
+                                                    <tr>
+                                                        <td class="pl-3"><%= (j + 1) %></td>
+                                                        <td><%= orders[i].products[j].productId.name %></td>
+                                                        <td><strong><%= orders[i].products[j].quantity %></strong></td>
                                                     </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <% for (j = 0; j < orders[i].products.length; j++) { %>
-                                                            <tr>
-                                                                <td class="pl-3"><%= (j+1) %></td>
-                                                                <td><%= orders[i].products[j].productId.name %></td>
-                                                                <td><strong><%= orders[i].products[j].quantity %></strong></td>
-                                                                </tr>
-                                                        <% } %>
-                                                    </tbody>
-                                                </table>
-                                            </div>
+                                                <% } %>
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>
-                            <% } %>  
-                        </div>
+                            </div>
+                        <% } %>
                     </div>
+                </div>
             </div>
         </div>
         <div class="card shadow mt-4 d-none" id="addProduct" style="">
@@ -271,7 +276,7 @@
                 <div id="product-body" class="">
                     <div class="container">
                         <div class="row  text-center">
-                        
+
                             <div class="col-md-12 mt-5">
                                 <form method="post" action="/product">
                                     <div class="card shadow w-100">
@@ -300,12 +305,14 @@
                                             </div>
                                             <hr>
                                             <div style="direction: rtl">
-                                                <input type="number" name="price" min="0" step="500" placeholder="قیمت کالا :"
+                                                <input type="number" name="price" min="0" step="500"
+                                                       placeholder="قیمت کالا :"
                                                        class="form-control d-inline w-75">
                                             </div>
                                             <hr>
                                             <div style="direction: rtl">
-                                                <input type="number" name="remainingNumber" min="0" placeholder="تعداد کالا :"
+                                                <input type="number" name="remainingNumber" min="0"
+                                                       placeholder="تعداد کالا :"
                                                        class="form-control d-inline w-75">
                                             </div>
 
@@ -314,11 +321,16 @@
                                             <h5>رنگ</h5>
                                         </div>
                                         <div id="color" class="card-body px-0">
-                                            <div style="direction: rtl">
+                                            <div style="direction: rtl" class="position-relative">
+                                                <a onclick="this.parentNode.remove()" class="text-danger"
+                                                   style="font-size: 25px">
+                                                    <i class="fa fa-close position-absolute"
+                                                       style="right: 55px;top:8px;"></i>
+                                                </a>
                                                 <input type="color" name="colors"
                                                        class="form-control d-inline w-75">
+                                                <hr>
                                             </div>
-                                            <hr>
                                             <a onclick="addColor()" class="btn btn-info text-white"
                                                style="width: 120px; cursor: pointer;">
                                                 افزودن رنگ
@@ -338,13 +350,13 @@
                                         <div id="cat" class="card-body px-0">
                                             <div style="direction: rtl">
                                                 <select type="text" name="category" class="form-control d-inline w-75">
-                                                    <% for(var x=0;x<cats.length; x++) { %>
-                                                        <% if(cats[x+1]) { %>
-                                                            <% if(cats[x].level >= cats[x+1].level) { %>
-                                                                <option><%= cats[x].name%></option>
+                                                    <% for(var x = 0;x < cats.length; x++) { %>
+                                                        <% if(cats[x + 1]) { %>
+                                                            <% if(cats[x].level >= cats[x + 1].level) { %>
+                                                                <option><%= cats[x].name %></option>
                                                             <% } %>
                                                         <% } else { %>
-                                                              <option><%= cats[x].name%></option>
+                                                            <option><%= cats[x].name %></option>
                                                         <% } %>
                                                     <% } %>
                                                 </select>
@@ -357,7 +369,7 @@
                                         <br>
                                         <div class="" style="direction: rtl">
                                             <textarea rows="5" name="description" placeholder="توضیحات :"
-                                                   class="form-control d-inline w-75"></textarea>
+                                                      class="form-control d-inline w-75"></textarea>
                                         </div>
                                         <br>
 
@@ -365,13 +377,18 @@
                                             <h5>سایر</h5>
                                         </div>
                                         <div id="other" class="card-body px-0">
-                                            <div style="direction: rtl">
+                                            <div style="direction: rtl;position: relative">
+                                                <a onclick="this.parentNode.remove()" class="text-danger"
+                                                   style="font-size: 25px">
+                                                    <i class="fa fa-close position-absolute"
+                                                       style="right: 55px;top:8px;"></i>
+                                                </a>
                                                 <input type="text" name="property" class="form-control d-inline w-25"
                                                        placeholder="مشخصه :">
                                                 <input type="text" name="property" class="form-control d-inline w-50"
                                                        placeholder="توضیح :">
+                                                <hr>
                                             </div>
-                                            <hr>
                                             <a onclick="addOther()" class="btn btn-info text-white"
                                                style="width: 120px; cursor: pointer;">
                                                 افزودن
@@ -424,7 +441,7 @@
                                                     class="form-control d-inline w-75" name="parent">
                                                 <option class="" style="">اصلی</option>
                                                 <% cats.forEach(function (cat) { %>
-                                                <option class="" style=""><%=cat.name%></option>
+                                                    <option class="" style=""><%= cat.name %></option>
                                                 <% }) %>
                                             </select>
                                         </div>
@@ -447,13 +464,13 @@
                                             <select id="edit-category-category" name="name"
                                                     class="form-control d-inline w-75">
                                                 <% cats.forEach(function (cat) { %>
-                                                <option class="" style=""><%=cat.name%></option>
+                                                    <option class="" style=""><%= cat.name %></option>
                                                 <% }) %>
                                             </select>
                                         </div>
                                         <hr>
                                         <div class="" style="direction: rtl">
-                                            <label style="width: 400px" class="mx-2" for="edit-category-name" >
+                                            <label style="width: 400px" class="mx-2" for="edit-category-name">
                                                 <span>نام جدید</span>
                                             </label>
                                             <input id="edit-category-name" type="text" placeholder="نام جدید"
@@ -468,7 +485,7 @@
                                                     class="form-control d-inline w-75">
                                                 <option class="" style="">اصلی</option>
                                                 <% cats.forEach(function (cat) { %>
-                                                <option class="" style=""><%=cat.name%></option>
+                                                    <option class="" style=""><%= cat.name %></option>
                                                 <% }) %>
                                             </select>
                                         </div>
@@ -491,7 +508,7 @@
                                             <select id="edit-category-category" name="name"
                                                     class="form-control d-inline w-75">
                                                 <% cats.forEach(function (cat) { %>
-                                                <option class="" style=""><%=cat.name%></option>
+                                                    <option class="" style=""><%= cat.name %></option>
                                                 <% }) %>
                                             </select>
                                         </div>
@@ -558,6 +575,7 @@
         $('#new-orders-dec').addClass('d-none');
         $('#category').addClass('d-none');
     }
+
     function cat() {
         $('#category').removeClass('d-none');
         $('#old-orders-dec').addClass('d-none');
@@ -566,20 +584,30 @@
     }
 
     function addColor() {
-        $("#color").prepend("    <div style=\"direction: rtl\">\n" +
-            "            <input name=\"colors\" type=\"color\"\n"  +
-            "    class=\"form-control d-inline w-75\">\n" +
-            "            </div>\n" +
-            "            <hr>");
+        $("#color").prepend("                                            <div style=\"direction: rtl\" class=\"position-relative\">\n" +
+            "                                                <a onclick=\"this.parentNode.remove()\" class=\"text-danger\" style=\"font-size: 25px\">\n" +
+            "                                                    <i class=\"fa fa-close position-absolute\"\n" +
+            "                                                       style=\"right: 55px;top:8px;\"></i>\n" +
+            "                                                </a>\n" +
+            "                                                <input type=\"color\" name=\"colors\"\n" +
+            "                                                       class=\"form-control d-inline w-75\">\n" +
+            "                                                <hr>\n" +
+            "                                            </div>");
 
     }
 
     function addOther() {
-        $("#other").prepend("                                        <div style=\"direction: rtl\">\n" +
-            "                                            <input type=\"text\" name=\"property\" class=\"form-control d-inline w-25\" placeholder=\"مشخصه :\">\n" +
-            "                                            <input type=\"text\" name=\"property\" class=\"form-control d-inline w-50\" placeholder=\"توضیح :\">\n" +
-            "                                        </div>\n" +
-            "                                        <hr>");
+        $("#other").prepend("                                            <div style=\"direction: rtl;position: relative\">\n" +
+            "                                                <a onclick=\"this.parentNode.remove()\" class=\"text-danger\" style=\"font-size: 25px\">\n" +
+            "                                                    <i class=\"fa fa-close position-absolute\"\n" +
+            "                                                       style=\"right: 55px;top:8px;\"></i>\n" +
+            "                                                </a>\n" +
+            "                                                <input type=\"text\" name=\"property\" class=\"form-control d-inline w-25\"\n" +
+            "                                                       placeholder=\"مشخصه :\">\n" +
+            "                                                <input type=\"text\" name=\"property\" class=\"form-control d-inline w-50\"\n" +
+            "                                                       placeholder=\"توضیح :\">\n" +
+            "                                                <hr>\n" +
+            "                                            </div>");
 
     }
 
@@ -647,22 +675,22 @@
         server: {
             process: '/product/upload',
             revert: (uniqueFileId, load, error) => {
-                    // console.log(err);
-                    fetch('/product/revert', {
-                        method: 'delete',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            path: uniqueFileId
-                        })
-                    });
-                    load();
+                // console.log(err);
+                fetch('/product/revert', {
+                    method: 'delete',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        path: uniqueFileId
+                    })
+                });
+                load();
             }
         }
     });
     const inputElement = document.querySelector('input[type="file"]');
     const pond = FilePond.create(inputElement);
-</script>   
+</script>
 </body>
 </html>

@@ -7,28 +7,34 @@
     <link rel="stylesheet" type="text/css" href="/css/slick-theme.css">
     <link rel="stylesheet" href="/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/bootstrap.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+          integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <!--<link rel="stylesheet" href="css/myStyle.css">-->
     <link rel="stylesheet" href="/css/myStyle2.css">
     <link rel="stylesheet" href="/css/myStyle3.css">
     <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
     <script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js"></script>
-    <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet">
+    <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css"
+          rel="stylesheet">
     <style type="text/css">
         html, body {
             background-color: white;
             color: black;
         }
+
         * {
             box-sizing: border-box;
         }
+
         .slider {
             margin: auto;
             width: 75%;
         }
+
         .slick-slide img {
             width: 100%;
         }
+
         .dropPage {
             position: absolute;
             top: -200%;
@@ -37,6 +43,7 @@
             z-index: 3000;
             transition: 0.5s;
         }
+
         textarea::placeholder {
             text-align: right;
         }
@@ -58,7 +65,7 @@
             <div id="" class="">
                 <div class="container">
                     <div class="col-sm-12 mt-5 text-center">
-                        <form method="post" action="/product/<%=product._id%>?_method=PUT">
+                        <form method="post" action="/product/<%= product._id %>?_method=PUT">
                             <div class="card shadow w-100">
                                 <div class="card-header font-sm mb-1 py-3 d-inline px-0" style="direction: rtl">
                                     <!--<h5 class="font-sm mb-1 p-4 d-inline">کد کالا :</h5>-->
@@ -66,12 +73,12 @@
                                 </div>
                                 <div class="card-body px-0">
                                     <div class="" style="direction: rtl">
-                                        <input type="text" name="productID" value="<%=product.productID%>"
+                                        <input type="text" name="productID" value="<%= product.productID %>"
                                                class="form-control d-inline w-75">
                                     </div>
                                     <hr>
                                     <div class="" style="direction: rtl">
-                                        <input type="text" name="name" value="<%=product.name%>"
+                                        <input type="text" name="name" value="<%= product.name %>"
                                                class="form-control d-inline w-75">
                                     </div>
                                     <hr>
@@ -79,34 +86,38 @@
                                         <select name="status" type=""
                                                 class="form-control d-inline w-75">
                                             <% if(product.status === 'available') { %>
-                                            <option value="available" class="" style="" selected>موجود</option>
-                                            <option value="unavailable" class="" style="">ناموجود</option>
-                                            <option value="soon" class="" style="">به زودی</option>
+                                                <option value="available" class="" style="" selected>موجود</option>
+                                                <option value="unavailable" class="" style="">ناموجود</option>
+                                                <option value="soon" class="" style="">به زودی</option>
                                             <% } %>
                                             <% if(product.status === 'unavailable') { %>
-                                            <option value="available" class="" style="">موجود</option>
-                                            <option value="unavailable" class="" style="" selected>ناموجود</option>
-                                            <option value="soon" class="" style="">به زودی</option>                                            <% } %>
+                                                <option value="available" class="" style="">موجود</option>
+                                                <option value="unavailable" class="" style="" selected>ناموجود</option>
+                                                <option value="soon" class="" style="">به زودی</option>
+                                            <% } %>
                                             <% if(product.status === 'soon') { %>
-                                            <option value="available" class="" style="">موجود</option>
-                                            <option value="unavailable" class="" style="">ناموجود</option>
-                                            <option value="soon" class="" style="" selected>به زودی</option>
+                                                <option value="available" class="" style="">موجود</option>
+                                                <option value="unavailable" class="" style="">ناموجود</option>
+                                                <option value="soon" class="" style="" selected>به زودی</option>
                                             <% } %>
                                         </select>
                                     </div>
                                     <hr>
                                     <div style="direction: rtl">
-                                        <input type="number" name="price" min="0" step="500" value="<%=product.price%>"
+                                        <input type="number" name="price" min="0" step="500"
+                                               value="<%= product.price %>"
                                                class="form-control d-inline w-75">
                                     </div>
                                     <hr>
                                     <div style="direction: rtl">
-                                        <input type="number" name="discount" min="0" max="100" value="<%=product.discount%>"
+                                        <input type="number" name="discount" min="0" max="100"
+                                               value="<%= product.discount %>"
                                                class="form-control d-inline w-75">
                                     </div>
                                     <hr>
                                     <div style="direction: rtl">
-                                        <input type="number" name="remainingNumber" min="0" value="<%=product.remainingNumber%>"
+                                        <input type="number" name="remainingNumber" min="0"
+                                               value="<%= product.remainingNumber %>"
                                                class="form-control d-inline w-75">
                                     </div>
                                 </div>
@@ -114,13 +125,19 @@
                                     <h5>رنگ</h5>
                                 </div>
                                 <div id="color" class="card-body px-0">
-                                    <div style="direction: rtl">
-                                        <% for (color of product.colors) { %>
-                                            <input type="color" name="colors" value="<%=color%>"
-                                            class="form-control d-inline w-75">
-                                        <% } %>
-                                    </div>
-                                    <hr>
+                                    <% for (color of product.colors) { %>
+                                        <div style="direction: rtl" class="position-relative">
+                                            <a onclick="this.parentNode.remove()" class="text-danger"
+                                               style="font-size: 25px">
+                                                <i class="fa fa-close position-absolute"
+                                                   style="right: 55px;top:8px;"></i>
+                                            </a>
+                                            <input type="color" name="colors" value="<%= color %>"
+                                                   class="form-control d-inline w-75">
+                                            <hr>
+                                        </div>
+                                    <% } %>
+
                                     <a onclick="addColor()" class="btn btn-info text-white"
                                        style="width: 120px; cursor: pointer;">
                                         افزودن رنگ
@@ -138,39 +155,44 @@
                                 <div id="cat" class="card-body px-0">
                                     <div style="direction: rtl">
                                         <select type="text" name="category" class="form-control d-inline w-75">
-                                            <% for(var i=0;i<cats.length; i++) { %>
+                                            <% for(var i = 0;i < cats.length; i++) { %>
                                                 <% if(product.category === cats[i]['_id']) { %>
-                                                    <option selected><%=cats[i].name%></option>
+                                                    <option selected><%= cats[i].name %></option>
                                                 <% } else { %>
-                                                    <option><%=cats[i].name%></option>
+                                                    <option><%= cats[i].name %></option>
                                                 <% } %>
                                             <% } %>
                                         </select>
                                     </div>
                                 </div>
                                 <br>
-                                    <div class="card-header font-sm mb-1 py-3 d-inline px-0" style="direction: rtl">
-                                        <h5>توضیحات</h5>
-                                    </div>
-                                    <br>
-                                    <div class="" style="direction: rtl">
+                                <div class="card-header font-sm mb-1 py-3 d-inline px-0" style="direction: rtl">
+                                    <h5>توضیحات</h5>
+                                </div>
+                                <br>
+                                <div class="" style="direction: rtl">
                                         <textarea rows="5" name="description"
-                                               class="form-control d-inline w-75"><%=product.description%></textarea>
-                                    </div>
+                                                  class="form-control d-inline w-75"><%= product.description %></textarea>
+                                </div>
                                 <br>
                                 <div class="card-header font-sm mb-1 py-3 d-inline px-0" style="direction: rtl">
                                     <h5>سایر</h5>
                                 </div>
                                 <div id="other" class="card-body px-0">
-                                    <div style="direction: rtl">
-                                        <% for(var j=0;j<product.properties.length; j++) { %>
+                                    <% for(var j = 0;j < product.properties.length; j++) { %>
+                                        <div style="direction: rtl;position: relative">
+                                            <a onclick="this.parentNode.remove()" class="text-danger"
+                                               style="font-size: 25px">
+                                                <i class="fa fa-close position-absolute"
+                                                   style="right: 55px;top:8px;"></i>
+                                            </a>
                                             <input type="text" name="property" class="form-control d-inline w-25"
-                                                   value="<%=product.properties[j].key%>">
+                                                   value="<%= product.properties[j].key %>">
                                             <input type="text" name="property" class="form-control d-inline w-50"
-                                                   value="<%=product.properties[j].value%>">
-                                        <% } %>
-                                    </div>
-                                    <hr>
+                                                   value="<%= product.properties[j].value %>">
+                                            <hr>
+                                        </div>
+                                    <% } %>
                                     <a onclick="addOther()" class="btn btn-info text-white"
                                        style="width: 120px; cursor: pointer;">
                                         افزودن
@@ -198,17 +220,17 @@
         <div class="row  text-center">
             <div class="col-md-7 col-sm-12 mt-5">
                 <div class="img-magnifier-container mb-5">
-                    <img id="myimage" src="/<%=product.images[0]%>" width="400">
+                    <img id="myimage" src="/<%= product.images[0] %>" width="400">
                 </div>
                 <div class="row justify-content-center mr-5">
-                    <% var f = 0;%>
+                    <% var f = 0; %>
                     <% product.images.forEach(function (image) { %>
                         <div class="col-md-2 mx-4">
                             <button>
-                                <img id="thumbnail<%=f%>" src="/<%=image%>" width="120">
+                                <img id="thumbnail<%= f %>" src="/<%= image %>" width="120">
                             </button>
                         </div>
-                    <% f++;%>
+                        <% f++; %>
                     <% }) %>
                 </div>
             </div>
@@ -216,32 +238,32 @@
                 <div class="card w-100">
                     <h5 class="card-header font-sm mb-1 p-4">
                         کد کالا :
-                        <span><%=product.productID%></span>
+                        <span><%= product.productID %></span>
                         <a onclick="dropThePage('editProduct'); fetchImages()" class="btn btn-dark ml-2">
                             <i class="fa fa-edit text-white"></i>
                         </a>
                     </h5>
                     <div class="card-body">
-                        <h5 class="card-title mt-3 mb-5 font-md font-bold"><%=product.name%></h5>
+                        <h5 class="card-title mt-3 mb-5 font-md font-bold"><%= product.name %></h5>
                         <hr>
                         <p class="font-light font-sm">: وضعیت موجودی</p>
                         <% if(product.status === 'available') { %>
-                        <p class="font-md font-light text-success">- موجود -</p>
+                            <p class="font-md font-light text-success">- موجود -</p>
                         <% } else if(product.status === 'unavailable') { %>
-                        <p class="font-md font-light text-danger">- نا موجود -</p>
+                            <p class="font-md font-light text-danger">- نا موجود -</p>
                         <% } else { %>
-                        <p class="font-md font-light text-warning">- به زودی -</p>
+                            <p class="font-md font-light text-warning">- به زودی -</p>
                         <% } %>
                         <hr>
-                        <p class="font-md font-light text-info my-4"> <%=product.price%> </p>
+                        <p class="font-md font-light text-info my-4"> <%= product.price %> </p>
                         <!-- <form method="POST" action="/cart/add"> -->
-                            <!-- <input name="productId" type="hidden" value="<%= product._id %>"> -->
-                            <a data-id="<%=product.productID%>" 
-                                class="btn btn-success add-to-cart-action text-white">اضافه به سبد خرید
-                                <i class="fa fa-plus"></i>
-                                </a>
+                        <!-- <input name="productId" type="hidden" value="<%= product._id %>"> -->
+                        <a data-id="<%= product.productID %>"
+                           class="btn btn-success add-to-cart-action text-white">اضافه به سبد خرید
+                            <i class="fa fa-plus"></i>
+                        </a>
                         <!-- </form> -->
-                        
+
                     </div>
                     <h5 class="card-footer font-sm mb-1 p-4 text-center">
                         <a href="#" class="btn btn-info text-white">
@@ -267,16 +289,17 @@
         <% recommends.forEach(function (recommendedProduct) { %>
             <div class="p-3">
                 <div class="card product-card">
-                    <img class="card-img-top" src="/<%=recommendedProduct.images[0]%>" alt="Card image cap">
+                    <img class="card-img-top" src="/<%= recommendedProduct.images[0] %>" alt="Card image cap">
                     <i class="fa fa-plus add-to-cart-plus"></i>
                     <div class="card-body">
-                        <h5 class="card-title"><a href="product.html" style="text-decoration: none"><%=recommendedProduct.name%></a></h5>
+                        <h5 class="card-title"><a href="product.html"
+                                                  style="text-decoration: none"><%= recommendedProduct.name %></a></h5>
                         <p class="card-text font-light" style="font-size: 3vh">
                             <span>تومان</span>
-                            <%=recommendedProduct.price%>
+                            <%= recommendedProduct.price %>
                         </p>
-                        <a data-id="<%=product.productID%>" 
-                            class="btn btn-success add-to-cart-action text-white">اضافه به سبد خرید
+                        <a data-id="<%= product.productID %>"
+                           class="btn btn-success add-to-cart-action text-white">اضافه به سبد خرید
                             <i class="fa fa-plus"></i>
                         </a>
                         </a>
@@ -307,31 +330,34 @@
                 <br>
                 <br>
                 <div class="container mb-3">
-                    <form action="<%=product._id%>/comment/new" method="post">
+                    <form action="<%= product._id %>/comment/new" method="post">
                         <textarea name="body" class="form-control w-100" placeholder="...دیدگاه خود را ثبت کنید"
                                   rows="3"></textarea>
                         <input type="submit" class="btn btn-lg btn-success text-white mt-3" value="ثبت">
                     </form>
                 </div>
                 <% product.comments.forEach(function(comment) { %>
-                <div class="comment" style="padding-top: 15px">
-                    <div class="card w-100">
-                        <h5 class="card-header mb-1">
-                            <span class="float-right"><%=comment.customer.username%></span>
-                            <% if(user['_id'].toString()===comment.customer._id.toString()) { %>
-                                <form action="<%=product._id%>/comment/<%=comment._id%>?_method=DELETE" method="post" class="d-inline">
-                                    <input type="submit" class="btn btn-sm btn-danger text-white" value="حذف">
-                                </form>
-                                <button type="button" class="btn btn-sm btn-warning text-white"
-                                        data-toggle="modal" data-target="#editComment">ویرایش</button>
-                            <% } %>
-                        </h5>
-                        <div class="card-body">
-                            <p class="float-right"><%=comment.body%></p>
+                    <div class="comment" style="padding-top: 15px">
+                        <div class="card w-100">
+                            <h5 class="card-header mb-1">
+                                <span class="float-right"><%= comment.customer.username %></span>
+                                <% if(user['_id'].toString() === comment.customer._id.toString()) { %>
+                                    <form action="<%= product._id %>/comment/<%= comment._id %>?_method=DELETE"
+                                          method="post"
+                                          class="d-inline">
+                                        <input type="submit" class="btn btn-sm btn-danger text-white" value="حذف">
+                                    </form>
+                                    <button type="button" class="btn btn-sm btn-warning text-white"
+                                            data-toggle="modal" data-target="#editComment">ویرایش
+                                    </button>
+                                <% } %>
+                            </h5>
+                            <div class="card-body">
+                                <p class="float-right"><%= comment.body %></p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                    <% if(user['_id'].toString()===comment.customer._id.toString()) { %>
+                    <% if(user['_id'].toString() === comment.customer._id.toString()) { %>
                         <div class="modal fade" id="editComment" tabindex="-1" role="dialog"
                              aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -339,10 +365,14 @@
                                     <div class="card w-100">
                                         <div class="card-body bg-light">
                                             <div class="container mb-3">
-                                                <form action="<%=product._id%>/comment/<%=comment._id%>?_method=put" method="post">
-                                                    <textarea name="body" class="form-control w-100" placeholder="...دیدگاه خود را ثبت کنید"
-                                                        rows="3"><%=comment.body%></textarea>
-                                                    <input type="submit" class="btn btn-lg btn-warning text-white mt-3 w-100" value="ویرایش">
+                                                <form action="<%= product._id %>/comment/<%= comment._id %>?_method=put"
+                                                      method="post">
+                                                    <textarea name="body" class="form-control w-100"
+                                                              placeholder="...دیدگاه خود را ثبت کنید"
+                                                              rows="3"><%= comment.body %></textarea>
+                                                    <input type="submit"
+                                                           class="btn btn-lg btn-warning text-white mt-3 w-100"
+                                                           value="ویرایش">
                                                 </form>
                                             </div>
                                         </div>
@@ -359,14 +389,14 @@
                     <br>
                     <br>
                     <% product.properties.forEach(function (property) { %>
-                    <div class="row justify-content-between my-2">
-                        <div class="col-md-8 bg-light">
-                            <span class="float-right p-2"><%=property.value%></span>
+                        <div class="row justify-content-between my-2">
+                            <div class="col-md-8 bg-light">
+                                <span class="float-right p-2"><%= property.value %></span>
+                            </div>
+                            <div class="d-none d-md-block col-md-3 bg-light float-right">
+                                <span class="float-right p-2"><%= property.key %></span>
+                            </div>
                         </div>
-                        <div class="d-none d-md-block col-md-3 bg-light float-right">
-                            <span class="float-right p-2"><%=property.key%></span>
-                        </div>
-                    </div>
                     <% }) %>
                 </div>
             </div>
@@ -385,7 +415,7 @@
 <script src="/src/js/erfanJS.js" type="text/javascript"></script>
 
 <script type="text/javascript">
-    $(document).on('ready', function() {
+    $(document).on('ready', function () {
         $(".regular").slick({
             speed: 300,
             slidesToShow: 3,
@@ -433,29 +463,29 @@
         server: {
             process: '/product/upload',
             revert: (uniqueFileId, load, error) => {
-                    fetch('/product/revert', {
-                        method: 'delete',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            path: uniqueFileId
-                        })
-                    });
-                    load();
+                fetch('/product/revert', {
+                    method: 'delete',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        path: uniqueFileId
+                    })
+                });
+                load();
             }
         }
     });
     const inputElement = document.querySelector('input[type="file"]');
-    <%for(var y=0; y<product.images.length; y++) {%>
-        $('#thumbnail<%=y%>').click(function () {
-            $('#myimage').attr('src', '/<%= product.images[y] %>');
-            magnify("myimage", 3);
-        });
+    <% for(var y = 0; y < product.images.length; y++) { %>
+    $('#thumbnail<%= y %>').click(function () {
+        $('#myimage').attr('src', '/<%= product.images[y] %>');
+        magnify("myimage", 3);
+    });
     <% } %>
-</script>  
+</script>
 <% for (image of product.images) { %>
-    <p style="visibility: hidden" class="images"><%=image%></p>
+    <p style="visibility: hidden" class="images"><%= image %></p>
 <% } %>
 <script>
     function fetchImages() {
