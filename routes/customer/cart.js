@@ -28,11 +28,10 @@ let express = require('express'),
         } else {
             Customer.findById(req.user._id, function(err, customer) {
                 if (!customer)
-                    redirect('/');
+                    res.redirect('/');
                 customer.cart.push({productId: productId, quantity: 1}); //TODO handle the case that product is already in cart
                 // adding price to totalPrice of cart
                 Product.findById(productId, function(err, product) {
-                    customer.cartTotalPrice += product.price;
                     // saving
                     customer.save().then(() => {
                         res.status(201).redirect('/cart');

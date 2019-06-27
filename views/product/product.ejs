@@ -267,13 +267,13 @@
                         <% } %>
                         <hr>
                         <p class="font-md font-light text-info my-4"> <%=product.price%> </p>
-                        <!-- <form method="POST" action="/cart/add"> -->
-                            <!-- <input name="productId" type="hidden" value="<%= product._id %>"> -->
-                            <a data-id="<%=product.productID%>" 
-                                class="btn btn-success add-to-cart-action text-white">اضافه به سبد خرید
+                        <form method="POST" action="/cart/add">
+                            <input name="productId" type="hidden" value="<%= product._id %>">
+                            <div class="btn btn-success text-white">
+                                <input type="submit" value="اضافه به سبد خرید" style="background: none; border:none; color: white">
                                 <i class="fa fa-plus"></i>
-                                </a>
-                        <!-- </form> -->
+                            </div>
+                        </form>
                         
                     </div>
                     <h5 class="card-footer font-sm mb-1 p-4 text-center">
