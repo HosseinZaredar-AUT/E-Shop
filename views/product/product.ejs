@@ -11,9 +11,10 @@
     <!--<link rel="stylesheet" href="css/myStyle.css">-->
     <link rel="stylesheet" href="/css/myStyle2.css">
     <link rel="stylesheet" href="/css/myStyle3.css">
-    <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
-    <script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js"></script>
-    <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet">
+    <link href="/css/filepond.css" rel="stylesheet">
+    <script src="/js/filepond-plugin-file-validate-type.js"></script>
+    <link href="/css/filepond-plugin-image-preview.css" rel="stylesheet">
+
     <style type="text/css">
         html, body {
             background-color: white;
@@ -40,6 +41,10 @@
         textarea::placeholder {
             text-align: right;
         }
+        .checked {
+            color: orange;
+        }
+
     </style>
 </head>
 
@@ -115,10 +120,8 @@
                                 </div>
                                 <div id="color" class="card-body px-0">
                                     <div style="direction: rtl">
-                                        <% for (color of product.colors) { %>
-                                            <input type="color" name="colors" value="<%=color%>"
+                                            <input type="color" name="colors" value=""
                                             class="form-control d-inline w-75">
-                                        <% } %>
                                     </div>
                                     <hr>
                                     <a onclick="addColor()" class="btn btn-info text-white"
@@ -222,7 +225,24 @@
                         </a>
                     </h5>
                     <div class="card-body">
-                        <h5 class="card-title mt-3 mb-5 font-md font-bold"><%=product.name%></h5>
+                        <div id="product-rating text-center" style="color: #e2e2e2; font-size: 20px">
+                            <% var sum = 0;
+                                var mean = 0;
+                                product.comments.forEach(function(comment) {
+                                    sum += comment.rate;
+                                })
+                                if(product.comments.length!==0) {
+                                    mean = Math.ceil(sum / product.comments.length);
+                                }
+                            %>
+                            <% for(var ph1=0;ph1<mean;ph1++) { %>
+                                <span class="fa fa-star checked"></span>
+                            <% } %>
+                            <% for(var ph2=0;ph2<5-mean;ph2++) { %>
+                                <span class="fa fa-star"></span>
+                            <% } %>
+                        </div>
+                        <h5 class="card-title mt-4 mb-4 font-md font-bold"><%=product.name%></h5>
                         <hr>
                         <p class="font-light font-sm">: وضعیت موجودی</p>
                         <% if(product.status === 'available') { %>
@@ -306,11 +326,24 @@
                 <br>
                 <br>
                 <br>
-                <div class="container mb-3">
+                <div class="mb-3">
                     <form action="<%=product._id%>/comment/new" method="post">
                         <textarea name="body" class="form-control w-100" placeholder="...دیدگاه خود را ثبت کنید"
                                   rows="3"></textarea>
-                        <input type="submit" class="btn btn-lg btn-success text-white mt-3" value="ثبت">
+                        <div class="mt-3">
+                            <input type="submit" class="btn btn-lg btn-success text-white float-left mr-3 mb-3" value="ثبت">
+                            <div class="form-group pt-2" style="color: #f1f1f1;" id="rating-new">
+                                <label class="control-label" for="rating">
+                                    <input type="hidden" class="selected-rating-new"
+                                           id="selected-rating-new" name="rate" value="" required="required">
+                                </label>
+                                <span class="fa fa-star btnrating" id="star1-new" data-attr="1" onclick="addRateNew(this,1)"></span>
+                                <span class="fa fa-star btnrating" id="star2-new" data-attr="2" onclick="addRateNew(this,2)"></span>
+                                <span class="fa fa-star btnrating" id="star3-new" data-attr="3" onclick="addRateNew(this,3)"></span>
+                                <span class="fa fa-star btnrating" id="star4-new" data-attr="4" onclick="addRateNew(this,4)"></span>
+                                <span class="fa fa-star btnrating" id="star5-new" data-attr="5" onclick="addRateNew(this,5)"></span>
+                            </div>
+                        </div>
                     </form>
                 </div>
                 <% product.comments.forEach(function(comment) { %>
@@ -318,12 +351,22 @@
                     <div class="card w-100">
                         <h5 class="card-header mb-1">
                             <span class="float-right"><%=comment.customer.username%></span>
-                            <% if(user['_id'].toString()===comment.customer._id.toString()) { %>
-                                <form action="<%=product._id%>/comment/<%=comment._id%>?_method=DELETE" method="post" class="d-inline">
-                                    <input type="submit" class="btn btn-sm btn-danger text-white" value="حذف">
-                                </form>
-                                <button type="button" class="btn btn-sm btn-warning text-white"
-                                        data-toggle="modal" data-target="#editComment">ویرایش</button>
+                            <% if(user) {%>
+                                <% if(user['_id'].toString()===comment.customer._id.toString()) { %>
+                                    <form action="<%=product._id%>/comment/<%=comment._id%>?_method=DELETE" method="post" class="d-inline">
+                                        <input type="submit" class="btn btn-sm btn-danger text-white" value="حذف">
+                                    </form>
+                                    <button type="button" class="btn btn-sm btn-warning text-white"
+                                            data-toggle="modal" data-target="#editComment">ویرایش</button>
+                                    <div class="comment-rating d-inline-block ml-3" style="color: lightgray">
+                                        <% for(var kh1=0;kh1<comment.rate;kh1++) { %>
+                                            <span class="fa fa-star checked"></span>
+                                        <% } %>
+                                        <% for(var kh2=0;kh2<5-comment.rate;kh2++) { %>
+                                        <span class="fa fa-star"></span>
+                                        <% } %>
+                                    </div>
+                                <% } %>
                             <% } %>
                         </h5>
                         <div class="card-body">
@@ -331,25 +374,42 @@
                         </div>
                     </div>
                 </div>
-                    <% if(user['_id'].toString()===comment.customer._id.toString()) { %>
-                        <div class="modal fade" id="editComment" tabindex="-1" role="dialog"
-                             aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                <div class="modal-content">
-                                    <div class="card w-100">
-                                        <div class="card-body bg-light">
-                                            <div class="container mb-3">
-                                                <form action="<%=product._id%>/comment/<%=comment._id%>?_method=put" method="post">
-                                                    <textarea name="body" class="form-control w-100" placeholder="...دیدگاه خود را ثبت کنید"
-                                                        rows="3"><%=comment.body%></textarea>
-                                                    <input type="submit" class="btn btn-lg btn-warning text-white mt-3 w-100" value="ویرایش">
-                                                </form>
+                    <% if(user) { %>
+                        <% if(user['_id'].toString()===comment.customer._id.toString()) { %>
+                            <div class="modal fade" id="editComment" tabindex="-1" role="dialog"
+                                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="card w-100">
+                                            <div class="card-body bg-light">
+                                                <div class="container mb-3">
+                                                    <form action="<%=product._id%>/comment/<%=comment._id%>?_method=put" method="post">
+                                                        <textarea name="body" class="form-control w-100" placeholder="...دیدگاه خود را ثبت کنید"
+                                                            rows="3"><%=comment.body%></textarea>
+                                                        <div class="form-group pt-2 mt-2 text-center" style="color: #f1f1f1;" id="rating-edit">
+                                                            <label class="control-label" for="rating">
+                                                                <input type="hidden" class="selected-rating-edit"
+                                                                       id="selected-rating-edit" name="rate" value="" required="required">
+                                                            </label>
+                                                            <% for(var l=1;l<=comment.rate;l++) { %>
+                                                                <span class="fa fa-star checked btnrating" id="star<%=l%>-edit" data-attr="<%=l%>"
+                                                                      onclick="addRateEdit(this,<%=l%>)"></span>
+                                                            <% } %>
+                                                            <% for(var ll=comment.rate+1 ;ll <= 5;ll++) { %>
+                                                                <span class="fa fa-star btnrating" id="star<%=ll%>-edit" data-attr="<%=ll%>"
+                                                                      onclick="addRateEdit(this,<%=ll%>)"></span>
+                                                            <% } %>
+
+                                                        </div>
+                                                        <input type="submit" class="btn btn-lg btn-warning text-white mt-3 w-100" value="ویرایش">
+                                                    </form>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        <% } %>
                     <% } %>
                 <% }) %>
             </div>
@@ -358,16 +418,25 @@
                     <br>
                     <br>
                     <br>
-                    <% product.properties.forEach(function (property) { %>
-                    <div class="row justify-content-between my-2">
-                        <div class="col-md-8 bg-light">
-                            <span class="float-right p-2"><%=property.value%></span>
-                        </div>
-                        <div class="d-none d-md-block col-md-3 bg-light float-right">
-                            <span class="float-right p-2"><%=property.key%></span>
+                    <div class="container bg-light  text-right">
+                        <h2 class="px-4 pt-4 pb-1">مشخصات محصول</h2>
+                        <hr class="w-100">
+                        <div class="container px-5 pb-4">
+                            <p><%=product.description%></p>
                         </div>
                     </div>
-                    <% }) %>
+                    <div class="container">
+                        <% product.properties.forEach(function (property) { %>
+                        <div class="row justify-content-between my-2">
+                            <div class="col-md-8 bg-light">
+                                <span class="float-right p-2"><%=property.value%></span>
+                            </div>
+                            <div class="d-none d-md-block col-md-3 bg-light float-right">
+                                <span class="float-right p-2"><%=property.key%></span>
+                            </div>
+                        </div>
+                        <% }) %>
+                    </div>
                 </div>
             </div>
         </div>
@@ -422,8 +491,8 @@
 </script>
 <script src="/js/ZosoJS.js" type="text/javascript"></script>
 <script src="/js/ShJS.js" type="text/javascript"></script>
-<script src="https://unpkg.com/filepond/dist/filepond.js"></script>
-<script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
+<script src="/js/filepond.js"></script>
+<script src="/js/filepond-plugin-image-preview.js"></script>
 <script>
     // Register the plugin
     FilePond.registerPlugin(FilePondPluginImagePreview);
@@ -453,7 +522,7 @@
             magnify("myimage", 3);
         });
     <% } %>
-</script>  
+</script>
 <% for (image of product.images) { %>
     <p style="visibility: hidden" class="images"><%=image%></p>
 <% } %>
@@ -465,6 +534,41 @@
             pond.addFile('/' + element.innerHTML);
         }
     }
+
+    function addRateNew(ths,sno){
+        let i;
+        let cur;
+
+        for (i = 1; i<=5; i++){
+            cur = document.getElementById("star" + i + '-new');
+            cur.className="fa fa-star btnrating"
+        }
+        for (i = 1; i<=sno; i++){
+            cur = document.getElementById("star" + i + '-new');
+            if(cur.className === "fa fa-star btnrating")
+            {
+                cur.className = "fa fa-star btnrating checked"
+            }
+        }
+    }
+
+    function addRateEdit(ths,sno){
+        let i;
+        let cur;
+
+        for (i = 1; i<=5; i++){
+            cur = document.getElementById("star" + i + '-edit');
+            cur.className="fa fa-star btnrating"
+        }
+        for (i = 1; i<=sno; i++){
+            cur = document.getElementById("star" + i + '-edit');
+            if(cur.className === "fa fa-star btnrating")
+            {
+                cur.className = "fa fa-star btnrating checked"
+            }
+        }
+    }
+
 </script>
 </body>
 </html>

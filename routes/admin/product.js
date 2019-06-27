@@ -34,6 +34,7 @@ router.get('/:productId', async (req, res) => {
 });
 
 router.post('/:productId/comment/new', (req, res) => {
+    console.log(req.body);
     if(req.user) {
         Product.findOne({_id: req.params.productId}, (err, foundProduct) => {
             if (!err) {
@@ -43,10 +44,10 @@ router.post('/:productId/comment/new', (req, res) => {
                         _id: req.user._id,
                         username: req.user.username
                     },
-                    product: foundProduct['_id']
+                    product: foundProduct['_id'],
+                    rate: req.body.rate
                 }).save((err, savedComment) => {
                     if (!err) {
-                        console.log(savedComment);
                         foundProduct.comments.push(savedComment._id);
                         foundProduct.save((err) => {
                             if (!err)
@@ -64,7 +65,7 @@ router.post('/:productId/comment/new', (req, res) => {
 });
 
 router.put('/:productId/comment/:commentId', (req, res) => {
-    Comment.findOneAndUpdate({_id: req.params.commentId}, {body: req.body.body}, (err) => {
+    Comment.findOneAndUpdate({_id: req.params.commentId}, {body: req.body.body, rate: req.body.rate}, (err) => {
         if(!err) {
             res.redirect('back');
         } else {

@@ -53,10 +53,18 @@ function magnify(imgID, zoom) {
         x = pos.x;
         y = pos.y;
         /* Prevent the magnifier glass from being positioned outside the image: */
-        if (x > img.width - (w / zoom)) {x = img.width - (w / zoom);}
-        if (x < w / zoom) {x = w / zoom;}
-        if (y > img.height - (h / zoom)) {y = img.height - (h / zoom);}
-        if (y < h / zoom) {y = h / zoom;}
+        if (x > img.width - (w / zoom)) {
+            x = img.width - (w / zoom);
+        }
+        if (x < w / zoom) {
+            x = w / zoom;
+        }
+        if (y > img.height - (h / zoom)) {
+            y = img.height - (h / zoom);
+        }
+        if (y < h / zoom) {
+            y = h / zoom;
+        }
         /* Set the position of the magnifier glass: */
         glass.style.left = (x - w) + "px";
         glass.style.top = (y - h) + "px";
@@ -75,24 +83,27 @@ function magnify(imgID, zoom) {
         /* Consider any page scrolling: */
         x = x - window.pageXOffset;
         y = y - window.pageYOffset;
-        return {x : x, y : y};
+        return {x: x, y: y};
     }
 }
 
 magnify("myimage", 3);
 
+jQuery(document).ready(function ($) {
+    $("#rating-new").find(".btnrating").on('click', (function (e) {
+        let previous_value = $("#selected-rating-new").val();
+        let selected_value = $(this).attr("data-attr");
+        $("#selected-rating-new").val(selected_value);
+        $(".selected-rating-new").empty();
+        $(".selected-rating-new").html(selected_value);
+    }));
 
-$('#thumbnail1').click(function () {
-   $('#myimage').attr('src','images/1.jpg');
-    magnify("myimage", 3);
-});
+    $("#rating-edit").find(".btnrating").on('click', (function (e) {
+        let previous_value = $("#selected-rating-edit").val();
+        let selected_value = $(this).attr("data-attr");
+        $("#selected-rating-edit").val(selected_value);
+        $(".selected-rating-edit").empty();
+        $(".selected-rating-edit").html(selected_value);
+    }));
 
-$('#thumbnail2').click(function () {
-    $('#myimage').attr('src','images/2.jpg');
-    magnify("myimage", 3);
-});
-
-$('#thumbnail3').click(function () {
-    $('#myimage').attr('src','images/3.jpg');
-    magnify("myimage", 3);
 });

@@ -255,6 +255,30 @@ textarea::placeholder {
   text-align: right;
 }
 
+.rating {
+  float:left;
+}
+.rating {
+  float:left;
+  border:none;
+}
+.rating:not(:checked) > input {
+  position:absolute;
+  top:-9999px;
+  clip:rect(0, 0, 0, 0);
+}
+.rating:not(:checked) > label {
+  float:right;
+  width:1em;
+  padding:0 .1em;
+  overflow:hidden;
+  white-space:nowrap;
+  cursor:pointer;
+  font-size:200%;
+  line-height:1.2;
+  color:#ddd;
+}
+
 /*# sourceMappingURL=myStyle2.css.map */
 /*# sourceMappingURL=myStyle2.css.map */
 
