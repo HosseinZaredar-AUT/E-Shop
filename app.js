@@ -21,7 +21,8 @@ let express = require('express'),
     middlewares = require('./middlewares/index'),
     usefulFunctions = require('./middlewares/usefulFunctions'),
     session = require('express-session'),
-    Category = require('./moduls/post/category');
+    Category = require('./moduls/post/category'),
+    Customer = require('./moduls/user/customer');
 
 // passport require
 var passport = require('passport');
@@ -59,6 +60,15 @@ app.use(cors());
 
 app.use(function (req, res, next) {
     res.locals.user = req.user;
+
+    // getting customer's cart size
+    res.locals.cartSize = 0;
+    if (req.user && !req.user.isAdmin) {
+        Customer.findOne({_id: req.user._id}, function(err, customer) {
+            res.locals.cartSize = customer.cart.length;
+        });
+    }
+
     Category.findOne({name: 'root'}, function (err, root) {
         if(!err) {
             root.getChildrenTree(function (err, childs) {

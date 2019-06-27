@@ -24,8 +24,8 @@ let express = require('express'),
 
     router.post('/', function(req, res) {
         Customer.findById(req.user._id, function(err, customer) {
-            console.log(customer.cart);
             order = new Order({
+                orderNumber: Date.now(),
                 address: req.body.address,
                 firstname: req.body.firstname,
                 lastname: req.body.lastname,
@@ -55,6 +55,17 @@ let express = require('express'),
                     throw err;
                 }
             });
+        });
+    });
+
+    router.delete('/', function(req, res) {
+        Order.findOneAndRemove({_id: req.body.orderId}, function(err) {
+            // redirecting
+            if (req.user.isAdmin) {
+                res.redirect('/adminDashboard');                            
+            } else {
+                res.redirect('/userDashboard');
+            }
         });
     });
 

@@ -18,18 +18,14 @@ router.get('/:productId', async (req, res) => {
         const recommends = await Product.find({category: product.category});
 
         var isInCart = false;
-        var isAdmin = false;
 
-        if (req.user != null) {
-            if (req.user.isAdmin == true) { // checking if it is admin
-                isAdmin = true;
-            } else { // checking if the product in in customer's cart
-                var customer = await Customer.findById(req.user._id);
-                if (customer.cart.find(product => product.productId == prodId)) {
-                    isInCart = true;
-                }
+        if (req.user && !req.user.isAdmin) {
+            var customer = await Customer.findById(req.user._id);
+            if (customer.cart.find(product => product.productId == prodId)) {
+                isInCart = true;
             }
         }
+
         res.render('product/product', {
             isInCart: isInCart,
             product: product,

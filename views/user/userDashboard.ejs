@@ -154,12 +154,17 @@
                                         <h5 class="mt-1 mb-0 float-right">
                                             <i class="fa fa-angle-down rotate-icon mx-2"></i>
                                             <span>سفارش</span>
-                                            <span>- ۹۴۱۲۵۲۹۸</span>
+                                            <span>- <%=orders[i].orderNumber%></span>
                                         </h5>
                                     </a>
-                                    <button class="btn btn-sm btn-danger float-left"> حذف</button>
+                                    <form method="POST" action="/order?_method=DELETE"> 
+                                        <input type="hidden" name="orderId" value="<%=orders[i]._id%>">
+                                        <input type="submit" value="حذف" class="btn btn-sm btn-danger float-left">
+                                    </form>
                                     <button class="btn btn-sm btn-outline-info mx-3">
-                                        <span><%= orders[i].status %></span>
+                                        <% if (orders[i].status == 'awaitsPayment') { %>
+                                            <span>پرداخت</span>
+                                        <% } %>
                                     </button>
                                 </a>
                             </div>
@@ -208,9 +213,9 @@
                                         <table class="table table-hover mb-0 mx-5">
                                             <thead>
                                             <tr class="font-sm">
-                                                <th class="th-lg"><a>شماره<i class="fa fa-sort ml-1"></i></a></th>
-                                                <th class="th-lg"><a>نام کالا<i class="fa fa-sort ml-1"></i></a></th>
-                                                <th class="th-lg"><a>تعداد<i class="fa fa-sort ml-1"></i></a></th>
+                                                <th class="th-lg"><a>شماره</a></th>
+                                                <th class="th-lg"><a>نام کالا</a></th>
+                                                <th class="th-lg"><a>تعداد</a></th>
                                                 <th></th>
                                             </tr>
                                             </thead>
@@ -218,7 +223,11 @@
                                             <% for (j = 0; j < orders[i].products.length; j++) { %>
                                             <tr>
                                                 <td class="pl-3"><%= (j + 1) %></td>
-                                                <td><%= orders[i].products[j].productId.name %></td>
+                                                <td>
+                                                    <a href="product/<%=orders[i].products[j].productId._id%>" style="text-decoration: none">
+                                                        <%= orders[i].products[j].productId.name %>
+                                                    </a>
+                                                </td>
                                                 <td><strong><%= orders[i].products[j].quantity %></strong></td>
                                             </tr>
                                             <% } %>

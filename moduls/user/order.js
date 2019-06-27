@@ -1,6 +1,10 @@
 let mongoose = require("mongoose");
 
 let orderSchema = mongoose.Schema({
+    orderNumber: {
+        type: String,
+        required: true
+    },
     firstname: {
         type: String,
         required: true

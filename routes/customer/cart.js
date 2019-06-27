@@ -23,25 +23,22 @@ let express = require('express'),
 
     router.post('/add', function(req, res) {
         productId = req.body.productId;
-        if (!req.user) {
-            res.redirect('/');
-        } else {
-            Customer.findById(req.user._id, function(err, customer) {
-                if (!customer){
-                    res.redirect('/');
-                }
-                customer.cart.push({productId: productId, quantity: 1}); //TODO handle the case that product is already in cart
-                // adding price to totalPrice of cart
-                Product.findById(productId, function(err, product) {
-                    // saving
-                    customer.save().then(() => {
-                        res.redirect('/cart');
-                    }).catch((err) => {
-                        throw err;
-                    });
+    
+        Customer.findById(req.user._id, function(err, customer) {
+            if (!customer){
+                res.redirect('/');
+            }
+            customer.cart.push({productId: productId, quantity: 1});
+            // adding price to totalPrice of cart
+            Product.findById(productId, function(err, product) {
+                // saving
+                customer.save().then(() => {
+                    res.redirect('/cart');
+                }).catch((err) => {
+                    throw err;
                 });
-            }); 
-        }
+            });
+        }); 
     });
 
     // route for editing product quantity from cart
