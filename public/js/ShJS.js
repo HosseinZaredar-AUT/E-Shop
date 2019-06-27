@@ -42,11 +42,15 @@ packThePage = (id) => {
 };
 
 function addColor() {
-    $("#color").prepend("    <div style=\"direction: rtl\">\n" +
-        "            <input name=\"colors\" type=\"color\"\n" +
-        "    class=\"form-control d-inline w-75\">\n" +
-        "            </div>\n" +
-        "            <hr>");
+    $("#color").prepend("                                            <div style=\"direction: rtl\" class=\"position-relative\">\n" +
+        "                                                <a onclick=\"this.parentNode.remove()\" class=\"text-danger\" style=\"font-size: 25px\">\n" +
+        "                                                    <i class=\"fa fa-close position-absolute\"\n" +
+        "                                                       style=\"right: 55px;top:8px;\"></i>\n" +
+        "                                                </a>\n" +
+        "                                                <input type=\"color\" name=\"colors\"\n" +
+        "                                                       class=\"form-control d-inline w-75\">\n" +
+        "                                                <hr>\n" +
+        "                                            </div>");
 
 }
 
@@ -94,10 +98,16 @@ function addCat() {
 }
 
 function addOther() {
-    $("#other").prepend("                                        <div style=\"direction: rtl\">\n" +
-        "                                            <input name=\"property\" type=\"text\" class=\"form-control d-inline w-25\" placeholder=\"مشخصه :\">\n" +
-        "                                            <input name=\"property\" type=\"text\" class=\"form-control d-inline w-50\" placeholder=\"توضیح :\">\n" +
-        "                                        </div>\n" +
-        "                                        <hr>");
+    $("#other").prepend("                                            <div style=\"direction: rtl;position: relative\">\n" +
+        "                                                <a onclick=\"this.parentNode.remove()\" class=\"text-danger\" style=\"font-size: 25px\">\n" +
+        "                                                    <i class=\"fa fa-close position-absolute\"\n" +
+        "                                                       style=\"right: 55px;top:8px;\"></i>\n" +
+        "                                                </a>\n" +
+        "                                                <input type=\"text\" name=\"property\" class=\"form-control d-inline w-25\"\n" +
+        "                                                       placeholder=\"مشخصه :\">\n" +
+        "                                                <input type=\"text\" name=\"property\" class=\"form-control d-inline w-50\"\n" +
+        "                                                       placeholder=\"توضیح :\">\n" +
+        "                                                <hr>\n" +
+        "                                            </div>");
 
 }
