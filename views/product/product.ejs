@@ -358,16 +358,16 @@
                                     </form>
                                     <button type="button" class="btn btn-sm btn-warning text-white"
                                             data-toggle="modal" data-target="#editComment">ویرایش</button>
-                                    <div class="comment-rating d-inline-block ml-3" style="color: lightgray">
-                                        <% for(var kh1=0;kh1<comment.rate;kh1++) { %>
-                                            <span class="fa fa-star checked"></span>
-                                        <% } %>
-                                        <% for(var kh2=0;kh2<5-comment.rate;kh2++) { %>
-                                        <span class="fa fa-star"></span>
-                                        <% } %>
-                                    </div>
                                 <% } %>
                             <% } %>
+                            <div class="comment-rating d-inline-block ml-3" style="color: lightgray">
+                                <% for(var kh1=0;kh1<comment.rate;kh1++) { %>
+                                <span class="fa fa-star checked"></span>
+                                <% } %>
+                                <% for(var kh2=0;kh2<5-comment.rate;kh2++) { %>
+                                <span class="fa fa-star"></span>
+                                <% } %>
+                            </div>
                         </h5>
                         <div class="card-body">
                             <p class="float-right"><%=comment.body%></p>
