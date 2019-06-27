@@ -270,7 +270,7 @@
                         <% if (!user) { %>
                             <form method="POST" action="/cart/add">
                                 <input name="productId" type="hidden" value="<%= product._id %>">
-                                <div class="btn btn-success text-white">
+                                <div class="btn btn-success text-white add-to-cart-action" data-id="<%=product._id%>" >
                                     <input type="submit" value="اضافه به سبد خرید" style="background: none; border:none; color: white">
                                     <i class="fa fa-plus"></i>
                                 </div>
@@ -279,8 +279,8 @@
                         <% if (user && !user.isAdmin) { %>
                             <% if (!isInCart) { %>
                                 <form method="POST" action="/cart/add">
-                                    <input name="productId" type="hidden" value="<%= product._id %>">
-                                    <div class="btn btn-success text-white">
+                                    <input name="productId" type="hidden" value="<%= product._id %>" >
+                                    <div class="btn btn-success text-white add-to-cart-action" data-id="<%=product._id%>" >
                                         <input type="submit" value="اضافه به سبد خرید" style="background: none; border:none; color: white">
                                         <i class="fa fa-plus"></i>
                                     </div>
@@ -324,7 +324,7 @@
                             <h3 class="card-title"> با موفقیت به سبد خرید اضافه شد.</h3>
                         </div>
                     </div>
-                    <i class="fa fa-plus add-to-cart-plus add-to-cart-action"></i>
+                    <i class="fa fa-plus add-to-cart-plus add-to-cart-action" data-id="<%=product._id%>" ></i>
                     <div class="card-body">
                         <h5 class="card-title"><a href="/product/<%=recommendedProduct._id%>" style="text-decoration: none"><%=recommendedProduct.name%></a></h5>
                         <p class="card-text font-light" style="font-size: 3vh">

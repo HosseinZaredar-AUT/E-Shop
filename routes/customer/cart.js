@@ -23,20 +23,21 @@ let express = require('express'),
 
     router.post('/add', function(req, res) {
         productId = req.body.productId;
-    
         Customer.findById(req.user._id, function(err, customer) {
             if (!customer){
-                res.redirect('/');
+                res.redirect('back');
             }
             customer.cart.push({productId: productId, quantity: 1});
             // adding price to totalPrice of cart
-            Product.findById(productId, function(err, product) {
+            Product.findById(productId, function(err) {
                 // saving
-                customer.save().then(() => {
-                    res.redirect('/cart');
-                }).catch((err) => {
-                    throw err;
-                });
+                if(!err) {
+                    customer.save().then(() => {
+                        res.send('success')
+                    }).catch((err) => {
+                        throw err;
+                    });
+                }
             });
         }); 
     });
