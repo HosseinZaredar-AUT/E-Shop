@@ -259,6 +259,10 @@
   font-size: 30px;
 }
 
+.d-flex[style*="display:none"], .d-flex[style*="display: none"] {
+  display:none !important;
+}
+
 /*# sourceMappingURL=myStyle2.css.map */
 /*# sourceMappingURL=myStyle2.css.map */
 

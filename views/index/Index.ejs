@@ -24,9 +24,9 @@
         .slick-slide img {
             width: 100%;
         }
-        .d-flex[style*="display:none"], .d-flex[style*="display: none"] {
+        /* .d-flex[style*="display:none"], .d-flex[style*="display: none"] {
             display:none !important;
-        }
+        } */
     </style>
 </head>
 <body class="font-medium">
@@ -79,7 +79,7 @@
                         <h5 class="card-title"><a href="/product/<%=product['_id']%>" style="text-decoration: none"><%=product.name%></a>
                         </h5>
                         <p class="card-text font-light" style="font-size: 3vh"><%=product.price%> تومان</p>
-                        <a class="btn btn-success add-to-cart-action text-white" data-id="<%=product.productID%>" >اضافه به سبد خرید
+                        <a class="btn btn-success add-to-cart-action text-white" data-id="<%=product._id%>" >اضافه به سبد خرید
                             <i class="fa fa-plus"></i>
                         </a>
                     </div>
@@ -250,7 +250,7 @@
 <script src="js/bootstrap.min.js" type="text/javascript"></script>
 <script src="js/rellax.min.js" type="text/javascript"></script>
 <script src="js/slick.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="/src/js/erfanJS.js" type="text/javascript"></script>
+<script src="/js/erfanJS.js" type="text/javascript"></script>
 
 <script>
     var form = document.querySelector('.needs-validation');

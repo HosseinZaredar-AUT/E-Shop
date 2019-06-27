@@ -303,14 +303,19 @@
             <div class="p-3">
                 <div class="card product-card">
                     <img class="card-img-top" src="/<%=recommendedProduct.images[0]%>" alt="Card image cap">
-                    <i class="fa fa-plus add-to-cart-plus"></i>
+                    <div class="card-img-overlay d-flex" style="display: none">
+                        <div class="my-auto mx-auto text-center">
+                            <h3 class="card-title"> با موفقیت به سبد خرید اضافه شد.</h3>
+                        </div>
+                    </div>
+                    <i class="fa fa-plus add-to-cart-plus add-to-cart-action"></i>
                     <div class="card-body">
                         <h5 class="card-title"><a href="/product/<%=recommendedProduct._id%>" style="text-decoration: none"><%=recommendedProduct.name%></a></h5>
                         <p class="card-text font-light" style="font-size: 3vh">
                             <span>تومان</span>
                             <%=recommendedProduct.price%>
                         </p>
-                        <a data-id="<%=product.productID%>" 
+                        <a data-id="<%=product._id%>" 
                             class="btn btn-success add-to-cart-action text-white">اضافه به سبد خرید
                             <i class="fa fa-plus"></i>
                         </a>
@@ -465,8 +470,7 @@
 <script src="/js/jquery2_2.min.js" type="text/javascript"></script>
 <script src="/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="/js/slick.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="../../src/js/erfanJS.js" type="text/javascript"></script>
-<script src="/src/js/erfanJS.js" type="text/javascript"></script>
+<script src="/js/erfanJS.js" type="text/javascript"></script>
 
 <script type="text/javascript">
     $(document).on('ready', function() {
