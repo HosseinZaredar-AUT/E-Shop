@@ -11,7 +11,11 @@ router.get('/', (req, res) => {
         Order.find({customer: req.user._id})
         .populate('products.productId')
         .exec(function(err, orders) {
-            res.render('user/userDashboard', {orders: orders});
+            Customer.findOne({_id: req.user._id}).populate('favorites').exec((err, foundCustomer) => {
+                if(!err) {
+                    res.render('user/userDashboard', {orders: orders, favorites: foundCustomer.favorites});
+                }
+            })
         });
     }
 });
@@ -80,6 +84,22 @@ router.post('/address', (req, res) => {
         // incomplete details
         res.redirect('back');
     }
+});
+
+router.put('/fav/edit', (req, res)=> {
+    Customer.findOne({_id: req.user._id}, (err, foundCustomer) => {
+        if(!err) {
+            console.log(req.body.favorites);
+            foundCustomer.favorites = req.body.favorites;
+            foundCustomer.save((err, savedCustomer) => {
+                if(!err) {
+                    res.redirect('back');
+                }
+            })
+        } else {
+            res.redirect('back');
+        }
+    });
 });
 
 router.put('/address/:id', (req, res) => {

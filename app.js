@@ -19,7 +19,9 @@ let express = require('express'),
     cartRouter = require('./routes/customer/cart'),
     orderRouter = require('./routes/customer/order'),
     middlewares = require('./middlewares/index'),
-    session = require('express-session');
+    usefulFunctions = require('./middlewares/usefulFunctions'),
+    session = require('express-session'),
+    Category = require('./moduls/post/category');
 
 // passport require
 var passport = require('passport');
@@ -54,6 +56,20 @@ app.use(passport.session());
 app.use(fileUpload());
 
 app.use(cors());
+
+app.use(function (req, res, next) {
+    res.locals.user = req.user;
+    Category.findOne({name: 'root'}, function (err, root) {
+        if(!err) {
+            root.getChildrenTree(function (err, childs) {
+                if(!err) {
+                    res.locals.cats = usefulFunctions.getDataArray(childs);
+                    next();
+                }
+            })
+        }
+    });
+});
 
 app.use('/category', categoryRouter);
 app.use('/cats', CatsRouter);

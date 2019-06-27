@@ -49,6 +49,8 @@
 </head>
 
 <body class="font-medium">
+
+<% if(user) if(user.isAdmin) { %>
 <div id="editProduct" class="dropPage" style="display: none">
     <div class="card shadow " style="">
         <div class="card-header bg-info text-center text-white" style="height: 45px">
@@ -183,6 +185,7 @@
                                     <button type="submit" class="btn btn-info text-white">
                                         <i class="fa fa-plus font-md pt-1"></i>
                                     </button>
+
                                 </div>
                             </div>
                         </form>
@@ -194,7 +197,9 @@
     </div>
 </div>
 
-<% include ../partials/header2.ejs %>
+<% } %>
+
+<% include ../partials/header.ejs %>
 
 <div id="product-body" class="my-5">
     <div class="container">
@@ -220,9 +225,17 @@
                     <h5 class="card-header font-sm mb-1 p-4">
                         کد کالا :
                         <span><%=product.productID%></span>
-                        <a onclick="dropThePage('editProduct'); fetchImages()" class="btn btn-dark ml-2">
+                        <% if(user) if(user.isAdmin) { %>
+                        <a onclick="dropThePage('editProduct'); fetchImages()" class="btn btn-dark ml-2"
+                           style="height: 40px;width: 50px">
                             <i class="fa fa-edit text-white"></i>
                         </a>
+                        <form action="/product/<%=product._id%>?_method=DELETE" method="post" class="d-inline-block">
+                            <button type="submit" class="btn btn-dark text-white" style="height: 40px;width: 50px">
+                                <i class="fa fa-trash-alt pt-1"></i>
+                            </button>
+                        </form>
+                        <% } %>
                     </h5>
                     <div class="card-body">
                         <div id="product-rating text-center" style="color: #e2e2e2; font-size: 20px">
@@ -264,9 +277,11 @@
                         
                     </div>
                     <h5 class="card-footer font-sm mb-1 p-4 text-center">
-                        <a href="#" class="btn btn-info text-white">
-                            <i class="fa fa-heart font-md pt-1"></i>
-                        </a>
+                        <form class="d-inline-block" action="<%=product._id%>/fav/new" method="post">
+                            <button class="btn btn-info text-white">
+                                <i class="fa fa-heart font-md pt-1"></i>
+                            </button>
+                        </form>
                         <a href="#" class="btn btn-info text-white" style="width: 55px">
                             <i class="fa fa-share-alt font-md pr-3 pt-1"></i>
                         </a>
@@ -290,7 +305,7 @@
                     <img class="card-img-top" src="/<%=recommendedProduct.images[0]%>" alt="Card image cap">
                     <i class="fa fa-plus add-to-cart-plus"></i>
                     <div class="card-body">
-                        <h5 class="card-title"><a href="product.html" style="text-decoration: none"><%=recommendedProduct.name%></a></h5>
+                        <h5 class="card-title"><a href="/product/<%=recommendedProduct._id%>" style="text-decoration: none"><%=recommendedProduct.name%></a></h5>
                         <p class="card-text font-light" style="font-size: 3vh">
                             <span>تومان</span>
                             <%=recommendedProduct.price%>

@@ -16,8 +16,7 @@ router.get('/:productId', async (req, res) => {
         const prodId = req.params.productId;
         const product = await Product.findById(prodId).populate('comments').exec();
         const recommends = await Product.find({category: product.category});
-        let root = await Category.findOne({name: 'root'});
-        
+
         var isInCart = false;
         var isAdmin = false;
 
@@ -31,19 +30,10 @@ router.get('/:productId', async (req, res) => {
                 }
             }
         }
-
-        root.getChildrenTree(function (err, childs) {
-            if(!err) {
-                let cats = usefulFunctions.getDataArray(childs);
-                res.render('product/product', {
-                    isInCart: isInCart,
-                    isAdmin: isAdmin,
-                    product: product,
-                    cats: cats,
-                    recommends: recommends,
-                    user: req.user
-                });
-            }
+        res.render('product/product', {
+            isInCart: isInCart,
+            product: product,
+            recommends: recommends
         });
     } catch (e) {
 
@@ -100,6 +90,37 @@ router.delete('/:productId/comment/:commentId', (req, res) => {
         }
     });
 });
+
+
+router.post('/:productId/fav/new', (req, res) => {
+    if(req.user) {
+        if(!req.user.isAdmin) {
+            Customer.findOne({_id: req.user._id}, (err, foundCustomer) => {
+                if (!err) {
+                    let tmp = true;
+                    foundCustomer.favorites.forEach(function (fav) {
+                        if (fav.toString() === req.params.productId.toString()) {
+                            tmp = false;
+                        }
+                    });
+                    if (tmp) foundCustomer.favorites.push(req.params.productId);
+                    foundCustomer.save((err) => {
+                        if (!err) {
+                            res.redirect('back');
+                        }
+                    })
+                } else {
+                    console.log(err);
+                }
+            });
+        } else {
+            res.redirect('back');
+        }
+    } else {
+        res.redirect('back');
+    }
+});
+
 
 router.post('/', function (req, res) {
     let properties = req.body.property;
@@ -263,11 +284,14 @@ router.delete('/revert', function (req, res) {
 });
 
 router.delete('/:id', function (req, res) {
-    Product.findOneAndDelete({id: req.params.id}, function (err) {
+    Product.findOneAndDelete({_id: req.params.id}, function (err, deletedProduct) {
         if (!err) {
-            rimraf('./public/Images/products/' + id, function () {
+            console.log(deletedProduct);
+            rimraf('./public/Images/products/' + req.params.id, function () {
                 res.redirect('/');
             });
+        } else {
+            res.redirect('/');
         }
     })
 });

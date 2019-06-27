@@ -15,22 +15,28 @@
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0 text-right">
                     <li class="nav-item px-3 mx-auto">
                         <div class="input-group-prepend">
-                            <button onclick="location.href='/cart'" action class="btn btn-outline-info">
+                            <button onclick="location.href='/cart'" class="btn btn-outline-info">
                                 <span id="number-of-products-added" class="pr-2"> ۳ </span>
                                 <span class="border-left pl-3">سبد خرید</span>
                                 <i class="fa fa-cart-plus"></i>
                             </button>
                         </div>
                     </li>
-                    <li class="nav-item px-md-3">
-                        <a class="nav-link" href="register">ثبت نام / ورود</a>
-                    </li>
-                    <li class="nav-item px-md-3">
-                        <a class="nav-link" href="userDashboard">داشبورد کاربر</a>
-                    </li>
-                    <li class="nav-item px-md-3">
-                        <a class="nav-link" href="adminDashboard">داشبورد ادمین</a>
-                    </li>
+                    <% if(!user) { %>
+                    <% console.log(user) %>
+                        <li class="nav-item px-md-3">
+                            <a class="nav-link" href="/register">ثبت نام / ورود</a>
+                        </li>
+                    <% } else { %>
+                        <li class="nav-item px-md-3">
+                            <% if(!user.isAdmin) { %>
+                                <a class="nav-link" href="/userDashboard"><%=user.username%><span> پنل کاربری </span></a>
+
+                            <% } else { %>
+                                <a class="nav-link" href="/adminDashboard"><%=user.username%><span> پنل ادمین </span></a>
+                            <% } %>
+                        </li>
+                    <% } %>
                     <li class="nav-item px-md-3">
                         <a class="nav-link" href="#" data-toggle="collapse" data-target="#categoryJumbotrun"
                            aria-expanded="true" aria-controls="categoryJumbotrun">
@@ -60,319 +66,78 @@
                         <div class="col-md-12 mb-5 text-center">
                             <span class="font-md text-info">دسته بندی ها</span>
                         </div>
-                        <div class="col-md-4 col-sm-12 pb-4">
-                            <div class="row mx-1">
-                                <div class="col-md-12 p-1">
-                                    <button class="btn btn-info w-100"
-                                            data-toggle="collapse" data-target="#category1" role="button"
-                                            aria-expanded="true" aria-controls="category1">خوراکی
-                                    </button>
+                        <%
+                        let mainCats = [];
+                        let mainSubCats = [];
+                        for (var j = 0; j < cats.length; j++) {
+                            if (cats[j].level === 0) {
+                                mainCats.push({
+                                    category: cats[j],
+                                    index: j
+                                })
+                            } else if (cats[j].level === 1) {
+                                mainSubCats.push({
+                                    category: cats[j],
+                                    index: j
+                                })
+                            }
+                        }
+                        %>
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <% for(var i = 0; i < mainCats.length; i++) { %>
+                                    <div class="col-md-6">
+                                        <button class="btn btn-info w-100 font-sm mb-4"
+                                                data-toggle="collapse" data-target="#category<%= mainCats[i].index %>"
+                                                role="button"
+                                                aria-expanded="true" aria-controls="category<%= mainCats[i].index %>">
+                                            <%= mainCats[i].category.name %>
+                                        </button>
+                                    </div>
+                                    <% } %>
                                 </div>
-
                             </div>
                         </div>
-                        <div class="col-md-8 col-sm-12">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
                             <div id="accordion">
-                                <div id="category1" class="collapse show" data-parent="#accordion">
-                                    <div class="card card-body text-right">
-                                        <div class="row justify-content-end">
-                                            <div class="col-sm-6 col-lg-3">
-                                                <p class="text-warning">
-                                                    <i class="fa fa-chevron-left"></i>
-                                                    <a href="../product/category.ejs"
-                                                       style="text-decoration: none; color: #e8ac22">لبنیات</a>
-                                                </p>
-                                                <p class="text-info pr-4">
-                                                    <span>ماست</span>
-                                                    <i class="fa fa-caret-left"></i>
-                                                </p>
-                                                <p class="text-info pr-4">
-                                                    <span>دوغ</span>
-                                                    <i class="fa fa-caret-left"></i>
-                                                </p>
-                                                <p class="text-info pr-4">
-                                                    <span>پنیر</span>
-                                                    <i class="fa fa-caret-left"></i>
-                                                </p>
-                                                <p class="text-info pr-4">
-                                                    <span>کره</span>
-                                                    <i class="fa fa-caret-left"></i>
-                                                </p>
-                                            </div>
-                                            <div class="col-sm-6 col-lg-3">
-                                                <p class="text-warning">
-                                                    <i class="fa fa-chevron-left"></i>
-                                                    <span>لبنیات</span>
-                                                </p>
-                                                <p class="text-info pr-4">
-                                                    <span>ماست</span>
-                                                    <i class="fa fa-caret-left"></i>
-                                                </p>
-                                                <p class="text-info pr-4">
-                                                    <span>دوغ</span>
-                                                    <i class="fa fa-caret-left"></i>
-                                                </p>
-                                                <p class="text-info pr-4">
-                                                    <span>پنیر</span>
-                                                    <i class="fa fa-caret-left"></i>
-                                                </p>
-                                                <p class="text-info pr-4">
-                                                    <span>کره</span>
-                                                    <i class="fa fa-caret-left"></i>
-                                                </p>
-                                            </div>
-                                            <div class="col-sm-6 col-lg-3">
-                                                <p class="text-warning">
-                                                    <i class="fa fa-chevron-left"></i>
-                                                    <span>لبنیات</span>
-                                                </p>
-                                                <p class="text-info pr-4">
-                                                    <span>ماست</span>
-                                                    <i class="fa fa-caret-left"></i>
-                                                </p>
-                                                <p class="text-info pr-4">
-                                                    <span>دوغ</span>
-                                                    <i class="fa fa-caret-left"></i>
-                                                </p>
-                                                <p class="text-info pr-4">
-                                                    <span>پنیر</span>
-                                                    <i class="fa fa-caret-left"></i>
-                                                </p>
-                                                <p class="text-info pr-4">
-                                                    <span>کره</span>
-                                                    <i class="fa fa-caret-left"></i>
-                                                </p>
-                                            </div>
-                                            <div class="col-sm-6 col-lg-3">
-                                                <p class="text-warning">
-                                                    <i class="fa fa-chevron-left"></i>
-                                                    <span>لبنیات</span>
-                                                </p>
-                                                <p class="text-info pr-4">
-                                                    <span>ماست</span>
-                                                    <i class="fa fa-caret-left"></i>
-                                                </p>
-                                                <p class="text-info pr-4">
-                                                    <span>دوغ</span>
-                                                    <i class="fa fa-caret-left"></i>
-                                                </p>
-                                                <p class="text-info pr-4">
-                                                    <span>پنیر</span>
-                                                    <i class="fa fa-caret-left"></i>
-                                                </p>
-                                                <p class="text-info pr-4">
-                                                    <span>کره</span>
-                                                    <i class="fa fa-caret-left"></i>
-                                                </p>
+                                <% for(var k = 0; k < cats.length; k++) { %>
+                                <% if(k == 0) { %>
+                                <div id="category<%= k %>" class="collapse show" data-parent="#accordion">
+                                    <% } else { %>
+                                    <div id="category<%= k %>" class="collapse" data-parent="#accordion">
+                                        <% } %>
+                                        <div class="card card-body text-right">
+                                            <div class="row justify-content-end">
+                                                <div class="col-sm-6 col-lg-6 text-info">
+
+                                                    <% for(var t = k + 1; t < cats.length; t++) { %>
+                                                    <% if(cats[t].level !== 0) { %>
+                                                    <p style="padding-right: <%= cats[t].level * 30 %>px">
+                                                        <a><%= cats[t].name %> -</a>
+                                                    </p>
+                                                    <% } else {
+                                                        k = t - 1;
+                                                        break;
+                                                    } %>
+                                                    <% } %>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div id="category2" class="collapse" data-parent="#accordion">
-                                    <div class="card card-body text-right">
-                                        <div class="row justify-content-end">
-                                            <div class="col-sm-6 col-lg-3">
-                                                <p class="text-warning">
-                                                    <i class="fa fa-chevron-left"></i>
-                                                    <span>تی شرت</span>
-                                                </p>
-                                                <p class="text-info pr-4">
-                                                    <span>استین حلقه ای</span>
-                                                    <i class="fa fa-caret-left"></i>
-                                                </p>
-                                                <p class="text-info pr-4">
-                                                    <span>ساده</span>
-                                                    <i class="fa fa-caret-left"></i>
-                                                </p>
-                                                <p class="text-info pr-4">
-                                                    <span>طرح دار</span>
-                                                    <i class="fa fa-caret-left"></i>
-                                                </p>
-                                            </div>
-                                            <div class="col-sm-6 col-lg-3">
-                                                <p class="text-warning">
-                                                    <i class="fa fa-chevron-left"></i>
-                                                    <span>تی شرت</span>
-                                                </p>
-                                                <p class="text-info pr-4">
-                                                    <span>استین حلقه ای</span>
-                                                    <i class="fa fa-caret-left"></i>
-                                                </p>
-                                                <p class="text-info pr-4">
-                                                    <span>ساده</span>
-                                                    <i class="fa fa-caret-left"></i>
-                                                </p>
-                                                <p class="text-info pr-4">
-                                                    <span>طرح دار</span>
-                                                    <i class="fa fa-caret-left"></i>
-                                                </p>
-                                            </div>
-                                            <div class="col-sm-6 col-lg-3">
-                                                <p class="text-warning">
-                                                    <i class="fa fa-chevron-left"></i>
-                                                    <span>تی شرت</span>
-                                                </p>
-                                                <p class="text-info pr-4">
-                                                    <span>استین حلقه ای</span>
-                                                    <i class="fa fa-caret-left"></i>
-                                                </p>
-                                                <p class="text-info pr-4">
-                                                    <span>ساده</span>
-                                                    <i class="fa fa-caret-left"></i>
-                                                </p>
-                                                <p class="text-info pr-4">
-                                                    <span>طرح دار</span>
-                                                    <i class="fa fa-caret-left"></i>
-                                                </p>
-                                            </div>
-                                            <div class="col-sm-6 col-lg-3">
-                                                <p class="text-warning">
-                                                    <i class="fa fa-chevron-left"></i>
-                                                    <span>تی شرت</span>
-                                                </p>
-                                                <p class="text-info pr-4">
-                                                    <span>استین حلقه ای</span>
-                                                    <i class="fa fa-caret-left"></i>
-                                                </p>
-                                                <p class="text-info pr-4">
-                                                    <span>ساده</span>
-                                                    <i class="fa fa-caret-left"></i>
-                                                </p>
-                                                <p class="text-info pr-4">
-                                                    <span>طرح دار</span>
-                                                    <i class="fa fa-caret-left"></i>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div id="category3" class="collapse" data-parent="#accordion">
-                                    <div class="card card-body text-right">
-                                        <div class="row justify-content-end">
-                                            <div class="col-sm-6 col-lg-3">
-                                                <p class="text-warning">
-                                                    <i class="fa fa-chevron-left"></i>
-                                                    <span>گیتار</span>
-                                                </p>
-                                                <p class="text-info pr-4">
-                                                    <span>اکوستیک</span>
-                                                    <i class="fa fa-caret-left"></i>
-                                                </p>
-                                                <p class="text-info pr-4">
-                                                    <span>الکتریک</span>
-                                                    <i class="fa fa-caret-left"></i>
-                                                </p>
-                                                <p class="text-info pr-4">
-                                                    <span>باس</span>
-                                                    <i class="fa fa-caret-left"></i>
-                                                </p>
-                                            </div>
-                                            <div class="col-sm-6 col-lg-3">
-                                                <p class="text-warning">
-                                                    <i class="fa fa-chevron-left"></i>
-                                                    <span>پیانو</span>
-                                                </p>
-                                                <p class="text-info pr-4">
-                                                    <span>دیواری</span>
-                                                    <i class="fa fa-caret-left"></i>
-                                                </p>
-                                                <p class="text-info pr-4">
-                                                    <span>رویال</span>
-                                                    <i class="fa fa-caret-left"></i>
-                                                </p>
-                                                <p class="text-info pr-4">
-                                                    <span>الکتریک</span>
-                                                    <i class="fa fa-caret-left"></i>
-                                                </p>
-                                                <p class="text-info pr-4">
-                                                    <span>کیبورد</span>
-                                                    <i class="fa fa-caret-left"></i>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div id="category4" class="collapse" data-parent="#accordion">
-                                    <div class="card card-body text-right">
-                                        <div class="row justify-content-end">
-                                            <div class="col-sm-6 col-lg-3">
-                                                <p class="text-warning">
-                                                    <i class="fa fa-chevron-left"></i>
-                                                    <span>صابون</span>
-                                                </p>
-                                                <p class="text-info pr-4">
-                                                    <span>طبیعی</span>
-                                                    <i class="fa fa-caret-left"></i>
-                                                </p>
-                                                <p class="text-info pr-4">
-                                                    <span>مصنوعی</span>
-                                                    <i class="fa fa-caret-left"></i>
-                                                </p>
-                                            </div>
-                                            <div class="col-sm-6 col-lg-3">
-                                                <p class="text-warning">
-                                                    <i class="fa fa-chevron-left"></i>
-                                                    <span>شامپو</span>
-                                                </p>
-                                                <p class="text-info pr-4">
-                                                    <span>ضد شوره</span>
-                                                    <i class="fa fa-caret-left"></i>
-                                                </p>
-                                                <p class="text-info pr-4">
-                                                    <span>طبیعی</span>
-                                                    <i class="fa fa-caret-left"></i>
-                                                </p>
-                                                <p class="text-info pr-4">
-                                                    <span>گیاهی</span>
-                                                    <i class="fa fa-caret-left"></i>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div id="category5" class="collapse" data-parent="#accordion">
-                                    <div class="card card-body text-right">
-                                        <div class="row justify-content-end">
-                                            <div class="col-sm-6 col-lg-3">
-                                                <p class="text-warning">
-                                                    <i class="fa fa-chevron-left"></i>
-                                                    <span>پژو</span>
-                                                </p>
-                                                <p class="text-info pr-4">
-                                                    <span>۴۰۵</span>
-                                                    <i class="fa fa-caret-left"></i>
-                                                </p>
-                                                <p class="text-info pr-4">
-                                                    <span>۲۰۶</span>
-                                                    <i class="fa fa-caret-left"></i>
-                                                </p>
-                                                <p class="text-info pr-4">
-                                                    <span>۲۰۷</span>
-                                                    <i class="fa fa-caret-left"></i>
-                                                </p>
-                                            </div>
-                                            <div class="col-sm-6 col-lg-3">
-                                                <p class="text-warning">
-                                                    <i class="fa fa-chevron-left"></i>
-                                                    <span>نیسان</span>
-                                                </p>
-                                                <p class="text-info pr-4">
-                                                    <span>جوک</span>
-                                                    <i class="fa fa-caret-left"></i>
-                                                </p>
-                                                <p class="text-info pr-4">
-                                                    <span>قشقایی</span>
-                                                    <i class="fa fa-caret-left"></i>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <% } %>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
+    </div>
     </div>
 </header>
