@@ -21,27 +21,29 @@ let express = require('express'),
         }
     });
 
-    router.post('/add', function(req, res) {
+    router.post('/add', async function(req, res) {
+
         if(req.user) {
             if(!req.user.isAdmin) {
-                productId = req.body.productId;
-                Customer.findById(req.user._id, function (err, customer) {
-                    if (!customer) {
-                        res.send('didnt find user');
-                    }
+
+                customer = await Customer.findById(req.user._id).populate('cart.productId').exec();
+                productId = req.body.productId
+                if (!customer) {
+                    res.send('didnt find user');
+                }
+
+                // checking if the product is already in cart
+                var prod = customer.cart.find(item => item.productId._id == productId)
+                if (prod) { // if it is
+                    prod.quantity += 1;
+                } else { // if it isn't
                     customer.cart.push({productId: productId, quantity: 1});
-                    // adding price to totalPrice of cart
-                    Product.findById(productId, function (err) {
-                        // saving
-                        if (!err) {
-                            customer.save().then(() => {
-                                res.send('done')
-                            }).catch((err) => {
-                                throw err;
-                            });
-                        }
-                    });
-                });
+                }
+
+                // saving
+                await customer.save();
+                res.send('done');
+
             } else {
                 res.send('admin');
             }

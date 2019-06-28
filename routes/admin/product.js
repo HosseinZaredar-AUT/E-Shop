@@ -17,17 +17,7 @@ router.get('/:productId', async (req, res) => {
         const product = await Product.findById(prodId).populate('comments').exec();
         const recommends = await Product.find({category: product.category});
 
-        var isInCart = false;
-
-        if (req.user && !req.user.isAdmin) {
-            var customer = await Customer.findById(req.user._id);
-            if (customer.cart.find(product => product.productId == prodId)) {
-                isInCart = true;
-            }
-        }
-
         res.render('product/product', {
-            isInCart: isInCart,
             product: product,
             recommends: recommends
         });

@@ -267,7 +267,7 @@
                         <% } %>
                         <hr>
                         <p class="font-md font-light text-info my-4"> <%=product.price%> </p>
-                        <% if (!user) { %>
+                        <% if (!user || (user && !user.isAdmin)) { %>
                             <form method="POST" action="/cart/add">
                                 <input name="productId" type="hidden" value="<%= product._id %>">
                                 <div class="btn btn-success text-white add-to-cart-action" data-id="<%=product._id%>" >
@@ -275,21 +275,6 @@
                                     <i class="fa fa-plus"></i>
                                 </div>
                             </form>
-                        <% } %>
-                        <% if (user && !user.isAdmin) { %>
-                            <% if (!isInCart) { %>
-                                <form method="POST" action="/cart/add">
-                                    <input name="productId" type="hidden" value="<%= product._id %>" >
-                                    <div class="btn btn-success text-white add-to-cart-action" data-id="<%=product._id%>" >
-                                        <input type="submit" value="اضافه به سبد خرید" style="background: none; border:none; color: white">
-                                        <i class="fa fa-plus"></i>
-                                    </div>
-                                </form>
-                            <% } else { %>
-                                <a href="/cart" class="btn btn-warning text-white">
-                                    مشاهده در سبد خرید
-                                </a>
-                            <% } %>
                         <% } %>
                     </div>
                     <h5 class="card-footer font-sm mb-1 p-4 text-center">
