@@ -157,6 +157,9 @@
         <h6 class="d-inline-block float-right mt-2 position-absolute" style="right: 40px;top: -10px">:مرتب سازی</h6>
         <form action="/cats/<%= dir %>" method="get" class="mr-3 position-absolute" style="right: 120px; top: -10px;">
             <button type="submit" class="btn btn-outline-success">اعمال</button>
+            <%if(searchBody != '') {%>
+                <input type="hidden" value="<%=searchBody%>" name="search">
+            <%}%>
             <label>
                 <select name="sort" class="custom-select" style="width: 8rem; direction: rtl;">
                     <% if(sort === 'new')  { %>
@@ -228,7 +231,7 @@
             }
             %>
             <li class="page-item">
-                <a class="page-link" href="/cats/<%= dir ;%>?page=1&sort=<%= sort %>&price=<%= price %><%=colorPage%><%=brandPage%>">
+                <a class="page-link" href="/cats/<%= dir ;%>?search=<%=searchBody%>&page=1&sort=<%= sort %>&price=<%= price %><%=colorPage%><%=brandPage%>">
                     first
                 </a>
             </li>
@@ -238,13 +241,13 @@
                     continue;
                 } %>
             <li class="page-item">
-                <a class="page-link" href="/cats/<%= dir %>?page=<%= cur %>&sort=<%= sort %>&price=<%= price %><%=colorPage%><%=brandPage%>">
+                <a class="page-link" href="/cats/<%= dir %>?search=<%=searchBody%>&page=<%= cur %>&sort=<%= sort %>&price=<%= price %><%=colorPage%><%=brandPage%>">
                     <%- cur %>
                 </a>
             </li>
             <% } %>
             <li class="page-item">
-                <a class="page-link bg-info" href="/cats/<%= dir %>?page=<%= page %>&sort=<%= sort %>&price=<%= price %><%=colorPage%><%=brandPage%>">
+                <a class="page-link bg-info" href="/cats/<%= dir %>?search=<%=searchBody%>&page=<%= page %>&sort=<%= sort %>&price=<%= price %><%=colorPage%><%=brandPage%>">
                     <%- page %>
                 </a></li>
             <% for (i = 1;i < 4; i++) {
@@ -253,13 +256,13 @@
                     break;
                 } %>
             <li class="page-item">
-                <a class="page-link" href="/cats/<%= dir %>?page=<%= cur %>&sort=<%= sort %>&price=<%= price %><%=colorPage%><%=brandPage%>">
+                <a class="page-link" href="/cats/<%= dir %>?search=<%=searchBody%>&page=<%= cur %>&sort=<%= sort %>&price=<%= price %><%=colorPage%><%=brandPage%>">
                     <%- cur %>
                 </a>
             </li>
             <% } %>
             <li class="page-item">
-                <a class="page-link" href="/cats/<%= dir %>?page=<%= lastPage %>&sort=<%= sort %>&price=<%= price %><%=colorPage%><%=brandPage%>">
+                <a class="page-link" href="/cats/<%= dir %>?search=<%=searchBody%>&page=<%= lastPage %>&sort=<%= sort %>&price=<%= price %><%=colorPage%><%=brandPage%>">
                     last
                 </a>
             </li>
