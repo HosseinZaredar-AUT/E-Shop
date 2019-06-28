@@ -18,6 +18,7 @@ let express = require('express'),
     adminDashboardRouter = require('./routes/admin/dashboard/dashboard'),
     cartRouter = require('./routes/customer/cart'),
     orderRouter = require('./routes/customer/order'),
+    paymentRouter = require('./routes/customer/payment'),
     middlewares = require('./middlewares/index'),
     usefulFunctions = require('./middlewares/usefulFunctions'),
     session = require('express-session'),
@@ -94,6 +95,7 @@ app.use('/userDashboard', middlewares.isAuthenticatedUser ,userDashboardRouter);
 app.use('/adminDashboard', middlewares.isAuthenticatedAdmin ,adminDashboardRouter);
 app.use('/cart', middlewares.isAuthenticatedUser,cartRouter);
 app.use('/order', orderRouter);
+app.use('/payment', paymentRouter);
 app.use('/', indexRouter);
 
 seedDB();
