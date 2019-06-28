@@ -28,7 +28,10 @@
               onclick="openBar()">
             <i class="fa fa-close" style="position: absolute; top: 20px; right: 35px;"></i>
         </span>
-    <form>
+    <form action="/cats/<%=dir%>">
+        <%if(searchBody != '') {%>
+            <input type="hidden" value="<%=searchBody%>" name="search">
+        <%}%>
         <button type="submit" class="btn btn-danger w-100 mt-5">فیلتر</button>
         <div class="separator" style="padding-top: 25px">
             <h5>
