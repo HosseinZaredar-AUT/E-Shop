@@ -1,19 +1,3 @@
-$('.add-to-cart-action').click(function (e) {
-    e.preventDefault();
-    const data = {};
-    data.productId = $(this).data('id');
-    $.ajax({
-        type: 'POST',
-        data: JSON.stringify(data),
-        contentType: 'application/json',
-        url: '/cart/add',
-        success: function() {
-            const number = $('#number-of-products-added')
-            number.html(parseInt(number.html())+1)
-        }
-    });
-})
-
 function magnify(imgID, zoom) {
     let img, glass, w, h, bw;
     img = document.getElementById(imgID);

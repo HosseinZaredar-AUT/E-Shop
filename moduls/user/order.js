@@ -17,10 +17,6 @@ let orderSchema = mongoose.Schema({
         type: Number,
         required: true
     },
-    homeNumber: {
-        type: Number,
-        required: true
-    },
     phoneNumber: {
         type: Number,
         required: true
@@ -30,7 +26,7 @@ let orderSchema = mongoose.Schema({
         productId: {type: mongoose.Schema.Types.ObjectId, ref: 'Product', required: true},
         quantity: {type: Number, required: true}
     }],
-    address: {type: String}, //TODO should be of type ObjectId of Address
+    address: {type: mongoose.Schema.Types.ObjectId, ref: 'Address'},
     trackingCode: String,
     paymentMethod: String,
     shippingMethod: String,

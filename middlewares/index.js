@@ -4,7 +4,7 @@ module.exports = {
             if (req.user && !req.user.isAdmin) {
                 next();
             } else {
-                res.redirect('/register');
+                res.redirect('/login');
             }
         },
     isAuthenticatedAdmin:

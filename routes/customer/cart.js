@@ -22,24 +22,32 @@ let express = require('express'),
     });
 
     router.post('/add', function(req, res) {
-        productId = req.body.productId;
-        Customer.findById(req.user._id, function(err, customer) {
-            if (!customer){
-                res.redirect('back');
-            }
-            customer.cart.push({productId: productId, quantity: 1});
-            // adding price to totalPrice of cart
-            Product.findById(productId, function(err) {
-                // saving
-                if(!err) {
-                    customer.save().then(() => {
-                        res.send('success')
-                    }).catch((err) => {
-                        throw err;
+        if(req.user) {
+            if(!req.user.isAdmin) {
+                productId = req.body.productId;
+                Customer.findById(req.user._id, function (err, customer) {
+                    if (!customer) {
+                        res.send('didnt find user');
+                    }
+                    customer.cart.push({productId: productId, quantity: 1});
+                    // adding price to totalPrice of cart
+                    Product.findById(productId, function (err) {
+                        // saving
+                        if (!err) {
+                            customer.save().then(() => {
+                                res.send('done')
+                            }).catch((err) => {
+                                throw err;
+                            });
+                        }
                     });
-                }
-            });
-        }); 
+                });
+            } else {
+                res.send('admin');
+            }
+        } else {
+            res.send('login');
+        }
     });
 
     // route for editing product quantity from cart

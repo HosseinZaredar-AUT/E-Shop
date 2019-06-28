@@ -48,19 +48,13 @@
                 </div>
                 <div class="pt-3 container-fluid">
                     <div class="row text-center">
-                        <div class="col-6 py-2" style="border: solid 1px #dddddd;">
-                            <span class="" style="color: #7aaf45; cursor: pointer">
-                                <h6 class="d-inline">ویرایش</h6>
-                                <i class="fa fa-edit"></i>
-                            </span>
-                        </div>
-                        <div class="col-6 py-2" style="border: solid 1px #dddddd">
-                            <span class="text-danger" style="cursor: pointer">
-                                <form action="/logout" method="post">
-                                    <input type="submit" value="خروج">
-                                </form>
-                                <i class="fa fa-power-off"></i>
-                            </span>
+                        <div class="col-12 py-2" style="border: solid 1px #dddddd">
+                            <form action="/logout" method="post">
+                                <button type="submit" class="btn btn-danger btn-md">
+                                    <span>خروج</span>
+                                    <i class="fa fa-power-off font-xs"></i>
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -212,16 +206,16 @@
                                                         <div class="col-md-3 col-sm-6 ml-auto float-right">
                                                             <span class="float-right"> : آدرس  </span>
                                                             <br>
-                                                            <span class="float-right"><%= orders[i].address %></span>
+                                                            <span class="float-right"><%= orders[i].address.address %></span>
                                                         </div>
                                                         <div class="col-md-3 col-sm-6 ml-auto float-right">
                                                             <span class="float-right">کد ملی : <strong><%= orders[i].nationalId %></strong></span>
                                                             <br>
-                                                            <span class="float-right">استان : <strong>-</strong></span>
+                                                            <span class="float-right">استان : <strong><%= orders[i].address.province %></strong></span>
                                                             <br>
-                                                            <span class="float-right">شهر : <strong>-</strong></span>
+                                                            <span class="float-right">شهر : <strong><%= orders[i].address.city %></strong></span>
                                                             <br>
-                                                            <span class="float-right">کد پستی : <strong>-</strong></span>
+                                                            <span class="float-right">کد پستی : <strong><%= orders[i].address.postalCode %></strong></span>
                                                             <br>
                                                             <span class="float-right">کد رهگیری : <strong><%= orders[i].trackingCode %></strong></span>
                                                         </div>
@@ -231,8 +225,6 @@
                                                             <span class="float-right">نام خانوادگی : <strong><%= orders[i].lastname %></strong></span>
                                                             <br>
                                                             <span class="float-right">تلفن همراه : <strong><%= orders[i].phoneNumber %></strong></span>
-                                                            <br>
-                                                            <span class="float-right">تلفن ثابت : <strong><%= orders[i].homeNumber %></strong></span>
                                                             <br>
                                                             <span class="float-right">روش پرداخت : <strong><%= orders[i].paymentMethod %></strong></span>
                                                             <br>

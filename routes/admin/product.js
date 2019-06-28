@@ -102,7 +102,7 @@ router.post('/:productId/fav/new', (req, res) => {
                     if (tmp) foundCustomer.favorites.push(req.params.productId);
                     foundCustomer.save((err) => {
                         if (!err) {
-                            res.redirect('back');
+                            res.send('done');
                         }
                     })
                 } else {
@@ -110,10 +110,10 @@ router.post('/:productId/fav/new', (req, res) => {
                 }
             });
         } else {
-            res.redirect('back');
+            res.send('admin');
         }
     } else {
-        res.redirect('back');
+        res.send('login');
     }
 });
 

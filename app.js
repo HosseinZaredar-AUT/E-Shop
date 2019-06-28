@@ -64,8 +64,12 @@ app.use(function (req, res, next) {
     // getting customer's cart size
     res.locals.cartSize = 0;
     if (req.user && !req.user.isAdmin) {
-        Customer.findOne({_id: req.user._id}, function(err, customer) {
-            res.locals.cartSize = customer.cart.length;
+        Customer.findOne({_id: req.user._id})
+            .populate('addresses')
+            .populate('favorites')
+            .exec(function(err, customer) {
+                res.locals.user = customer;
+                res.locals.cartSize = customer.cart.length;
         });
     }
 

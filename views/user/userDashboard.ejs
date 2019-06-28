@@ -57,24 +57,21 @@
             </div>
             <div class="card-body position-relative" style="padding: 40px 0 0 0;">
                 <div class="text-center position-relative">
-                    <h6 class="" style="font-family: 'IranYekanBold', serif;color: #515151"><%=customerName%></h6>
+                    <h6 class=""
+                        style="font-family: 'IranYekanBold', serif;color: #515151"><%= customer.username %></h6>
                 </div>
                 <div class="pt-3 container-fluid">
                     <div class="row text-center">
-                        <div class="col-6 py-2" style="border: solid 1px #dddddd">
-                            <span class="" style="color: #7aaf45; cursor: pointer;">
-                                <h6 class="d-inline font-xs">تغییر رمز عبور</h6>
-                                <i class="fa fa-edit font-xs"></i>
-                            </span>
-                        </div>
-                        <div class="col-6 py-2" style="border: solid 1px #dddddd">
+                        <div class="col-12 py-2" style="border: solid 1px #dddddd">
                             <span class="text-danger">
                                 <h6 class="d-inline font-xs">
                                     <form action="/logout" method="post">
-                                        <input type="submit" value="خروج">
+                                        <button type="submit" class="btn btn-danger btn-md">
+                                            <span>خروج</span>
+                                            <i class="fa fa-power-off font-xs"></i>
+                                        </button>
                                     </form>
                                 </h6>
-                                <i class="fa fa-power-off font-xs"></i>
                             </span>
                         </div>
                     </div>
@@ -131,11 +128,6 @@
             </div>
             <div class="card-body text-white">
                 <div class="container">
-                    <form id="delete-order-success-block" class="success-message">
-                        <ul>
-                            <li>سفارش با موفقیت حذف شد</li>
-                        </ul>
-                    </form>
                     <div class="accordion md-accordion accordion-blocks" id="order-1" role="tablist"
                          aria-multiselectable="true">
                         <% for (var i = 0; i < orders.length; i++) { %>
@@ -154,16 +146,16 @@
                                         <h5 class="mt-1 mb-0 float-right">
                                             <i class="fa fa-angle-down rotate-icon mx-2"></i>
                                             <span>سفارش</span>
-                                            <span>- <%=orders[i].orderNumber%></span>
+                                            <span>- <%= orders[i].orderNumber %></span>
                                         </h5>
                                     </a>
-                                    <form method="POST" action="/order?_method=DELETE"> 
-                                        <input type="hidden" name="orderId" value="<%=orders[i]._id%>">
+                                    <form method="POST" action="/order?_method=DELETE">
+                                        <input type="hidden" name="orderId" value="<%= orders[i]._id %>">
                                         <input type="submit" value="حذف" class="btn btn-sm btn-danger float-left">
                                     </form>
                                     <button class="btn btn-sm btn-outline-info mx-3">
                                         <% if (orders[i].status == 'awaitsPayment') { %>
-                                            <span>پرداخت</span>
+                                        <span>پرداخت</span>
                                         <% } %>
                                     </button>
                                 </a>
@@ -179,18 +171,19 @@
                                                     <div class="col-md-3 col-sm-6 ml-auto float-right">
                                                         <span class="float-right"> : آدرس  </span>
                                                         <br>
-                                                        <span class="float-right"><%= orders[i].address %></span>
+                                                        <span class="float-right"><%= orders[i].address.address %></span>
                                                     </div>
                                                     <div class="col-md-3 col-sm-6 ml-auto float-right">
                                                         <span class="float-right">کد ملی : <strong><%= orders[i].nationalId %></strong></span>
                                                         <br>
-                                                        <span class="float-right">استان : <strong>-</strong></span>
+                                                        <span class="float-right">استان : <strong><%= orders[i].address.province %></strong></span>
                                                         <br>
-                                                        <span class="float-right">شهر : <strong>-</strong></span>
+                                                        <span class="float-right">شهر : <strong><%= orders[i].address.city %></strong></span>
                                                         <br>
-                                                        <span class="float-right">کد پستی : <strong>-</strong></span>
+                                                        <span class="float-right">کد پستی : <strong><%= orders[i].address.postalCode %></strong></span>
                                                         <br>
-                                                        <span class="float-right">کد رهگیری : <strong><%= orders[i].trackingCode %></strong></span>
+                                                        <span class="float-right"><span class="float-right">: کد پیگیری</span>
+                                                            <br><strong><%= orders[i].trackingCode %></strong></span>
                                                     </div>
                                                     <div class="col-md-3 col-sm-6 ml-auto float-right">
                                                         <span class="float-right">نام : <strong><%= orders[i].firstname %></strong></span>
@@ -198,8 +191,6 @@
                                                         <span class="float-right">نام خانوادگی : <strong><%= orders[i].lastname %></strong></span>
                                                         <br>
                                                         <span class="float-right">تلفن همراه : <strong><%= orders[i].phoneNumber %></strong></span>
-                                                        <br>
-                                                        <span class="float-right">تلفن ثابت : <strong><%= orders[i].homeNumber %></strong></span>
                                                         <br>
                                                         <span class="float-right">روش پرداخت : <strong><%= orders[i].paymentMethod %></strong></span>
                                                         <br>
@@ -224,7 +215,8 @@
                                             <tr>
                                                 <td class="pl-3"><%= (j + 1) %></td>
                                                 <td>
-                                                    <a href="product/<%=orders[i].products[j].productId._id%>" style="text-decoration: none">
+                                                    <a href="product/<%= orders[i].products[j].productId._id %>"
+                                                       style="text-decoration: none">
                                                         <%= orders[i].products[j].productId.name %>
                                                     </a>
                                                 </td>
@@ -246,8 +238,9 @@
             <div class="card-header bg-info text-center text-white">
                 <h6 class="d-inline float-right pt-2">لیست علاقه مندی ها</h6>
                 <form action="/userDashboard/fav/edit?_method=PUT" method="post">
-                    <% for(var g=0;g<favorites.length;g++) { %>
-                    <input type="checkbox" id="fav-<%=g%>-checkbox" checked name="favorites" value="<%=favorites[g]._id%>" hidden>
+                    <% for(var g = 0;g < customer.favorites.length;g++) { %>
+                    <input type="checkbox" id="fav-<%= g %>-checkbox" checked name="favorites"
+                           value="<%= customer.favorites[g]._id %>" hidden>
                     <% } %>
                     <input type="submit" class="btn btn-sm btn-outline-warning float-left" value="ذخیره">
                 </form>
@@ -255,22 +248,25 @@
             <div class="card-body text-white">
                 <div class="container-fluid">
                     <div class="row h-100 text-center">
-                        <% for(var y=0;y<favorites.length; y++) { %>
-                            <div class="col-md-4 col-sm-6">
+                        <% for(var y = 0;y < customer.favorites.length; y++) { %>
+                        <div class="col-md-4 col-sm-6">
                             <div class="p-3">
                                 <div class="card product-card">
-                                    <img class="card-img-top" src="/<%=favorites[y].images[0]%>" alt="Card image cap">
+                                    <img class="card-img-top" src="/<%= customer.favorites[y].images[0] %>"
+                                         alt="Card image cap">
                                     <div style="position: absolute" class="ml-1 mt-1">
-                                        <button class="button button-like liked" id="fav-<%=y%>-like"
+                                        <button class="button button-like liked" id="fav-<%= y %>-like"
                                                 style="width: 45px;height: 45px">
                                             <i class="fa fa-heart"></i>
                                         </button>
                                     </div>
                                     <i class="fa fa-plus add-to-cart-plus"></i>
                                     <div class="card-body text-dark">
-                                        <h5 class="card-title"><a href="/product/<%=favorites[y]._id%>"
-                                                                  style="text-decoration: none"><%=favorites[y].name%></a></h5>
-                                        <p class="card-text font-light" style="font-size: 3vh"><%=favorites[y].price%> تومان</p>
+                                        <h5 class="card-title"><a href="/product/<%= customer.favorites[y]._id %>"
+                                                                  style="text-decoration: none"><%= customer.favorites[y].name %></a>
+                                        </h5>
+                                        <p class="card-text font-light"
+                                           style="font-size: 3vh"><%= customer.favorites[y].price %> تومان</p>
                                         <a href="#" class="btn btn-success text-white">اضافه به سبد خرید
                                             <i class="fa fa-plus"></i>
                                         </a>
@@ -291,7 +287,7 @@
                 <div class="accordion md-accordion accordion-blocks" id="addresses" role="tablist"
                      aria-multiselectable="true">
 
-                    <div class="card shadow-lg my-4">
+                    <div id="new-address-card" class="card shadow-lg my-4">
                         <div class="card-header bg-success border-bottom" role="tab" id="new-address-header">
                             <a data-toggle="collapse" data-parent="#addresses" class="text-dark"
                                href="#new-address-body" aria-expanded="true"
@@ -306,164 +302,165 @@
                              data-parent="#addresses">
                             <div class="card-body border-bottom">
                                 <div class="container">
-                                    <form id="new-address-success-block" class="success-message">
-                                        <ul>
-                                            <li>آدرس جدید با موفقیت اضافه شد</li>
-                                        </ul>
+                                    <form action="userDashboard/address" method="post"
+                                          class="needs-validation text-dark" novalidate>
+                                        <div class="form-row">
+                                            <div class="col-md-3 mb-3">
+                                                <label for="new-address-province" class="float-right">استان</label>
+                                                <input type="text" name="province" class="form-control"
+                                                       id="new-address-province"
+                                                       placeholder="استان" required>
+                                                <div class="invalid-feedback">
+                                                    <span>لطفا این بخش را پر کنید</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 mb-3">
+                                                <label for="new-address-city" class="float-right">شهر</label>
+                                                <input type="text" class="form-control" name="city"
+                                                       id="new-address-city" placeholder="شهر" required>
+                                                <div class="invalid-feedback">
+                                                    <span>لطفا این بخش را پر کنید</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 mb-3">
+                                                <label for="new-address-phone" class="float-right">تلفن ثابت</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" name="homePhone"
+                                                           pattern="0[0-9]{10}"
+                                                           id="new-address-phone"
+                                                           placeholder="تلفن ثابت (با پیش‌شماره شهر)"
+                                                           aria-describedby="inputGroupPrepend" required>
+                                                    <div class="invalid-feedback">
+                                                        <span>لطفا این بخش را پر کنید</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 mb-3">
+                                                <label for="new-address-postal-code" class="float-right">کد پستی</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" name="postalCode"
+                                                           id="new-address-postal-code" placeholder="کد پستی"
+                                                           aria-describedby="inputGroupPrepend" required>
+                                                    <div class="invalid-feedback">
+                                                        <span>لطفا این بخش را پر کنید</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 mb-3">
+                                                <label for="new-address-address" class="float-right">آدرس</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" name="address"
+                                                           id="new-address-address" required>
+                                                    <div class="invalid-feedback">
+                                                        <span>لطفا این بخش را پر کنید</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button id="addAddressButton" class="btn btn-success text-dark font-xs"
+                                                type="submit">افزودن
+                                        </button>
                                     </form>
-                                    <!-- <form action="userDashboard/address" method="post"
-                                          class="needs-validation text-dark" novalidate> -->
-                                    <div class="form-row">
-                                        <div class="col-md-3 mb-3">
-                                            <label for="new-address-province" class="float-right">استان</label>
-                                            <input type="text" name="province" class="form-control"
-                                                   id="new-address-province"
-                                                   placeholder="استان" required>
-                                            <div class="invalid-feedback">
-                                                <span>لطفا این بخش را پر کنید</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3 mb-3">
-                                            <label for="new-address-city" class="float-right">شهر</label>
-                                            <input type="text" class="form-control" name="city"
-                                                   id="new-address-city" placeholder="شهر" required>
-                                            <div class="invalid-feedback">
-                                                <span>لطفا این بخش را پر کنید</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3 mb-3">
-                                            <label for="new-address-phone" class="float-right">تلفن ثابت</label>
-                                            <div class="input-group">
-                                                <input type="text" class="form-control" name="homePhone"
-                                                       pattern="0[0-9]{10}"
-                                                       id="new-address-phone" placeholder="تلفن ثابت (با پیش‌شماره شهر)"
-                                                       aria-describedby="inputGroupPrepend" required>
-                                                <div class="invalid-feedback">
-                                                    <span>لطفا این بخش را پر کنید</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3 mb-3">
-                                            <label for="new-address-postal-code" class="float-right">کد پستی</label>
-                                            <div class="input-group">
-                                                <input type="text" class="form-control" name="postalCode"
-                                                       id="new-address-postal-code" placeholder="کد پستی"
-                                                       aria-describedby="inputGroupPrepend" required>
-                                                <div class="invalid-feedback">
-                                                    <span>لطفا این بخش را پر کنید</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12 mb-3">
-                                            <label for="new-address-address" class="float-right">آدرس</label>
-                                            <div class="input-group">
-                                                <input type="text" class="form-control" name="address"
-                                                       id="new-address-address" required>
-                                                <div class="invalid-feedback">
-                                                    <span>لطفا این بخش را پر کنید</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <button id="addAddressButton" class="btn btn-success text-dark font-xs"
-                                            type="submit">افزودن
-                                    </button>
-                                    <!-- </form> -->
                                 </div>
                             </div>
                         </div>
                     </div>
 
+                    <% for(var k = 0;k < customer.addresses.length;k++) { %>
                     <div class="card shadow-lg my-4">
-                        <div class="card-header bg-light border-bottom" role="tab" id="address-1-header">
+                        <div class="card-header bg-light border-bottom" role="tab" id="address-<%= k + 1 %>-header">
                             <a data-toggle="collapse" data-parent="#addresses" class="text-dark"
-                               href="#address-1-body" aria-expanded="true"
+                               href="#address-<%= k + 1 %>-body" aria-expanded="true"
                                aria-controls="collapseUnfiled">
                                 <h5 class="mt-1 mb-0 float-right">
                                     <i class="fa fa-angle-down rotate-icon mx-2"></i>
-                                    <span>آدرس ۱</span>
+                                    <span>آدرس <%= k + 1 %></span>
                                 </h5>
                             </a>
-                            <!-- <form action="userDashboard/address/id?_method=DELETE" method="post"> -->
-                            <button id="removeAddressButton" class="btn btn-sm btn-danger float-left"> حذف</button>
-                            <!-- </form> -->
+                            <form action="userDashboard/address/<%=customer.addresses[k]._id%>?_method=DELETE" method="post">
+                                <button class="btn btn-sm btn-danger float-left">حذف</button>
+                            </form>
                         </div>
-                        <div id="address-1-body" class="collapse" role="tabpanel" aria-labelledby="address-1-header"
+                        <div id="address-<%= k + 1 %>-body" class="collapse" role="tabpanel"
+                             aria-labelledby="address-<%= k + 1 %>-header"
                              data-parent="#addresses">
                             <div class="card-body border-bottom">
                                 <div class="container">
-                                    <form id="delete-address-success-block" class="success-message">
-                                        <ul>
-                                            <li>آدرس با موفقیت حذف شد</li>
-                                        </ul>
+                                    <form method="post" action="userDashboard/address/<%=customer.addresses[k]._id%>?_method=PUT"
+                                          class="needs-validation text-dark" novalidate>
+                                        <div class="form-row">
+                                            <div class="col-md-3 mb-3">
+                                                <label for="address-<%= k + 1 %>-province"
+                                                       class="float-right">استان</label>
+                                                <input type="text" class="form-control" name="province"
+                                                       id="address-<%= k + 1 %>-province"
+                                                       placeholder="استان" value="<%= customer.addresses[k].province %>"
+                                                       required>
+                                                <div class="invalid-feedback">
+                                                    <span>لطفا این بخش را پر کنید</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 mb-3">
+                                                <label for="address-<%= k + 1 %>-city" class="float-right">شهر</label>
+                                                <input type="text" class="form-control" id="address-<%= k + 1 %>-city"
+                                                       placeholder="شهر" value="<%= customer.addresses[k].city %>"
+                                                       required name="city">
+                                                <div class="invalid-feedback">
+                                                    <span>لطفا این بخش را پر کنید</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 mb-3">
+                                                <label for="address-<%= k + 1 %>-phone" class="float-right">تلفن
+                                                    ثابت</label>
+                                                <div class="input-group">
+                                                    <input type="tel" class="form-control"
+                                                           id="address-<%= k + 1 %>-phone"
+                                                           pattern=0[0-9]{10}
+                                                           placeholder="تلفن ثابت (با پیش‌شماره‌ شهر)"
+                                                           aria-describedby="inputGroupPrepend"
+                                                           value="<%= customer.addresses[k].homePhone %>"
+                                                           required name="homePhone">
+                                                    <div class="invalid-feedback">
+                                                        <span>لطفا این بخش را پر کنید</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 mb-3">
+                                                <label for="address-<%= k + 1 %>-postal-code" class="float-right">کد
+                                                    پستی</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control"
+                                                           id="address-<%= k + 1 %>-postal-code"
+                                                           placeholder="کد پستی" aria-describedby="inputGroupPrepend"
+                                                           value="<%= customer.addresses[k].postalCode %>"
+                                                           required name="postalCode">
+                                                    <div class="invalid-feedback">
+                                                        <span>لطفا این بخش را پر کنید</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 mb-3">
+                                                <label for="address-<%= k + 1 %>-address"
+                                                       class="float-right">آدرس</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control"
+                                                           id="address-<%= k + 1 %>-address" name="address"
+                                                           required value="<%= customer.addresses[k].address %>">
+                                                    <div class="invalid-feedback">
+                                                        <span>لطفا این بخش را پر کنید</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button id="changeAddressButton" class="btn btn-warning font-xs" type="submit">
+                                            <span>ذخیره</span>
+                                        </button>
                                     </form>
-                                    <form id="change-address-success-block" class="success-message">
-                                        <ul>
-                                            <li>آدرس با موفقیت تغییر یافت</li>
-                                        </ul>
-                                    </form>
-                                    <!-- <form method="post" action="userDashboard/address/id?_method=PUT"
-                                          class="needs-validation text-dark" novalidate> -->
-                                    <div class="form-row">
-                                        <div class="col-md-3 mb-3">
-                                            <label for="address-1-province" class="float-right">استان</label>
-                                            <input type="text" class="form-control" id="address-1-province"
-                                                   placeholder="استان" required>
-                                            <div class="invalid-feedback">
-                                                <span>لطفا این بخش را پر کنید</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3 mb-3">
-                                            <label for="address-1-city" class="float-right">شهر</label>
-                                            <input type="text" class="form-control" id="address-2-city"
-                                                   placeholder="شهر" required>
-                                            <div class="invalid-feedback">
-                                                <span>لطفا این بخش را پر کنید</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3 mb-3">
-                                            <label for="address-1-phone" class="float-right">تلفن ثابت</label>
-                                            <div class="input-group">
-                                                <input type="tel" class="form-control" id="address-2-phone"
-                                                       pattern=0[0-9]{10}
-                                                       placeholder="تلفن ثابت (با پیش‌شماره‌ شهر)"
-                                                       aria-describedby="inputGroupPrepend"
-                                                       required>
-                                                <div class="invalid-feedback">
-                                                    <span>لطفا این بخش را پر کنید</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3 mb-3">
-                                            <label for="address-1-postal-code" class="float-right">کد پستی</label>
-                                            <div class="input-group">
-                                                <input type="text" class="form-control" id="address-1-postal-code"
-                                                       placeholder="کد پستی" aria-describedby="inputGroupPrepend"
-                                                       required>
-                                                <div class="invalid-feedback">
-                                                    <span>لطفا این بخش را پر کنید</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12 mb-3">
-                                            <label for="address-1-address" class="float-right">آدرس</label>
-                                            <div class="input-group">
-                                                <input type="text" class="form-control" id="address-2-address"
-                                                       required>
-                                                <div class="invalid-feedback">
-                                                    <span>لطفا این بخش را پر کنید</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <button id="changeAddressButton" class="btn btn-warning font-xs" type="submit">
-                                        ذخیره
-                                    </button>
-                                    <!-- </form> -->
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <% } %>
 
                 </div>
             </div>
@@ -474,81 +471,79 @@
             </div>
             <div class="card-body text-white">
                 <div class="container">
-                    <form id="change-info-success-block" class="success-message">
-                        <ul>
-                            <li>تغییرات با موفقیت انجام شد</li>
-                        </ul>
+                    <form action="/userDashboard/info?_method=PUT"
+                          method="post" class="needs-validation text-dark" novalidate>
+                        <div class="form-row">
+                            <div class="col-md-3 mb-3">
+                                <label for="user-info-first-name" class="float-right">نام</label>
+                                <input type="text" name="firstname" class="form-control"
+                                       id="user-info-first-name" placeholder="نام" value="<%= user.firstname %>"
+                                       required>
+                                <div class="valid-feedback">
+                                    <span>لطفا این بخش را پر کنید</span>
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="user-info-last-name" class="float-right">نام خانوادگی</label>
+                                <input type="text" name="lastname" class="form-control"
+                                       id="user-info-last-name" placeholder="نام خانوادگی" value="<%= user.lastname %>"
+                                       required>
+                                <div class="valid-feedback">
+                                    <span>لطفا این بخش را پر کنید</span>
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="user-info-username" class="float-right">نام کاربری</label>
+                                <div class="input-group">
+                                    <input type="text" name="username" class="form-control"
+                                           id="user-info-username" placeholder="نام کاربری"
+                                           aria-describedby="inputGroupPrepend" value="<%= user.username %>" required>
+                                    <div class="invalid-feedback">
+                                        <span>لطفا این بخش را پر کنید</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="user-info-password" class="float-right">رمز عبور</label>
+                                <div class="input-group">
+                                    <input type="password" name="password" class="form-control" id="user-info-password"
+                                           placeholder="رمز عبور" aria-describedby="inputGroupPrepend"
+                                           required>
+                                    <div class="invalid-feedback">
+                                        <span>لطفا این بخش را پر کنید</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-4 mb-3">
+                                <label for="user-info-email" class="float-right">ایمیل</label>
+                                <input type="email" name="email" class="form-control"
+                                       id="user-info-email" placeholder="ایمیل" value="<%= user.email %>" required>
+                                <div class="invalid-feedback">
+                                    <span>لطفا این بخش را پر کنید</span>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="user-info-phone" class="float-right">تلفن همراه</label>
+                                <input type="tel" class="form-control" name="phone" pattern="09[0-9]{9}"
+                                       id="user-info-phone" placeholder="تلفن همراه" value="<%= user.phone %>" required>
+                                <div class="invalid-feedback">
+                                    <span>لطفا این بخش را پر کنید</span>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="user-info-id-number" class="float-right">کد ملی</label>
+                                <input type="text" class="form-control" name="idNumber"
+                                       id="user-info-id-number" placeholder="کد ملی" value="<%= user.idNumber %>"
+                                       required>
+                                <div class="invalid-feedback">
+                                    <span>لطفا این بخش را پر کنید</span>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-warning my-3" type="submit" id="submitButton">ذخیره</button>
                     </form>
-                    <!-- action="/userDashboard/info?_method=PUT" -->
-                    <!-- method="post" -->
-                    <!-- <form  class="needs-validation text-dark" novalidate> -->
-                    <div class="form-row">
-                        <div class="col-md-3 mb-3">
-                            <label for="user-info-first-name" class="float-right">نام</label>
-                            <input type="text" name="firstname" class="form-control"
-                                   id="user-info-first-name" placeholder="نام" required>
-                            <div class="valid-feedback">
-                                <span>لطفا این بخش را پر کنید</span>
-                            </div>
-                        </div>
-                        <div class="col-md-3 mb-3">
-                            <label for="user-info-last-name" class="float-right">نام خانوادگی</label>
-                            <input type="text" name="lastname" class="form-control"
-                                   id="user-info-last-name" placeholder="نام خانوادگی" required>
-                            <div class="valid-feedback">
-                                <span>لطفا این بخش را پر کنید</span>
-                            </div>
-                        </div>
-                        <div class="col-md-3 mb-3">
-                            <label for="user-info-username" class="float-right">نام کاربری</label>
-                            <div class="input-group">
-                                <input type="text" name="username" class="form-control"
-                                       id="user-info-username" placeholder="نام کاربری"
-                                       aria-describedby="inputGroupPrepend" required>
-                                <div class="invalid-feedback">
-                                    <span>لطفا این بخش را پر کنید</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 mb-3">
-                            <label for="user-info-password" class="float-right">رمز عبور</label>
-                            <div class="input-group">
-                                <input type="password" name="password" class="form-control" id="user-info-password"
-                                       placeholder="رمز عبور" aria-describedby="inputGroupPrepend" required>
-                                <div class="invalid-feedback">
-                                    <span>لطفا این بخش را پر کنید</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="col-md-4 mb-3">
-                            <label for="user-info-email" class="float-right">ایمیل</label>
-                            <input type="email" name="email" class="form-control"
-                                   id="user-info-email" placeholder="ایمیل" required>
-                            <div class="invalid-feedback">
-                                <span>لطفا این بخش را پر کنید</span>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <label for="user-info-phone" class="float-right">تلفن همراه</label>
-                            <input type="tel" class="form-control" name="phone" pattern="09[0-9]{9}"
-                                   id="user-info-phone" placeholder="تلفن همراه" required>
-                            <div class="invalid-feedback">
-                                <span>لطفا این بخش را پر کنید</span>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <label for="user-info-id-number" class="float-right">کد ملی</label>
-                            <input type="text" class="form-control" name="idNumber"
-                                   id="user-info-id-number" placeholder="کد ملی" required>
-                            <div class="invalid-feedback">
-                                <span>لطفا این بخش را پر کنید</span>
-                            </div>
-                        </div>
-                    </div>
-                    <button class="btn btn-warning my-3" type="submit" id="submitButton">ذخیره</button>
-                    <!-- </form> -->
                 </div>
             </div>
         </div>
@@ -557,180 +552,6 @@
 <script src="js/jquery2_2.min.js" type="text/javascript"></script>
 <script src="js/bootstrap.min.js" type="text/javascript"></script>
 
-<!-- manages deletion of an order. -->
-<script>
-    const removeOrderButton = document.getElementById("removeOrderButton");
-    removeOrderButton.addEventListener('click', () => {
-        const id = removeOrderButton._id;
-        fetch('http://localhost:3000/order/' + toString(id),
-            {
-                method: 'DELETE',
-                body: JSON.stringify({
-                    id: id
-                }),
-                headers: {'Content-Type': 'application/json'}
-            }).then((res) => {
-            if (res.status === 201) {
-                const successBlock = document.getElementById("delete-order-success-block");
-                successBlock.style.display = "block";
-                successBlock.style.color = "red";
-                successBlock.border = "1px solid red";
-                setTimeout(() => {
-                    successBlock.style.display = "none";
-                }, 3000);
-
-            }
-        });
-    });
-
-</script>
-
-<!-- manages changes in address info. -->
-<script>
-    const changeAddressButton = document.getElementById("changeAddressButton");
-    changeAddressButton.addEventListener('click', () => {
-        const province = document.getElementById("address-1-province"),
-            city = document.getElementById("address-1-city"),
-            postalcode = document.getElementById("address-1-postal-code"),
-            homePhone = document.getElementById("address-1-phone"),
-            address = document.getElementById("address-1-address"),
-            id = changeAddressButton._id;
-        fetch('http://localhost:3000/address/' + toString(id),
-            {
-                method: 'PUT',
-                body: JSON.stringify({
-                    province: province,
-                    city: city,
-                    postalcode: postalcode,
-                    homePhone: homePhone,
-                    address: address,
-                    id: id
-                }),
-                headers: {'Content-Type': 'application/json'}
-            }).then((res) => {
-            if (res.status === 201) {
-                const successBlock = document.getElementById("change-address-success-block");
-                successBlock.style.display = "block";
-                setTimeout(() => {
-                    successBlock.style.display = "none";
-                }, 3000);
-
-            }
-        });
-    });
-
-</script>
-
-
-<!-- manages deletion of an adress  -->
-<script>
-    const removeAddressButton = document.getElementById("removeAddressButton");
-    removeAddressButton.addEventListener('click', () => {
-        const id = removeAddressButton._id;
-        fetch('http://localhost:3000/address/' + toString(id),
-            {
-                method: 'DELETE',
-                body: JSON.stringify({
-                    id: id
-                }),
-                headers: {'Content-Type': 'application/json'}
-            }).then((res) => {
-            if (res.status === 201) {
-                const successBlock = document.getElementById("delete-address-success-block");
-                successBlock.style.display = "block";
-                successBlock.style.color = "red";
-                successBlock.border = "1px solid red";
-                setTimeout(() => {
-                    successBlock.style.display = "none";
-                }, 3000);
-
-            }
-        });
-    });
-
-</script>
-
-
-<!-- manages the adding of a new address  -->
-<script>
-    const addAddressButton = document.getElementById("addAddressButton");
-    addAddressButton.addEventListener('click', () => {
-        const province = document.getElementById("new-address-province"),
-            city = document.getElementById("new-address-city"),
-            postalcode = document.getElementById("new-address-postal-code"),
-            homePhone = document.getElementById("new-address-phone"),
-            address = document.getElementById("new-address-address");
-        fetch('http://localhost:3000/userDashboard/address',
-            {
-                method: 'POST',
-                body: JSON.stringify({
-                    province: province,
-                    city: city,
-                    postalcode: postalcode,
-                    homePhone: homePhone,
-                    address: address
-                }),
-                headers: {'Content-Type': 'application/json'}
-            }).then((res) => {
-            if (res.status === 201) {
-                const successBlock = document.getElementById("new-address-success-block");
-                successBlock.style.display = "block";
-                setTimeout(() => {
-                    successBlock.style.display = "none";
-                }, 3000);
-
-            }
-        });
-
-    });
-
-</script>
-
-<!-- manages changes in user info. -->
-<script>
-    const submit = document.getElementById("submitButton");
-    submit.addEventListener('click', () => {
-        const firstname = document.getElementById("user-info-first-name").value,
-            lastname = document.getElementById("user-info-last-name").value,
-            username = document.getElementById("user-info-username").value,
-            password = document.getElementById("user-info-password").value,
-            email = document.getElementById("user-info-email").value,
-            phone = document.getElementById("user-info-phone").value,
-            idNumber = document.getElementById("user-info-id-number").value;
-        // console.log(firstname);
-        fetch('http://localhost:3000/userDashboard/info',
-            {
-                method: 'PUT',
-                body: JSON.stringify({
-                    firstname: firstname,
-                    lastname: lastname,
-                    username: username,
-                    password: password,
-                    email: email,
-                    phone: phone,
-                    idNumber: idNumber,
-                }),
-                headers: {'Content-Type': 'application/json'}
-            }).then((res) => {
-            console.log(res.status);
-            if (res.status === 201) {
-                const successBlock = document.getElementById("change-info-success-block");
-                successBlock.style.display = "block";
-                setTimeout(() => {
-                    successBlock.style.display = "none";
-                }, 3000);
-                // setInterval( () => {
-                //  successBlock.style.opacity = max;
-                //     max = max-20;
-                // },2000);
-            }
-            // return res.json();
-        });
-        // ).then(json => {
-        //     console.log(json.message);
-        // });
-    })
-</script>
 <script>
     function openBar() {
         if (document.getElementById("sideBar").classList.contains("leftSideOpen")) {
@@ -748,7 +569,6 @@
                 document.getElementById("close").style.display = "none";
             }, 500);
         } else {
-            console.log(document.getElementById("overlay").style.display);
             document.getElementById("sideBar").classList.add("leftSideOpen");
             document.getElementById("body").classList.add("hidedBody");
             document.getElementById("body").classList.remove("shoppingBody");
@@ -787,12 +607,12 @@
     }
 
     $(function () {
-        <% for(var x=0; x<favorites.length; x++) { %>
-            $('#fav-' + <%=x%> + '-like')
-                .bind('click', function (event) {
-                    $("#fav-" + <%=x%> + "-like").toggleClass("liked");
-                    $("#fav-" + <%=x%> + "-checkbox").click();
-                });
+        <% for(var x = 0; x < customer.favorites.length; x++) { %>
+        $('#fav-' + <%= x %> +'-like')
+            .bind('click', function (event) {
+                $("#fav-" + <%= x %> +"-like").toggleClass("liked");
+                $("#fav-" + <%= x %> +"-checkbox").click();
+            });
         <% } %>
 
     });

@@ -7,6 +7,7 @@ let express = require('express'),
 router.get('/', function (req, res) {
     Order.find({})
         .populate('products.productId')
+        .populate('address')
         .exec(function(err, orders) {
             Admin.findOne({_id: req.user._id}).exec((err, foundAdmin) => {
                 if(!err) {
