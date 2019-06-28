@@ -68,4 +68,8 @@ let express = require('express'),
         });
     });
 
+    router.post('/pay', function(req, res) {
+        res.render('user/payment', {orderId: req.body.orderId});
+    });
+
 module.exports = router;

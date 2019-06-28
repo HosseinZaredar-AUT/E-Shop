@@ -153,11 +153,14 @@
                                         <input type="hidden" name="orderId" value="<%= orders[i]._id %>">
                                         <input type="submit" value="حذف" class="btn btn-sm btn-danger float-left">
                                     </form>
-                                    <button class="btn btn-sm btn-outline-info mx-3">
-                                        <% if (orders[i].status == 'awaitsPayment') { %>
-                                        <span>پرداخت</span>
-                                        <% } %>
-                                    </button>
+                                    <% if (orders[i].status == 'awaitsPayment') { %>
+                                        <form method="POST" action="order/pay">
+                                            <input type="hidden" name="orderId" value="<%=orders[i]._id%>">
+                                            <input type="submit" value="پرداخت" class="btn btn-sm btn-info mx-3">
+                                        </form>
+                                    <% } else if (orders[i].status == 'awaitsDelivery') { %>
+                                        <button type="submit" class="btn btn-sm btn-success mx-3">پرداخت شد</button>                                            
+                                    <% } %>
                                 </a>
                             </div>
                             <div id="order-body-<%= (i + 1) %>" class="collapse" role="tabpanel"
@@ -168,23 +171,22 @@
                                         <div class="card-body">
                                             <div class="container">
                                                 <div class="row text-dark">
-                                                    <div class="col-md-3 col-sm-6 ml-auto float-right">
-                                                        <span class="float-right"> : آدرس  </span>
-                                                        <br>
-                                                        <span class="float-right"><%= orders[i].address.address %></span>
-                                                    </div>
-                                                    <div class="col-md-3 col-sm-6 ml-auto float-right">
-                                                        <span class="float-right">کد ملی : <strong><%= orders[i].nationalId %></strong></span>
-                                                        <br>
-                                                        <span class="float-right">استان : <strong><%= orders[i].address.province %></strong></span>
-                                                        <br>
-                                                        <span class="float-right">شهر : <strong><%= orders[i].address.city %></strong></span>
-                                                        <br>
-                                                        <span class="float-right">کد پستی : <strong><%= orders[i].address.postalCode %></strong></span>
-                                                        <br>
-                                                        <span class="float-right"><span class="float-right">: کد پیگیری</span>
-                                                            <br><strong><%= orders[i].trackingCode %></strong></span>
-                                                    </div>
+                                                        <div class="col-md-3 col-sm-6 ml-auto float-right">
+                                                            <span class="float-right"> : آدرس  </span>
+                                                            <br>
+                                                            <span class="float-right"><%= orders[i].address.address %></span>
+                                                        </div>
+                                                        <div class="col-md-3 col-sm-6 ml-auto float-right">
+                                                            <span class="float-right">کد ملی : <strong><%= orders[i].nationalId %></strong></span>
+                                                            <br>
+                                                            <span class="float-right">استان : <strong><%= orders[i].address.province %></strong></span>
+                                                            <br>
+                                                            <span class="float-right">شهر : <strong><%= orders[i].address.city %></strong></span>
+                                                            <br>
+                                                            <span class="float-right">کد پستی : <strong><%= orders[i].address.postalCode %></strong></span>
+                                                            <br>
+                                                            <span class="float-right">کد رهگیری : <strong><%= orders[i].trackingCode %></strong></span>
+                                                        </div>
                                                     <div class="col-md-3 col-sm-6 ml-auto float-right">
                                                         <span class="float-right">نام : <strong><%= orders[i].firstname %></strong></span>
                                                         <br>

@@ -14,7 +14,6 @@ router.get('/', function (req, res) {
                     res.render('user/adminDashboard', {orders: orders, adminName: foundAdmin.username});
                 }
             })
-            // res.render('user/adminDashboard', {orders: orders});
         });
 });
 
