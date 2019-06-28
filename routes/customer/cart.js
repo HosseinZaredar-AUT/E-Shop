@@ -26,14 +26,14 @@ let express = require('express'),
         if(req.user) {
             if(!req.user.isAdmin) {
 
-                customer = await Customer.findById(req.user._id).populate('cart.productId').exec();
-                productId = req.body.productId
+                customer = await Customer.findById(req.user._id);
+                productId = req.body.productId;
                 if (!customer) {
                     res.send('didnt find user');
                 }
 
                 // checking if the product is already in cart
-                var prod = customer.cart.find(item => item.productId._id == productId)
+                var prod = customer.cart.find(item => item.productId == productId)
                 if (prod) { // if it is
                     prod.quantity += 1;
                 } else { // if it isn't
@@ -78,18 +78,16 @@ let express = require('express'),
         });
     });
 
-    router.delete('/', function(req, res) {
+    router.delete('/', async function(req, res) {
         productId = req.body.productId;
-        Customer.findById(req.user._id, function(err, customer) {
-            var index = customer.cart.indexOf(product => product.productId == productId);
-            customer.cart.splice(index, 1);
-            customer.save(function(err, updatedCustomer) {
-                // redirecting
-                res.json({
-                    done: 'done'
-                });
-            });
-        });
+        customer = await Customer.findById(req.user._id);
+        for (var i = 0; i < customer.cart.length; i++) {
+            if (customer.cart[i].productId == productId) {
+                customer.cart.splice(i, 1);
+                await customer.save();
+                res.redirect('/cart');
+            }
+        }
     });
 
 module.exports = router;
