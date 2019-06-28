@@ -110,6 +110,12 @@
                     <a onclick="openEditInfo()" class="d-inline myClickableThingy" id="old-orders"
                        style="font-size: 0.9rem">ویرایش اطلاعات شخصی</a>
                 </div>
+                <br>
+                <div class="text-right" style="direction: rtl;color: #515151">
+                    <i class="fa fa-plus d-inline"></i>
+                    <a onclick="openEditPassword()" class="d-inline myClickableThingy" id="old-orders"
+                       style="font-size: 0.9rem">ویرایش رمز عبور</a>
+                </div>
             </div>
         </div>
     </div>
@@ -494,38 +500,18 @@
                                     <span>لطفا این بخش را پر کنید</span>
                                 </div>
                             </div>
-                            <div class="col-md-3 mb-3">
-                                <label for="user-info-username" class="float-right">نام کاربری</label>
-                                <div class="input-group">
-                                    <input type="text" name="username" class="form-control"
-                                           id="user-info-username" placeholder="نام کاربری"
-                                           aria-describedby="inputGroupPrepend" value="<%= user.username %>" required>
+                            <div class="col-md-4 mb-3">
+                                    <label for="user-info-email" class="float-right">ایمیل</label>
+                                    <input type="email" name="email" class="form-control"
+                                           id="user-info-email" placeholder="ایمیل" value="<%= user.email %>" required>
                                     <div class="invalid-feedback">
                                         <span>لطفا این بخش را پر کنید</span>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-3 mb-3">
-                                <label for="user-info-password" class="float-right">رمز عبور</label>
-                                <div class="input-group">
-                                    <input type="password" name="password" class="form-control" id="user-info-password"
-                                           placeholder="رمز عبور" aria-describedby="inputGroupPrepend"
-                                           required>
-                                    <div class="invalid-feedback">
-                                        <span>لطفا این بخش را پر کنید</span>
-                                    </div>
-                                </div>
-                            </div>
+                            
                         </div>
                         <div class="form-row">
-                            <div class="col-md-4 mb-3">
-                                <label for="user-info-email" class="float-right">ایمیل</label>
-                                <input type="email" name="email" class="form-control"
-                                       id="user-info-email" placeholder="ایمیل" value="<%= user.email %>" required>
-                                <div class="invalid-feedback">
-                                    <span>لطفا این بخش را پر کنید</span>
-                                </div>
-                            </div>
+                            
                             <div class="col-md-4 mb-3">
                                 <label for="user-info-phone" class="float-right">تلفن همراه</label>
                                 <input type="tel" class="form-control" name="phone" pattern="09[0-9]{9}"
@@ -549,6 +535,39 @@
                 </div>
             </div>
         </div>
+        <div class="card shadow mt-4 d-none" id="edit-password-dec">
+                <div class="card-header bg-info text-center text-white">
+                    <h6 class="d-inline float-right pt-2">ویرایش رمز عبور</h6>
+                </div>
+                <div class="card-body text-white">
+                    <div class="container">
+                        <form action="/userDashboard/password?_method=PUT"
+                              method="post" class="needs-validation text-dark" novalidate>
+                            <div class="form-row">
+                                <div class="col-md-3 mb-3">
+                                    <label for="user-info-old-password" class="float-right">رمز عبور قبلی</label>
+                                    <input type="password" name="oldPassword" class="form-control"
+                                           id="user-info-old-password" placeholder="رمز عبور قبلی"
+                                           required>
+                                    <div class="valid-feedback">
+                                        <span>لطفا این بخش را پر کنید</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label for="user-info-new-password" class="float-right">رمز عبور جدید</label>
+                                    <input type="password" name="newPassword" class="form-control"
+                                           id="user-info-new-password" placeholder="رمز عبور جدید"
+                                           required>
+                                    <div class="valid-feedback">
+                                        <span>لطفا این بخش را پر کنید</span>
+                                    </div>
+                                </div>                                
+                            </div>
+                            <button class="btn btn-warning my-3" type="submit" id="submitButton">ذخیره</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
     </div>
 </main>
 <script src="js/jquery2_2.min.js" type="text/javascript"></script>
@@ -585,6 +604,7 @@
         $('#favorites-dec').addClass('d-none');
         $('#edit-addresses-dec').addClass('d-none');
         $('#edit-info-dec').addClass('d-none');
+        $('#edit-password-dec').addClass('d-none');
     }
 
     function openFavorites() {
@@ -592,6 +612,7 @@
         $('#favorites-dec').removeClass('d-none');
         $('#edit-addresses-dec').addClass('d-none');
         $('#edit-info-dec').addClass('d-none');
+        $('#edit-password-dec').addClass('d-none');
     }
 
     function openEditAddresses() {
@@ -599,6 +620,7 @@
         $('#favorites-dec').addClass('d-none');
         $('#edit-addresses-dec').removeClass('d-none');
         $('#edit-info-dec').addClass('d-none');
+        $('#edit-password-dec').addClass('d-none');
     }
 
     function openEditInfo() {
@@ -606,6 +628,16 @@
         $('#favorites-dec').addClass('d-none');
         $('#edit-addresses-dec').addClass('d-none');
         $('#edit-info-dec').removeClass('d-none');
+        $('#edit-password-dec').addClass('d-none');
+
+    }
+
+    function openEditPassword() {
+        $('#all-orders-dec').addClass('d-none');
+        $('#favorites-dec').addClass('d-none');
+        $('#edit-addresses-dec').addClass('d-none');
+        $('#edit-info-dec').addClass('d-none');
+        $('#edit-password-dec').removeClass('d-none');
     }
 
     $(function () {

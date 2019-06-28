@@ -1,5 +1,6 @@
 let express = require('express'),
     router = express.Router(),
+    bcrypt = require('bcrypt'),
     Customer = require('../../../moduls/user/customer'),
     Address = require('../../../moduls/user/address'),
     Order   = require('../../../moduls/user/order');
@@ -34,13 +35,10 @@ router.delete('/order/:id', function (req, res) {
 
 router.put('/info', (req, res) => {
     let details = req.body;
-    if(details.firstname && details.lastname && details.username
-        && details.password && details.email && details.phone && details.idNumber) {
+    if(details.firstname && details.lastname && details.email && details.phone && details.idNumber) {
         Customer.findOneAndUpdate({_id: req.user._id}, {
             firstname: details.firstname,
             lastname : details.lastname,
-            username : details.username,
-            password : details.password,
             email    : details.email,
             phone    : details.phone,
             idNumber : details.idNumber
@@ -53,6 +51,27 @@ router.put('/info', (req, res) => {
         })
     } else {
         res.redirect('back');
+    }
+});
+
+router.put('/password', async (req, res) => {
+    let details = req.body;
+    if (details.oldPassword && details.newPassword) {
+        customer = await Customer.findById(req.user._id);
+        // checking oldPassword
+        isEqual = await bcrypt.compare(details.oldPassword, customer.password);
+        if (isEqual) {
+            // hashing newPassword
+            var salt = await bcrypt.genSalt(10)
+            var hashedPassword = await bcrypt.hash(details.newPassword, salt)
+            customer.password = hashedPassword;
+            await customer.save();
+            res.redirect('/userDashboard');   
+        } else {
+            res.redirect('/');
+        }
+    } else {
+        res.redirect('/');
     }
 });
 
