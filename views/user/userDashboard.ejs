@@ -39,7 +39,7 @@
 <% include ../partials/header.ejs %>
 
 <div id="overlay" onclick="openBar()"></div>
-<aside id="sideBar" class="leftSide h-100 " style="background-color: white">
+<aside id="sideBar" class="leftSide h-100 " style="background-color: white; z-index: 0">
 
     <span class="" id="close" style="display: none;color: black;font-size: 1.75rem;cursor: pointer;"
           onclick="openBar()">
@@ -107,13 +107,13 @@
                 <br>
                 <div class="text-right" style="direction: rtl;color: #515151">
                     <i class="fa fa-plus d-inline"></i>
-                    <a onclick="openEditInfo()" class="d-inline myClickableThingy" id="old-orders"
+                    <a onclick="openEditInfo()" class="d-inline myClickableThingy" id="edit-info"
                        style="font-size: 0.9rem">ویرایش اطلاعات شخصی</a>
                 </div>
                 <br>
                 <div class="text-right" style="direction: rtl;color: #515151">
                     <i class="fa fa-plus d-inline"></i>
-                    <a onclick="openEditPassword()" class="d-inline myClickableThingy" id="old-orders"
+                    <a onclick="openEditPassword()" class="d-inline myClickableThingy" id="edit-password"
                        style="font-size: 0.9rem">ویرایش رمز عبور</a>
                 </div>
             </div>
@@ -160,12 +160,12 @@
                                         <input type="submit" value="حذف" class="btn btn-sm btn-danger float-left">
                                     </form>
                                     <% if (orders[i].status == 'awaitsPayment') { %>
-                                        <form method="POST" action="order/pay">
-                                            <input type="hidden" name="orderId" value="<%=orders[i]._id%>">
-                                            <input type="submit" value="پرداخت" class="btn btn-sm btn-info mx-3">
-                                        </form>
+                                    <form method="POST" action="order/pay">
+                                        <input type="hidden" name="orderId" value="<%= orders[i]._id %>">
+                                        <input type="submit" value="پرداخت" class="btn btn-sm btn-info mx-3">
+                                    </form>
                                     <% } else if (orders[i].status == 'awaitsDelivery') { %>
-                                        <button type="submit" class="btn btn-sm btn-success mx-3">پرداخت شد</button>                                            
+                                    <button type="submit" class="btn btn-sm btn-success mx-3">پرداخت شد</button>
                                     <% } %>
                                 </a>
                             </div>
@@ -177,22 +177,22 @@
                                         <div class="card-body">
                                             <div class="container">
                                                 <div class="row text-dark">
-                                                        <div class="col-md-3 col-sm-6 ml-auto float-right">
-                                                            <span class="float-right"> : آدرس  </span>
-                                                            <br>
-                                                            <span class="float-right"><%= orders[i].address.address %></span>
-                                                        </div>
-                                                        <div class="col-md-3 col-sm-6 ml-auto float-right">
-                                                            <span class="float-right">کد ملی : <strong><%= orders[i].nationalId %></strong></span>
-                                                            <br>
-                                                            <span class="float-right">استان : <strong><%= orders[i].address.province %></strong></span>
-                                                            <br>
-                                                            <span class="float-right">شهر : <strong><%= orders[i].address.city %></strong></span>
-                                                            <br>
-                                                            <span class="float-right">کد پستی : <strong><%= orders[i].address.postalCode %></strong></span>
-                                                            <br>
-                                                            <span class="float-right">کد رهگیری : <strong><%= orders[i].trackingCode %></strong></span>
-                                                        </div>
+                                                    <div class="col-md-3 col-sm-6 ml-auto float-right">
+                                                        <span class="float-right"> : آدرس  </span>
+                                                        <br>
+                                                        <span class="float-right"><%= orders[i].address.address %></span>
+                                                    </div>
+                                                    <div class="col-md-3 col-sm-6 ml-auto float-right">
+                                                        <span class="float-right">کد ملی : <strong><%= orders[i].nationalId %></strong></span>
+                                                        <br>
+                                                        <span class="float-right">استان : <strong><%= orders[i].address.province %></strong></span>
+                                                        <br>
+                                                        <span class="float-right">شهر : <strong><%= orders[i].address.city %></strong></span>
+                                                        <br>
+                                                        <span class="float-right">کد پستی : <strong><%= orders[i].address.postalCode %></strong></span>
+                                                        <br>
+                                                        <span class="float-right">کد رهگیری : <strong><%= orders[i].trackingCode %></strong></span>
+                                                    </div>
                                                     <div class="col-md-3 col-sm-6 ml-auto float-right">
                                                         <span class="float-right">نام : <strong><%= orders[i].firstname %></strong></span>
                                                         <br>
@@ -268,14 +268,28 @@
                                             <i class="fa fa-heart"></i>
                                         </button>
                                     </div>
-                                    <i class="fa fa-plus add-to-cart-plus"></i>
+                                    <i data-id="<%= customer.favorites[y]._id %>"
+                                       class="fa fa-plus add-to-cart-plus add-to-cart-action"></i>
                                     <div class="card-body text-dark">
                                         <h5 class="card-title"><a href="/product/<%= customer.favorites[y]._id %>"
                                                                   style="text-decoration: none"><%= customer.favorites[y].name %></a>
                                         </h5>
+                                        <% if(customer.favorites[y].discount !== 0) { %>
+                                        <div class="discounted-price">
+                                            <p class="card-text font-light text-danger" style="font-size: 2vh;
+                                             text-decoration: line-through;">
+                                                <%= customer.favorites[y].price %> تومان</p>
+                                            <p class="card-text font-light pb-3 text-success" style="font-size: 3vh;">
+                                                <%= customer.favorites[y].price * (100 - customer.favorites[y].discount) / 100 %>
+                                                تومان</p>
+                                        </div>
+                                        <% } else { %>
                                         <p class="card-text font-light"
                                            style="font-size: 3vh"><%= customer.favorites[y].price %> تومان</p>
-                                        <a href="#" class="btn btn-success text-white">اضافه به سبد خرید
+                                        <% } %>
+                                        <a data-id="<%= customer.favorites[y]._id %>"
+                                           class="btn btn-success text-white add-to-cart-action">
+                                            اضافه به سبد خرید
                                             <i class="fa fa-plus"></i>
                                         </a>
                                     </div>
@@ -385,7 +399,8 @@
                                     <span>آدرس <%= k + 1 %></span>
                                 </h5>
                             </a>
-                            <form action="userDashboard/address/<%=customer.addresses[k]._id%>?_method=DELETE" method="post">
+                            <form action="userDashboard/address/<%= customer.addresses[k]._id %>?_method=DELETE"
+                                  method="post">
                                 <button class="btn btn-sm btn-danger float-left">حذف</button>
                             </form>
                         </div>
@@ -394,7 +409,8 @@
                              data-parent="#addresses">
                             <div class="card-body border-bottom">
                                 <div class="container">
-                                    <form method="post" action="userDashboard/address/<%=customer.addresses[k]._id%>?_method=PUT"
+                                    <form method="post"
+                                          action="userDashboard/address/<%= customer.addresses[k]._id %>?_method=PUT"
                                           class="needs-validation text-dark" novalidate>
                                         <div class="form-row">
                                             <div class="col-md-3 mb-3">
@@ -482,7 +498,7 @@
                     <form action="/userDashboard/info?_method=PUT"
                           method="post" class="needs-validation text-dark" novalidate>
                         <div class="form-row">
-                            <div class="col-md-3 mb-3">
+                            <div class="col-md-4 mb-3">
                                 <label for="user-info-first-name" class="float-right">نام</label>
                                 <input type="text" name="firstname" class="form-control"
                                        id="user-info-first-name" placeholder="نام" value="<%= user.firstname %>"
@@ -491,7 +507,7 @@
                                     <span>لطفا این بخش را پر کنید</span>
                                 </div>
                             </div>
-                            <div class="col-md-3 mb-3">
+                            <div class="col-md-4 mb-3">
                                 <label for="user-info-last-name" class="float-right">نام خانوادگی</label>
                                 <input type="text" name="lastname" class="form-control"
                                        id="user-info-last-name" placeholder="نام خانوادگی" value="<%= user.lastname %>"
@@ -501,18 +517,18 @@
                                 </div>
                             </div>
                             <div class="col-md-4 mb-3">
-                                    <label for="user-info-email" class="float-right">ایمیل</label>
-                                    <input type="email" name="email" class="form-control"
-                                           id="user-info-email" placeholder="ایمیل" value="<%= user.email %>" required>
-                                    <div class="invalid-feedback">
-                                        <span>لطفا این بخش را پر کنید</span>
-                                    </div>
+                                <label for="user-info-email" class="float-right">ایمیل</label>
+                                <input type="email" name="email" class="form-control"
+                                       id="user-info-email" placeholder="ایمیل" value="<%= user.email %>" required>
+                                <div class="invalid-feedback">
+                                    <span>لطفا این بخش را پر کنید</span>
                                 </div>
-                            
+                            </div>
+
                         </div>
                         <div class="form-row">
-                            
-                            <div class="col-md-4 mb-3">
+
+                            <div class="col-md-6 mb-3">
                                 <label for="user-info-phone" class="float-right">تلفن همراه</label>
                                 <input type="tel" class="form-control" name="phone" pattern="09[0-9]{9}"
                                        id="user-info-phone" placeholder="تلفن همراه" value="<%= user.phone %>" required>
@@ -520,7 +536,7 @@
                                     <span>لطفا این بخش را پر کنید</span>
                                 </div>
                             </div>
-                            <div class="col-md-4 mb-3">
+                            <div class="col-md-6 mb-3">
                                 <label for="user-info-id-number" class="float-right">کد ملی</label>
                                 <input type="text" class="form-control" name="idNumber"
                                        id="user-info-id-number" placeholder="کد ملی" value="<%= user.idNumber %>"
@@ -536,42 +552,43 @@
             </div>
         </div>
         <div class="card shadow mt-4 d-none" id="edit-password-dec">
-                <div class="card-header bg-info text-center text-white">
-                    <h6 class="d-inline float-right pt-2">ویرایش رمز عبور</h6>
-                </div>
-                <div class="card-body text-white">
-                    <div class="container">
-                        <form action="/userDashboard/password?_method=PUT"
-                              method="post" class="needs-validation text-dark" novalidate>
-                            <div class="form-row">
-                                <div class="col-md-3 mb-3">
-                                    <label for="user-info-old-password" class="float-right">رمز عبور قبلی</label>
-                                    <input type="password" name="oldPassword" class="form-control"
-                                           id="user-info-old-password" placeholder="رمز عبور قبلی"
-                                           required>
-                                    <div class="valid-feedback">
-                                        <span>لطفا این بخش را پر کنید</span>
-                                    </div>
+            <div class="card-header bg-info text-center text-white">
+                <h6 class="d-inline float-right pt-2">ویرایش رمز عبور</h6>
+            </div>
+            <div class="card-body text-white">
+                <div class="container">
+                    <form action="/userDashboard/password?_method=PUT"
+                          method="post" class="needs-validation text-dark" novalidate>
+                        <div class="form-row">
+                            <div class="col-md-6 mb-3">
+                                <label for="user-info-old-password" class="float-right">رمز عبور قبلی</label>
+                                <input type="password" name="oldPassword" class="form-control"
+                                       id="user-info-old-password" placeholder="رمز عبور قبلی"
+                                       required>
+                                <div class="valid-feedback">
+                                    <span>لطفا این بخش را پر کنید</span>
                                 </div>
-                                <div class="col-md-3 mb-3">
-                                    <label for="user-info-new-password" class="float-right">رمز عبور جدید</label>
-                                    <input type="password" name="newPassword" class="form-control"
-                                           id="user-info-new-password" placeholder="رمز عبور جدید"
-                                           required>
-                                    <div class="valid-feedback">
-                                        <span>لطفا این بخش را پر کنید</span>
-                                    </div>
-                                </div>                                
                             </div>
-                            <button class="btn btn-warning my-3" type="submit" id="submitButton">ذخیره</button>
-                        </form>
-                    </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="user-info-new-password" class="float-right">رمز عبور جدید</label>
+                                <input type="password" name="newPassword" class="form-control"
+                                       id="user-info-new-password" placeholder="رمز عبور جدید"
+                                       required>
+                                <div class="valid-feedback">
+                                    <span>لطفا این بخش را پر کنید</span>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-warning my-3" type="submit" id="submitButton">ذخیره</button>
+                    </form>
                 </div>
             </div>
+        </div>
     </div>
 </main>
 <script src="js/jquery2_2.min.js" type="text/javascript"></script>
 <script src="js/bootstrap.min.js" type="text/javascript"></script>
+<script src="ajax/cart.js" type="text/javascript"></script>
 
 <script>
     function openBar() {

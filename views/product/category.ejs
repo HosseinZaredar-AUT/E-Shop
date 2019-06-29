@@ -28,11 +28,11 @@
               onclick="openBar()">
             <i class="fa fa-close" style="position: absolute; top: 20px; right: 35px;"></i>
         </span>
-    <form action="/cats/<%=dir%>">
-        <%if(searchBody != '') {%>
-            <input type="hidden" value="<%=searchBody%>" name="search">
-        <%}%>
-        <button type="submit" class="btn btn-danger w-100 mt-5">فیلتر</button>
+    <form action="/cats/<%= dir %>">
+        <% if(searchBody != '') { %>
+        <input type="hidden" value="<%= searchBody %>" name="search">
+        <% } %>
+        <button type="submit" class="btn btn-danger w-100 my-5">فیلتر</button>
         <div class="separator" style="padding-top: 25px">
             <h5>
                 <b>
@@ -53,79 +53,36 @@
                 </b>
             </h5>
 
-            <div class="mt-4">
+            <div>
                 <label class="cartCustomRadioContainer">مشکی
                     <% if (colors.includes("#000000") && colorsFiltered) { %>
-                        <input value="#000000" type="checkbox" checked="checked" name="color[]">
+                    <input value="#000000" type="checkbox" checked="checked" name="color[]">
                     <% } else { %>
-                        <input value="#000000" type="checkbox" name="color[]">
+                    <input value="#000000" type="checkbox" name="color[]">
                     <% } %>
                     <span class="cartCustomCheckMark"></span>
                 </label>
                 <label class="cartCustomRadioContainer">قرمز
                     <% if (colors.includes("#ff0000") && colorsFiltered) { %>
-                        <input value="#ff0000" type="checkbox" checked="checked" name="color[]">
+                    <input value="#ff0000" type="checkbox" checked="checked" name="color[]">
                     <% } else { %>
-                        <input value="#ff0000" type="checkbox" name="color[]">
+                    <input value="#ff0000" type="checkbox" name="color[]">
                     <% } %>
                     <span class="cartCustomCheckMark"></span>
                 </label>
                 <label class="cartCustomRadioContainer">آبی
                     <% if (colors.includes("#0080ff") && colorsFiltered) { %>
-                        <input value="#0080ff" type="checkbox" checked="checked" name="color[]">
+                    <input value="#0080ff" type="checkbox" checked="checked" name="color[]">
                     <% } else { %>
-                        <input value="#0080ff" type="checkbox" name="color[]">
+                    <input value="#0080ff" type="checkbox" name="color[]">
                     <% } %>
                     <span class="cartCustomCheckMark"></span>
                 </label>
                 <label class="cartCustomRadioContainer">سبز
                     <% if (colors.includes("#00ff00") && colorsFiltered) { %>
-                        <input value="#00ff00" type="checkbox" checked="checked" name="color[]">
+                    <input value="#00ff00" type="checkbox" checked="checked" name="color[]">
                     <% } else { %>
-                        <input value="#00ff00" type="checkbox" name="color[]">
-                    <% } %>
-                    <span class="cartCustomCheckMark"></span>
-                </label>
-            </div>
-        </div>
-
-        <div class="separator">
-            <h5>
-                <b>
-                    برند
-                </b>
-            </h5>
-
-            <div class="mt-4">
-                <label class="cartCustomRadioContainer">samsung
-                    <% if (brands.includes("samsung") && brandsFiltered) { %>
-                        <input type="checkbox" checked="checked" value="samsung" name="brand[]">
-                    <% } else { %>
-                        <input type="checkbox" value="samsung" name="brand[]">
-                    <% } %>
-                    <span class="cartCustomCheckMark"></span>
-                </label>
-                <label class="cartCustomRadioContainer">LG
-                    <% if (brands.includes("LG") && brandsFiltered) { %>
-                        <input type="checkbox" value="LG" checked="checked" name="brand[]">
-                    <% } else { %>
-                        <input type="checkbox" value="LG" name="brand[]">
-                    <% } %>
-                    <span class="cartCustomCheckMark"></span>
-                </label>
-                <label class="cartCustomRadioContainer">Apple
-                    <% if (brands.includes("Apple") && brandsFiltered) { %>
-                        <input type="checkbox" value="Apple" checked="checked" name="brand[]">
-                    <% } else { %>
-                        <input type="checkbox" value="Apple" name="brand[]">
-                    <% } %>
-                    <span class="cartCustomCheckMark"></span>
-                </label>
-                <label class="cartCustomRadioContainer">HTC
-                    <% if (brands.includes("HTC") && brandsFiltered) { %>
-                        <input type="checkbox" value="HTC" checked="checked" name="brand[]">
-                    <% } else { %>
-                        <input type="checkbox" value="HTC" name="brand[]">
+                    <input value="#00ff00" type="checkbox" name="color[]">
                     <% } %>
                     <span class="cartCustomCheckMark"></span>
                 </label>
@@ -150,40 +107,42 @@
             </a>
             <!--<div class="d-inline vl" style=""></div>-->
             <!--<% for (let path of paths) { %>-->
-                <!--<a href="#" class="ml" style="color: gray"><%= path %></a>-->
-                <!--<div class="d-inline vl" style=""></div>-->
+            <!--<a href="#" class="ml" style="color: gray"><%= path %></a>-->
+            <!--<div class="d-inline vl" style=""></div>-->
             <!--<% } %>-->
         </div>
     </div>
 
     <div class="container-fluid mt-4 pb-3 align-items-center position-relative text-md-center text-left pl-5 pl-md-0">
-        <h6 class="d-inline-block float-right mt-2 position-absolute" style="right: 40px;top: -10px">:مرتب سازی</h6>
-        <form action="/cats/<%= dir %>" method="get" class="mr-3 position-absolute" style="right: 120px; top: -10px;">
-            <button type="submit" class="btn btn-outline-success">اعمال</button>
-            <%if(searchBody != '') {%>
-                <input type="hidden" value="<%=searchBody%>" name="search">
-            <%}%>
+        <h6 class="d-inline-block float-right mt-2 position-absolute mt-5 pt-2" style="right: 40px;top: -10px">:مرتب
+            سازی</h6>
+        <form action="/cats/<%= dir %>" method="get" class="mr-3 position-absolute mt-5"
+              style="right: 120px; top: -10px;">
+            <button type="submit" class="btn btn-outline-info">اعمال</button>
+            <% if(searchBody != '') { %>
+            <input type="hidden" value="<%= searchBody %>" name="search">
+            <% } %>
             <label>
                 <select name="sort" class="custom-select" style="width: 8rem; direction: rtl;">
                     <% if(sort === 'new')  { %>
-                        <option selected="selected" value="new">جدیدترین</option>
+                    <option selected="selected" value="new">جدیدترین</option>
                     <% } else { %>
-                        <option value="new">جدیدترین</option>
+                    <option value="new">جدیدترین</option>
                     <% } %>
                     <% if(sort === 'popular')  { %>
-                        <option selected="selected" value="popular">محبوب ترین</option>
+                    <option selected="selected" value="popular">محبوب ترین</option>
                     <% } else { %>
-                        <option value="popular">محبوب ترین</option>
+                    <option value="popular">محبوب ترین</option>
                     <% } %>
                     <% if(sort === 'cheap')  { %>
-                        <option selected="selected" value="cheap">ارزان ترین</option>
+                    <option selected="selected" value="cheap">ارزان ترین</option>
                     <% } else { %>
-                        <option value="cheap">ارزان ترین</option>
+                    <option value="cheap">ارزان ترین</option>
                     <% } %>
                     <% if(sort === 'exp')  { %>
-                        <option selected="selected" value="exp">گران ترین</option>
+                    <option selected="selected" value="exp">گران ترین</option>
                     <% } else { %>
-                        <option value="exp">گران ترین</option>
+                    <option value="exp">گران ترین</option>
                     <% } %>
                     مرتب سازی</select>
             </label>
@@ -192,39 +151,50 @@
     </div>
     <div class="container-fluid">
         <div class="row h-100 text-center">
-            <% for (let product of prods) { %>
-                <div class="col-md-4 col-sm-6">
-                    <div class="p-3">
-                        <div class="card product-card">
-                            <img class="card-img-top" src="/<%= product.images[0] %>" alt="Card image cap"
-                                 style="height: 300px">
-                            <i class="fa fa-plus add-to-cart-plus"></i>
-                            <a href="/product/<%= product._id %>" class="card-body text-decoration-none"
-                               style="color: black">
-                                <h5 class="card-title"><%= product.name %></h5>
-                                <div class="d-inline">
-                                    <p dir="" class="card-text font-light" style="font-size: 3vh"> <%= product.price %>
-                                        تومان</p>
-                                </div>
-                                <a id="" href="#" class="btn btn-success text-white">اضافه به سبد خرید
-                                    <i class="fa fa-plus"></i>
-                                </a>
+            <% for(let product of prods) { %>
+            <div class="col-md-4 col-sm-6">
+                <div class="p-3">
+                    <div class="card product-card">
+                        <% if(product.discount !== 0) { %>
+                        <p class="discount-text">!تخفیف</p>
+                        <% } %>
+                        <img class="card-img-top" src="/<%= product.images[0] %>"
+                             alt="Card image cap">
+                        <i data-id="<%= product._id %>" class="fa fa-plus add-to-cart-action add-to-cart-plus"></i>
+                        <div class="card-body text-dark">
+                            <h5 class="card-title"><a href="/product/<%= product._id %>"
+                                                      style="text-decoration: none"><%= product.name %></a>
+                            </h5>
+                            <% if(product.discount !== 0) { %>
+                            <div class="discounted-price">
+                                <p class="card-text font-light text-danger" style="font-size: 2vh;
+                                             text-decoration: line-through;">
+                                    <%=product.price%> تومان</p>
+                                <p class="card-text font-light pb-3 text-success" style="font-size: 3vh;">
+                                    <%=product.price * (100 - product.discount) / 100%> تومان</p>
+                            </div>
+                            <% } else { %>
+                            <p class="card-text font-light" style="font-size: 3vh"><%=product.price%> تومان</p>
+                            <% } %>
+                            <a data-id="<%= product._id %>" class="btn btn-success text-white add-to-cart-action">اضافه
+                                به سبد خرید
+                                <i class="fa fa-plus"></i>
                             </a>
                         </div>
                     </div>
                 </div>
+            </div>
             <% } %>
-
         </div>
     </div>
     <nav aria-label="Page navigation example">
-        <ul class="pagination">
+        <ul class="pagination ml-5">
             <%
             let colorPage = "";
             let brandPage = "";
             if (colorsFiltered) {
                 for (color of colors) {
-                    colorPage += '&color%5B%5D=' + color.replace('#','%23');
+                    colorPage += '&color%5B%5D=' + color.replace('#', '%23');
                 }
             }
             if (brandsFiltered) {
@@ -234,8 +204,9 @@
             }
             %>
             <li class="page-item">
-                <a class="page-link" href="/cats/<%= dir ;%>?search=<%=searchBody%>&page=1&sort=<%= sort %>&price=<%= price %><%=colorPage%><%=brandPage%>">
-                    first
+                <a class="page-link"
+                   href="/cats/<%= dir; %>?search=<%= searchBody %>&page=1&sort=<%= sort %>&price=<%= price %> <%= colorPage %> <%= brandPage %>">
+                    <span>نخست</span>
                 </a>
             </li>
             <% for (i = 4;i > 0; i--) {
@@ -244,13 +215,15 @@
                     continue;
                 } %>
             <li class="page-item">
-                <a class="page-link" href="/cats/<%= dir %>?search=<%=searchBody%>&page=<%= cur %>&sort=<%= sort %>&price=<%= price %><%=colorPage%><%=brandPage%>">
+                <a class="page-link"
+                   href="/cats/<%= dir %>?search=<%= searchBody %>&page=<%= cur %>&sort=<%= sort %>&price=<%= price %> <%= colorPage %> <%= brandPage %>">
                     <%- cur %>
                 </a>
             </li>
             <% } %>
             <li class="page-item">
-                <a class="page-link bg-info" href="/cats/<%= dir %>?search=<%=searchBody%>&page=<%= page %>&sort=<%= sort %>&price=<%= price %><%=colorPage%><%=brandPage%>">
+                <a class="page-link bg-white"
+                   href="/cats/<%= dir %>?search=<%= searchBody %>&page=<%= page %>&sort=<%= sort %>&price=<%= price %> <%= colorPage %> <%= brandPage %>">
                     <%- page %>
                 </a></li>
             <% for (i = 1;i < 4; i++) {
@@ -259,14 +232,16 @@
                     break;
                 } %>
             <li class="page-item">
-                <a class="page-link" href="/cats/<%= dir %>?search=<%=searchBody%>&page=<%= cur %>&sort=<%= sort %>&price=<%= price %><%=colorPage%><%=brandPage%>">
+                <a class="page-link"
+                   href="/cats/<%= dir %>?search=<%= searchBody %>&page=<%= cur %>&sort=<%= sort %>&price=<%= price %> <%= colorPage %> <%= brandPage %>">
                     <%- cur %>
                 </a>
             </li>
             <% } %>
             <li class="page-item">
-                <a class="page-link" href="/cats/<%= dir %>?search=<%=searchBody%>&page=<%= lastPage %>&sort=<%= sort %>&price=<%= price %><%=colorPage%><%=brandPage%>">
-                    last
+                <a class="page-link"
+                   href="/cats/<%= dir %>?search=<%= searchBody %>&page=<%= lastPage %>&sort=<%= sort %>&price=<%= price %> <%= colorPage %> <%= brandPage %>">
+                    <span>آخرین</span>
                 </a>
             </li>
         </ul>
@@ -285,6 +260,7 @@
 <script src="/js/jquery2_2.min.js" type="text/javascript"></script>
 <script src="/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="/js/ShJS.js"></script>
+<script src="/ajax/cart.js"></script>
 
 </body>
 </html>

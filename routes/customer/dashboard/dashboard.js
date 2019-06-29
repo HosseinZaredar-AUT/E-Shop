@@ -13,10 +13,15 @@ router.get('/', (req, res) => {
         .populate('products.productId')
         .populate('address')
         .exec(function(err, orders) {
-            Customer.findOne({_id: req.user._id}).populate('favorites').populate('addresses').exec((err, foundCustomer) => {
-                if(!err) {
-                    res.render('user/userDashboard', {orders: orders, customer: foundCustomer});
-                }
+            Customer.findOne({_id: req.user._id})
+                .populate('favorites')
+                .populate('addresses')
+                .exec((err, foundCustomer) => {
+                    if(!err) {
+                        res.render('user/userDashboard', {
+                            orders: orders,
+                            customer: foundCustomer});
+                    }
             })
         });
     }
@@ -35,7 +40,8 @@ router.delete('/order/:id', function (req, res) {
 
 router.put('/info', (req, res) => {
     let details = req.body;
-    if(details.firstname && details.lastname && details.email && details.phone && details.idNumber) {
+    if(details.firstname && details.lastname &&
+        details.email && details.phone && details.idNumber) {
         Customer.findOneAndUpdate({_id: req.user._id}, {
             firstname: details.firstname,
             lastname : details.lastname,
@@ -91,16 +97,32 @@ router.post('/address', (req, res) => {
                     foundUser.addresses.push(savedAddress._id);
                     foundUser.save((err)=>{
                         if(!err) {
-                            res.redirect('back')
+                            if(details.ajax)
+                                res.send({
+                                    status: 'done',
+                                    data  : savedAddress
+                                });
+                            else
+                                res.redirect('back')
                         }
                     })
                 })
             } else {
-                res.redirect('back')
+                if(details.ajax)
+                    res.send({
+                        status: 'undone'
+                    });
+                else
+                    res.redirect('back')
             }
         })
     } else {
-        res.redirect('back');
+        if(details.ajax)
+            res.send({
+                status: 'undone',
+            });
+        else
+            res.redirect('back')
     }
 });
 

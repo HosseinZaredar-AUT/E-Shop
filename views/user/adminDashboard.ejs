@@ -27,7 +27,7 @@
 <% include ../partials/header.ejs %>
 
 <div id="overlay" onclick="openBar()"></div>
-<aside id="sideBar" class="leftSide h-100 " style="background-color: white;">
+<aside id="sideBar" class="leftSide h-100 " style="background-color: white; z-index: 0">
     <span class="" id="close" style="display: none;color: black;font-size: 1.75rem;cursor: pointer;"
           onclick="openBar()">
             <i class="fa fa-close" style="position: absolute; top: 20px; right: 35px;"></i>
@@ -105,50 +105,26 @@
             <div class="card-body text-white">
                 <div class="row">
 
-                    <div class="col-lg-3 col-md-6 col-12 p-2" style="height: 7rem">
+                    <div class="col-md-6 col-12 p-2" style="height: 7rem">
                         <div class=" " style="border-radius: 20px; width: 100%;height: 100%;background-color:#00c689 ">
                             <div class="d-inline-block ml-2 my-3">
                                 <i class="fa fa-donate" style="font-size: 4rem"></i>
                             </div>
                             <div class="d-inline-block mr-2 float-right my-4 text-justify">
                                 <h6 class="text-right">فروش روز</h6>
-                                <p class="text-right" style="direction: rtl">120,000تومان</p>
+                                <p class="text-right" style="direction: rtl"><span> کالا </span><%=todaySales.length%></p>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-lg-3 col-md-6 col-12 p-2" style="height: 7rem">
+                    <div class="col-md-6 col-12 p-2" style="height: 7rem">
                         <div class=" " style="border-radius: 20px; width: 100%;height: 100%;background-color: #3da5f4">
                             <div class="d-inline-block ml-2 my-3">
                                 <i class="fa fa-piggy-bank" style="font-size: 4rem"></i>
                             </div>
                             <div class="d-inline-block mr-2 float-right my-4 text-justify">
                                 <h6 class="text-right">فروش ماه</h6>
-                                <p class="text-right" style="direction: rtl">120,000تومان</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 col-12 p-2" style="height: 7rem">
-                        <div class=" " style="border-radius: 20px; width: 100%;height: 100%;background-color: #f1536e">
-                            <div class="d-inline-block ml-2 my-3">
-                                <i class="fa fa-money-bill-wave" style="font-size: 4rem"></i>
-                            </div>
-                            <div class="d-inline-block mr-2 float-right my-4 text-justify">
-                                <h6 class="text-right">خرید ماه</h6>
-                                <p class="text-right" style="direction: rtl">120,000تومان</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-12 col-md-6 p-2" style="height: 7rem">
-                        <div class=" " style="border-radius: 20px; width: 100%;height: 100%;background-color: #fda006">
-                            <div class="d-inline-block ml-2 my-3">
-                                <i class="fa fa-balance-scale" style="font-size: 4rem"></i>
-                            </div>
-                            <div class="d-inline-block mr-2 float-right my-4 text-justify">
-                                <h6 class="text-right">سود ماه</h6>
-                                <p class="text-right" style="direction: rtl">120,000تومان</p>
+                                <p class="text-right" style="direction: rtl"><span> کالا </span><%=thisMonthSales.length%></p>
                             </div>
                         </div>
                     </div>
@@ -282,7 +258,6 @@
                                 <form method="post" action="/product">
                                     <div class="card shadow w-100">
                                         <div class="card-header font-sm mb-1 py-3 d-inline px-0" style="direction: rtl">
-                                            <!--<h5 class="font-sm mb-1 p-4 d-inline">کد کالا :</h5>-->
                                             <h5>مشخصات اصلی</h5>
                                         </div>
                                         <div class="card-body px-0">
@@ -308,6 +283,12 @@
                                             <div style="direction: rtl">
                                                 <input type="number" name="price" min="0" step="500"
                                                        placeholder="قیمت کالا :"
+                                                       class="form-control d-inline w-75">
+                                            </div>
+                                            <hr>
+                                            <div style="direction: rtl">
+                                                <input type="number" name="discount"
+                                                       placeholder="تخفیف کالا :"
                                                        class="form-control d-inline w-75">
                                             </div>
                                             <hr>

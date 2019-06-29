@@ -71,10 +71,23 @@
                 <div class="card product-card">
                     <img class="card-img-top" src="/<%=product.images[0]%>" alt="Card image cap">
                     <i class="fa fa-plus add-to-cart-action add-to-cart-plus" data-id="<%=product._id%>"></i>
+                    <% if(product.discount !== 0) { %>
+                    <p class="discount-text">!تخفیف</p>
+                    <% } %>
                     <div class="card-body">
                         <h5 class="card-title"><a href="/product/<%=product['_id']%>" style="text-decoration: none"><%=product.name%></a>
                         </h5>
-                        <p class="card-text font-light" style="font-size: 3vh"><%=product.price%> تومان</p>
+                        <% if(product.discount !== 0) { %>
+                            <div class="discounted-price">
+                                <p class="card-text font-light text-danger" style="font-size: 2vh;
+                                             text-decoration: line-through;">
+                                    <%=product.price%> تومان</p>
+                                <p class="card-text font-light pb-3 text-success" style="font-size: 3vh;">
+                                    <%=product.price * (100 - product.discount) / 100%> تومان</p>
+                            </div>
+                        <% } else { %>
+                            <p class="card-text font-light" style="font-size: 3vh"><%=product.price%> تومان</p>
+                        <% } %>
                         <a class="btn btn-success add-to-cart-action text-white" data-id="<%=product._id%>" >اضافه به سبد خرید
                             <i class="fa fa-plus"></i>
                         </a>
@@ -109,7 +122,13 @@
                                                               style="text-decoration: none"><%=product.name%>
                                         </a>
                                     </h5>
-                                    <p class="card-text font-light" style="font-size: 3vh"><%=product.price%> تومان</p>
+                                    <div class="discounted-price">
+                                        <p class="card-text font-light text-danger " style="font-size: 2vh;
+                                         text-decoration: line-through;">
+                                            <%=product.price%> تومان</p>
+                                        <p class="card-text font-light pb-3 text-success" style="font-size: 3vh;">
+                                            <%=product.price * (100 - product.discount) / 100%> تومان</p>
+                                    </div>
                                     <a class="btn btn-warning add-to-cart-action text-white" data-id="<%=product._id%>">اضافه به سبد خرید
                                         <i class="fa fa-plus"></i>
                                     </a>
@@ -131,17 +150,31 @@
             <div class="card product-card">
                 <img class="card-img-top" src="/<%=product.images[0]%>" alt="Card image cap">
                 <i class="fa fa-plus add-to-cart-action add-to-cart-plus" data-id="<%=product._id%>"></i>
+                <% if(product.discount !== 0) { %>
+                <p class="discount-text">!تخفیف</p>
+                <% } %>
                 <div class="card-body">
                     <h5 class="card-title"><a href="/product/<%=product['_id']%>" style="text-decoration: none"><%=product.name%></a>
                     </h5>
+                    <% if(product.discount !== 0) { %>
+                    <div class="discounted-price">
+                        <p class="card-text font-light text-danger" style="font-size: 2vh;
+                                             text-decoration: line-through;">
+                            <%=product.price%> تومان</p>
+                        <p class="card-text font-light pb-3 text-success" style="font-size: 3vh;">
+                            <%=product.price * (100 - product.discount) / 100%> تومان</p>
+                    </div>
+                    <% } else { %>
                     <p class="card-text font-light" style="font-size: 3vh"><%=product.price%> تومان</p>
-                    <a class="btn btn-success add-to-cart-action text-white" data-id="<%=product._id%>">اضافه به سبد خرید
+                    <% } %>
+                    <a class="btn btn-success add-to-cart-action text-white" data-id="<%=product._id%>" >اضافه به سبد خرید
                         <i class="fa fa-plus"></i>
                     </a>
                 </div>
             </div>
         </div>
         <% }) %>
+
     </div>
 </section>
 
@@ -163,7 +196,7 @@
                                 <i class="fa fa-plus add-to-cart-action add-to-cart-plus-best-seller" data-id="<%=product._id%>"></i>
                                 <p class="best-seller-text">!پرفروش</p>
                                 <div class="card-body">
-                                    <h5 class="card-title"><a href="/product/<%=product%>" style="text-decoration: none">
+                                    <h5 class="card-title"><a href="/product/<%=product._id%>" style="text-decoration: none">
                                             <%=product.name%>
                                         </a></h5>
                                     <p class="card-text font-light" style="font-size: 3vh"><%=product.price%> تومان </p>

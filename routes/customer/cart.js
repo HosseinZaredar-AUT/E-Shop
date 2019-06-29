@@ -14,7 +14,7 @@ let express = require('express'),
                 // calculating totalPriceAtDate
                 var totalPriceAtDate = 0;
                 for (item of customer.cart) {
-                    totalPriceAtDate += item.productId.price * item.quantity;
+                    totalPriceAtDate += (item.productId.price * (100-item.productId.discount) / 100) * item.quantity;
                 }
                 res.render('user/cart', {cart: customer.cart, totalPriceAtDate: totalPriceAtDate});
             });
@@ -42,13 +42,20 @@ let express = require('express'),
 
                 // saving
                 await customer.save();
-                res.send('done');
+                res.send({
+                    status: 'done',
+                    cartSize: customer.cart.length
+                });
 
             } else {
-                res.send('admin');
+                res.send({
+                    status: 'admin'
+                });
             }
         } else {
-            res.send('login');
+            res.send({
+                status: 'login'
+            });
         }
     });
 
@@ -66,7 +73,7 @@ let express = require('express'),
                     // calculating new totalPriceAtDate
                     var totalPriceAtDate = 0;
                     for (item of updatedCustomer.cart) {
-                        totalPriceAtDate += item.productId.price * item.quantity;
+                        totalPriceAtDate += (item.productId.price) * item.quantity;
                     }
                     // sending to front
                     res.json({

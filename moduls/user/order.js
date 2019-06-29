@@ -2,7 +2,7 @@ let mongoose = require("mongoose");
 
 let orderSchema = mongoose.Schema({
     orderNumber: {
-        type: String,
+        type: Date,
         required: true
     },
     firstname: {

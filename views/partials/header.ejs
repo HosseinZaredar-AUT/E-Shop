@@ -27,7 +27,7 @@
                     
                     <% if(!user) { %>
                         <li class="nav-item px-md-3">
-                            <a class="nav-link" href="/register">ثبت نام / ورود</a>
+                            <a class="nav-link" href="/login">ثبت نام / ورود</a>
                         </li>
                     <% } else { %>
                         <li class="nav-item px-md-3">
@@ -40,7 +40,7 @@
                         </li>
                     <% } %>
                     <li class="nav-item px-md-3">
-                        <a class="nav-link" href="#" data-toggle="collapse" data-target="#categoryJumbotrun"
+                        <a class="nav-link" href="" data-toggle="collapse" data-target="#categoryJumbotrun"
                            aria-expanded="true" aria-controls="categoryJumbotrun">
                             <span>دسته بندی ها</span>
                             <i class="fa fa-chevron-down"></i>
@@ -87,7 +87,7 @@
                         %>
                     </div>
                     <div class="container">
-                        <div class="row">
+                        <div class="row justify-content-end">
                             <div class="col-md-6">
                                 <div class="row">
                                     <% for(var i = 0; i < mainCats.length; i++) { %>
@@ -96,46 +96,48 @@
                                                 data-toggle="collapse" data-target="#category<%= mainCats[i].index %>"
                                                 role="button"
                                                 aria-expanded="true" aria-controls="category<%= mainCats[i].index %>">
-                                            <%= mainCats[i].category.name %>
+                                                <span><%= mainCats[i].category.name %></span>
+                                                <a href="/cats/<%=mainCats[i].category.name%>" class="btn btn-light btn-sm text-dark float-right">
+                                                    <span class="font-xs">مشاهده همه</span>
+                                                </a>
                                         </button>
                                     </div>
                                     <% } %>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div id="accordion">
-                                <% for(var k = 0; k < cats.length; k++) { %>
-                                <% if(k == 0) { %>
-                                <div id="category<%= k %>" class="collapse show" data-parent="#accordion">
-                                    <% } else { %>
-                                    <div id="category<%= k %>" class="collapse" data-parent="#accordion">
-                                        <% } %>
-                                        <div class="card card-body text-right">
-                                            <div class="row justify-content-end">
-                                                <div class="col-sm-6 col-lg-6 text-info">
+                            <div class="col-md-6">
+                                <div id="accordion">
+                                    <% for(var k = 0; k < cats.length; k++) { %>
+                                    <% if(k == 0) { %>
+                                    <div id="category<%= k %>" class="collapse show" data-parent="#accordion">
+                                        <% } else { %>
+                                        <div id="category<%= k %>" class="collapse" data-parent="#accordion">
+                                            <% } %>
+                                            <div class="card card-body text-right">
+                                                <div class="row justify-content-end">
+                                                    <div class="col-sm-6 col-lg-6 text-info">
 
-                                                    <% for(var t = k + 1; t < cats.length; t++) { %>
-                                                    <% if(cats[t].level !== 0) { %>
-                                                    <p style="padding-right: <%= cats[t].level * 30 %>px">
-                                                        <a><%= cats[t].name %> -</a>
-                                                    </p>
-                                                    <% } else {
-                                                        k = t - 1;
-                                                        break;
-                                                    } %>
-                                                    <% } %>
+                                                        <% for(var t = k + 1; t < cats.length; t++) { %>
+                                                        <% if(cats[t].level !== 0) { %>
+                                                        <p style="padding-right: <%= cats[t].level * 30 %>px">
+                                                            <a href="/cats/<%=cats[t].name%>"><%= cats[t].name %> -</a>
+                                                        </p>
+                                                        <% } else {
+                                                            k = t - 1;
+                                                            break;
+                                                        } %>
+                                                        <% } %>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
+                                        <% } %>
                                     </div>
-                                    <% } %>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
 
             </div>

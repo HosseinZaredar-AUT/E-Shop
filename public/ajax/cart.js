@@ -17,17 +17,15 @@ $(document).ready(function () {
             contentType: 'application/json',
             url: '/cart/add',
             success: function(data) {
-                if(data !== 'done') {
+                if(data.status !== 'done') {
                     window.location.replace('/login')
                 } else {
                     const number = $('#number-of-products-added');
-                    number.html(parseInt(number.html()) + 1);
+                    number.html(data.cartSize);
                 }
             }
         });
     });
-
-    //
 
 });
 

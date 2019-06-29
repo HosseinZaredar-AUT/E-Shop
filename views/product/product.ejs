@@ -121,11 +121,16 @@
                                     <h5>رنگ</h5>
                                 </div>
                                 <div id="color" class="card-body px-0">
-                                    <div style="direction: rtl">
-                                            <input type="color" name="colors" value=""
-                                            class="form-control d-inline w-75">
+                                    <div style="direction: rtl" class="position-relative">
+                                        <a onclick="this.parentNode.remove()" class="text-danger"
+                                           style="font-size: 25px">
+                                            <i class="fa fa-close position-absolute"
+                                               style="right: 55px;top:8px;"></i>
+                                        </a>
+                                        <input type="color" name="colors"
+                                               class="form-control d-inline w-75">
+                                        <hr>
                                     </div>
-                                    <hr>
                                     <a onclick="addColor()" class="btn btn-info text-white"
                                        style="width: 120px; cursor: pointer;">
                                         افزودن رنگ
@@ -167,15 +172,20 @@
                                     <h5>سایر</h5>
                                 </div>
                                 <div id="other" class="card-body px-0">
-                                    <div style="direction: rtl">
+                                    <div style="direction: rtl;position: relative">
                                         <% for(var j=0;j<product.properties.length; j++) { %>
-                                            <input type="text" name="property" class="form-control d-inline w-25"
-                                                   value="<%=product.properties[j].key%>">
-                                            <input type="text" name="property" class="form-control d-inline w-50"
-                                                   value="<%=product.properties[j].value%>">
+                                        <a onclick="this.parentNode.remove()" class="text-danger"
+                                           style="font-size: 25px">
+                                            <i class="fa fa-close position-absolute"
+                                               style="right: 55px;top:8px;"></i>
+                                        </a>
+                                        <input type="text" name="property" class="form-control d-inline w-25"
+                                               value="<%=product.properties[j].key%>">
+                                        <input type="text" name="property" class="form-control d-inline w-50"
+                                               value="<%=product.properties[j].value%>">
                                         <% } %>
+                                        <hr>
                                     </div>
-                                    <hr>
                                     <a onclick="addOther()" class="btn btn-info text-white"
                                        style="width: 120px; cursor: pointer;">
                                         افزودن
@@ -266,15 +276,23 @@
                         <p class="font-md font-light text-warning">- به زودی -</p>
                         <% } %>
                         <hr>
-                        <p class="font-md font-light text-info my-4"> <%=product.price%> </p>
+                        <% if(product.discount !== 0) { %>
+                        <div class="discounted-price">
+                            <p class="card-text font-light text-danger" style="font-size: 4vh;
+                                         text-decoration: line-through;">
+                                <%=product.price%> تومان</p>
+                            <p class="card-text font-light pb-3 text-success" style="font-size: 6vh;">
+                                <%=product.price * (100 - product.discount) / 100%> تومان</p>
+                        </div>
+                        <% } else { %>
+                        <p class="card-text font-light" style="font-size: 3vh"><%=product.price%> تومان</p>
+                        <% } %>
                         <% if (!user || (user && !user.isAdmin)) { %>
-                            <form method="POST" action="/cart/add">
-                                <input name="productId" type="hidden" value="<%= product._id %>">
-                                <div class="btn btn-success text-white add-to-cart-action" data-id="<%=product._id%>" >
-                                    <input type="submit" value="اضافه به سبد خرید" style="background: none; border:none; color: white">
-                                    <i class="fa fa-plus"></i>
-                                </div>
-                            </form>
+                            <input name="productId" type="hidden" value="<%= product._id %>">
+                            <div class="btn btn-success text-white add-to-cart-action" data-id="<%=product._id%>" >
+                                <input type="submit" value="اضافه به سبد خرید" style="background: none; border:none; color: white">
+                                <i class="fa fa-plus"></i>
+                            </div>
                         <% } %>
                     </div>
                     <h5 class="card-footer font-sm mb-1 p-4 text-center">
@@ -301,6 +319,9 @@
         <% recommends.forEach(function (recommendedProduct) { %>
             <div class="p-3">
                 <div class="card product-card">
+                    <% if(recommendedProduct.discount !== 0) { %>
+                    <p class="discount-text">!تخفیف</p>
+                    <% } %>
                     <img class="card-img-top" src="/<%=recommendedProduct.images[0]%>" alt="Card image cap">
                     <div class="card-img-overlay d-flex" style="display: none">
                         <div class="my-auto mx-auto text-center">
@@ -310,14 +331,20 @@
                     <i class="fa fa-plus add-to-cart-plus add-to-cart-action" data-id="<%=product._id%>" ></i>
                     <div class="card-body">
                         <h5 class="card-title"><a href="/product/<%=recommendedProduct._id%>" style="text-decoration: none"><%=recommendedProduct.name%></a></h5>
-                        <p class="card-text font-light" style="font-size: 3vh">
-                            <span>تومان</span>
-                            <%=recommendedProduct.price%>
-                        </p>
-                        <a data-id="<%=product._id%>"
+                        <% if(recommendedProduct.discount !== 0) { %>
+                        <div class="discounted-price">
+                            <p class="card-text font-light text-danger" style="font-size: 2vh;
+                                             text-decoration: line-through;">
+                                <%=recommendedProduct.price%> تومان</p>
+                            <p class="card-text font-light pb-3 text-success" style="font-size: 3vh;">
+                                <%=recommendedProduct.price * (100 - recommendedProduct.discount) / 100%> تومان</p>
+                        </div>
+                        <% } else { %>
+                        <p class="card-text font-light" style="font-size: 3vh"><%=recommendedProduct.price%> تومان</p>
+                        <% } %>
+                        <a data-id="<%=recommendedProduct._id%>"
                             class="btn btn-success add-to-cart-action text-white">اضافه به سبد خرید
                             <i class="fa fa-plus"></i>
-                        </a>
                         </a>
                     </div>
                 </div>
@@ -462,7 +489,7 @@
     </div>
 </div>
 
-<div style="height: 60px"></div>
+<div style="height: 100px"></div>
 
 <% include ../partials/footer.ejs %>
 
@@ -513,6 +540,7 @@
 <script src="/js/filepond-plugin-image-preview.js"></script>
 <script src="/js/filepond-plugin-image-preview.js"></script>
 <script src="/ajax/favorites.js"></script>
+<script src="/ajax/cart.js"></script>
 <script>
     // Register the plugin
     FilePond.registerPlugin(FilePondPluginImagePreview);

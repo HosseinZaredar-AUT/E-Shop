@@ -49,223 +49,131 @@
 <% include ../partials/header.ejs %>
 
 <form method="post" action="/order">
-<aside id="sideBar" class="customLeftSide h-100 " style="background-color: white; z-index: 0 ">
-    <div class="mt-5">
-        <div class="card shadow">
-            <div class="card-header bg-info text-white text-justify text-center">
-                <h5 class="my-auto">قیمت</h5>
-            </div>
-            <div class="card-body">
-                <div class="mt-2">
-                    <div class="d-inline mt-5" style="direction: rtl">
-                        <h6 class="float-right">مبلغ کالا:</h6>
-                        <h6><%= totalPriceAtDate %></h6>
+    <aside id="sideBar" class="customLeftSide h-100 " style="background-color: white; z-index: 0 ">
+        <div class="mt-5">
+            <div class="card shadow">
+                <div class="card-header bg-info text-white text-justify text-center">
+                    <h5 class="my-auto">قیمت</h5>
+                </div>
+                <div class="card-body">
+                    <div class="mt-2">
+                        <div class="d-inline mt-5" style="direction: rtl">
+                            <h6 class="float-right">مبلغ کالا:</h6>
+                            <h6><%= totalPriceAtDate %></h6>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <div class="d-inline mt-5" style="direction: rtl">
+                            <h6 class="float-right">هزینه ارسال:</h6>
+                            <h6>-</h6>
+                        </div>
+                    </div>
+                    <div class="mt-3">
+                        <div style="border-top: dotted black 4px">
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <div class="d-inline mt-5" style="direction: rtl">
+                            <h6 class="float-right">هزینه کل:</h6>
+                            <h6>-</h6>
+                        </div>
                     </div>
                 </div>
-                <div class="mt-4">
-                    <div class="d-inline mt-5" style="direction: rtl">
-                        <h6 class="float-right">هزینه ارسال:</h6>
-                        <h6>-</h6>
-                    </div>
-                </div>
-                <div class="mt-3">
-                    <div style="border-top: dotted black 4px">
-                    </div>
-                </div>
-                <div class="mt-4">
-                    <div class="d-inline mt-5" style="direction: rtl">
-                        <h6 class="float-right">هزینه کل:</h6>
-                        <h6>-</h6>
-                    </div>
-                </div>
-            </div>
-            <a class="card-footer bg-success text-white text-justify text-center">
-                <input type="submit" value="ثبت سفارش و پرداخت"
-                style="background: none; border: none; color: white; font-size: 20px;">
-            </a>
-        </div>
-    </div>
-</aside>
-
-
-<div class="modal fade" id="ChangeAddress" tabindex="-1" role="dialog" aria-labelledby="ChangeAddress"
-    aria-hidden="true">
-    
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header d-inline">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h5 class="modal-title float-right" id="">اضافه کردن آدرس</h5>
-
-            </div>
-            <div dir="rtl" class="modal-body">
-                <div class="row">
-                    <div class="col-6">
-                        <input class="form-control mt-3" type="text" placeholder="استان">
-                    </div>
-                    <div class="col-6">
-                        <input class="form-control mt-3" type="text" placeholder="شهر">
-                    </div>
-                </div>
-                <input class="form-control mt-3" type="number" placeholder="کدپستی">
-                <input class="form-control mt-3" type="text" placeholder="آدرس">
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">بستن</button>
-                <button type="button" class="btn btn-success text-white">ذخیره</button>
+                <a class="card-footer bg-success text-white text-justify text-center">
+                    <input type="submit" value="ثبت سفارش و پرداخت"
+                           style="background: none; border: none; color: white; font-size: 20px;">
+                </a>
             </div>
         </div>
-    </div>
-</div>
+    </aside>
 
-<div class="mt-4 pr-5">
-    <main class="main">
-        
-        <div class="card shadow mb-5">
-            <div class="card-body detailSCards" style="">
-                <div class="position-absolute" style="left: 55px; top: 27px">
-                    <button type="button" class="btn btn btn-outline-info" data-toggle="modal"
-                            data-target="#ChangeAddress">اضافه کردن آدرس
+
+    <div class="modal fade" id="ChangeAddress" tabindex="-1" role="dialog" aria-labelledby="ChangeAddress"
+         aria-hidden="true">
+
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header d-inline">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
                     </button>
+                    <h5 class="modal-title float-right" id="">اضافه کردن آدرس</h5>
+
                 </div>
-                <div class="position-absolute"
-                     style="font-size: 40px;color:#b7e8d5; right: -17px;top: 27%;background-color: transparent">
-                    <i class="fa fa-check-circle"></i>
+                <div dir="rtl" class="modal-body">
+                    <div class="row">
+                        <div class="col-6">
+                            <input id="cart-new-address-province" class="form-control mt-3" type="text"
+                                   placeholder="استان" required>
+                        </div>
+                        <div class="col-6">
+                            <input id="cart-new-address-city" class="form-control mt-3" type="text" placeholder="شهر" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <input id="cart-new-address-home-phone" class="form-control mt-3" type="number"
+                                   placeholder="تلفن ثابت" required>
+                        </div>
+                        <div class="col-6">
+                            <input id="cart-new-address-postal-code" class="form-control mt-3" type="number"
+                                   placeholder="کدپستی" required>
+                        </div>
+                    </div>
+                    <input id="cart-new-address-address" class="form-control mt-3" type="text" placeholder="آدرس" required>
                 </div>
-                <div class="position-absolute"
-                     style="font-size: 40px;color:white; right: -17px;top: 27%;background-color: transparent;z-index: -1">
-                    <i class="fa fa-circle"></i>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">بستن</button>
+                    <button id="cart-add-new-address" type="button" class="btn btn-success text-white">ذخیره</button>
                 </div>
-                <div class="d-flex mr-5 mt-2 mb-2">
-                    <div style="direction: rtl">
-                        <select name="address" type="" class="form-control">
-                            <% console.log(user);for(var q=0; q<user.addresses.length; q++) {  %>
-                                <option value="<%=user.addresses[q]._id%>">
-                                    <span><%=user.addresses[q].address%></span>
-                                </option>
-                            <% } %>
-                        </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-4 pr-5">
+        <main class="main">
+
+            <div class="card shadow mb-5">
+                <div class="card-body detailSCards" style="">
+                    <div class="position-absolute" style="left: 55px; top: 27px">
+                        <button type="button" class="btn btn btn-outline-info" data-toggle="modal"
+                                data-target="#ChangeAddress">اضافه کردن آدرس
+                        </button>
+                    </div>
+                    <div class="position-absolute"
+                         style="font-size: 40px;color:#b7e8d5; right: -17px;top: 27%;background-color: transparent">
+                        <i class="fa fa-check-circle"></i>
+                    </div>
+                    <div class="position-absolute"
+                         style="font-size: 40px;color:white; right: -17px;top: 27%;background-color: transparent;z-index: -1">
+                        <i class="fa fa-circle"></i>
+                    </div>
+                    <div class="d-flex mr-5 mt-2 mb-2">
+                        <div style="direction: rtl">
+                            <select id="addresses-select" name="address" type="" class="form-control">
+                                <% for(var q = 0; q < user.addresses.length; q++) { %>
+                                    <option value="<%= user.addresses[q]._id %>">
+                                        <span><%= user.addresses[q].address %></span>
+                                    </option>
+                                <% } %>
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="card mb-5" style="">
-            <div class="card-body detailSCards">
-                <div class="d-flex mr-3">  
-                    <strong class="mt-2">نام :</strong>
-                    <input required name="firstname" class="form-control mr-3 " type="text" style="width: 20%" value="<%=user.firstname%>">
-                    <strong class="mt-2 mr-4"> نام خانوادگی :</strong>
-                    <input required name="lastname" class="form-control mr-3 " type="text" style="width: 20%" value="<%=user.lastname%>">
-                    <strong class="mt-2 mr-4"> ایمیل :</strong>
-                    <input required name="email" class="form-control mr-3 " type="text" style="width: 20%" value="<%=user.email%>">
-                </div>
-                <div class="position-absolute"
-                     style="font-size: 40px;color:#b7e8d5; right: -17px;top: 32%;background-color: transparent">
-                    <i class="fa fa-check-circle"></i>
-                </div>
-                <div class="position-absolute"
-                     style="font-size: 40px;color:white; right: -17px;top: 32%;background-color: transparent;z-index: -1">
-                    <i class="fa fa-circle"></i>
-                </div>
-                <div class="d-flex mr-3 mt-3">
-                    <strong class="mt-2 mr-4">تلفن همراه :</strong>
-                    <input required name="phoneNumber" class="form-control mr-3 " type="number" style="width: 20%" value="<%=user.phone%>">
-                    <strong class="mt-2 mr-4">کدملی :</strong>
-                    <input required name="nationalId" class="form-control mr-3" type="number" style="width: 20%" value="<%=user.idNumber%>">
-                </div>
-            </div>
-        </div>
-
-        <div class="card shadow">
-            <div class="card-header bg-info text-white text-justify text-center">
-                <h2 class="my-auto">کالاها</h2>
-            </div>
-            <div class="card-body">
-                <table class="table" style="">
-                    <thead>
-                    <tr>
-                        <th>
-                            <div>
-                                رنگ
-                            </div>
-                        </th>
-                        <th>
-                            <div class="float-right  pr-4">
-                                تعداد
-                            </div>
-                        </th>
-                        <th>
-                            <div class="float-right  pr-4">
-                                قیمت
-                            </div>
-                        </th>
-                        <th>
-                            <div class="float-right  pr-4">
-                                کالا
-                            </div>
-                        </th>
-                        <th>
-                            <div class="float-right  pr-4">
-                                شماره
-                            </div>
-                        </th>
-
-                        <th>
-
-                        </th>
-
-                    </tr>
-                    </thead>
-                    <tbody>
-                            <% for (var i = 0; i < cart.length; i++) { %>
-                                <tr>
-                                        <td class="">
-                                            <div class="mt-3" style="">
-                                                -
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="mt-2 float-right" style="">
-                                                <%=cart[i].quantity%>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="mt-3 float-right" style="">
-                                                <%= cart[i].productId.price %>
-                                            </div>
-                                        </td>
-                                        <td dir="rtl">
-                                            <div class="d-flex">
-                                                <img src="<%= cart[i].productId.images[0] %>" class="cartImage" style="">
-                                                <div class="mt-3 mr-4">
-                                                    <a style="text-decoration: none" href="/product/<%=cart[i].productId._id%>">
-                                                        <strong class="float-right"><%= cart[i].productId.name %></strong>                                                        
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <th scope="row">
-                                            <div class="mt-3" style="">
-                                                <div class="mt-3 float-right" style="margin-right: 35px">
-                                                    <%= (i+1) %>
-                                                </div>
-                                            </div>
-                                        </th>
-                                </tr>
-                            <% } %>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <div dir="rtl">
-            <div class="card mb-5 mt-5" style="width: 74.2%">
+            <div class="card mb-5" style="">
                 <div class="card-body detailSCards">
                     <div class="d-flex mr-3">
-                        <strong class="mt-2">روش ارسال :</strong>
+                        <strong class="mt-2">نام :</strong>
+                        <input required name="firstname" class="form-control mr-3 " type="text" style="width: 20%"
+                               value="<%= user.firstname %>">
+                        <strong class="mt-2 mr-4"> نام خانوادگی :</strong>
+                        <input required name="lastname" class="form-control mr-3 " type="text" style="width: 20%"
+                               value="<%= user.lastname %>">
+                        <strong class="mt-2 mr-4"> ایمیل :</strong>
+                        <input required name="email" class="form-control mr-3 " type="text" style="width: 20%"
+                               value="<%= user.email %>">
                     </div>
                     <div class="position-absolute"
                          style="font-size: 40px;color:#b7e8d5; right: -17px;top: 32%;background-color: transparent">
@@ -275,62 +183,160 @@
                          style="font-size: 40px;color:white; right: -17px;top: 32%;background-color: transparent;z-index: -1">
                         <i class="fa fa-circle"></i>
                     </div>
-                    
-                    <div class="mt-3 d-flex">
-                        <label class="cartCustomRadioContainer">
-                            <input type="radio" value="پست پیشتاز" checked="checked" name="shippingMethod">
-                            <span class="cartCustomCheckMark"></span>
-                        </label>
-                        <strong class="mt-1 mr-3">پست پیشتاز</strong>
-                    </div>
-                    <div class="mt-3 d-flex">
-                        <label class="cartCustomRadioContainer">
-                            <input type="radio" value="پست سفارشی" name="shippingMethod">
-                            <span class="cartCustomCheckMark"></span>
-                        </label>
-                        <strong class="mt-1 mr-3">پست سفارشی</strong>
+                    <div class="d-flex mr-3 mt-3">
+                        <strong class="mt-2 mr-4">تلفن همراه :</strong>
+                        <input required name="phoneNumber" class="form-control mr-3 " type="number" style="width: 20%"
+                               value="<%= user.phone %>">
+                        <strong class="mt-2 mr-4">کدملی :</strong>
+                        <input required name="nationalId" class="form-control mr-3" type="number" style="width: 20%"
+                               value="<%= user.idNumber %>">
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div dir="rtl">
-            <div class="card mb-5 mt-5" style="width: 74.2%">
-                <div class="card-body detailSCards">
-                    <div class="d-flex mr-3">
-                        <strong class="mt-2">روش پرداخت :</strong>
-                    </div>
-                    <div class="position-absolute"
-                         style="font-size: 40px;color:#b7e8d5; right: -17px;top: 32%;background-color: transparent">
-                        <i class="fa fa-check-circle"></i>
-                    </div>
-                    <div class="position-absolute"
-                         style="font-size: 40px;color:white; right: -17px;top: 32%;background-color: transparent;z-index: -1">
-                        <i class="fa fa-circle"></i>
-                    </div>
-                    <div class="mt-3 d-flex">
-                        <label class="cartCustomRadioContainer">
-                            <input type="radio" value="بانک سامان" checked="checked" name="paymentMethod">
-                            <span class="cartCustomCheckMark"></span>
-                        </label>
-                        <strong class="mt-1 mr-3">بانک سامان</strong>
-                    </div>
-                    <div class="mt-3 d-flex">
-                        <label class="cartCustomRadioContainer">
-                            <input type="radio" value="پرداخت در محل" name="paymentMethod">
-                            <span class="cartCustomCheckMark"></span>
-                        </label>
-                        <strong class="mt-1 mr-3">پرداخت در محل</strong>
+            <div class="card shadow">
+                <div class="card-header bg-info text-white text-justify text-center">
+                    <h2 class="my-auto">کالاها</h2>
+                </div>
+                <div class="card-body">
+                    <table class="table" style="">
+                        <thead>
+                        <tr>
+                            <th>
+                                <div class="float-right  pr-4">
+                                    تعداد
+                                </div>
+                            </th>
+                            <th>
+                                <div class="float-right  pr-4">
+                                    قیمت
+                                </div>
+                            </th>
+                            <th>
+                                <div class="float-right  pr-4">
+                                    کالا
+                                </div>
+                            </th>
+                            <th>
+                                <div class="float-right  pr-4">
+                                    شماره
+                                </div>
+                            </th>
+
+                            <th>
+
+                            </th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <% for (var i = 0; i < cart.length; i++) { %>
+                        <tr>
+                            <td>
+                                <div class="mt-2 float-right" style="padding-right: 35px">
+                                    <%= cart[i].quantity %>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="mt-3 float-right" style="padding-right: 20px">
+                                    <%= cart[i].productId.price * (100-cart[i].productId.discount) / 100 %>
+                                </div>
+                            </td>
+                            <td dir="rtl">
+                                <div class="d-flex">
+                                    <img src="<%= cart[i].productId.images[0] %>" class="cartImage" style="">
+                                    <div class="mt-3 mr-4">
+                                        <a style="text-decoration: none" href="/product/<%= cart[i].productId._id %>">
+                                            <strong class="float-right"><%= cart[i].productId.name %></strong>
+                                        </a>
+                                    </div>
+                                </div>
+                            </td>
+                            <th scope="row">
+                                <div class="mt-3" style="">
+                                    <div class="mt-3 float-right" style="margin-right: 35px">
+                                        <%= (i + 1) %>
+                                    </div>
+                                </div>
+                            </th>
+                        </tr>
+                        <% } %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div dir="rtl">
+                <div class="card mb-5 mt-5" style="width: 74.2%">
+                    <div class="card-body detailSCards">
+                        <div class="d-flex mr-3">
+                            <strong class="mt-2">روش ارسال :</strong>
+                        </div>
+                        <div class="position-absolute"
+                             style="font-size: 40px;color:#b7e8d5; right: -17px;top: 32%;background-color: transparent">
+                            <i class="fa fa-check-circle"></i>
+                        </div>
+                        <div class="position-absolute"
+                             style="font-size: 40px;color:white; right: -17px;top: 32%;background-color: transparent;z-index: -1">
+                            <i class="fa fa-circle"></i>
+                        </div>
+
+                        <div class="mt-3 d-flex">
+                            <label class="cartCustomRadioContainer">
+                                <input type="radio" value="پست پیشتاز" checked="checked" name="shippingMethod">
+                                <span class="cartCustomCheckMark"></span>
+                            </label>
+                            <strong class="mt-1 mr-3">پست پیشتاز</strong>
+                        </div>
+                        <div class="mt-3 d-flex">
+                            <label class="cartCustomRadioContainer">
+                                <input type="radio" value="پست سفارشی" name="shippingMethod">
+                                <span class="cartCustomCheckMark"></span>
+                            </label>
+                            <strong class="mt-1 mr-3">پست سفارشی</strong>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </main>
-</div>
+
+            <div dir="rtl">
+                <div class="card mb-5 mt-5" style="width: 74.2%">
+                    <div class="card-body detailSCards">
+                        <div class="d-flex mr-3">
+                            <strong class="mt-2">روش پرداخت :</strong>
+                        </div>
+                        <div class="position-absolute"
+                             style="font-size: 40px;color:#b7e8d5; right: -17px;top: 32%;background-color: transparent">
+                            <i class="fa fa-check-circle"></i>
+                        </div>
+                        <div class="position-absolute"
+                             style="font-size: 40px;color:white; right: -17px;top: 32%;background-color: transparent;z-index: -1">
+                            <i class="fa fa-circle"></i>
+                        </div>
+                        <div class="mt-3 d-flex">
+                            <label class="cartCustomRadioContainer">
+                                <input type="radio" value="بانک سامان" checked="checked" name="paymentMethod">
+                                <span class="cartCustomCheckMark"></span>
+                            </label>
+                            <strong class="mt-1 mr-3">بانک سامان</strong>
+                        </div>
+                        <div class="mt-3 d-flex">
+                            <label class="cartCustomRadioContainer">
+                                <input type="radio" value="پرداخت در محل" name="paymentMethod">
+                                <span class="cartCustomCheckMark"></span>
+                            </label>
+                            <strong class="mt-1 mr-3">پرداخت در محل</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
 </form>
 <% include ../partials/footer.ejs %>
 
 <script src="js/jquery2_2.min.js" type="text/javascript"></script>
 <script src="js/bootstrap.min.js" type="text/javascript"></script>
+<script src="ajax/address.js" type="text/javascript"></script>
 </body>
 </html>

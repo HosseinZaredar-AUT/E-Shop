@@ -195,18 +195,18 @@
 
 .discount-parallax {
   background-color: #ffd063;
-  height: 100vh;
+  height: 70vh;
   position: absolute;
   right: 10%;
-  margin-top: 150px;
+  margin-top: 290px;
 }
 
 .best-seller-paralax {
   background-color: #a02c2d;
-  height: 100vh;
+  height: 70vh;
   position: absolute;
   right: 30%;
-  margin-top: 150px;
+  margin-top: 290px;
 }
 
 .discount-text {

@@ -3,6 +3,8 @@ let express = require('express'),
     path = require('path'),
     Order = require('../../../moduls/user/order'),
     Admin = require('../../../moduls/user/admin');
+    usefulFunctions   = require('../../../middlewares/usefulFunctions');
+
 
 router.get('/', function (req, res) {
     Order.find({})
@@ -11,7 +13,19 @@ router.get('/', function (req, res) {
         .exec(function(err, orders) {
             Admin.findOne({_id: req.user._id}).exec((err, foundAdmin) => {
                 if(!err) {
-                    res.render('user/adminDashboard', {orders: orders, adminName: foundAdmin.username});
+                    let todaySales = [];
+                    let thisMonthSales = [];
+                    orders.forEach(function (order) {
+                        if(usefulFunctions.isToday(order.orderNumber))
+                            todaySales.push(order);
+                        if(usefulFunctions.isThisMonth(order.orderNumber))
+                            thisMonthSales.push(order)
+                    });
+                    res.render('user/adminDashboard', {
+                        orders: orders,
+                        todaySales: todaySales,
+                        thisMonthSales: thisMonthSales,
+                        adminName: foundAdmin.username})
                 }
             })
         });

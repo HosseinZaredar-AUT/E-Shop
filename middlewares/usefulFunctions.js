@@ -22,5 +22,16 @@ module.exports = {
             }
         }
         return dataArray;
+    },
+    isToday: function (someDate) {
+        const today = new Date();
+        return someDate.getDate() === today.getDate() &&
+            someDate.getMonth() === today.getMonth() &&
+            someDate.getFullYear() === today.getFullYear()
+    },
+    isThisMonth: function (someDate) {
+        const today = new Date();
+        return someDate.getMonth() === today.getMonth() &&
+            someDate.getFullYear() === today.getFullYear()
     }
 };

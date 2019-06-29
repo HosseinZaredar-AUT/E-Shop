@@ -15,7 +15,7 @@ let express = require('express'),
                 // calculating totalPriceAtDate
                 var totalPriceAtDate = 0;
                 for (item of customer.cart) {
-                    totalPriceAtDate += item.productId.price * item.quantity;
+                    totalPriceAtDate += (item.productId.price * (100-item.productId.discount) / 100) * item.quantity;
                 }
                 res.render('user/order', {cart: customer.cart, totalPriceAtDate: totalPriceAtDate});
             });
