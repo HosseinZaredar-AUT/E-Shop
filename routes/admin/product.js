@@ -119,7 +119,6 @@ router.put('/:id', middlewares.isAuthenticatedAdmin, function (req, res) {
             });
         }
     }
-    console.log(req.body.colors);
     if (typeof (req.body.colors) == 'string')
         req.body.colors = [req.body.colors];
 
@@ -177,7 +176,6 @@ router.put('/:id', middlewares.isAuthenticatedAdmin, function (req, res) {
 router.delete('/:id', middlewares.isAuthenticatedAdmin, function (req, res) {
     Product.findOneAndDelete({_id: req.params.id}, function (err, deletedProduct) {
         if (!err) {
-            console.log(deletedProduct);
             rimraf('./public/Images/products/' + req.params.id, function () {
                 res.redirect('/');
             });

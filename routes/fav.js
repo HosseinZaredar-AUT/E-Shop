@@ -34,7 +34,6 @@ let express = require('express'),
     router.put('/edit', (req, res)=> {
         Customer.findOne({_id: req.user._id}, (err, foundCustomer) => {
             if(!err) {
-                console.log(req.body.favorites);
                 foundCustomer.favorites = req.body.favorites;
                 foundCustomer.save((err, savedCustomer) => {
                     if(!err) {

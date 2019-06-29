@@ -179,7 +179,6 @@ exports.getCatProduct = async (req, res, next) => {
         // });
         // }
         allProducts = popCat[0].products;
-        console.log(allProducts);
         const count = allProducts.length;
         let begin = (page - 1) * ITEMS_PER_PAGE;
         allProducts = sortIt(allProducts,sort);
@@ -258,8 +257,6 @@ exports.search = async (req, res, next) => {
                 colors: { $in: colors },
                 'properties.value': { $in: brands }
             });
-        console.log('**********************');
-        console.log(allProducts);
         let popProducts = await Product.find({
             price: { $lte: price },
             colors: { $in: colors },
@@ -278,7 +275,6 @@ exports.search = async (req, res, next) => {
             }
         })
         allProducts = allProducts.concat(popProducts);
-        console.log(allProducts);
         const count = allProducts.length;
         let begin = (page - 1) * ITEMS_PER_PAGE;
         allProducts = sortIt(allProducts,sort);

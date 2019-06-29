@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const catsController = require('../Controllers/CatsController');
+const catsController = require('../controllers/catsController');
 
 router.get('/search',catsController.search);
 

@@ -86,11 +86,8 @@
             </div>
         </div>
     </aside>
-
-
     <div class="modal fade" id="ChangeAddress" tabindex="-1" role="dialog" aria-labelledby="ChangeAddress"
          aria-hidden="true">
-
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header d-inline">
@@ -98,29 +95,28 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                     <h5 class="modal-title float-right" id="">اضافه کردن آدرس</h5>
-
                 </div>
                 <div dir="rtl" class="modal-body">
                     <div class="row">
                         <div class="col-6">
                             <input id="cart-new-address-province" class="form-control mt-3" type="text"
-                                   placeholder="استان" required>
+                                   placeholder="استان" >
                         </div>
                         <div class="col-6">
-                            <input id="cart-new-address-city" class="form-control mt-3" type="text" placeholder="شهر" required>
+                            <input id="cart-new-address-city" class="form-control mt-3" type="text" placeholder="شهر">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-6">
                             <input id="cart-new-address-home-phone" class="form-control mt-3" type="number"
-                                   placeholder="تلفن ثابت" required>
+                                   placeholder="تلفن ثابت">
                         </div>
                         <div class="col-6">
                             <input id="cart-new-address-postal-code" class="form-control mt-3" type="number"
-                                   placeholder="کدپستی" required>
+                                   placeholder="کدپستی">
                         </div>
                     </div>
-                    <input id="cart-new-address-address" class="form-control mt-3" type="text" placeholder="آدرس" required>
+                    <input id="cart-new-address-address" class="form-control mt-3" type="text" placeholder="آدرس">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">بستن</button>
@@ -152,7 +148,7 @@
                         <div style="direction: rtl">
                             <select id="addresses-select" name="address" type="" class="form-control">
                                 <% for(var q = 0; q < user.addresses.length; q++) { %>
-                                    <option value="<%= user.addresses[q]._id %>">
+                                    <option value="<%= user.addresses[q]._id %>" selected>
                                         <span><%= user.addresses[q].address %></span>
                                     </option>
                                 <% } %>

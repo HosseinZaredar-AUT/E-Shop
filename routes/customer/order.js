@@ -39,7 +39,6 @@ let express = require('express'),
             // saving
             order.save(function (err, savedOrder) {
                 if(!err) {
-                    console.log(savedOrder);
                     customer.orders.push(savedOrder);
                     customer.cart = [];
                     customer.save().then(() => {

@@ -27,7 +27,7 @@
 <% include ../partials/header.ejs %>
 
 <div id="overlay" onclick="openBar()"></div>
-<aside id="sideBar" class="leftSide h-100 " style="background-color: white; z-index: 0">
+<aside id="sideBar" class="leftSide h-100 " style="background-color: white;z-index: 0">
     <span class="" id="close" style="display: none;color: black;font-size: 1.75rem;cursor: pointer;"
           onclick="openBar()">
             <i class="fa fa-close" style="position: absolute; top: 20px; right: 35px;"></i>
@@ -182,16 +182,20 @@
                                                         <div class="col-md-3 col-sm-6 ml-auto float-right">
                                                             <span class="float-right"> : آدرس  </span>
                                                             <br>
+                                                            <% if(orders[i].address) { %>
                                                             <span class="float-right"><%= orders[i].address.address %></span>
+                                                            <% } %>
                                                         </div>
                                                         <div class="col-md-3 col-sm-6 ml-auto float-right">
                                                             <span class="float-right">کد ملی : <strong><%= orders[i].nationalId %></strong></span>
+                                                            <% if(orders[i].address) { %>
                                                             <br>
                                                             <span class="float-right">استان : <strong><%= orders[i].address.province %></strong></span>
                                                             <br>
                                                             <span class="float-right">شهر : <strong><%= orders[i].address.city %></strong></span>
                                                             <br>
                                                             <span class="float-right">کد پستی : <strong><%= orders[i].address.postalCode %></strong></span>
+                                                            <% } %>
                                                             <br>
                                                             <span class="float-right">کد رهگیری : <strong><%= orders[i].trackingCode %></strong></span>
                                                         </div>

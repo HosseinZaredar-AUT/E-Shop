@@ -51,7 +51,6 @@ let express = require('express'),
     
     router.put('/:id', (req, res) => {
         let details = req.body;
-        console.log(req.body);
         if(details.province && details.city && details.postalCode
             && details.homePhone && details.address) {
             Address.findOneAndUpdate({_id: req.params.id}, {
