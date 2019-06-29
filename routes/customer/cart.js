@@ -5,27 +5,22 @@ let express = require('express'),
 
     router.get('/', function(req, res) {
         //fetching user's cart from database
-        if (!req.user) {
-            res.redirect('/');
-        } else {
-            Customer.findById(req.user._id)
-            .populate('cart.productId')
-            .exec(function(err, customer) {
-                // calculating totalPriceAtDate
-                var totalPriceAtDate = 0;
-                for (item of customer.cart) {
-                    totalPriceAtDate += (item.productId.price * (100-item.productId.discount) / 100) * item.quantity;
-                }
-                res.render('user/cart', {cart: customer.cart, totalPriceAtDate: totalPriceAtDate});
-            });
-        }
+        Customer.findById(req.user._id)
+        .populate('cart.productId')
+        .exec(function(err, customer) {
+            // calculating totalPriceAtDate
+            var totalPriceAtDate = 0;
+            for (item of customer.cart) {
+                totalPriceAtDate += (item.productId.price * (100-item.productId.discount) / 100) * item.quantity;
+            }
+            res.render('user/cart', {cart: customer.cart, totalPriceAtDate: totalPriceAtDate});
+        });
     });
 
     router.post('/add', async function(req, res) {
 
         if(req.user) {
             if(!req.user.isAdmin) {
-
                 customer = await Customer.findById(req.user._id);
                 productId = req.body.productId;
                 if (!customer) {

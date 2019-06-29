@@ -2,27 +2,24 @@ let express = require('express'),
     router = express.Router(),
     uuid = require('uuid/v1'),
     Order = require('../../moduls/user/order'),
-    Customer = require('../../moduls/user/customer');
+    Customer = require('../../moduls/user/customer'),
+    middlewares = require('../../middlewares/index');
 
-    router.get('/', function(req, res) {
+    router.get('/', middlewares.isAuthenticatedUser, function(req, res) {
         //fetching user's cart from database
-        if (!req.user) {
-            res.redirect('/');
-        } else {
-            Customer.findById(req.user._id)
-            .populate('cart.productId')
-            .exec(function(err, customer) {
-                // calculating totalPriceAtDate
-                var totalPriceAtDate = 0;
-                for (item of customer.cart) {
-                    totalPriceAtDate += (item.productId.price * (100-item.productId.discount) / 100) * item.quantity;
-                }
-                res.render('user/order', {cart: customer.cart, totalPriceAtDate: totalPriceAtDate});
-            });
-        }
+        Customer.findById(req.user._id)
+        .populate('cart.productId')
+        .exec(function(err, customer) {
+            // calculating totalPriceAtDate
+            var totalPriceAtDate = 0;
+            for (item of customer.cart) {
+                totalPriceAtDate += (item.productId.price * (100-item.productId.discount) / 100) * item.quantity;
+            }
+            res.render('user/order', {cart: customer.cart, totalPriceAtDate: totalPriceAtDate});
+        });
     });
 
-    router.post('/', function(req, res) {
+    router.post('/', middlewares.isAuthenticatedUser, function(req, res) {
         Customer.findById(req.user._id, function(err, customer) {
             let order = new Order({
                 orderNumber: Date.now(),
@@ -58,17 +55,21 @@ let express = require('express'),
     });
 
     router.delete('/', function(req, res) {
-        Order.findOneAndRemove({_id: req.body.orderId}, function(err) {
-            // redirecting
-            if (req.user.isAdmin) {
-                res.redirect('/adminDashboard');                            
-            } else {
-                res.redirect('/userDashboard');
-            }
-        });
+        if (req.user) {
+            Order.findOneAndRemove({_id: req.body.orderId}, function(err) {
+                // redirecting
+                if (req.user.isAdmin) {
+                    res.redirect('/adminDashboard');                            
+                } else {
+                    res.redirect('/userDashboard');
+                }
+            });
+        } else {
+            res.redirect('/login');
+        }
     });
 
-    router.post('/pay', function(req, res) {
+    router.post('/pay', middlewares.isAuthenticatedUser, function(req, res) {
         res.render('user/payment', {orderId: req.body.orderId});
     });
 

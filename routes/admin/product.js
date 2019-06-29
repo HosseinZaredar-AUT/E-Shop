@@ -3,13 +3,28 @@ let express = require('express'),
     path = require('path'),
     fs = require('fs'),
     rimraf = require('rimraf'),
-    filepond = require('filepond'),
-    uuid = require('uuid/v1'),
-    usefulFunctions = require('../../middlewares/usefulFunctions'),
     Category = require('../../moduls/post/category'),
     Product = require('../../moduls/post/product'),
-    Comment = require('../../moduls/post/comment'),
-    Customer = require('../../moduls/user/customer');
+    middlewares = require('../../middlewares/index'),
+    commentRouter = require('./comment'),
+    fileRouter = require('./file'),
+    favRouter = require('../fav');
+    
+
+// favorite router
+router.use('/:productId/fav', (req, res, next) => {
+    req.body.productId = req.params.productId;
+    next();
+}, middlewares.isAuthenticatedUser, favRouter);
+
+// file router
+router.use('/file', middlewares.isAuthenticatedAdmin, fileRouter);
+
+// comment router
+router.use('/:productId/comment', (req, res, next) => {
+    req.body.productId = req.params.productId;
+    next();
+}, commentRouter);
 
 router.get('/:productId', async (req, res) => {
     try {
@@ -26,89 +41,7 @@ router.get('/:productId', async (req, res) => {
     }
 });
 
-router.post('/:productId/comment/new', (req, res) => {
-    console.log(req.body);
-    if(req.user) {
-        Product.findOne({_id: req.params.productId}, (err, foundProduct) => {
-            if (!err) {
-                new Comment({
-                    body: req.body.body,
-                    customer: {
-                        _id: req.user._id,
-                        username: req.user.username
-                    },
-                    product: foundProduct['_id'],
-                    rate: req.body.rate
-                }).save((err, savedComment) => {
-                    if (!err) {
-                        foundProduct.comments.push(savedComment._id);
-                        foundProduct.save((err) => {
-                            if (!err)
-                                res.redirect('back');
-                        });
-                    }
-                });
-            } else {
-                console.log(err);
-            }
-        });
-    } else {
-        res.redirect('/login')
-    }
-});
-
-router.put('/:productId/comment/:commentId', (req, res) => {
-    Comment.findOneAndUpdate({_id: req.params.commentId}, {body: req.body.body, rate: req.body.rate}, (err) => {
-        if(!err) {
-            res.redirect('back');
-        } else {
-            console.log(err);
-        }
-    });
-});
-
-router.delete('/:productId/comment/:commentId', (req, res) => {
-    Comment.findOneAndDelete({_id: req.params.commentId}, (err) => {
-        if(!err) {
-            res.redirect('back');
-        } else {
-            console.log(err);
-        }
-    });
-});
-
-
-router.post('/:productId/fav/new', (req, res) => {
-    if(req.user) {
-        if(!req.user.isAdmin) {
-            Customer.findOne({_id: req.user._id}, (err, foundCustomer) => {
-                if (!err) {
-                    let tmp = true;
-                    foundCustomer.favorites.forEach(function (fav) {
-                        if (fav.toString() === req.params.productId.toString()) {
-                            tmp = false;
-                        }
-                    });
-                    if (tmp) foundCustomer.favorites.push(req.params.productId);
-                    foundCustomer.save((err) => {
-                        if (!err) {
-                            res.send('done');
-                        }
-                    })
-                } else {
-                    console.log(err);
-                }
-            });
-        } else {
-            res.send('admin');
-        }
-    } else {
-        res.send('login');
-    }
-});
-
-
-router.post('/', function (req, res) {
+router.post('/', middlewares.isAuthenticatedAdmin, function (req, res) {
     let properties = req.body.property;
     let propertiesArray = [];
     for (let i = 0; i < properties.length - 1; i++) {
@@ -175,7 +108,7 @@ router.post('/', function (req, res) {
     });
 });
 
-router.put('/:id', function (req, res) {
+router.put('/:id', middlewares.isAuthenticatedAdmin, function (req, res) {
     let properties = req.body.property;
     let propertiesArray = [];
     if (properties) {
@@ -241,35 +174,7 @@ router.put('/:id', function (req, res) {
     })
 });
 
-// to upload a file as it is dragged into filepond
-router.post('/upload', function (req, res) {
-    var name = uuid();
-    var fullType = req.files.filepond.mimetype;
-    var type = fullType.substring(fullType.indexOf('/') + 1);
-
-    // creating temp_images directory if it doesn't exist
-    var dir = './temp_images';
-    if (!fs.existsSync(dir)) {
-        fs.mkdirSync(dir);
-    }
-
-    // saving the image in temp_images
-    req.files.filepond.mv('./temp_images/' + name + '.' + type).then(function (err) {
-        if (err)
-            throw err;
-        res.send(name + '.' + type);
-    });
-});
-
-// to revert file upload
-router.delete('/revert', function (req, res) {
-    fs.unlink('./temp_images/' + req.body.path, function (err) {
-        if (err)
-            console.log(err);
-    });
-});
-
-router.delete('/:id', function (req, res) {
+router.delete('/:id', middlewares.isAuthenticatedAdmin, function (req, res) {
     Product.findOneAndDelete({_id: req.params.id}, function (err, deletedProduct) {
         if (!err) {
             console.log(deletedProduct);

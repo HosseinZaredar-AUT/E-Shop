@@ -655,10 +655,10 @@
     // ... FilePond initialisation code here
     FilePond.setOptions({
         server: {
-            process: '/product/upload',
+            process: '/product/file/upload',
             revert: (uniqueFileId, load, error) => {
                 // console.log(err);
-                fetch('/product/revert', {
+                fetch('/product/file/revert', {
                     method: 'delete',
                     headers: {
                         'Content-Type': 'application/json'

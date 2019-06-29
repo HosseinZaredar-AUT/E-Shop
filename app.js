@@ -86,16 +86,16 @@ app.use(function (req, res, next) {
     });
 });
 
-app.use('/category', categoryRouter);
+app.use('/category', middlewares.isAuthenticatedAdmin, categoryRouter);
 app.use('/cats', CatsRouter);
 app.use('/product', productRouter);
 app.use('/register', registerRouter);
 app.use('/login', loginRouter);
-app.use('/userDashboard', middlewares.isAuthenticatedUser ,userDashboardRouter);
-app.use('/adminDashboard', middlewares.isAuthenticatedAdmin ,adminDashboardRouter);
-app.use('/cart', middlewares.isAuthenticatedUser,cartRouter);
+app.use('/userDashboard', middlewares.isAuthenticatedUser, userDashboardRouter);
+app.use('/adminDashboard', middlewares.isAuthenticatedAdmin, adminDashboardRouter);
+app.use('/cart', middlewares.isAuthenticatedUser, cartRouter);
 app.use('/order', orderRouter);
-app.use('/payment', paymentRouter);
+app.use('/payment', middlewares.isAuthenticatedUser, paymentRouter);
 app.use('/', indexRouter);
 
 seedDB();
